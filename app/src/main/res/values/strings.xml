@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Fixawy</string>
+    <string name="electricity">Electrician</string>
+    <string name="plumber">Plumber</string>
+    <string name="carpenter">Carpenter</string>
+    <string name="painter">Painter</string>
+    <string name="tilesHandyman">Tiles Handyman</string>
+    <string name="mason">Mason</string>
+    <string name="smith">Smith</string>
+    <string name="parquet">Parquet</string>
+    <string name="gypsum">Gypsum</string>
+    <string name="marble">Marble</string>
+    <string name="alumetal">Alumetal</string>
+    <string name="glasses">Glasss</string>
+    <string name="woodPainter">Wood Painter</string>
+    <string name="curtains">Curtains</string>
+    <string name="satellite">Satellite</string>
+    <string name="Appliances">Appliances Maintenance</string>
+    <string name="category">Categories</string>
+
+
 </resources>

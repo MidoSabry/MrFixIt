@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">صلحلى</string>
+    <string name="electricity">كهربائى</string>
+    <string name="plumber">سباك</string>
+    <string name="carpenter">نجار</string>
+    <string name="painter">نقاش</string>
+    <string name="tilesHandyman">سيراميك</string>
+    <string name="mason">بناء</string>
+    <string name="smith">حداد</string>
+    <string name="parquet">باركيه</string>
+    <string name="gypsum">جبس</string>
+    <string name="marble">رخام</string>
+    <string name="alumetal">الوميتال</string>
+    <string name="glasses">زجاج</string>
+    <string name="woodPainter">استرجى</string>
+    <string name="curtains">ستائر</string>
+    <string name="satellite">صيانه دش</string>
+    <string name="Appliances">صيانه اجهزه منزليه</string>
+    <string name="category" >التخصصات</string>
+</resources>
