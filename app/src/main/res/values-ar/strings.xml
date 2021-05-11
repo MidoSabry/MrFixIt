@@ -18,4 +18,9 @@
     <string name="satellite">صيانه دش</string>
     <string name="Appliances">صيانه اجهزه منزليه</string>
     <string name="category" >التخصصات</string>
+
+
+    <!--Facebook authentication-->
+    <string name="facebook_app_id">313952036784410</string>
+    <string name="fb_login_protocol_scheme">fb313952036784410</string>
 </resources>
