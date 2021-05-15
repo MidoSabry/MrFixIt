@@ -17,6 +17,36 @@
     <string name="satellite">Satellite</string>
     <string name="Appliances">Appliances Maintenance</string>
     <string name="category">Categories</string>
+    <string name="worker">Worker</string>
+    <string name="client">Client</string>
+    <string name="language">English</string>
+    <string name="select_membership">Select Your Membership Type</string>
+    <string name="make_order">Make Order</string>
+    <string name="show_all_worker">Show All Workers</string>
+    <string name="ask_question">Ask Questions</string>
+    <string name="edit">Edit</string>
+    <string name="typeOrder">Type Of Order</string>
+    <string name="easy">Easy Job</string>
+    <string name="hard">Hard Job</string>
+    <string name="more_details">More Details</string>
+    <string name="description_of_the_problem">Description of the problem</string>
+    <string name="location">Location</string>
+    <string name="your_location">Your Location</string>
+    <string name="phone">Phone</string>
+    <string name="update">Update</string>
+    <string name="home">Home</string>
+    <string name="requested">Requested</string>
+    <string name="previous">Previous Requested</string>
+    <string name="chat">Chat</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="proccessing">Processing</string>
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+
+
 
 
 </resources>

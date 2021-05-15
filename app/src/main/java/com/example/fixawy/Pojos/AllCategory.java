@@ -1,8 +1,25 @@
 package com.example.fixawy.Pojos;
 
+import java.util.List;
+
 public class AllCategory {
     int categoryId;
     String categoryTitle;
+    List<EmployeeData>employeeDataList;
+
+    public List<EmployeeData> getEmployeeDataList() {
+        return employeeDataList;
+    }
+
+    public void setEmployeeDataList(List<EmployeeData> employeeDataList) {
+        this.employeeDataList = employeeDataList;
+    }
+
+    public AllCategory(int categoryId, String categoryTitle, List<EmployeeData> employeeDataList) {
+        this.categoryId = categoryId;
+        this.categoryTitle = categoryTitle;
+        this.employeeDataList = employeeDataList;
+    }
 
     public AllCategory() {
     }

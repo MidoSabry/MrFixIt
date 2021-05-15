@@ -18,4 +18,31 @@
     <string name="satellite">صيانه دش</string>
     <string name="Appliances">صيانه اجهزه منزليه</string>
     <string name="category" >التخصصات</string>
+    <string name="worker">عامل</string>
+    <string name="client">عميل</string>
+    <string name="language">عريى</string>
+    <string name="select_membership">أختر نوع العضويه</string>
+    <string name="make_order">اجراء طلب</string>
+    <string name="show_all_worker">عرض جميع العاملين</string>
+    <string name="ask_question">اجراء سؤال</string>
+    <string name="edit">تعديل</string>
+    <string name="typeOrder">نوع الطلب</string>
+    <string name="easy">مهمه بسيطه</string>
+    <string name="hard">مهمه صعبه</string>
+    <string name="more_details">تفاصيل أكثر</string>
+    <string name="description_of_the_problem">تفاصيل اكثر عن المشكله</string>
+    <string name="location">العنوان</string>
+    <string name="your_location">موقعك</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="update">حفظ التعديلات</string>
+    <string name="home">الصفحه الرئيسيه</string>
+    <string name="requested">طلباتى</string>
+    <string name="previous">طلبات سابقه</string>
+    <string name="chat">رسائلى</string>
+    <string name="settings">الاعدادات</string>
+    <string name="logout">خروج</string>
+    <string name="proccessing">معالجه</string>
+
+    <string name="navigation_drawer_open">افتح</string>
+    <string name="navigation_drawer_close">اغلق</string>
 </resources>

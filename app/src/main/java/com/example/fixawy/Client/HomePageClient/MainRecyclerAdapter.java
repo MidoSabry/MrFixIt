@@ -7,16 +7,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
-import com.example.fixawy.MainActivity;
+import com.example.fixawy.Pojos.Advertisment;
 import com.example.fixawy.Pojos.AllCategory;
+import com.example.fixawy.Pojos.EmployeeData;
 import com.example.fixawy.R;
 
 import java.util.List;
@@ -25,10 +22,14 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
       private Context context;
       AllCategoryNamesModel allCategoryNamesModel = new AllCategoryNamesModel();
+      AdvertisementsModel advertisementsModel = new AdvertisementsModel();
+    List<Advertisment> advertisments;
+    private List<AllCategory> allCategoryList;
 
+    public MainRecyclerAdapter(Context context,List<AllCategory> allCategoryList) {
 
-    public MainRecyclerAdapter(Context context) {
         this.context = context;
+        this.allCategoryList = allCategoryList;
     }
 
     @NonNull
@@ -40,36 +41,53 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
 
-        setCategoryRecyclerView(holder.categoryRecycler,allCategoryNamesModel.getAllCategories());
+      //  setCategoryRecyclerView(holder.categoryRecycler,allCategoryNamesModel.getAllCategories());
+       // setAdvertisement(holder.viewPager,advertisementsModel.getAllAdvertisement());
+        holder.categoryTitle.setText(allCategoryList.get(position).getCategoryTitle());
+        setEmployeeRecyclerView(holder.empItemRecycler,allCategoryList.get(position).getEmployeeDataList());
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+
+       return allCategoryList.size();
     }
 
     public class MainViewHolder extends RecyclerView.ViewHolder{
 
 
-        RecyclerView categoryRecycler;
+       // RecyclerView categoryRecycler;
+       // ViewPager viewPager;
+        RecyclerView empItemRecycler;
+        TextView categoryTitle;
 
         public MainViewHolder(@NonNull View itemView) {
             super(itemView);
 
 
-            categoryRecycler = itemView.findViewById(R.id.categoryrv);
+           // categoryRecycler = itemView.findViewById(R.id.categoryrv);
+            //viewPager = itemView.findViewById(R.id.advertisment_viewPager);
+            empItemRecycler = itemView.findViewById(R.id.item_emp_recycler);
+            categoryTitle = itemView.findViewById(R.id.cat_emp_title);
 
         }
     }
 
-    private void setCategoryRecyclerView(RecyclerView categoryRecyclerView,List<AllCategory>allCategories){
+//    private void setCategoryRecyclerView(RecyclerView categoryRecyclerView,List<AllCategory>allCategories){
+//        CategoryItemRecyclerAdapter categoryItemRecyclerAdapter = new CategoryItemRecyclerAdapter(context,allCategories);
+//        categoryRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
+//        categoryRecyclerView.setAdapter(categoryItemRecyclerAdapter);
+//    }
 
+//    private void setAdvertisement(ViewPager viewPager, List<Integer> adv){
+//       AdvertismentAdapter advertismentAdapter = new AdvertismentAdapter(adv);
+//       viewPager.setAdapter(advertismentAdapter);
+//    }
 
-        CategoryItemRecyclerAdapter categoryItemRecyclerAdapter = new CategoryItemRecyclerAdapter(context,allCategories);
-        categoryRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-        categoryRecyclerView.setAdapter(categoryItemRecyclerAdapter);
-
-
+    private void setEmployeeRecyclerView(RecyclerView employeeRecyclerView,List<EmployeeData>allEmployeeData){
+        EmployeeItemRecyclerAdapter employeeItemRecyclerAdapter = new EmployeeItemRecyclerAdapter(context,allEmployeeData);
+        employeeRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
+        employeeRecyclerView.setAdapter(employeeItemRecyclerAdapter);
     }
 
 
