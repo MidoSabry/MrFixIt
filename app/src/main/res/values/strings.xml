@@ -48,5 +48,9 @@
 
 
 
+    <!--Facebook authentication-->
+    <string name="facebook_app_id">313952036784410</string>
+    <string name="fb_login_protocol_scheme">fb313952036784410</string>
+
 
 </resources>
