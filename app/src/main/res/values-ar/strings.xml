@@ -42,7 +42,20 @@
     <string name="settings">الاعدادات</string>
     <string name="logout">خروج</string>
     <string name="proccessing">معالجه</string>
+    <string name="selected">المتقدمين للطلب</string>
+    <string name="jobs">وظيفه</string>
+    <string name="likes">اعجبنى</string>
+    <string name="dislikes">كرهه</string>
+    <string name="cancel">الغاء</string>
+    <string name="accept">قبول</string>
+    <string name="history">طلبات سابقه</string>
+    <string name="done_by">تمت بواسطه</string>
 
     <string name="navigation_drawer_open">افتح</string>
     <string name="navigation_drawer_close">اغلق</string>
+
+    <!--Facebook authentication-->
+    <string name="facebook_app_id">313952036784410</string>
+    <string name="fb_login_protocol_scheme">fb313952036784410</string>
+
 </resources>

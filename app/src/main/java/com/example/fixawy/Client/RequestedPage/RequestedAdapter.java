@@ -30,7 +30,7 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 0;
     }
 
     class RequestedItemViewHolder extends RecyclerView.ViewHolder{
