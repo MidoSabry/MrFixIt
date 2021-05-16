@@ -1,16 +1,232 @@
 package com.example.fixawy.Share.RegisterPage;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.fixawy.R;
+import com.example.fixawy.Share.LoginPage.LoginActivity;
+import com.example.fixawy.Share.VerifyCode.VerificationCode;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    TextInputLayout editTextEmail, editTextPassword,editTextUserName,editTextConfirmPassword,editTextPhone,editTextAddress;
+    Button btnContinue;
+    TextView textViewLogin;
+    FirebaseAuth mAuth;
+    String userName,email,phoneNum,address,password,confirmPassword,codeSend,phoneNumber,type;
+    private TextView processText;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
+    FirebaseUser firebaseUser;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
+        editTextEmail = findViewById(R.id.edit_email);
+        editTextPassword = findViewById(R.id.edit_password);
+        btnContinue = findViewById(R.id.btnContinue);
+        editTextUserName=findViewById(R.id.edit_username);
+        editTextConfirmPassword=findViewById(R.id.edit_confirmPassword);
+        editTextPhone=findViewById(R.id.edit_phone);
+        editTextAddress=findViewById(R.id.edit_address);
+        textViewLogin=findViewById(R.id.alreadyHaveAccount);
+        processText=findViewById(R.id.progress);
+        mAuth=FirebaseAuth.getInstance();
+        type=getIntent().getExtras().getString("type");
+        userName=getIntent().getStringExtra("userName");
+        email=getIntent().getStringExtra("email");
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser=mAuth.getCurrentUser();
+
+        if (firebaseUser != null){
+            editTextUserName.getEditText().setText(userName);
+            editTextEmail.getEditText().setText(email);
+        }
+
+        textViewLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(RegisterActivity.this,LoginActivity.class);
+                intent.putExtra("type",type);
+                startActivity(intent);
+            }
+        });
+
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               register();
+            }
+        });
+
+        mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                signIn(phoneAuthCredential);
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+                processText.setText(e.getMessage());
+                processText.setTextColor(Color.RED);
+                processText.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+
+                processText.setText("OTP has been Sent");
+                processText.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent otpIntent = new Intent(RegisterActivity.this , VerificationCode.class);
+                        otpIntent.putExtra("auth" , s);
+                        otpIntent.putExtra("userName",userName);
+                        otpIntent.putExtra("email",email);
+                        otpIntent.putExtra("phone",phoneNum);
+                        otpIntent.putExtra("address",address);
+                        otpIntent.putExtra("type",type);
+                        otpIntent.putExtra("password",password);
+                        startActivity(otpIntent);
+                    }
+                }, 10000);
+
+            }
+        };
+    }
+
+    private void sendToMain(){
+        startActivity(new Intent(RegisterActivity.this,VerificationCode.class));
+    }
+    private void signIn(PhoneAuthCredential credential){
+        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    sendToMain();
+                }else{
+                    processText.setText(task.getException().getMessage());
+                    processText.setTextColor(Color.RED);
+                    processText.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+    public void register(){
+        String country_code = "20";
+        phoneNum = editTextPhone.getEditText().getText().toString().trim();
+        userName=editTextUserName.getEditText().getText().toString().trim();
+        email = editTextEmail.getEditText().getText().toString().trim();
+        address=editTextAddress.getEditText().getText().toString().trim();
+        password = editTextPassword.getEditText().getText().toString().trim();
+        confirmPassword=editTextConfirmPassword.getEditText().toString().trim();
+        type=getIntent().getExtras().getString("type");
+
+        if (userName.isEmpty()){
+            editTextUserName.setError("UserName is required");
+            editTextUserName.requestFocus();
+            return;
+        }
+
+        if (email.isEmpty()){
+            editTextEmail.setError("Email is required");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Please Enter Valid Email");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (phoneNum.isEmpty()){
+            editTextPhone.setError("Phone is required");
+            editTextPhone.requestFocus();
+            return;
+        }
+
+        if (!Patterns.PHONE.matcher(phoneNum).matches()) {
+            editTextPhone.setError("Please Enter Valid Phone");
+            editTextPhone.requestFocus();
+            return;
+        }
+
+        if (address.isEmpty()){
+            editTextAddress.setError("Address is required");
+            editTextAddress.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()){
+            editTextPassword.setError("Password is required");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        if (confirmPassword.isEmpty()){
+            editTextConfirmPassword.setError("ConfirmPassword is required");
+            editTextConfirmPassword.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6){
+            editTextPassword.setError("password is required 6 character");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+             /*   if (!(confirmPassword.equals(password))) {
+                    editTextConfirmPassword.setError("Password isn't matched");
+                    editTextConfirmPassword.requestFocus();
+                    return;
+                }*/
+
+        phoneNumber = "+" + country_code + "" + phoneNum;
+        if (!phoneNum.isEmpty()){
+            PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                    .setPhoneNumber(phoneNumber)
+                    .setTimeout(60L , TimeUnit.SECONDS)
+                    .setActivity(RegisterActivity.this)
+                    .setCallbacks(mCallBacks)
+                    .build();
+            PhoneAuthProvider.verifyPhoneNumber(options);
+        }else{
+            processText.setText("Please Enter Country Code and Phone Number");
+            processText.setTextColor(Color.RED);
+            processText.setVisibility(View.VISIBLE);
+        }
+
     }
 }

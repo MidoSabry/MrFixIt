@@ -54,6 +54,24 @@
     <string name="navigation_drawer_open">افتح</string>
     <string name="navigation_drawer_close">اغلق</string>
 
+
+    <string name="updatePassword">تعديل كلمة السر</string>
+    <string name="sendCode">ارسال الكود</string>
+    <string name="statue">الحالة</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="signUp">انشاء حساب</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="userName">اسم المستخدم</string>
+    <string name="address">العنوان</string>
+    <string name="password">كلمة السر</string>
+    <string name="newPassword">كلمة السر الجديدة</string>
+    <string name="confirmPassword">تأكيد كلمة السر</string>
+    <string name="forgetPassword">نسيت كلمة السر؟</string>
+    <string name="or">أو</string>
+    <string name="code">الكود</string>
+    <string name="next">التالي</string>
+
+
     <!--Facebook authentication-->
     <string name="facebook_app_id">313952036784410</string>
     <string name="fb_login_protocol_scheme">fb313952036784410</string>

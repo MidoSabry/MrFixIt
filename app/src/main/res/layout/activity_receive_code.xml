@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".Share.VerifyCode.VerificationCode">
+    tools:context=".Share.VerifyCode.ReceiveCode">
 
     <TextView
         android:id="@+id/title"
@@ -19,7 +19,7 @@
         android:layout_marginTop="20dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:text="@string/code"
+        android:text="Receive Code"
         android:textColor="#FFFFFF"
         android:textSize="38sp"
         android:textStyle="bold" />
@@ -66,62 +66,35 @@
                             android:inputType="textEmailAddress" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+
                     <Button
-                        android:id="@+id/btn_signUp"
+                        android:id="@+id/btnNext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/signUp"
-                        android:background="@drawable/btn_check_type"
+                        android:text="@string/next"
                         android:textAllCaps="false"
-                        android:layout_marginTop="20dp"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
+
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/card_view"
-                android:layout_alignStart="@+id/card_view"
-                android:layout_alignLeft="@+id/card_view"
-                android:layout_alignRight="@+id/card_view"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="-22dp"
-                android:layout_marginRight="35dp"
-                android:elevation="10dp">
-
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/text_or"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/card_view"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:textSize="20sp" />
 
             <LinearLayout
                 android:id="@+id/login_icons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/text_or"
+                android:layout_below="@+id/card_view"
                 android:paddingHorizontal="20dp">
 
                 <ProgressBar
                     android:id="@+id/progress"
                     android:layout_width="359dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:layout_marginTop="30dp" />
             </LinearLayout>
-
-
-
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

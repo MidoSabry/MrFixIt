@@ -19,7 +19,7 @@
         android:layout_marginTop="20dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#FFFFFF"
         android:textSize="38sp"
         android:textStyle="bold" />
@@ -62,8 +62,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Phone"
-                            android:inputType="textEmailAddress" />
+                            android:hint="@string/phone"
+                            android:inputType="number" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -80,7 +80,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Password"
+                            android:hint="@string/password"
                             android:inputType="textPassword"
                             android:paddingStart="10dp"
                             android:paddingLeft="10dp"
@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="Forget Password?"
+                        android:text="@string/forgetPassword"
                         android:textColor="#0277BD"
                         android:layout_gravity="right"/>
 
@@ -104,7 +104,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="Login"
+                        android:text="@string/login"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="20sp"
@@ -121,7 +121,7 @@
                         android:layout_below="@+id/card_view"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="30dp"
-                        android:text="OR"
+                        android:text="@string/or"
                         android:layout_gravity="center_horizontal"
                         android:textSize="20sp" />
 
@@ -174,7 +174,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:text="SignUp"
+                            android:text="@string/signUp"
                             android:textColor="#C11515"
                             android:layout_marginTop="25dp"
                             android:layout_gravity="center_horizontal"
