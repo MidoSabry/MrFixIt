@@ -33,6 +33,7 @@
     <string name="description_of_the_problem">تفاصيل اكثر عن المشكله</string>
     <string name="location">العنوان</string>
     <string name="your_location">موقعك</string>
+    <string name="your_phone">هاتفك</string>
     <string name="phone">رقم الهاتف</string>
     <string name="update">حفظ التعديلات</string>
     <string name="home">الصفحه الرئيسيه</string>
@@ -50,6 +51,13 @@
     <string name="accept">قبول</string>
     <string name="history">طلبات سابقه</string>
     <string name="done_by">تمت بواسطه</string>
+    <string name="ok">موافق</string>
+    <string name="make_post">اسال سؤالك</string>
+    <string name="hi">مرحبا</string>
+    <string name="what_question">ما هو سؤالك؟</string>
+    <string name="what_mind">اكتب سؤالك</string>
+    <string name="post">نشر</string>
+    <string name="select_job">اختر الوظيفه</string>
 
     <string name="navigation_drawer_open">افتح</string>
     <string name="navigation_drawer_close">اغلق</string>

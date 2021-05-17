@@ -59,14 +59,14 @@
                     <RadioButton
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radia_id1"
+                        android:id="@+id/edit_easy_radio"
                         android:text="@string/easy"
                         android:textSize="20dp" />
 
                     <RadioButton
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radia_id2"
+                        android:id="@+id/edit_hard_radio"
                         android:text="@string/hard"
                         android:textSize="20dp"
                         android:layout_marginTop="10dp"/>
@@ -83,14 +83,20 @@
                     android:layout_marginLeft="10dp"/>
 
                 <EditText
+                    android:id="@+id/edit_comment"
                     android:layout_width="match_parent"
-                    android:layout_height="104dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:background="@drawable/custom_edit_text"
-                    android:hint="@string/description_of_the_problem"
-                    android:textColor="#78849E" />
+                    android:layout_height="150dp"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/et_layout"
+                    android:gravity="start"
+                    android:hint="Comment about this worker"
+                    android:inputType="textMultiLine"
+                    android:maxLines="50"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_id" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -103,6 +109,7 @@
                     android:layout_marginLeft="10dp"/>
 
                 <EditText
+                    android:id="@+id/edit_location"
                     android:layout_width="match_parent"
                     android:layout_height="53dp"
                     android:layout_marginTop="10dp"
@@ -132,7 +139,7 @@
                     android:layout_marginRight="25dp"
                     android:background="@drawable/custom_edit_text"
                     android:textColor="#78849E"
-                    android:hint="@string/your_location" />
+                    android:hint="@string/your_phone" />
 
                 <GridLayout
                     android:layout_width="match_parent"
@@ -140,22 +147,25 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp">
-                    <ImageView
+                    <Button
+                        android:id="@+id/edit_time"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/clock_btn"
+                        android:background="@drawable/clock_btn"
                         android:layout_gravity="center"/>
 
-                    <ImageView
+                    <Button
+                        android:id="@+id/edit_date"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/calender_btn"
+                        android:background="@drawable/calender_btn"
                         android:layout_marginLeft="100dp"
                         android:layout_gravity="center"/>
 
                 </GridLayout>
 
                 <Button
+                    android:id="@+id/edit_make_order"
                     android:layout_width="250dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="68dp"

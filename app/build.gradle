@@ -55,5 +55,8 @@ dependencies {
     //dependencies for facebook
     implementation 'com.facebook.android:facebook-login:[8.1)'
     implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
+
+    //dependencies for like button
+    implementation 'com.airbnb.android:lottie:3.4.4'
     
 }

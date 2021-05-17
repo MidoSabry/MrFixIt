@@ -32,6 +32,7 @@
     <string name="description_of_the_problem">Description of the problem</string>
     <string name="location">Location</string>
     <string name="your_location">Your Location</string>
+    <string name="your_phone">Your Phone</string>
     <string name="phone">Phone</string>
     <string name="update">Update</string>
     <string name="home">Home</string>
@@ -49,6 +50,15 @@
     <string name="accept">Accept</string>
     <string name="history">History</string>
     <string name="done_by">Done By</string>
+    <string name="ok">OK</string>
+    <string name="make_post">Make Post</string>
+    <string name="hi">Hi,</string>
+    <string name="what_question">What is your question?</string>
+    <string name="what_mind">What is on your mind?</string>
+    <string name="post">Post</string>
+    <string name="select_job">Select Job</string>
+
+
 
 
     <string name="updatePassword">Update Password</string>
