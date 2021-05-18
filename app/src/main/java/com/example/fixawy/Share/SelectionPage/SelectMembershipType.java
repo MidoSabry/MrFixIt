@@ -12,7 +12,7 @@ import com.example.fixawy.Share.Homes.OwnerHome;
 import com.example.fixawy.Share.Homes.WorkerHome;
 import com.example.fixawy.Share.RegisterPage.RegisterActivity;
 import com.example.fixawy.Share.Session.SharedPreferencesConfig;
-
+import com.example.fixawy.Worker.SelectJobPage.SelectJobActivity;
 
 
 public class SelectMembershipType extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class SelectMembershipType extends AppCompatActivity {
         btnWorker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
+                startActivity(new Intent(getApplicationContext(), SelectJobActivity.class)
                         .putExtra("type", "Worker"));
                 preferencesConfig.writeWorkerLoginStatus(true);
             }

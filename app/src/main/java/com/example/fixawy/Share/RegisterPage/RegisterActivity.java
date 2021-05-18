@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnContinue;
     TextView textViewLogin;
     FirebaseAuth mAuth;
-    String userName,email,phoneNum,address,password,confirmPassword,codeSend,phoneNumber,type;
+    String userName,email,phoneNum,address,password,confirmPassword,codeSend,phoneNumber,type,jobTitle;
     private TextView processText;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     FirebaseUser firebaseUser;
@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
         type=getIntent().getExtras().getString("type");
         userName=getIntent().getStringExtra("userName");
         email=getIntent().getStringExtra("email");
+        jobTitle=getIntent().getExtras().getString("jopTitle");
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser=mAuth.getCurrentUser();
@@ -152,6 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = editTextPassword.getEditText().getText().toString().trim();
         confirmPassword=editTextConfirmPassword.getEditText().toString().trim();
         type=getIntent().getExtras().getString("type");
+        jobTitle=getIntent().getExtras().getString("jopTitle");
 
         if (userName.isEmpty()){
             editTextUserName.setError("UserName is required");

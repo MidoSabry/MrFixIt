@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.fixawy.Firebase.FirebaseHandlerClient;
+import com.example.fixawy.Firebase.FirebaseHandlerWorker;
+import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.Homes.OwnerHome;
 import com.example.fixawy.Share.Homes.WorkerHome;
@@ -29,7 +32,11 @@ public class VerificationCode extends AppCompatActivity {
     private String OTP;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
-    String userName,email,phoneNum,address,password,verification_code,type;
+    String userName,email,phoneNum,address,password,verification_code,type,jobTitle;
+    User userClient,userWorker;
+
+    private FirebaseHandlerClient firebaseHandlerClient;
+    private FirebaseHandlerWorker firebaseHandlerWorker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class VerificationCode extends AppCompatActivity {
         address=getIntent().getStringExtra("address");
         type=getIntent().getStringExtra("type");
         password=getIntent().getStringExtra("password");
+        jobTitle=getIntent().getStringExtra("jobTitle");
 
 
         mVerifyCodeBtn.setOnClickListener(new View.OnClickListener() {
@@ -70,29 +78,57 @@ public class VerificationCode extends AppCompatActivity {
     }
 
     private void sendToMain(){
-        com.example.fixawy.Pojos.User user = new com.example.fixawy.Pojos.User(userName,email,phoneNum,address,type,password);
-        FirebaseDatabase.getInstance().getReference("Users").child(phoneNum)
-                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(VerificationCode.this, type, Toast.LENGTH_SHORT).show();
-                    if (type.equals("Owner")){
-                        startActivity(new Intent(VerificationCode.this, OwnerHome.class));
 
-                    }
-                    else if (type.equals("Worker")){
-                        startActivity(new Intent(VerificationCode.this, WorkerHome.class));
+        userClient = new User(userName,email,phoneNum,address,type,password);
+        userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle);
 
-                    }
-                }
-                else {
-                    Toast.makeText(VerificationCode.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();
+        if(type.equals("Owner")){
+            registerClient(userClient);
+            startActivity(new Intent(VerificationCode.this, OwnerHome.class));
+        }
+        else if(type.equals("Worker")){
+            registerWorker(userWorker);
+            startActivity(new Intent(VerificationCode.this, WorkerHome.class));
+        }
+        else {
+            Toast.makeText(VerificationCode.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();
+        }
+//        com.example.fixawy.Pojos.User user = new com.example.fixawy.Pojos.User(userName,email,phoneNum,address,type,password);
+//        FirebaseDatabase.getInstance().getReference("Users").child(phoneNum)
+//                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()){
+//                    Toast.makeText(VerificationCode.this, type, Toast.LENGTH_SHORT).show();
+//                    if (type.equals("Owner")){
+//                        startActivity(new Intent(VerificationCode.this, OwnerHome.class));
+//
+//                    }
+//                    else if (type.equals("Worker")){
+//                        startActivity(new Intent(VerificationCode.this, WorkerHome.class));
+//
+//                    }
+//                }
+//                else {
+//                    Toast.makeText(VerificationCode.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//        });
 
-                }
-            }
+
+    }
+
+    public void registerClient(User user){
+        firebaseHandlerClient = new FirebaseHandlerClient();
+        firebaseHandlerClient.addClientrData(user,user.phone).addOnSuccessListener(suc->{
+
         });
+    }
 
-
+    public void registerWorker(User user){
+        firebaseHandlerWorker = new FirebaseHandlerWorker();
+        firebaseHandlerWorker.addWorkerData(user,user.phone).addOnSuccessListener(suc->{
+        });
     }
 }
