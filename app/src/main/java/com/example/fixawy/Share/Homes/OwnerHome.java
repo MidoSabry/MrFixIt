@@ -9,20 +9,20 @@ import android.widget.Button;
 
 import com.example.fixawy.R;
 import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
-import com.example.fixawy.Share.Session.SharedPreferencesConfig;
+//import com.example.fixawy.Share.Session.SharedPreferencesConfig;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class OwnerHome extends AppCompatActivity {
 
     Button buttonLogout;
-    SharedPreferencesConfig preferencesConfig;
+   // SharedPreferencesConfig preferencesConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_home);
         buttonLogout=findViewById(R.id.logout);
-        preferencesConfig = new SharedPreferencesConfig(getApplicationContext());
+        //preferencesConfig = new SharedPreferencesConfig(getApplicationContext());
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,7 +32,7 @@ public class OwnerHome extends AppCompatActivity {
                 // preferencesConfig.edit().clear().commit();
                 Intent intent = new Intent(OwnerHome.this, SelectMembershipType.class);
                 startActivity(intent);
-                preferencesConfig.writeUserLoginStatus(false);
+             //   preferencesConfig.writeUserLoginStatus(false);
                 finish();
             }
         });

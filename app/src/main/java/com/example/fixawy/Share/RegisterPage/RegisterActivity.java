@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.LoginPage.LoginActivity;
 import com.example.fixawy.Share.VerifyCode.VerificationCode;
@@ -26,6 +27,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -35,10 +38,15 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnContinue;
     TextView textViewLogin;
     FirebaseAuth mAuth;
-    String userName,email,phoneNum,address,password,confirmPassword,codeSend,phoneNumber,type;
+    String userName,email,phoneNum,address,password,confirmPassword,codeSend,phoneNumber,type,jobTitle;
     private TextView processText;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     FirebaseUser firebaseUser;
+
+    RegisterViewModel registerViewModel;
+    User userClient;
+    User userWorker;
+
 
 
 
@@ -61,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         type=getIntent().getExtras().getString("type");
         userName=getIntent().getStringExtra("userName");
         email=getIntent().getStringExtra("email");
+        jobTitle=getIntent().getExtras().getString("jopTitle");
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser=mAuth.getCurrentUser();
@@ -144,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(){
-        String country_code = "20";
+       // String country_code = "20";
         phoneNum = editTextPhone.getEditText().getText().toString().trim();
         userName=editTextUserName.getEditText().getText().toString().trim();
         email = editTextEmail.getEditText().getText().toString().trim();
@@ -152,6 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = editTextPassword.getEditText().getText().toString().trim();
         confirmPassword=editTextConfirmPassword.getEditText().toString().trim();
         type=getIntent().getExtras().getString("type");
+        jobTitle=getIntent().getExtras().getString("jopTitle");
 
         if (userName.isEmpty()){
             editTextUserName.setError("UserName is required");
@@ -213,20 +223,31 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }*/
 
-        phoneNumber = "+" + country_code + "" + phoneNum;
-        if (!phoneNum.isEmpty()){
-            PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
-                    .setPhoneNumber(phoneNumber)
-                    .setTimeout(60L , TimeUnit.SECONDS)
-                    .setActivity(RegisterActivity.this)
-                    .setCallbacks(mCallBacks)
-                    .build();
-            PhoneAuthProvider.verifyPhoneNumber(options);
-        }else{
-            processText.setText("Please Enter Country Code and Phone Number");
-            processText.setTextColor(Color.RED);
-            processText.setVisibility(View.VISIBLE);
-        }
+//        phoneNumber = "+" + country_code + "" + phoneNum;
+//        if (!phoneNum.isEmpty()){
+//            PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+//                    .setPhoneNumber(phoneNumber)
+//                    .setTimeout(60L , TimeUnit.SECONDS)
+//                    .setActivity(RegisterActivity.this)
+//                    .setCallbacks(mCallBacks)
+//                    .build();
+//            PhoneAuthProvider.verifyPhoneNumber(options);
+//        }else{
+//            processText.setText("Please Enter Country Code and Phone Number");
+//            processText.setTextColor(Color.RED);
+//            processText.setVisibility(View.VISIBLE);
+//        }
+
+        registerViewModel = new RegisterViewModel();
+        userClient = new User(userName,email,phoneNum,address,type,password);
+        userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle);
+
+        registerViewModel.registerClient(userClient);
+        registerViewModel.registerWorker(userWorker);
+
+
+
 
     }
+
 }
