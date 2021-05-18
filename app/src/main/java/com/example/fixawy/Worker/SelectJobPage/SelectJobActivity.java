@@ -13,12 +13,13 @@ import com.example.fixawy.Share.RegisterPage.RegisterActivity;
 public class SelectJobActivity extends AppCompatActivity {
 
     Button btnElectrican,btnPlumber,btnCarpenter,btnPainter,btnTiles,btnMason,btnSmith,btnParquet,btnGyp,btnGlass,btnAlumetal,btnWood,btnCurtains,btnSatellite,btnAppliances,btnMarble;
-
+    String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_job);
 
+        type=getIntent().getStringExtra("type");
 
         btnElectrican = findViewById(R.id.electricity_btn);
         btnPlumber = findViewById(R.id.pulmber_btn);
@@ -40,128 +41,176 @@ public class SelectJobActivity extends AppCompatActivity {
         btnElectrican.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Electricity"));
+               Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+               intent.putExtra("type",type);
+               intent.putExtra("jobTitle","Electricity");
+               startActivity(intent);
+               finish();
             }
         });
 
         btnPlumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Plumber"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Plumber");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnCarpenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Carpenter"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Carpenter");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnPainter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Painter"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Painter");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnTiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Tiles Handyman"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Tiles Handyman");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnMason.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Mason"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Mason");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnSmith.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Smith"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Smith");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnParquet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Parquet"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Parquet");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnGyp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Gypsum"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Gypsum");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnMarble.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Marble"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Marble");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnAlumetal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Alumetal"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Alumetal");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnGlass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Glass"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Glass");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnWood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Wood Painter"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Wood");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnCurtains.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Curtais"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Curtains");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnSatellite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Satellite"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Satellite");
+                startActivity(intent);
+                finish();
             }
         });
 
         btnAppliances.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("jopTitle", "Appliances Maintenance"));
+                Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
+                intent.putExtra("type",type);
+                intent.putExtra("jobTitle","Appliances Maintenance");
+                startActivity(intent);
+                finish();
             }
         });
     }

@@ -14,8 +14,8 @@ public class FirebaseHandlerWorker {
         databaseReference = db.getReference("Worker");
 
     }
-    public Task<Void> addWorkerData(User user, String phonNum)
+    public Task<Void> addWorkerData(User user, String phonNum,String jobTitle)
     {
-        return databaseReference.child("Data").child(phonNum).setValue(user);
+        return databaseReference.child("jobTitle").child(jobTitle).child(phonNum).child("Data").setValue(user);
     }
 }

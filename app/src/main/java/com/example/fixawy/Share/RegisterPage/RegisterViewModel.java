@@ -30,7 +30,7 @@ public class RegisterViewModel extends ViewModel {
 
     public void registerWorker(User user){
         firebaseHandlerWorker = new FirebaseHandlerWorker();
-        firebaseHandlerWorker.addClientData(user,user.phone).addOnSuccessListener(suc->{
+        firebaseHandlerWorker.addWorkerData(user,user.phone,user.jobTitle).addOnSuccessListener(suc->{
 
 
         });

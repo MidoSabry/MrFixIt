@@ -14,7 +14,7 @@ public class FirebaseHandlerClient {
         databaseReference = db.getReference("Client");
 
     }
-    public Task<Void> addClientrData(User user, String phonNum)
+    public Task<Void> addClientData(User user, String phonNum)
     {
         return databaseReference.child("Data").child(phonNum).setValue(user);
     }

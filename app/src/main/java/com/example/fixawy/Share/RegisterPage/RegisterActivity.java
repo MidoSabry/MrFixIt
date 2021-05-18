@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         type=getIntent().getExtras().getString("type");
         userName=getIntent().getStringExtra("userName");
         email=getIntent().getStringExtra("email");
-        jobTitle=getIntent().getExtras().getString("jopTitle");
+        jobTitle=getIntent().getExtras().getString("jobTitle");
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser=mAuth.getCurrentUser();
@@ -84,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent =new Intent(RegisterActivity.this,LoginActivity.class);
                 intent.putExtra("type",type);
+                intent.putExtra("jobTitle",jobTitle);
                 startActivity(intent);
             }
         });
@@ -126,6 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
                         otpIntent.putExtra("address",address);
                         otpIntent.putExtra("type",type);
                         otpIntent.putExtra("password",password);
+                        otpIntent.putExtra("jobTitle",jobTitle);
                         startActivity(otpIntent);
                     }
                 }, 10000);
@@ -153,7 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(){
-       // String country_code = "20";
+        String country_code = "20";
         phoneNum = editTextPhone.getEditText().getText().toString().trim();
         userName=editTextUserName.getEditText().getText().toString().trim();
         email = editTextEmail.getEditText().getText().toString().trim();
@@ -161,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = editTextPassword.getEditText().getText().toString().trim();
         confirmPassword=editTextConfirmPassword.getEditText().toString().trim();
         type=getIntent().getExtras().getString("type");
-        jobTitle=getIntent().getExtras().getString("jopTitle");
+        jobTitle=getIntent().getExtras().getString("jobTitle");
 
         if (userName.isEmpty()){
             editTextUserName.setError("UserName is required");
@@ -223,28 +225,28 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }*/
 
-//        phoneNumber = "+" + country_code + "" + phoneNum;
-//        if (!phoneNum.isEmpty()){
-//            PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
-//                    .setPhoneNumber(phoneNumber)
-//                    .setTimeout(60L , TimeUnit.SECONDS)
-//                    .setActivity(RegisterActivity.this)
-//                    .setCallbacks(mCallBacks)
-//                    .build();
-//            PhoneAuthProvider.verifyPhoneNumber(options);
-//        }else{
-//            processText.setText("Please Enter Country Code and Phone Number");
-//            processText.setTextColor(Color.RED);
-//            processText.setVisibility(View.VISIBLE);
-//        }
+       phoneNumber = "+" + country_code + "" + phoneNum;
+       if (!phoneNum.isEmpty()){
+           PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                   .setPhoneNumber(phoneNumber)
+                   .setTimeout(60L , TimeUnit.SECONDS)
+                   .setActivity(RegisterActivity.this)
+                   .setCallbacks(mCallBacks)
+                   .build();
+           PhoneAuthProvider.verifyPhoneNumber(options);
+       }else{
+           processText.setText("Please Enter Country Code and Phone Number");
+           processText.setTextColor(Color.RED);
+           processText.setVisibility(View.VISIBLE);
+       }
 
-        registerViewModel = new RegisterViewModel();
+      /*  registerViewModel = new RegisterViewModel();
         userClient = new User(userName,email,phoneNum,address,type,password);
         userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle);
 
         registerViewModel.registerClient(userClient);
         registerViewModel.registerWorker(userWorker);
-
+*/
 
 
 

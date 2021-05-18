@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     static final int GOOGLE_SIGN_IN = 123;
     private CallbackManager mCallbackManager;
-    String email,type,userName;
+    String email,type,userName,jobTitle;
     FirebaseUser user;
 
 
@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         mCallbackManager=CallbackManager.Factory.create();
         user=fAuth.getCurrentUser();
         type=getIntent().getExtras().getString("type");
+        jobTitle=getIntent().getExtras().getString("jobTitle");
 
 
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(LoginActivity.this,ForgetPassword.class);
                 intent.putExtra("type",type);
+                intent.putExtra("jobTitle",jobTitle);
                 startActivity(intent);
             }
         });
@@ -242,6 +244,7 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("userName",userName);
             intent.putExtra("email",email);
             intent.putExtra("type",type);
+            intent.putExtra("jobTitle",jobTitle);
             startActivity(intent);
             finish();
 

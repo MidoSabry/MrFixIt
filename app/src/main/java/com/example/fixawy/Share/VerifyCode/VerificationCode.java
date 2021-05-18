@@ -121,14 +121,14 @@ public class VerificationCode extends AppCompatActivity {
 
     public void registerClient(User user){
         firebaseHandlerClient = new FirebaseHandlerClient();
-        firebaseHandlerClient.addClientrData(user,user.phone).addOnSuccessListener(suc->{
+        firebaseHandlerClient.addClientData(user,user.phone).addOnSuccessListener(suc->{
 
         });
     }
 
     public void registerWorker(User user){
         firebaseHandlerWorker = new FirebaseHandlerWorker();
-        firebaseHandlerWorker.addWorkerData(user,user.phone).addOnSuccessListener(suc->{
+        firebaseHandlerWorker.addWorkerData(user,user.phone,user.jobTitle).addOnSuccessListener(suc->{
         });
     }
 }

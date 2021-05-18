@@ -18,7 +18,7 @@ import com.example.fixawy.Worker.SelectJobPage.SelectJobActivity;
 public class SelectMembershipType extends AppCompatActivity {
 
     Button btnOwner,btnWorker;
-    SharedPreferencesConfig preferencesConfig;
+  //  SharedPreferencesConfig preferencesConfig;
 
 
     @Override
@@ -30,7 +30,7 @@ public class SelectMembershipType extends AppCompatActivity {
         btnWorker=findViewById(R.id.worker_btn);
 
 
-        preferencesConfig = new SharedPreferencesConfig(getApplicationContext());
+      /*  preferencesConfig = new SharedPreferencesConfig(getApplicationContext());
 
         if (preferencesConfig.readUserLoginStatus()) {
             Intent intent = new Intent(SelectMembershipType.this, OwnerHome.class);
@@ -41,7 +41,7 @@ public class SelectMembershipType extends AppCompatActivity {
             Intent intent = new Intent(SelectMembershipType.this, WorkerHome.class);
             startActivity(intent);
             finish();
-        }
+        }*/
 
 
         btnOwner.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +49,7 @@ public class SelectMembershipType extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
                         .putExtra("type", "Owner"));
-                preferencesConfig.writeUserLoginStatus(true);
+              //  preferencesConfig.writeUserLoginStatus(true);
             }
         });
 
@@ -58,7 +58,7 @@ public class SelectMembershipType extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), SelectJobActivity.class)
                         .putExtra("type", "Worker"));
-                preferencesConfig.writeWorkerLoginStatus(true);
+                //preferencesConfig.writeWorkerLoginStatus(true);
             }
         });
 

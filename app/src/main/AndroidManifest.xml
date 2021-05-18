@@ -27,10 +27,7 @@
         <activity android:name=".Worker.WorkerSettingPage.WorkerSettingActivity" />
         <activity android:name=".Worker.WorkerProfilePage.WorkerProfileActivity" />
         <activity android:name=".Worker.SelectJobPage.SelectJobActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".Worker.ReplayQuestionsPage.ReplayQuestionActivity" />
         <activity android:name=".Worker.HomePageWorker.HomePageWorkerActivity" />
@@ -53,13 +50,16 @@
         <activity android:name=".Share.VerifyCode.VerificationCode" />
         <activity android:name=".Share.RegisterPage.RegisterActivity"/>
         <activity android:name=".Share.SelectionPage.SelectMembershipType" >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Share.SplashScreen.SplashScreen" />
         <activity android:name=".MainActivity" />
 
 
-        <meta-data
+<!--        <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
@@ -81,7 +81,7 @@
                     tools:ignore="ManifestResource" />
             </intent-filter>
         </activity>
-
+-->
     </application>
 
 </manifest>
