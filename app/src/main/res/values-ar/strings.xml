@@ -58,6 +58,7 @@
     <string name="what_mind">اكتب سؤالك</string>
     <string name="post">نشر</string>
     <string name="select_job">اختر الوظيفه</string>
+    <string name="your_question">اسالتك</string>
 
     <string name="navigation_drawer_open">افتح</string>
     <string name="navigation_drawer_close">اغلق</string>
@@ -81,7 +82,7 @@
 
 
     <!--Facebook authentication-->
-    <string name="facebook_app_id">313952036784410</string>
-    <string name="fb_login_protocol_scheme">fb313952036784410</string>
+<!--    <string name="facebook_app_id">313952036784410</string>-->
+<!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->
 
 </resources>

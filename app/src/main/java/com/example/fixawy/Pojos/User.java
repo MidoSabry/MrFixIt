@@ -2,7 +2,7 @@ package com.example.fixawy.Pojos;
 
 public class User {
 
-    public String userName,email,phone,address,type,password;
+    public String userName,email,phone,address,type,password,jobTitle;
 
     public User(){}
 
@@ -13,6 +13,24 @@ public class User {
         this.address = address;
         this.type = type;
         this.password=password;
+    }
+
+    public User(String userName, String email, String phone, String address, String type, String password, String jobTitle) {
+        this.userName = userName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.type = type;
+        this.password = password;
+        this.jobTitle = jobTitle;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
     public String getUserName() {

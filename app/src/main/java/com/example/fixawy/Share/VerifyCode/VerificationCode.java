@@ -71,7 +71,7 @@ public class VerificationCode extends AppCompatActivity {
 
     private void sendToMain(){
         com.example.fixawy.Pojos.User user = new com.example.fixawy.Pojos.User(userName,email,phoneNum,address,type,password);
-        FirebaseDatabase.getInstance().getReference("Users").child(phoneNum)
+        FirebaseDatabase.getInstance().getReference("Users").child("Owner").child("Data").child(phoneNum)
                 .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
