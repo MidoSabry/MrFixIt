@@ -32,7 +32,7 @@ public class ForgetPassword extends AppCompatActivity {
     Button buttonSendCode;
     private TextView processText;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
-    String phoneNum,phoneNumber,type;
+    String phoneNum,phoneNumber,type,jobTitle;
     FirebaseAuth mAuth;
 
     @Override
@@ -44,6 +44,7 @@ public class ForgetPassword extends AppCompatActivity {
         processText=findViewById(R.id.progress);
         mAuth=FirebaseAuth.getInstance();
         type=getIntent().getExtras().getString("type");
+        jobTitle=getIntent().getExtras().getString("jobTitle");
 
 
         buttonSendCode.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,7 @@ public class ForgetPassword extends AppCompatActivity {
                         otpIntent.putExtra("auth" , s);
                         otpIntent.putExtra("phone",phoneNum);
                         otpIntent.putExtra("type",type);
+                        otpIntent.putExtra("jobTitle",jobTitle);
                         startActivity(otpIntent);
                     }
                 }, 10000);
@@ -84,16 +86,13 @@ public class ForgetPassword extends AppCompatActivity {
         };
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user !=null){
-            sendToMain();
-        }
-    }
+
     private void sendToMain(){
-        startActivity(new Intent(ForgetPassword.this,ReceiveCode.class));
+        Intent otpIntent = new Intent(ForgetPassword.this , ReceiveCode.class);
+        otpIntent.putExtra("phone",phoneNum);
+        otpIntent.putExtra("type",type);
+        otpIntent.putExtra("jobTitle",jobTitle);
+        startActivity(otpIntent);
     }
     private void signIn(PhoneAuthCredential credential){
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

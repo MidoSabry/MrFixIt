@@ -17,7 +17,7 @@ public class ChangePassword extends AppCompatActivity {
 
     TextInputLayout editTextNewPassword,editTextConfirmPassword;
     Button buttonUpdatePassword;
-    String OTP,phoneNum,verification_code,newPassword,confirmPassword,type;
+    String OTP,phoneNum,verification_code,newPassword,confirmPassword,type,jobTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class ChangePassword extends AppCompatActivity {
         phoneNum=getIntent().getStringExtra("phone");
         verification_code=getIntent().getStringExtra("verification_code");
         type=getIntent().getExtras().getString("type");
+        jobTitle=getIntent().getExtras().getString("jobTitle");
 
         buttonUpdatePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +54,7 @@ public class ChangePassword extends AppCompatActivity {
                     return;
                 }
 
-                if (newPassword.length() < 6){
+                if (newPassword.length() > 6){
                     editTextNewPassword.setError("password is required 6 character");
                     editTextNewPassword.requestFocus();
                     return;
@@ -65,11 +66,12 @@ public class ChangePassword extends AppCompatActivity {
                     return;
                 }
 
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users");
+                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Client").child("Data");
                 reference.child(phoneNum).child("password").setValue(newPassword);
 
                 Intent intent=new Intent(ChangePassword.this,LoginActivity.class);
                 intent.putExtra("type",type);
+                intent.putExtra("jobTitle",jobTitle);
                 startActivity(intent);
                 finish();
 
