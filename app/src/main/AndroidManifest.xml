@@ -48,6 +48,10 @@
         <activity android:name=".Share.LoginPage.LoginActivity" />
         <activity android:name=".Share.VerifyCode.VerificationCode" />
         <activity android:name=".Share.RegisterPage.RegisterActivity"/>
+        <activity android:name=".Client.MakeOrder.ClientMakeOrder"/>
+        <activity android:name=".Client.MakeOrder.TestActivity" />
+        <activity android:name=".Client.MakeOrder.CreditCardActivity" />
+        <activity android:name=".Client.MakeOrder.PaymentDetailsActivity" />
         <activity android:name=".Share.SelectionPage.SelectMembershipType" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

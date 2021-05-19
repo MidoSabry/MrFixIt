@@ -13,9 +13,9 @@ public class ThirdOrderViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void addData(OrderTree orderTree) {
+    public void addData(OrderTree orderTree, String phoneNum) {
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
-        clientOrderRepo.addData().push().setValue(orderTree);
+        clientOrderRepo.addData(phoneNum).setValue(orderTree);
     }
 
 }

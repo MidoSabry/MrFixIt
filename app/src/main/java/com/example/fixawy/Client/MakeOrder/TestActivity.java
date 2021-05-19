@@ -1,8 +1,8 @@
 package com.example.fixawy.Client.MakeOrder;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fixawy.R;
 

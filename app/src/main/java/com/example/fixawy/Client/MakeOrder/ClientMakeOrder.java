@@ -1,17 +1,14 @@
 package com.example.fixawy.Client.MakeOrder;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fixawy.R;
 import com.example.fixawy.databinding.ActivityClientMakeOrderBinding;

@@ -30,6 +30,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    viewBinding{
+        enabled = true
+    }
 }
 
 dependencies {
@@ -58,5 +61,12 @@ dependencies {
 
     //dependencies for like button
     implementation 'com.airbnb.android:lottie:3.4.4'
-    
+    // places google API
+    implementation 'com.google.android.libraries.places:places:2.4.0'
+    //paypal
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
+    //credit card form
+    implementation 'com.braintreepayments:card-form:3.1.1'
+    //stepper indicator
+    implementation  'com.anton46:stepsview:0.0.2'
 }

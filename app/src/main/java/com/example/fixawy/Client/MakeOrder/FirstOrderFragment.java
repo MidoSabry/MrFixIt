@@ -1,20 +1,17 @@
 package com.example.fixawy.Client.MakeOrder;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
@@ -51,7 +48,7 @@ public class FirstOrderFragment extends Fragment {
         longworkbtn = view.findViewById(R.id.radio_Long_work);
         shortworkbtn = view.findViewById(R.id.radio_short_work);
         addDetails = view.findViewById(R.id.edittext_view_addnotes);
-
+       String phoneNum= getActivity().getIntent().getStringExtra("phone");
 
         //MVVM
         viewModel = new ViewModelProvider(this).get(FirstOrderViewModel.class);

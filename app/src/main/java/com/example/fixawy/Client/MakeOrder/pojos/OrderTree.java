@@ -8,6 +8,19 @@ public class OrderTree {
     private String date;
     private String time;
     private int paymentMethod;
+    private String phoneNum;
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public OrderTree(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
 
     public int getPaymentMethod() {
         return paymentMethod;
