@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.Firebase.FirebaseHandlerWorker;
 import com.example.fixawy.Pojos.User;
@@ -84,7 +85,8 @@ public class VerificationCode extends AppCompatActivity {
 
         if(type.equals("Owner")){
             registerClient(userClient);
-            startActivity(new Intent(VerificationCode.this, OwnerHome.class));
+            startActivity(new Intent(VerificationCode.this, SelectKindOfChoiceActivity.class)
+                    .putExtra("phone",phoneNum));
         }
         else if(type.equals("Worker")){
             registerWorker(userWorker);

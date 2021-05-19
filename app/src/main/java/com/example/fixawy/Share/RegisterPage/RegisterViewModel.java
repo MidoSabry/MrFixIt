@@ -23,8 +23,6 @@ public class RegisterViewModel extends ViewModel {
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addClientData(user,user.phone).addOnSuccessListener(suc->{
 
-           
-
         });
     }
 

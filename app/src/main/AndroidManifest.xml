@@ -27,7 +27,6 @@
         <activity android:name=".Worker.WorkerSettingPage.WorkerSettingActivity" />
         <activity android:name=".Worker.WorkerProfilePage.WorkerProfileActivity" />
         <activity android:name=".Worker.SelectJobPage.SelectJobActivity" >
-
         </activity>
         <activity android:name=".Worker.ReplayQuestionsPage.ReplayQuestionActivity" />
         <activity android:name=".Worker.HomePageWorker.HomePageWorkerActivity" />
