@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Client.MakeOrder.FirstOrderFragment">
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView_title">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+         android:layout_marginTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="40dp">
+
+                <TextView
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="@font/redressedregular"
+                    android:text="@string/ordertype"
+                    android:textSize="35dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/radio_Long_work"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:buttonTint="@color/black"
+                        android:text="@string/Maintenance" />
+
+                    <TextView
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/working" />
+
+
+                    <RadioButton
+                        android:id="@+id/radio_short_work"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
+                        android:text="@string/Job" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/littlework"
+                        android:layout_marginLeft="8dp"
+                        />
+
+                </RadioGroup>
+                <TextView
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="@font/redressedregular"
+                    android:text="@string/Details"
+                    android:textSize="35dp" />
+
+
+                    <EditText
+                        android:id="@+id/edittext_view_addnotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:background="@color/white"
+                        android:gravity="top"
+                        android:hint="Type more Details"
+                        android:inputType="text"
+                        android:textSize="20sp" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </ScrollView>
+
+
+
+
+
+</FrameLayout>
