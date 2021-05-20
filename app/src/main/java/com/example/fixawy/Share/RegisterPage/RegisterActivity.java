@@ -43,9 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     FirebaseUser firebaseUser;
 
-    RegisterViewModel registerViewModel;
-    User userClient;
-    User userWorker;
+
+
 
 
 

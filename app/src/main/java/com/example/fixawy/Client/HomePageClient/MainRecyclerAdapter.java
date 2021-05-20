@@ -13,16 +13,17 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.fixawy.Pojos.Advertisment;
 import com.example.fixawy.Pojos.AllCategory;
-import com.example.fixawy.Pojos.EmployeeData;
+//import com.example.fixawy.Pojos.EmployeeData;
+import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 
 import java.util.List;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder> {
 
-      private Context context;
-      AllCategoryNamesModel allCategoryNamesModel = new AllCategoryNamesModel();
-      AdvertisementsModel advertisementsModel = new AdvertisementsModel();
+    private Context context;
+    AllCategoryNamesModel allCategoryNamesModel = new AllCategoryNamesModel();
+    AdvertisementsModel advertisementsModel = new AdvertisementsModel();
     List<Advertisment> advertisments;
     private List<AllCategory> allCategoryList;
 
@@ -41,23 +42,31 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
 
-      //  setCategoryRecyclerView(holder.categoryRecycler,allCategoryNamesModel.getAllCategories());
-       // setAdvertisement(holder.viewPager,advertisementsModel.getAllAdvertisement());
-        holder.categoryTitle.setText(allCategoryList.get(position).getCategoryTitle());
+        //  setCategoryRecyclerView(holder.categoryRecycler,allCategoryNamesModel.getAllCategories());
+        // setAdvertisement(holder.viewPager,advertisementsModel.getAllAdvertisement());
+        AllCategory allCategory=allCategoryList.get(position);
+        if(allCategory.getEmployeeDataList().size()==0)return;
+        holder.categoryTitle.setText(allCategory.getCategoryTitle());
         setEmployeeRecyclerView(holder.empItemRecycler,allCategoryList.get(position).getEmployeeDataList());
     }
 
     @Override
     public int getItemCount() {
+        int count=0;
+        for (AllCategory item:allCategoryList) {
+            if(item.getEmployeeDataList()==null)continue;
+            if(!item.getEmployeeDataList().isEmpty())
+                count++;
 
-       return allCategoryList.size();
+        }
+        return count;
     }
 
     public class MainViewHolder extends RecyclerView.ViewHolder{
 
 
-       // RecyclerView categoryRecycler;
-       // ViewPager viewPager;
+        // RecyclerView categoryRecycler;
+        // ViewPager viewPager;
         RecyclerView empItemRecycler;
         TextView categoryTitle;
 
@@ -65,7 +74,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             super(itemView);
 
 
-           // categoryRecycler = itemView.findViewById(R.id.categoryrv);
+            // categoryRecycler = itemView.findViewById(R.id.categoryrv);
             //viewPager = itemView.findViewById(R.id.advertisment_viewPager);
             empItemRecycler = itemView.findViewById(R.id.item_emp_recycler);
             categoryTitle = itemView.findViewById(R.id.cat_emp_title);
@@ -84,10 +93,11 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 //       viewPager.setAdapter(advertismentAdapter);
 //    }
 
-    private void setEmployeeRecyclerView(RecyclerView employeeRecyclerView,List<EmployeeData>allEmployeeData){
+    private void setEmployeeRecyclerView(RecyclerView employeeRecyclerView, List<User> allEmployeeData){
         EmployeeItemRecyclerAdapter employeeItemRecyclerAdapter = new EmployeeItemRecyclerAdapter(context,allEmployeeData);
         employeeRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         employeeRecyclerView.setAdapter(employeeItemRecyclerAdapter);
+
     }
 
 

@@ -78,7 +78,6 @@
     <string name="CheckOut">CheckOut Process</string>
 
 
-
     <string name="updatePassword">Update Password</string>
     <string name="sendCode">Send Code</string>
     <string name="statue">Statue</string>
@@ -101,9 +100,8 @@
 
 
     <!--Facebook authentication-->
-<!--    <string name="facebook_app_id">313952036784410</string>-->
-<!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->
-
+    <!--    <string name="facebook_app_id">313952036784410</string>-->
+    <!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->
 
 
 </resources>
