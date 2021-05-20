@@ -25,6 +25,12 @@ public class User {
         this.jobTitle = jobTitle;
     }
 
+    public User(String userName, String phone, String address) {
+        this.userName = userName;
+        this.phone = phone;
+        this.address = address;
+    }
+
     public String getJobTitle() {
         return jobTitle;
     }

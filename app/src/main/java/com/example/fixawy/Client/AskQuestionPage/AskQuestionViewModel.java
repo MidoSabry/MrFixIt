@@ -12,8 +12,8 @@ public class AskQuestionViewModel extends ViewModel {
 
     public void addClientQuestion(Questions question){
         firebaseHandlerClient = new FirebaseHandlerClient();
-        firebaseHandlerClient.addClientQuestion(question,question.phone).addOnSuccessListener(suc->{
-
-        });
+//        firebaseHandlerClient.addClientQuestion(question,question.phone).addOnSuccessListener(suc->{
+//
+//        });
     }
 }

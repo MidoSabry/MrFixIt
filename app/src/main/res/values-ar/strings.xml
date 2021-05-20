@@ -81,6 +81,27 @@
     <string name="next">التالي</string>
 
 
+
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Finish">Finish</string>
+    <string name="Maintenance">Maintenance and repair</string>
+    <string name="Job">Hard Job</string>
+    <string name="working">less than 1 hour work</string>
+    <string name="littlework">"More than 1 hour to repair "</string>
+    <string name="ordertype">Type Of Order</string>
+    <string name="Details">More Details</string>
+    <string name="Location">Location</string>
+    <string name="Phone">Phone</string>
+    <string name="api_key">AIzaSyCVOvMSNN18_AJKQjfKfoWKxsYNF5GNxK0</string>
+    <string name="Payment">Payment Way</string>
+    <string name="Cash">Cash</string>
+    <string name="PayPal">PayPal</string>
+    <string name="Credit">Credit Card</string>
+    <string name="CheckOut">CheckOut Process</string>
+
+
     <!--Facebook authentication-->
 <!--    <string name="facebook_app_id">313952036784410</string>-->
 <!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->

@@ -87,7 +87,7 @@ public class SelectJobActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
                 intent.putExtra("type",type);
-                intent.putExtra("jobTitle","Tiles Handyman");
+                intent.putExtra("jobTitle","TilesHandyMan");
                 startActivity(intent);
                 finish();
             }
@@ -164,7 +164,7 @@ public class SelectJobActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
                 intent.putExtra("type",type);
-                intent.putExtra("jobTitle","Glass");
+                intent.putExtra("jobTitle","Glasses");
                 startActivity(intent);
                 finish();
             }
@@ -175,7 +175,7 @@ public class SelectJobActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
                 intent.putExtra("type",type);
-                intent.putExtra("jobTitle","Wood");
+                intent.putExtra("jobTitle","WoodPainter");
                 startActivity(intent);
                 finish();
             }
@@ -208,7 +208,7 @@ public class SelectJobActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SelectJobActivity.this,RegisterActivity.class);
                 intent.putExtra("type",type);
-                intent.putExtra("jobTitle","Appliances Maintenance");
+                intent.putExtra("jobTitle","Appliances");
                 startActivity(intent);
                 finish();
             }

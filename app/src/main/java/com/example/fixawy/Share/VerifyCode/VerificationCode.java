@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.Firebase.FirebaseHandlerWorker;
@@ -18,6 +19,7 @@ import com.example.fixawy.R;
 import com.example.fixawy.Share.Homes.OwnerHome;
 import com.example.fixawy.Share.Homes.WorkerHome;
 
+import com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -35,6 +37,10 @@ public class VerificationCode extends AppCompatActivity {
     ProgressBar progressBar;
     String userName,email,phoneNum,address,password,verification_code,type,jobTitle;
     User userClient,userWorker;
+
+    public static final String EXTR_USER_NAME ="userName";
+    public static final String EXTR_PHONE_NUM ="phone";
+    public static final String EXTRA_JOB_TITLE ="jobTitle";
 
     private FirebaseHandlerClient firebaseHandlerClient;
     private FirebaseHandlerWorker firebaseHandlerWorker;
@@ -85,12 +91,13 @@ public class VerificationCode extends AppCompatActivity {
 
         if(type.equals("Owner")){
             registerClient(userClient);
-            startActivity(new Intent(VerificationCode.this, SelectKindOfChoiceActivity.class)
-                    .putExtra("phone",phoneNum));
+            startActivity(new Intent(VerificationCode.this, HomePageClientActivity.class)
+                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName));
         }
         else if(type.equals("Worker")){
             registerWorker(userWorker);
-            startActivity(new Intent(VerificationCode.this, WorkerHome.class));
+            startActivity(new Intent(VerificationCode.this, RequestedHomePageActivity.class)
+                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle));
         }
         else {
             Toast.makeText(VerificationCode.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();
@@ -123,7 +130,7 @@ public class VerificationCode extends AppCompatActivity {
 
     public void registerClient(User user){
         firebaseHandlerClient = new FirebaseHandlerClient();
-        firebaseHandlerClient.addClientData(user,user.phone).addOnSuccessListener(suc->{
+        firebaseHandlerClient.addClientrData(user,user.phone).addOnSuccessListener(suc->{
 
         });
     }
