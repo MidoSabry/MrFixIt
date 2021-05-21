@@ -31,6 +31,9 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AskQuestionActivity extends AppCompatActivity {
 
     EditText editTextQuestion;
@@ -55,7 +58,6 @@ public class AskQuestionActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         phoneNum=getIntent().getStringExtra("phone");
         jobTitle = getIntent().getStringExtra("categoryName");
-
 
 
         buttonUploadPhoto.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +104,7 @@ public class AskQuestionActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         question = editTextQuestion.getText().toString().trim();
-                        userQuestions = new Questions(phoneNum,question,uri.toString());
+                        userQuestions = new Questions(phoneNum,question,jobTitle,uri.toString());
                         workerQuestions = new Questions(phoneNum,question,jobTitle,uri.toString());
                         askQuestionViewModel.addClientQuestion(userQuestions);
                         askQuestionViewModel.addWorkerQuestion(workerQuestions);
