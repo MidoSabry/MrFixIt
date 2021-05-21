@@ -410,8 +410,8 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
 
-            else if (jobTitle.equals("Tiles Handyman")){
-                databaseReference.child("Worker").child("Tiles Handyman").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+            else if (jobTitle.equals("TilesHandyMan")){
+                databaseReference.child("Worker").child("TilesHandyMan").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
@@ -595,8 +595,8 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
 
-            else if (jobTitle.equals("Wood")){
-                databaseReference.child("Worker").child("Wood").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+            else if (jobTitle.equals("WoodPainter")){
+                databaseReference.child("Worker").child("WoodPainter").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
