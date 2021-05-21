@@ -21,10 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class PreviousQuestionActivity extends AppCompatActivity {
 
     FloatingActionButton floatingButtonAsk;
-    String phoneNum;
+    String phoneNum,jobTitle;
     RecyclerView mRecyclerView;
     DatabaseReference mRef;
     PreviousQuestionAdapter questionAdapter;
+    Questions questions;
 
 
 
@@ -35,12 +36,14 @@ public class PreviousQuestionActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.questionsList);
         floatingButtonAsk = findViewById(R.id.addQuestion);
         phoneNum = getIntent().getStringExtra("phone");
+        jobTitle = getIntent().getStringExtra("categoryName");
 
         floatingButtonAsk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PreviousQuestionActivity.this, AskQuestionActivity.class);
                 intent.putExtra("phone", phoneNum);
+                intent.putExtra("categoryName",jobTitle);
                 startActivity(intent);
             }
         });
@@ -62,7 +65,7 @@ public class PreviousQuestionActivity extends AppCompatActivity {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
                 questionAdapter.clear();
                 for (DataSnapshot snapshot : children) {
-                    Questions questions = snapshot.getValue(Questions.class);
+                    questions = snapshot.getValue(Questions.class);
                     questionAdapter.add(questions);
                 }
             }

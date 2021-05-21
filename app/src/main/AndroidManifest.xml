@@ -52,10 +52,7 @@
         <activity android:name=".Client.RequestedPage.RequestedActivity" />
         <activity android:name=".Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity" />
         <activity android:name=".Client.HomePageClient.HomePageClientActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".Share.LoginPage.LoginActivity" />
         <activity android:name=".Share.VerifyCode.VerificationCode" >
@@ -63,7 +60,10 @@
         </activity>
         <activity android:name=".Share.RegisterPage.RegisterActivity" />
         <activity android:name=".Share.SelectionPage.SelectMembershipType" >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Share.SplashScreen.SplashScreen" />
         <activity android:name=".MainActivity" />

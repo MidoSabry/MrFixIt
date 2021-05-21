@@ -66,15 +66,163 @@ public class ChangePassword extends AppCompatActivity {
                     return;
                 }
 
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Client").child("Data");
-                reference.child(phoneNum).child("password").setValue(newPassword);
+                if(type.equals("Owner")) {
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Client").child("Data");
+                    reference.child(phoneNum).child("password").setValue(newPassword);
 
-                Intent intent=new Intent(ChangePassword.this,LoginActivity.class);
-                intent.putExtra("type",type);
-                intent.putExtra("jobTitle",jobTitle);
-                startActivity(intent);
-                finish();
+                    Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                    intent.putExtra("type", type);
+                    intent.putExtra("jobTitle", jobTitle);
+                    startActivity(intent);
+                    finish();
+                }
 
+                else if (type.equals("Worker")){
+                    if (jobTitle.equals("Electricity")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Plumber")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Carpenter")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Painter")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Tiles Handyman")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Mason")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Smith")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Parquet")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Gypsum")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Marble")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Alumetal")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Glass")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Wood")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Curtains")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Satellite")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if (jobTitle.equals("Appliances Maintenance")){
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneNum).child("password").setValue(newPassword);
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.putExtra("type", type);
+                        intent.putExtra("jobTitle", jobTitle);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
             }
         });
 

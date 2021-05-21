@@ -45,6 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import static android.content.Intent.EXTRA_PHONE_NUMBER;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_PHONE_NUM;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
@@ -56,6 +57,7 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
     private AllCategoryNamesModel allCategoryNamesModel;
     DatabaseReference database;
     TextView textViewUserName,textViewUserPhone;
+    String client_phone_num,client_user_name;
 
     public static final String EXTRA_CATEGORY_NAME = "categoryName";
 
@@ -83,8 +85,8 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
 
         //get data from verifiaction code page
         Intent intent = getIntent();
-        String client_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
-        String client_user_name = intent.getStringExtra(EXTR_USER_NAME);
+        client_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
+        client_user_name = intent.getStringExtra(EXTR_USER_NAME);
         Toast.makeText(this, client_user_name, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();
 
@@ -603,7 +605,8 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         AllCategory clickedItem = allCategoryNamesModel2.getAllCategories().get(position);
         Log.d("Mido", clickedItem.getCategoryTitle());
         selectTypeIntent.putExtra(EXTRA_CATEGORY_NAME,clickedItem.getCategoryTitle());
+        selectTypeIntent.putExtra("phone",client_phone_num);
+        // Toast.makeText(context, clickedItem.getCategoryTitle(), Toast.LENGTH_SHORT).show();
         startActivity(selectTypeIntent);
-
     }
 }
