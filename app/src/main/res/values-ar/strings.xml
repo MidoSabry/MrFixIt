@@ -60,6 +60,11 @@
     <string name="post">نشر</string>
     <string name="select_job">اختر الوظيفه</string>
     <string name="your_question">اسالتك</string>
+    <string name="Next">التالي</string>
+    <string name="done_with_rating">تمت بتقيم</string>
+    <string name="job_address">عنوان الوظيفة</string>
+    <string name="type_of_job">نوع الوظيفة</string>
+    <string name="emp_name">اسم العامل</string>
 
     <string name="navigation_drawer_open">افتح</string>
     <string name="navigation_drawer_close">اغلق</string>
