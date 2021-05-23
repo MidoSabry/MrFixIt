@@ -4,16 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.R;
+import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +35,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    String jobTitle;
 
     //recyclerView
     RecyclerView recyclerView_worker_requested;
@@ -45,6 +49,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested_home_page);
 
+        jobTitle = getIntent().getStringExtra("jobTitle");
 
         //DrawLayout sidemenu-bar
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -103,9 +108,21 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
     }
 
+    //to select page from side menu
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        switch (item.getItemId()){
+
+            case R.id.nav_all_previous_questions:
+                Intent intentPrevQuestions = new Intent(RequestedHomePageActivity.this, WorkerQuestionsActivity.class);
+                intentPrevQuestions.putExtra("jobTitle",jobTitle);
+                startActivity(intentPrevQuestions);
+                break;
+
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 

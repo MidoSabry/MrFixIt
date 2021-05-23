@@ -25,4 +25,11 @@ public class FirebaseHandlerClient {
         return databaseReference.child("Questions").child(jobTitle).child(phone).child("Data").setValue(question);
 
     }
+
+    public Task<Void> addClientQuestionForCategory(Questions question, String phone,String jobTitle)
+    {
+        return databaseReference.child("Question Category").child(jobTitle).child(phone).setValue(question);
+
+    }
+
 }

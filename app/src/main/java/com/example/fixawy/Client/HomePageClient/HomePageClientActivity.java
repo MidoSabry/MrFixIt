@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
@@ -588,6 +589,12 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
             case R.id.nav_previous_requested:
                 Intent intent2 = new Intent(HomePageClientActivity.this, HistoryActivity.class);
                 startActivity(intent2);
+                break;
+
+            case R.id.nav_all_previous_questions:
+                Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
+                intent3.putExtra("phone",client_phone_num);
+                startActivity(intent3);
                 break;
 
 

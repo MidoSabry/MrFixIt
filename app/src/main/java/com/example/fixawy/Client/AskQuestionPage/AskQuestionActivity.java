@@ -107,6 +107,7 @@ public class AskQuestionActivity extends AppCompatActivity {
                         userQuestions = new Questions(phoneNum,question,jobTitle,uri.toString());
                         workerQuestions = new Questions(phoneNum,question,jobTitle,uri.toString());
                         askQuestionViewModel.addClientQuestion(userQuestions);
+                        askQuestionViewModel.addClientQuestionForCategory(userQuestions);
                         askQuestionViewModel.addWorkerQuestion(workerQuestions);
                         Toast.makeText(AskQuestionActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
                         imageViewUploadPhoto.setImageResource(R.drawable.ic_google);

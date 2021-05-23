@@ -25,6 +25,7 @@
     <string name="make_order">اجراء طلب</string>
     <string name="show_all_worker">عرض جميع العاملين</string>
     <string name="ask_question">اجراء سؤال</string>
+    <string name="prev_questions">الاسئلة السابقة</string>
     <string name="edit">تعديل</string>
     <string name="typeOrder">نوع الطلب</string>
     <string name="easy">مهمه بسيطه</string>

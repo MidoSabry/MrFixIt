@@ -24,6 +24,7 @@
     <string name="make_order">Make Order</string>
     <string name="show_all_worker">Show All Workers</string>
     <string name="ask_question">Ask Questions</string>
+    <string name="prev_questions">Previous Questions</string>
     <string name="edit">Edit</string>
     <string name="typeOrder">Type Of Order</string>
     <string name="easy">Easy Job</string>
