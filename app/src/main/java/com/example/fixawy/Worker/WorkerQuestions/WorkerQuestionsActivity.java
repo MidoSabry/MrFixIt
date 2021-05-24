@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class WorkerQuestionsActivity extends AppCompatActivity {
 
-    String jobTitle;
+    String jobTitle,phoneWorker;
     RecyclerView mRecyclerView;
     DatabaseReference mRef;
     WorkerQuestionsAdapter workerQuestionsAdapter;
@@ -39,12 +39,16 @@ public class WorkerQuestionsActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.questionsList);
         textViewJobTitle=findViewById(R.id.txt_job_title);
+
         jobTitle = getIntent().getStringExtra("jobTitle");
+        phoneWorker = getIntent().getStringExtra("phone");
 
         textViewJobTitle.setText("All Questions for "+jobTitle);
 
         mRef = FirebaseDatabase.getInstance().getReference();
-        workerQuestionsAdapter = new WorkerQuestionsAdapter();
+
+
+        workerQuestionsAdapter = new WorkerQuestionsAdapter(WorkerQuestionsActivity.this,phoneWorker);
 
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
@@ -53,7 +57,6 @@ public class WorkerQuestionsActivity extends AppCompatActivity {
         readData();
         Toast.makeText(this, "all questions", Toast.LENGTH_SHORT).show();
     }
-    // return all questions for specific job...
     public void readData(){
         mRef.child("Worker").child(jobTitle).child("Questions").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override

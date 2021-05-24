@@ -326,7 +326,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -350,7 +350,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -374,7 +374,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -398,7 +398,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -422,7 +422,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -446,7 +446,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -470,7 +470,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -494,7 +494,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -518,7 +518,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -543,7 +543,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -567,7 +567,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -591,7 +591,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -615,7 +615,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -639,7 +639,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -663,7 +663,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -687,7 +687,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
-                                        .putExtra("jobTitle",jobTitle));
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }

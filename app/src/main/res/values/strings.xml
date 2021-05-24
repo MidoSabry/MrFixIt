@@ -103,6 +103,12 @@
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
 
+    <string name="reply_questions">Replies</string>
+    <string name="add_your_reply">Add Your Reply</string>
+    <string name="write_your_reply">Write Your Reply</string>
+    <string name="add">Add</string>
+    <string name="reply_from">Reply from : </string>
+    <string name="reply">Reply : </string>
 
     <!--Facebook authentication-->
     <!--    <string name="facebook_app_id">313952036784410</string>-->

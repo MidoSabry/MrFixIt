@@ -108,6 +108,14 @@
     <string name="CheckOut">CheckOut Process</string>
 
 
+    <string name="reply_questions">التعليقات</string>
+    <string name="add_your_reply">اضف ردك</string>
+    <string name="write_your_reply">اكتب تعليقك</string>
+    <string name="add">اضف</string>
+    <string name="reply_from">رد من : </string>
+    <string name="reply">الرد : </string>
+
+
     <!--Facebook authentication-->
 <!--    <string name="facebook_app_id">313952036784410</string>-->
 <!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->

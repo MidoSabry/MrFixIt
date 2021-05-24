@@ -35,7 +35,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    String jobTitle;
+    String jobTitle,phoneWorker;
 
     //recyclerView
     RecyclerView recyclerView_worker_requested;
@@ -50,6 +50,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         setContentView(R.layout.activity_requested_home_page);
 
         jobTitle = getIntent().getStringExtra("jobTitle");
+        phoneWorker=getIntent().getStringExtra("phone");
 
         //DrawLayout sidemenu-bar
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -116,6 +117,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
             case R.id.nav_all_previous_questions:
                 Intent intentPrevQuestions = new Intent(RequestedHomePageActivity.this, WorkerQuestionsActivity.class);
                 intentPrevQuestions.putExtra("jobTitle",jobTitle);
+                intentPrevQuestions.putExtra("phone",phoneWorker);
                 startActivity(intentPrevQuestions);
                 break;
 

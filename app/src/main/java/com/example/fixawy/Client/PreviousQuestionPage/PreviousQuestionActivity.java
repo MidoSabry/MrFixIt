@@ -5,25 +5,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.fixawy.Client.AskQuestionPage.AskQuestionActivity;
 import com.example.fixawy.Pojos.Questions;
-import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class PreviousQuestionActivity extends AppCompatActivity {
@@ -72,7 +65,7 @@ public class PreviousQuestionActivity extends AppCompatActivity {
     }
     // return all questions for specific job...
     public void readData(){
-        mRef.child("Client").child("Question Category").child(jobTitle).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Questions").child("Question Category").child(jobTitle).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
