@@ -39,12 +39,9 @@
         </activity>
         <activity android:name=".Client.PreviousQuestionPage.PreviousQuestionActivity" />
         <activity android:name=".Client.HistoryPage.HistoryActivity" />
-        <activity android:name=".Client.EditPage.EditActivity"></activity>
         <activity android:name=".Client.ClientSettingPage.ClientSettingActivity" />
         <activity android:name=".Client.AskQuestionPage.AskQuestionActivity" />
         <activity android:name=".Client.RequestedPage.RequestedActivity" />
-        <activity android:name=".Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity"></activity>
-        <activity android:name=".Client.HomePageClient.HomePageClientActivity"/>
         <activity android:name=".Share.LoginPage.LoginActivity" />
         <activity android:name=".Share.VerifyCode.VerificationCode" />
         <activity android:name=".Share.RegisterPage.RegisterActivity"/>
@@ -52,7 +49,11 @@
         <activity android:name=".Client.MakeOrder.TestActivity" />
         <activity android:name=".Client.MakeOrder.CreditCardActivity" />
         <activity android:name=".Client.MakeOrder.PaymentDetailsActivity" />
-        <activity android:name=".Share.SelectionPage.SelectMembershipType" >
+
+        <activity android:name=".Client.EditPage.EditActivity"/>
+        <activity android:name=".Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity"/>
+            <activity android:name=".Client.HomePageClient.HomePageClientActivity"/>
+                <activity android:name=".Share.SelectionPage.SelectMembershipType">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

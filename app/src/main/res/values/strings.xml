@@ -98,6 +98,8 @@
     <!--Navigation-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="Update">Update Order</string>
+    <string name="work">another work</string>
 
 
     <!--Facebook authentication-->

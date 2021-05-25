@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -13,8 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.fixawy.Client.EditPage.EditActivity;
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Client.MakeOrder.configpaypal.Config;
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
+import com.example.fixawy.Client.RequestedPage.RequestedActivity;
+import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
 import com.example.fixawy.R;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
@@ -36,6 +41,9 @@ public class ThirdOrderFragment extends Fragment {
     ClientMakeOrder clientMakeOrder;
     OrderTree orderTree;
     ThirdOrderViewModel thirdOrderViewModel;
+    EditText username;
+    String categoryType;
+    String phoneNum;
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             .clientId(Config.payPalKey);
@@ -69,29 +77,38 @@ public class ThirdOrderFragment extends Fragment {
         payPalBtn = view.findViewById(R.id.radio_pay_pal);
         cash = view.findViewById(R.id.radio_cash);
         creditCard = view.findViewById(R.id.radio_credit_card);
+        username=view.findViewById(R.id.enter_your_name);
         orderTree = new OrderTree();
         orderTree.setLocation(getArguments().getString("Client location"));
         orderTree.setPhone(getArguments().getString("Client phone"));
         orderTree.setDate(getArguments().getString("Order Date"));
         orderTree.setTime(getArguments().getString("Order time"));
-       orderTree.setDetails(getArguments().getString("Details"));
-       orderTree.setTypeOfOrder(getArguments().getInt("Type"));
-     String phoneNum=getActivity().getIntent().getStringExtra("phone");
-      thirdOrderViewModel = new ViewModelProvider(this).get(ThirdOrderViewModel.class);
+        orderTree.setDetails(getArguments().getString("Details"));
+        orderTree.setTypeOfOrder(getArguments().getString("Type"));
+        phoneNum = getActivity().getIntent().getStringExtra("phone");
+        categoryType = getActivity().getIntent().getExtras().getString("CategoryType");
+        thirdOrderViewModel = new ViewModelProvider(this).get(ThirdOrderViewModel.class);
         clientMakeOrder = (ClientMakeOrder) getActivity();
 
         clientMakeOrder.Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //TODO GO to another Activity or Fragment from Cash
+                //TODO GO to another Activity or Fragment from Cash
+                Intent intent = new Intent(getContext(), RequestedActivity.class);
+                intent.putExtra("phone", phoneNum);
+                intent.putExtra("CategoryType",categoryType);
+                startActivity(intent);
             }
         });
         payPalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 orderTree.setPaymentMethod(1);
-                thirdOrderViewModel.addData(orderTree,phoneNum);
+                orderTree.setJobTitle(categoryType);
+                orderTree.setRequestedPhone(phoneNum);
+                orderTree.setUserName(username.getText().toString());
+                thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
+                thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
                 processPayment();
             }
         });
@@ -99,19 +116,24 @@ public class ThirdOrderFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 orderTree.setPaymentMethod(2);
-                thirdOrderViewModel.addData(orderTree,phoneNum);
+                orderTree.setJobTitle(categoryType);
+                orderTree.setRequestedPhone(phoneNum);
+                thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
+                orderTree.setUserName(username.getText().toString());
+                thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
                 Intent intent = new Intent(getActivity(), CreditCardActivity.class);
                 startActivity(intent);
-
-
             }
-
         });
         cash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 orderTree.setPaymentMethod(0);
-                thirdOrderViewModel.addData(orderTree,phoneNum);
+                orderTree.setJobTitle(categoryType);
+                orderTree.setRequestedPhone(phoneNum);
+                orderTree.setUserName(username.getText().toString());
+                thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
+                thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
             }
         });
     }
@@ -151,6 +173,7 @@ public class ThirdOrderFragment extends Fragment {
 
         }
     }
+
 
 
 }

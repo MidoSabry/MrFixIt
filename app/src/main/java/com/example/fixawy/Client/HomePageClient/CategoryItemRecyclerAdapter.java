@@ -1,6 +1,7 @@
 package com.example.fixawy.Client.HomePageClient;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.animation.content.Content;
+import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
+import com.example.fixawy.Client.MakeOrder.ThirdOrderFragment;
 import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.R;
 
@@ -18,16 +22,17 @@ import java.util.List;
 public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryItemRecyclerAdapter.CategoryItemViewHolder> {
 
     private Context context;
-
+    private  OnItemClick onItemClick;
     public void setCategoryItemList(List<AllCategory> categoryItemList) {
         this.categoryItemList = categoryItemList;
     }
 
     private List<AllCategory> categoryItemList;
 
-    public CategoryItemRecyclerAdapter(Context context, List<AllCategory> categoryItemList) {
+    public CategoryItemRecyclerAdapter(Context context, List<AllCategory> categoryItemList, OnItemClick onItemClick) {
         this.context = context;
         this.categoryItemList = categoryItemList;
+        this.onItemClick = onItemClick;
     }
 
     @NonNull
@@ -40,6 +45,13 @@ public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryIt
     public void onBindViewHolder(@NonNull CategoryItemViewHolder holder, int position) {
 
         holder.categoryNametv.setText(categoryItemList.get(position).getCategoryTitle());
+        holder.categoryNametv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.onItemClick(position);
+            }
+        });
+
     }
 
     @Override
@@ -59,6 +71,7 @@ public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryIt
             super(itemView);
 
             categoryNametv = itemView.findViewById(R.id.categoryNameTextView);
+
 
         }
     }
