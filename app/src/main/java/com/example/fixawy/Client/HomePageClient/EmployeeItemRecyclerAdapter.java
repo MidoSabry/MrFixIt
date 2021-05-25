@@ -11,7 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fixawy.Pojos.EmployeeData;
+//import com.example.fixawy.Pojos.EmployeeData;
+import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 
 import java.util.List;
@@ -19,9 +20,9 @@ import java.util.List;
 public class EmployeeItemRecyclerAdapter extends RecyclerView.Adapter<EmployeeItemRecyclerAdapter.EmployeeItemViewHolder> {
 
     private Context context;
-    private List<EmployeeData> employeeDataItemList;
+    private List<User> employeeDataItemList;
 
-    public EmployeeItemRecyclerAdapter(Context context, List<EmployeeData> employeeDataItemList) {
+    public EmployeeItemRecyclerAdapter(Context context, List<User> employeeDataItemList) {
         this.context = context;
         this.employeeDataItemList = employeeDataItemList;
     }
@@ -33,9 +34,9 @@ public class EmployeeItemRecyclerAdapter extends RecyclerView.Adapter<EmployeeIt
 
     @Override
     public void onBindViewHolder(@NonNull EmployeeItemViewHolder holder, int position) {
-        holder.empNameTv.setText(employeeDataItemList.get(position).getEmp_name());
-        holder.empAddTv.setText(employeeDataItemList.get(position).getEmp_address());
-        holder.empPhoneTv.setText(employeeDataItemList.get(position).getEmp_phone());
+        holder.empNameTv.setText(employeeDataItemList.get(position).getUserName());
+        holder.empAddTv.setText(employeeDataItemList.get(position).getAddress());
+        holder.empPhoneTv.setText(employeeDataItemList.get(position).getPhone());
         //holder.ratingBar.setText(employeeDataItemList.get(position).getEmp_rate());
 
     }

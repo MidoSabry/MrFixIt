@@ -23,7 +23,7 @@ public class ReceiveCode extends AppCompatActivity {
     private String OTP,verification_code;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
-    String phoneNum,type;
+    String phoneNum,type,jobTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,8 @@ public class ReceiveCode extends AppCompatActivity {
         OTP = getIntent().getStringExtra("auth");
         phoneNum=getIntent().getStringExtra("phone");
         type=getIntent().getExtras().getString("type");
+        jobTitle=getIntent().getExtras().getString("jobTitle");
+
 
 
         mVerifyCodeBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +66,7 @@ public class ReceiveCode extends AppCompatActivity {
         intentChangePassword.putExtra("verification_code",verification_code);
         intentChangePassword.putExtra("phone",phoneNum);
         intentChangePassword.putExtra("type",type);
+        intentChangePassword.putExtra("jobTitle",jobTitle);
         startActivity(intentChangePassword);
         finish();
     }

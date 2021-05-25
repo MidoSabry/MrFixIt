@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:background="@color/secondColor"
+    android:gravity="bottom"
+    android:layout_marginBottom="50dp">
+
+    <ImageView
+        android:id="@+id/header_worker_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo"/>
+    <TextView
+        android:id="@+id/header_worker_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mohamed Sabry"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
+    <TextView
+        android:id="@+id/header_worker_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01225699594"
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
+
+</LinearLayout>

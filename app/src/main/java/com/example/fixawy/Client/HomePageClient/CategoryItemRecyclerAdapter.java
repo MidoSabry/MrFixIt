@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,10 +22,15 @@ import java.util.List;
 
 public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryItemRecyclerAdapter.CategoryItemViewHolder> {
 
+    private onItemClickListener mListener;
     private Context context;
     private  OnItemClick onItemClick;
     public void setCategoryItemList(List<AllCategory> categoryItemList) {
         this.categoryItemList = categoryItemList;
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener){
+        mListener = listener;
     }
 
     private List<AllCategory> categoryItemList;
@@ -65,7 +71,7 @@ public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryIt
 
     public class CategoryItemViewHolder extends RecyclerView.ViewHolder{
 
-        TextView categoryNametv;
+        Button categoryNametv;
 
         public CategoryItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,7 +79,26 @@ public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryIt
             categoryNametv = itemView.findViewById(R.id.categoryNameTextView);
 
 
+            //toClick on the item
+            categoryNametv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
         }
     }
+
+
+    public interface onItemClickListener{
+        void onItemClick(int position);
+    }
+
 
 }

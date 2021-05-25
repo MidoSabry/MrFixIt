@@ -12,14 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Share.ForgetPassword.ForgetPassword;
 
 import com.example.fixawy.R;
-import com.example.fixawy.Share.Homes.OwnerHome;
-import com.example.fixawy.Share.Homes.WorkerHome;
 import com.example.fixawy.Share.RegisterPage.RegisterActivity;
 
+import com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -293,402 +292,418 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 // check if Owner...
-    if (type.equals("Owner")){
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-    databaseReference.child("Client").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        if (type.equals("Owner")){
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            databaseReference.child("Client").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            if (dataSnapshot.child(phone).exists()) {
-                if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
-                        startActivity(new Intent(LoginActivity.this, SelectKindOfChoiceActivity.class)
-                                .putExtra("phone",phone));
-                } else {
-                    Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                    if (dataSnapshot.child(phone).exists()) {
+                        if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                            startActivity(new Intent(LoginActivity.this, HomePageClientActivity.class)
+                                    .putExtra("phone",phone));
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            } else {
-                Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
-            }
-        }
 
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
+                }
+            });
         }
-    });
-    }
 // check if worker with jobTitle...
-    else if (type.equals("Worker")) {
-        if (jobTitle.equals("Electricity")) {
-            databaseReference.child("Worker").child("jobTitle").child("Electricity").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+        else if (type.equals("Worker")) {
+            if (jobTitle.equals("Electricity")) {
+                databaseReference.child("Worker").child("Electricity").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Plumber")){
-            databaseReference.child("Worker").child("jobTitle").child("Plumber").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Plumber")){
+                databaseReference.child("Worker").child("Plumber").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Carpenter")){
-            databaseReference.child("Worker").child("jobTitle").child("Carpenter").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Carpenter")){
+                databaseReference.child("Worker").child("Carpenter").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Painter")){
-            databaseReference.child("Worker").child("jobTitle").child("Painter").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Painter")){
+                databaseReference.child("Worker").child("Painter").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Tiles Handyman")){
-            databaseReference.child("Worker").child("jobTitle").child("Tiles Handyman").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("TilesHandyMan")){
+                databaseReference.child("Worker").child("TilesHandyMan").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Mason")){
-            databaseReference.child("Worker").child("jobTitle").child("Mason").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Mason")){
+                databaseReference.child("Worker").child("Mason").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Smith")){
-            databaseReference.child("Worker").child("jobTitle").child("Smith").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Smith")){
+                databaseReference.child("Worker").child("Smith").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Parquet")){
-            databaseReference.child("Worker").child("jobTitle").child("Parquet").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Parquet")){
+                databaseReference.child("Worker").child("Parquet").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Gypsum")){
-            databaseReference.child("Worker").child("jobTitle").child("Gypsum").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Gypsum")){
+                databaseReference.child("Worker").child("Gypsum").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
 
-        else if (jobTitle.equals("Marble")){
-            databaseReference.child("Worker").child("jobTitle").child("Marble").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Marble")){
+                databaseReference.child("Worker").child("Marble").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Alumetal")){
-            databaseReference.child("Worker").child("jobTitle").child("Alumetal").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Alumetal")){
+                databaseReference.child("Worker").child("Alumetal").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Glass")){
-            databaseReference.child("Worker").child("jobTitle").child("Glass").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Glass")){
+                databaseReference.child("Worker").child("Glass").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Wood")){
-            databaseReference.child("Worker").child("jobTitle").child("Wood").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("WoodPainter")){
+                databaseReference.child("Worker").child("WoodPainter").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Curtains")){
-            databaseReference.child("Worker").child("jobTitle").child("Curtains").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Curtains")){
+                databaseReference.child("Worker").child("Curtains").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Satellite")){
-            databaseReference.child("Worker").child("jobTitle").child("Satellite").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Satellite")){
+                databaseReference.child("Worker").child("Satellite").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }
+                    }
+                });
+            }
 
-        else if (jobTitle.equals("Appliances Maintenance")){
-            databaseReference.child("Worker").child("jobTitle").child("Appliances Maintenance").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(phone).exists()) {
-                        if (dataSnapshot.child(phone).child("Data").child("password").getValue(String.class).equals(password)) {
-                            Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(LoginActivity.this, WorkerHome.class));
+            else if (jobTitle.equals("Appliances Maintenance")){
+                databaseReference.child("Worker").child("Appliances Maintenance").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(phone).exists()) {
+                            if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "No Data is existed", Toast.LENGTH_SHORT).show();
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
+                    }
+                });
+            }
+
         }
-
-    }
 
     }
 }

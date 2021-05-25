@@ -5,23 +5,23 @@ import java.util.List;
 public class AllCategory {
     int categoryId;
     String categoryTitle;
-    List<EmployeeData>employeeDataList;
+    List<User>employeeDataList;
 
-    public List<EmployeeData> getEmployeeDataList() {
+    public List<User> getEmployeeDataList() {
         return employeeDataList;
     }
 
-    public void setEmployeeDataList(List<EmployeeData> employeeDataList) {
+    public void setEmployeeDataList(List<User> employeeDataList) {
         this.employeeDataList = employeeDataList;
     }
 
-    public AllCategory(int categoryId, String categoryTitle, List<EmployeeData> employeeDataList) {
+    public AllCategory(int categoryId, String categoryTitle, List<User> employeeDataList) {
         this.categoryId = categoryId;
         this.categoryTitle = categoryTitle;
         this.employeeDataList = employeeDataList;
     }
 
-    public AllCategory(int categoryId, int electricity) {
+    public AllCategory() {
     }
 
     public AllCategory(int categoryId, String categoryTitle) {

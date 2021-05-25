@@ -1,5 +1,8 @@
 package com.example.fixawy.Client.HomePageClient;
 
+import android.content.Context;
+import android.content.res.Resources;
+
 import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.R;
 
@@ -8,24 +11,28 @@ import java.util.List;
 
 public class AllCategoryNamesModel {
     List<AllCategory> categories = new ArrayList<>();
+    private Context context;
 
 
-    AllCategory electricity = new AllCategory(1, R.string.electricity+"");
-    AllCategory plumber = new AllCategory(2, R.string.plumber+"");
-    AllCategory carpenter = new AllCategory(3, R.string.carpenter+"");
-    AllCategory painter = new AllCategory(4, R.string.painter+"");
-    AllCategory tilesHandyman = new AllCategory(5, R.string.tilesHandyman+"");
-    AllCategory mason = new AllCategory(6, R.string.mason+"");
-    AllCategory smith = new AllCategory(7, R.string.smith+"");
-    AllCategory parquet = new AllCategory(8, R.string.parquet+"");
-    AllCategory gypsum = new AllCategory(9, R.string.gypsum+"");
-    AllCategory marble = new AllCategory(10, R.string.marble+"");
-    AllCategory alumetal = new AllCategory(11, R.string.alumetal+"");
-    AllCategory glasses = new AllCategory(12, R.string.glasses+"");
-    AllCategory woodPainter = new AllCategory(13, R.string.woodPainter+"");
-    AllCategory curtains = new AllCategory(14, R.string.curtains+"");
-    AllCategory satellite = new AllCategory(15, R.string.satellite+"");
-    AllCategory Appliances = new AllCategory(16, R.string.Appliances+"");
+
+   // AllCategory electricity = new AllCategory(1, R.string.electricity+"");
+    AllCategory electricity = new AllCategory(1, "Electricity");
+
+    AllCategory plumber = new AllCategory(2,"Plumber");
+    AllCategory carpenter = new AllCategory(3,"Carpenter");
+    AllCategory painter = new AllCategory(4,"Painter");
+    AllCategory tilesHandyman = new AllCategory(5,"tilesHandyman");
+    AllCategory mason = new AllCategory(6,"Mason");
+    AllCategory smith = new AllCategory(7,"Smith");
+    AllCategory parquet = new AllCategory(8,"Parquet");
+    AllCategory gypsum = new AllCategory(9,"Gypsum");
+    AllCategory marble = new AllCategory(10,"Marble");
+    AllCategory alumetal = new AllCategory(11,"Alumetal");
+    AllCategory glasses = new AllCategory(12,"Glasses");
+    AllCategory woodPainter = new AllCategory(13,"WoodPainter");
+    AllCategory curtains = new AllCategory(14,"Curtains");
+    AllCategory satellite = new AllCategory(15,"Satellite");
+    AllCategory Appliances = new AllCategory(16,"Appliances Maintenances");
 
 
     public List<AllCategory>getAllCategories(){
