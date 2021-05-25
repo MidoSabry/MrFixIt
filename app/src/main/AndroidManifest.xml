@@ -13,9 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fixawy">
-        <activity android:name=".Worker.HomePageWorker.RequestedHomePageActivity">
-
-        </activity>
+        <activity android:name=".Client.ReplyQuestions.AnswerActivity"></activity>
+        <activity android:name=".Worker.WorkerQuestions.WorkerQuestionsActivity" />
+        <activity android:name=".Client.AllPreviousQuestions.AllPreviousQuestionsActivity" />
+        <activity android:name=".Worker.HomePageWorker.RequestedHomePageActivity" />
         <activity
             android:name=".Client.MakeOrder.ClientMakeOrder"
             android:label="@string/app_name" />
@@ -39,7 +40,7 @@
         <activity android:name=".Worker.WorkerProfilePage.WorkerProfileActivity" />
         <activity android:name=".Worker.SelectJobPage.SelectJobActivity" />
         <activity android:name=".Worker.ReplayQuestionsPage.ReplayQuestionActivity" />
-        <activity android:name=".Worker.HistoryJobsPage.HistoryJobActivity" />
+        <activity android:name=".Worker.HistoryJobsPage.HistoryJobActivity"></activity>
         <activity android:name=".Worker.DetailsJobPage.DetailsJobActivity" />
         <activity android:name=".Client.ShowAllWorkerPage.ShowAllWorkerActivity" />
         <activity android:name=".Client.SelectedSpecificWorkerPage.SelectedWorkerActivity" />
@@ -51,17 +52,14 @@
         <activity android:name=".Client.AskQuestionPage.AskQuestionActivity" />
         <activity android:name=".Client.RequestedPage.RequestedActivity" />
         <activity android:name=".Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity" />
-        <activity android:name=".Client.HomePageClient.HomePageClientActivity" >
-
-        </activity>
+        <activity android:name=".Client.HomePageClient.HomePageClientActivity" />
         <activity android:name=".Share.LoginPage.LoginActivity" />
-        <activity android:name=".Share.VerifyCode.VerificationCode" >
-
-        </activity>
+        <activity android:name=".Share.VerifyCode.VerificationCode" />
         <activity android:name=".Share.RegisterPage.RegisterActivity" />
-        <activity android:name=".Share.SelectionPage.SelectMembershipType" >
+        <activity android:name=".Share.SelectionPage.SelectMembershipType">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

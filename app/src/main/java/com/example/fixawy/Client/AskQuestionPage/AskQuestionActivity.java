@@ -106,12 +106,14 @@ public class AskQuestionActivity extends AppCompatActivity {
                         question = editTextQuestion.getText().toString().trim();
                         userQuestions = new Questions(phoneNum,question,jobTitle,uri.toString());
                         workerQuestions = new Questions(phoneNum,question,jobTitle,uri.toString());
-                        askQuestionViewModel.addClientQuestion(userQuestions);
-                        askQuestionViewModel.addWorkerQuestion(workerQuestions);
+                       // askQuestionViewModel.addClientQuestion(userQuestions);
+                        askQuestionViewModel.addClientQuestionForCategory(userQuestions);
+                      //  askQuestionViewModel.addWorkerQuestion(workerQuestions);
                         Toast.makeText(AskQuestionActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                        imageViewUploadPhoto.setImageResource(R.drawable.ic_google);
-                        Toast.makeText(AskQuestionActivity.this, "your question is added", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(AskQuestionActivity.this, PreviousQuestionActivity.class));
+                      //  imageViewUploadPhoto.setImageResource(R.drawable.ic_google);
+                        Toast.makeText(AskQuestionActivity.this, "your question is added", Toast.LENGTH_SHORT).show();
+
                     }
                 });
             }

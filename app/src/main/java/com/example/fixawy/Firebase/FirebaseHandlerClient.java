@@ -1,5 +1,6 @@
 package com.example.fixawy.Firebase;
 
+import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.Pojos.User;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +23,13 @@ public class FirebaseHandlerClient {
 
     public Task<Void> addClientQuestion(Questions question, String phone,String jobTitle)
     {
-        return databaseReference.child("Questions").child(jobTitle).child(phone).child("Data").setValue(question);
+        return databaseReference.child("Questions").child(jobTitle).child(phone).child("Data").child("data").setValue(question);
+
+    }
+
+    public Task<Void> addClientQuestionForCategory(Questions question, String phone,String jobTitle)
+    {
+        return databaseReference.child("Questions").child("Question Category").child(jobTitle).child(phone).setValue(question);
 
     }
 }

@@ -20,6 +20,13 @@ public class AskQuestionViewModel extends ViewModel {
         });
     }
 
+    public void addClientQuestionForCategory(Questions question){
+        firebaseHandlerClient = new FirebaseHandlerClient();
+        firebaseHandlerClient.addClientQuestionForCategory(question,question.phone,question.jobTitle).addOnSuccessListener(suc->{
+
+        });
+    }
+
     public void addWorkerQuestion(Questions question){
         firebaseHandlerWorker = new FirebaseHandlerWorker();
         firebaseHandlerWorker.addWorkerQuestion(question,question.phone,question.jobTitle).addOnSuccessListener(suc->{

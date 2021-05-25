@@ -2,14 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Client.PreviousQuestionPage.PreviousQuestionActivity">
+    tools:context=".Client.ReplyQuestions.AnswerActivity">
 
     <TextView
         android:id="@+id/txt_job_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Previous Questions"
+        android:text="@string/reply_questions"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="14dp"
         android:textSize="20sp"
@@ -32,18 +32,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="64dp"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="40dp"
-            android:backgroundTint="#FFFFFF"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_input_add"
-            android:layout_marginRight="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

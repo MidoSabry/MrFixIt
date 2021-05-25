@@ -1,16 +1,15 @@
 package com.example.fixawy.Pojos;
 
-public class Questions {
-
+public class Reply {
     public String phone,question,jobTitle,imageUri,replay;
 
-    public Questions(String phone, String question, String jobTitle, String imageUri, String replay) {
+    public Reply(String phone, String question, String imageUri, String replay) {
         this.phone = phone;
         this.question = question;
-        this.jobTitle = jobTitle;
         this.imageUri = imageUri;
         this.replay = replay;
     }
+    
 
     public String getReplay() {
         return replay;
@@ -18,27 +17,6 @@ public class Questions {
 
     public void setReplay(String replay) {
         this.replay = replay;
-    }
-
-    public Questions(String phone, String question, String jobTitle, String imageUri) {
-        this.phone = phone;
-        this.question = question;
-        this.jobTitle = jobTitle;
-        this.imageUri = imageUri;
-    }
-
-    public Questions(String phone, String question,String imageUri) {
-        this.phone = phone;
-        this.question = question;
-        this.imageUri = imageUri;
-    }
-
-
-    public Questions() {
-    }
-
-    public Questions(String question) {
-        this.question = question;
     }
 
     public String getPhone() {
