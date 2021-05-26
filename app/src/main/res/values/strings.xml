@@ -102,6 +102,8 @@
     <!--Navigation-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="Update">Update Order</string>
+    <string name="work">another work</string>
 
     <string name="reply_questions">Replies</string>
     <string name="add_your_reply">Add Your Reply</string>

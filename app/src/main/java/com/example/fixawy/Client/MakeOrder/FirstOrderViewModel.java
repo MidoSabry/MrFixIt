@@ -14,9 +14,9 @@ public class FirstOrderViewModel extends AndroidViewModel {
         super(application);
     }
 
-   public void addData(OrderTree orderTree, String phoneNum) {
+   public void addData(OrderTree orderTree,String phoneNum, String category) {
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
-        clientOrderRepo.addData(phoneNum).setValue(orderTree);
+        clientOrderRepo.addData(phoneNum,category).setValue(orderTree);
         //apilivedata = new MutableLiveData<>();
         //apilivedata.postValue(orderTree);
     }

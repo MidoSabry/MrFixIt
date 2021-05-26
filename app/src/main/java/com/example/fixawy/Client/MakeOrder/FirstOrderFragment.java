@@ -45,7 +45,7 @@ public class FirstOrderFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        longworkbtn = view.findViewById(R.id.radio_Long_work);
+        longworkbtn = view.findViewById(R.id.radio_long_work);
         shortworkbtn = view.findViewById(R.id.radio_short_work);
         addDetails = view.findViewById(R.id.edittext_view_addnotes);
        String phoneNum= getActivity().getIntent().getStringExtra("phone");
@@ -71,9 +71,10 @@ public class FirstOrderFragment extends Fragment {
                 clientMakeOrder.binding.stepIndicator.setCompletedPosition(clientMakeOrder.current_state).drawView(); //-------
                 OrderTree orderTree = new OrderTree();
                 if (longworkbtn.isChecked())
-                    orderTree.setTypeOfOrder(0);
-                else {
-                    orderTree.setTypeOfOrder(1);
+                    orderTree.setTypeOfOrder("Hard work");
+
+                else if (shortworkbtn.isChecked()) {
+                    orderTree.setTypeOfOrder("Maintenance and repair");
                 }
 
                 orderTree.setDetails(addDetails.getText().toString());
@@ -83,7 +84,7 @@ public class FirstOrderFragment extends Fragment {
                 Fragment current = getActivity().getSupportFragmentManager().getFragments().get(count > 0 ? count - 1 : count);
                 if (current instanceof FirstOrderFragment) {
                     Bundle bundle = new Bundle();
-                    bundle.putInt("Type", orderTree.getTypeOfOrder());
+                    bundle.putString("Type", orderTree.getTypeOfOrder());
                     bundle.putString("Details", orderTree.getDetails());
                     replaceFragment(new SecondOrderFragment(), bundle);
                 } else {

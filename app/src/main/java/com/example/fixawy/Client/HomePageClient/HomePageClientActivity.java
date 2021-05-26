@@ -26,12 +26,13 @@ import android.widget.Toast;
 
 import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
+import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
+import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
 import com.example.fixawy.MainActivity;
 import com.example.fixawy.Pojos.AllCategory;
-//import com.example.fixawy.Pojos.EmployeeData;
-import com.example.fixawy.Pojos.JobTitleCategory;
+
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.google.android.material.navigation.NavigationView;
@@ -42,39 +43,31 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
 
-import static android.content.Intent.EXTRA_PHONE_NUMBER;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_PHONE_NUM;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 
-public class HomePageClientActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CategoryItemRecyclerAdapter.onItemClickListener {
+public class HomePageClientActivity extends AppCompatActivity implements OnItemClick, NavigationView.OnNavigationItemSelectedListener {
     RecyclerView mainRecyclerView;
     RecyclerView categoryRecyclerView;
     private Context context;
     private AllCategoryNamesModel allCategoryNamesModel;
     DatabaseReference database;
-    TextView textViewUserName,textViewUserPhone;
-    String client_phone_num,client_user_name;
-
-    public static final String EXTRA_CATEGORY_NAME = "categoryName";
+    TextView textViewUserName, textViewUserPhone;
+    String client_phone_num, client_user_name;
 
 
     MainRecyclerAdapter mainRecyclerAdapter;
     CategoryItemRecyclerAdapter categoryItemRecyclerAdapter;
 
 
-
-
-
     //DrawLayout side-menubar
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-
+    String phoneNum;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -83,6 +76,11 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_client);
 
+        phoneNum = getIntent().getStringExtra("phone");
+        //DrawLayout sidemenu-bar
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
 
         //get data from verifiaction code page
         Intent intent = getIntent();
@@ -92,15 +90,11 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();
 
 
-
-
-
-
         //DrawLayout sidemenu-bar
         //start
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        toolbar=findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
 
@@ -111,7 +105,7 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
 
 
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.primaryColor));
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -119,24 +113,21 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         navigationView.setCheckedItem(R.id.nav_home);
 
         //show username and phone on side menuebar
-        View headerView= navigationView.getHeaderView(0);
+        View headerView = navigationView.getHeaderView(0);
         textViewUserName = headerView.findViewById(R.id.header_client_name);
         textViewUserPhone = headerView.findViewById(R.id.header_client_phone);
         textViewUserName.setText(client_user_name);
         textViewUserPhone.setText(client_phone_num);
         //end
 
-
-        //Categories buttons
         allCategoryNamesModel = new AllCategoryNamesModel();
+
+
         //CategoryRecyclerView
         categoryRecyclerView = findViewById(R.id.categoryrv);
         categoryRecyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-        categoryItemRecyclerAdapter = new CategoryItemRecyclerAdapter(this,allCategoryNamesModel.getAllCategories());
+        categoryItemRecyclerAdapter = new CategoryItemRecyclerAdapter(this, allCategoryNamesModel.getAllCategories(), this);
         categoryRecyclerView.setAdapter(categoryItemRecyclerAdapter);
-        categoryItemRecyclerAdapter.setOnItemClickListener(HomePageClientActivity.this);
-
-
 
 
         //Lists of employees
@@ -156,35 +147,16 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         List<User> employeeDataListCurtains = new ArrayList<>();
         List<User> employeeDataListSatellite = new ArrayList<>();
         List<User> employeeDataListAppliances = new ArrayList<>();
-        List<AllCategory>allCategoryList = new ArrayList<>();
+        List<AllCategory> allCategoryList = new ArrayList<>();
         AllCategory allCategory = new AllCategory();
-//        HashMap<String,List<EmployeeData>> myMap= new HashMap<String,List<EmployeeData>>();
-//        myMap.put("Electricity",employeeDataListElectricity);
-//                myMap.put("Carpenter",employeeDataListCarpenter);
-//
-//
-//                myMap.get("Electricity");
-
-
-        //        allCategoryList.add(new AllCategory(1,"Electricity",electricityEmployeeDataListm));
-//        allCategoryList.add(new AllCategory(2,"Pulmber",pulmberEmployeeDataListm));
-//        allCategoryList.add(new AllCategory(3,"Carpenter",carpenterEmployeeDataListm));
-
-
-
-
-
-
-
 
 
         //MainRecyclerView
         mainRecyclerView = findViewById(R.id.main_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mainRecyclerView.setLayoutManager(layoutManager);
-        mainRecyclerAdapter = new MainRecyclerAdapter(this,allCategoryList);
+        mainRecyclerAdapter = new MainRecyclerAdapter(this, allCategoryList);
         mainRecyclerView.setAdapter(mainRecyclerAdapter);
-
 
         //retrive employee of carpenter
         database = FirebaseDatabase.getInstance().getReference("Worker").child("Carpenter").child("Data");
@@ -192,9 +164,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("ssssss","user"+employeeData.getUserName());
+                    Log.d("ssssss", "user" + employeeData.getUserName());
                     employeeDataListCarpenter.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -205,16 +177,15 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
 
             }
         });
-
         //retrive employee of Electricity
         database = FirebaseDatabase.getInstance().getReference("Worker").child("Electricity").child("Data");
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListElectricity.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -232,9 +203,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListPulmber.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -252,9 +223,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListPainter.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -272,9 +243,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListTilesHandy.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -292,9 +263,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListMason.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -312,9 +283,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListSmith.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -332,9 +303,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListParquet.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -352,9 +323,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListGypsum.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -372,9 +343,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListMarble.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -392,9 +363,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListAlumetal.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -412,9 +383,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("glass","user"+employeeData.getUserName());
+                    Log.d("glass", "user" + employeeData.getUserName());
                     employeeDataListGlasses.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -432,9 +403,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData2 = dataSnapshot.getValue(User.class);
-                    Log.d("wooooo","user"+employeeData2.getUserName());
+                    Log.d("wooooo", "user" + employeeData2.getUserName());
                     employeeDataListWoodPainter.add(employeeData2);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -452,9 +423,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("looooooo","user"+employeeData.getUserName());
+                    Log.d("looooooo", "user" + employeeData.getUserName());
                     employeeDataListCurtains.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -473,9 +444,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("5555","user"+employeeData.getUserName());
+                    Log.d("5555", "user" + employeeData.getUserName());
                     employeeDataListSatellite.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -494,9 +465,9 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm","user"+employeeData.getUserName());
+                    Log.d("mmmm", "user" + employeeData.getUserName());
                     employeeDataListAppliances.add(employeeData);
                 }
                 mainRecyclerAdapter.notifyDataSetChanged();
@@ -509,66 +480,30 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
         });
 
 
-        allCategoryList.add(new AllCategory(1,"Electricity",employeeDataListElectricity));
-        allCategoryList.add(new AllCategory(2,"Carpenter",employeeDataListCarpenter));
-        allCategoryList.add(new AllCategory(3,"Plumber",employeeDataListPulmber));
-        allCategoryList.add(new AllCategory(4,"Painter",employeeDataListPainter));
-        allCategoryList.add(new AllCategory(5,"TilesHandyMan",employeeDataListTilesHandy));
-        allCategoryList.add(new AllCategory(6,"Mason",employeeDataListMason));
-        allCategoryList.add(new AllCategory(7,"Smith",employeeDataListSmith));
-        allCategoryList.add(new AllCategory(8,"Parquet",employeeDataListParquet));
-        allCategoryList.add(new AllCategory(9,"Gypsum",employeeDataListGypsum));
-        allCategoryList.add(new AllCategory(10,"Marble",employeeDataListMarble));
-        allCategoryList.add(new AllCategory(11,"Alumetal",employeeDataListAlumetal));
-        allCategoryList.add(new AllCategory(12,"Glasses",employeeDataListGlasses));
-        allCategoryList.add(new AllCategory(13,"WoodPainter",employeeDataListWoodPainter));
-        allCategoryList.add(new AllCategory(14,"Curtains",employeeDataListCurtains));
-        allCategoryList.add(new AllCategory(15,"Satellite",employeeDataListSatellite));
-        allCategoryList.add(new AllCategory(16,"Appliances Maintenance",employeeDataListAppliances));
-
-
-//        myMap.forEach(new BiConsumer<String, List<EmployeeData>>(){
-//            @Override
-//            public void accept(String key, List<EmployeeData> employeeData) {
-//                Log.d("ssssss",key +" "+employeeData);
-//            }
-//        });
-
-        //retrive all categories in firebase
-//        database = FirebaseDatabase.getInstance().getReference("Worker").getRoot();
-//
-//        database.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                    JobTitleCategory jobTitleCategory = dataSnapshot.getValue(JobTitleCategory.class);
-//                    Log.d("ssssss","user"+allCategory.getCategoryTitle());
-//                    allCategoryList.add(allCategory);
-//                }
-//                mainRecyclerAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
-
-
-
-
-
-
-
-
-
+        allCategoryList.add(new AllCategory(1, "Electricity", employeeDataListElectricity));
+        allCategoryList.add(new AllCategory(2, "Carpenter", employeeDataListCarpenter));
+        allCategoryList.add(new AllCategory(3, "Plumber", employeeDataListPulmber));
+        allCategoryList.add(new AllCategory(4, "Painter", employeeDataListPainter));
+        allCategoryList.add(new AllCategory(5, "TilesHandyMan", employeeDataListTilesHandy));
+        allCategoryList.add(new AllCategory(6, "Mason", employeeDataListMason));
+        allCategoryList.add(new AllCategory(7, "Smith", employeeDataListSmith));
+        allCategoryList.add(new AllCategory(8, "Parquet", employeeDataListParquet));
+        allCategoryList.add(new AllCategory(9, "Gypsum", employeeDataListGypsum));
+        allCategoryList.add(new AllCategory(10, "Marble", employeeDataListMarble));
+        allCategoryList.add(new AllCategory(11, "Alumetal", employeeDataListAlumetal));
+        allCategoryList.add(new AllCategory(12, "Glasses", employeeDataListGlasses));
+        allCategoryList.add(new AllCategory(13, "WoodPainter", employeeDataListWoodPainter));
+        allCategoryList.add(new AllCategory(14, "Curtains", employeeDataListCurtains));
+        allCategoryList.add(new AllCategory(15, "Satellite", employeeDataListSatellite));
+        allCategoryList.add(new AllCategory(16, "Appliances Maintenance", employeeDataListAppliances));
 
     }
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
         }
         super.onBackPressed();
@@ -578,7 +513,7 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
     //to select page from side menu
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
                 break;
             case R.id.nav_requested:
@@ -593,7 +528,7 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
 
             case R.id.nav_all_previous_questions:
                 Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
-                intent3.putExtra("phone",client_phone_num);
+                intent3.putExtra("phone", client_phone_num);
                 startActivity(intent3);
                 break;
 
@@ -604,16 +539,20 @@ public class HomePageClientActivity extends AppCompatActivity implements Navigat
     }
 
 
+
+
     //To click on buttons of categories
     AllCategoryNamesModel allCategoryNamesModel2 = new AllCategoryNamesModel();
+
+
     @Override
     public void onItemClick(int position) {
-        Intent selectTypeIntent = new Intent(this, SelectKindOfChoiceActivity.class);
-        AllCategory clickedItem = allCategoryNamesModel2.getAllCategories().get(position);
-        Log.d("Mido", clickedItem.getCategoryTitle());
-        selectTypeIntent.putExtra(EXTRA_CATEGORY_NAME,clickedItem.getCategoryTitle());
-        selectTypeIntent.putExtra("phone",client_phone_num);
-        // Toast.makeText(context, clickedItem.getCategoryTitle(), Toast.LENGTH_SHORT).show();
-        startActivity(selectTypeIntent);
+        AllCategory selectCategory = allCategoryNamesModel.getAllCategories().get(position);
+        Intent intent = new Intent(HomePageClientActivity.this, SelectKindOfChoiceActivity.class);
+        intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
+        intent.putExtra("phone", phoneNum);
+        startActivity(intent);
+
     }
+
 }

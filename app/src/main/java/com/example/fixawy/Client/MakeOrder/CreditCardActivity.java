@@ -49,6 +49,7 @@ public class CreditCardActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
                           //TODO //GO TO ANOTHER ACTIVITY OR FRAGMENT FROM HERE
+
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
