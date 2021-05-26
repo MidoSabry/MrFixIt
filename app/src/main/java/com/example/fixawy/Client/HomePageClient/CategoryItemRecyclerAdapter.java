@@ -1,20 +1,14 @@
 package com.example.fixawy.Client.HomePageClient;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.animation.content.Content;
-import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
-import com.example.fixawy.Client.MakeOrder.ThirdOrderFragment;
 import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.R;
 
@@ -22,16 +16,16 @@ import java.util.List;
 
 public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryItemRecyclerAdapter.CategoryItemViewHolder> {
 
-    private onItemClickListener mListener;
+    //private onItemClickListener mListener;
     private Context context;
     private  OnItemClick onItemClick;
     public void setCategoryItemList(List<AllCategory> categoryItemList) {
         this.categoryItemList = categoryItemList;
     }
 
-    public void setOnItemClickListener(onItemClickListener listener){
+    /*public void setOnItemClickListener(onItemClickListener listener){
         mListener = listener;
-    }
+    }*/
 
     private List<AllCategory> categoryItemList;
 
@@ -80,7 +74,7 @@ public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryIt
 
 
             //toClick on the item
-            categoryNametv.setOnClickListener(new View.OnClickListener() {
+            /*categoryNametv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(mListener != null){
@@ -90,15 +84,15 @@ public class CategoryItemRecyclerAdapter extends RecyclerView.Adapter<CategoryIt
                         }
                     }
                 }
-            });
+            });*/
 
         }
     }
 
 
-    public interface onItemClickListener{
+    /*public interface onItemClickListener{
         void onItemClick(int position);
-    }
+    }*/
 
 
 }

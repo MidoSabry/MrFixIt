@@ -15,7 +15,8 @@ import com.example.fixawy.R;
 
 public class SelectKindOfChoiceActivity extends AppCompatActivity {
     Button askQuestionBtn, makeOrderBtn;
-    String phoneNum,jobTitle;
+    String phoneNum,jobTitle,categoryType;
+
 
 
     @Override
@@ -24,12 +25,14 @@ public class SelectKindOfChoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_kind_of_choice);
         askQuestionBtn = findViewById(R.id.ask_question_btn);
         phoneNum = getIntent().getStringExtra("phone");
+        categoryType = getIntent().getStringExtra("CategoryType");
         makeOrderBtn = findViewById(R.id.make_order_btn);
         makeOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectKindOfChoiceActivity.this, HomePageClientActivity.class);
+                Intent intent = new Intent(SelectKindOfChoiceActivity.this, ClientMakeOrder.class);
                 intent.putExtra("phone", phoneNum);
+                intent.putExtra("CategoryType",categoryType);
                 startActivity(intent);
             }
         });

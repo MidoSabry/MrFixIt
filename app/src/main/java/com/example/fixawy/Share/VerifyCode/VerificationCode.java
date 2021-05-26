@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
-import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.Firebase.FirebaseHandlerWorker;
 import com.example.fixawy.Pojos.User;
@@ -92,12 +91,12 @@ public class VerificationCode extends AppCompatActivity {
         if(type.equals("Owner")){
             registerClient(userClient);
             startActivity(new Intent(VerificationCode.this, HomePageClientActivity.class)
-                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName));
+                    .putExtra("phone",phoneNum).putExtra(EXTR_USER_NAME,userName));
         }
         else if(type.equals("Worker")){
             registerWorker(userWorker);
             startActivity(new Intent(VerificationCode.this, RequestedHomePageActivity.class)
-                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle));
+                    .putExtra("phone",phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle));
         }
         else {
             Toast.makeText(VerificationCode.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();

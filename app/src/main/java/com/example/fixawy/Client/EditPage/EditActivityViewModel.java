@@ -21,11 +21,11 @@ public class EditActivityViewModel  extends AndroidViewModel {
     }
     public void addData(OrderTree orderTree ,String phoneNum, String category) {
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
-        clientOrderRepo.addData(phoneNum, category).setValue(orderTree);
+        clientOrderRepo.addData(phoneNum, category).push().setValue(orderTree);
     }
     public void addDataToWorker(OrderTree orderTree , String category,String phoneNum){
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
-        clientOrderRepo.addDataToWorker(category,phoneNum).setValue(orderTree);
+        clientOrderRepo.addDataToWorker(category,phoneNum).push().setValue(orderTree);
 
     }
     void retrieveData(String phoneNum, String category){

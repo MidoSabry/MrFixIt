@@ -86,7 +86,7 @@ public class ThirdOrderFragment extends Fragment {
         orderTree.setDetails(getArguments().getString("Details"));
         orderTree.setTypeOfOrder(getArguments().getString("Type"));
         phoneNum = getActivity().getIntent().getStringExtra("phone");
-        categoryType = getActivity().getIntent().getExtras().getString("CategoryType");
+        categoryType = getActivity().getIntent().getStringExtra("CategoryType");
         thirdOrderViewModel = new ViewModelProvider(this).get(ThirdOrderViewModel.class);
         clientMakeOrder = (ClientMakeOrder) getActivity();
 
