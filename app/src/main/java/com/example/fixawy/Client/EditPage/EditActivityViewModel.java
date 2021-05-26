@@ -12,41 +12,43 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-public class EditActivityViewModel  extends AndroidViewModel {
+import java.util.ArrayList;
+import java.util.List;
 
+public class EditActivityViewModel  extends AndroidViewModel {
+    List<OrderTree> orderTreeList;
     public MutableLiveData<OrderTree> editActivityLiveData = new MutableLiveData<>();
     OrderTree orderTree;
     public EditActivityViewModel(@NonNull Application application) {
         super(application);
     }
-    public void addData(OrderTree orderTree ,String phoneNum, String category) {
+    public void addData(OrderTree orderTree ,String phoneNum, String category,String uid) {
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
-        clientOrderRepo.addData(phoneNum, category).push().setValue(orderTree);
+        clientOrderRepo.addDataEdit(phoneNum, category,uid).setValue(orderTree);
+        clientOrderRepo.editDataWorker(category,phoneNum,uid).setValue(orderTree);
     }
-    public void addDataToWorker(OrderTree orderTree , String category,String phoneNum){
-        ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
-        clientOrderRepo.addDataToWorker(category,phoneNum).push().setValue(orderTree);
 
-    }
-    void retrieveData(String phoneNum, String category){
+
+    void retrieveData(String phoneNum, String category,String uid) {
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
-        clientOrderRepo.retrieveData(phoneNum,category).addValueEventListener(new ValueEventListener() {
+        clientOrderRepo.retrieveDataEdit(phoneNum, category,uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                   orderTree = snapshot.getValue(OrderTree.class);
-
-                    editActivityLiveData.postValue(orderTree);
+                    orderTree =snapshot.getValue(OrderTree.class);
 
 
-
+              editActivityLiveData.postValue(orderTree);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
     }
+
+
+
 
 }

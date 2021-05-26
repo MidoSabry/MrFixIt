@@ -83,11 +83,11 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         toolbar = findViewById(R.id.toolbar);
 
         //get data from verifiaction code page
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         client_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
         client_user_name = intent.getStringExtra(EXTR_USER_NAME);
         Toast.makeText(this, client_user_name, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();*/
 
 
         //DrawLayout sidemenu-bar

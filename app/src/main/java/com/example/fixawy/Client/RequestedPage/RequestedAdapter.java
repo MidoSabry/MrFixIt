@@ -1,7 +1,6 @@
 package com.example.fixawy.Client.RequestedPage;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,33 +8,26 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fixawy.Client.EditPage.EditActivity;
-import com.example.fixawy.Client.EditPage.EditActivityViewModel;
-import com.example.fixawy.Client.HomePageClient.EmployeeItemRecyclerAdapter;
+import com.example.fixawy.Client.HomePageClient.OnItemClick;
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
-import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.RequestedItemViewHolder> {
      Context context;
     List<OrderTree> orderTreeItems;
-    onItemClick onItemClick;
+    OnItemClick onItemClick;
+     OrderTree orderTree;
 
-
-    public RequestedAdapter(Context context, List<OrderTree> orderTreeItems,onItemClick onItemClick) {
+    public RequestedAdapter(Context context, List<OrderTree> orderTreeItems, OnItemClick onItemClick) {
         this.context = context;
         this.orderTreeItems = orderTreeItems;
         this.onItemClick = onItemClick;
     }
+
 
 
 
@@ -61,7 +53,7 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
             @Override
             public void onClick(View v) {
 
-                onItemClick.onItemClick();
+                onItemClick.onItemClick(position);
             }
         });
 
@@ -69,6 +61,7 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
 
     @Override
     public int getItemCount() {
+
         return orderTreeItems.size();
     }
 
