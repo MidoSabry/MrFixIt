@@ -22,18 +22,39 @@ public class ClientOrderRepo {
         return myRef;
     }
 
+    public DatabaseReference addData(String phoneNum) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("Client").child("make order").child(phoneNum);
+
+        return myRef;
+    }
+    public DatabaseReference addDataEdit(String phoneNum, String categoryType, String uid) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("Client").child("make order").child(phoneNum).child(categoryType).child("order Details").child(uid);
+        return myRef;
+    }
+
     public DatabaseReference retrieveData(String phoneNum, String categoryType) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("Client").child("make order").child(phoneNum).child(categoryType).child("order Details");
         return myRef;
-
-
     }
+
+    public DatabaseReference retrieveDataEdit(String phoneNum, String categoryType,String uid) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("Client").child("make order").child(phoneNum).child(categoryType).child("order Details").child(uid);
+        return myRef;
+    }
+
     public DatabaseReference addDataToWorker(String categoryType,String phoneNum) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("Worker").child(categoryType).child("order Details").child(phoneNum);
-        //TODO //child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-        //TODO //FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber()
+        return myRef;
+    }
+    public DatabaseReference editDataWorker(String categoryType,String phoneNum, String uid) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("Worker").child(categoryType).child("order Details").child(phoneNum).child(uid);
+
         return myRef;
     }
 

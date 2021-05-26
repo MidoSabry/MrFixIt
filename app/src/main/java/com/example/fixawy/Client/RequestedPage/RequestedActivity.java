@@ -8,18 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Observable;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.example.fixawy.Client.EditPage.EditActivity;
 import com.example.fixawy.Client.EditPage.EditActivityViewModel;
+import com.example.fixawy.Client.HomePageClient.OnItemClick;
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RequestedActivity extends AppCompatActivity implements onItemClick {
+public class RequestedActivity extends AppCompatActivity implements OnItemClick {
     RecyclerView requestedRecyclerView;
     String phoneNum, categoryType;
     RequestedAdapter requestedAdapter;
@@ -44,15 +46,20 @@ public class RequestedActivity extends AppCompatActivity implements onItemClick 
             }
         });
 
-        requestedPageViewModel.retrieveData(phoneNum, categoryType);
+        requestedPageViewModel.retrieveData(phoneNum);
+
+
+
 
     }
 
+
     @Override
-    public void onItemClick() {
+    public void onItemClick(int position) {
         Intent intent = new Intent(RequestedActivity.this, EditActivity.class);
         intent.putExtra("phone",phoneNum);
         intent.putExtra("CategoryType",categoryType);
+        intent.putExtra("uid",requestedPageViewModel.uIds.get(position));
         startActivity(intent);
     }
 }

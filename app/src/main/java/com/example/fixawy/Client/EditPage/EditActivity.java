@@ -43,14 +43,17 @@ RadioGroup rg;
 ImageView timePicker, datePicker;
 String phoneNum;
 String categoryType;
+String uid;
 Button updates;
 OrderTree orderTree;
+int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         phoneNum = getIntent().getStringExtra("phone");
         categoryType = getIntent().getExtras().getString("CategoryType");
+    uid = getIntent().getExtras().getString("uid");
         editNumber = findViewById(R.id.edit_phone_modified);
        editDetails = findViewById(R.id.edittext_view_addnotes);
        editLocation= findViewById(R.id.edit_location);
@@ -75,16 +78,19 @@ OrderTree orderTree;
         editActivityViewModel = new ViewModelProvider(this).get(EditActivityViewModel.class);
 
        editActivityViewModel.editActivityLiveData.observe(this, new Observer<OrderTree>() {
+
            @Override
            public void onChanged(OrderTree orderTree) {
+
+
                editDetails.setText(orderTree.getDetails());
                editLocation.setText(orderTree.getLocation());
                editNumber.setText(orderTree.getPhone());
-               if(editTypeofOrderEasy.isChecked()) {
+               if (editTypeofOrderEasy.isChecked()) {
                    editTypeofOrderEasy.setText(orderTree.getTypeOfOrder());
                    editTypeofOrderEasy.setSelected(true);
                }
-               if(editTypeofOrderHard.isChecked()) {
+               if (editTypeofOrderHard.isChecked()) {
                    editTypeofOrderHard.setText(orderTree.getTypeOfOrder());
                    editTypeofOrderHard.setSelected(true);
                }
@@ -94,10 +100,10 @@ OrderTree orderTree;
                paymentCash.setId(orderTree.getPaymentMethod());
                paymentCreditCard.setId(orderTree.getPaymentMethod());
                paymentPayPal.setId(orderTree.getPaymentMethod());
-
            }
+
        });
-       editActivityViewModel.retrieveData(phoneNum,categoryType);
+       editActivityViewModel.retrieveData(phoneNum,categoryType,uid);
        updates.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -120,8 +126,8 @@ OrderTree orderTree;
                } else if (paymentCreditCard.isChecked()) {
                    orderTree.setPaymentMethod(2);
                }
-               editActivityViewModel.addData(orderTree,phoneNum,categoryType);
-               editActivityViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
+               editActivityViewModel.addData(orderTree,phoneNum,categoryType,uid);
+
                Intent intent = new Intent(EditActivity.this, RequestedActivity.class);
                intent.putExtra("phone",phoneNum);
                intent.putExtra("CategoryType",categoryType);

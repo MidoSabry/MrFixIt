@@ -18,31 +18,40 @@ import java.util.List;
 
 public class RequestedPageViewModel extends AndroidViewModel {
     public MutableLiveData<List<OrderTree>> requestedPageLiveData = new MutableLiveData<>();
-    OrderTree orderTree;
+
+    OrderTree orderTree = new OrderTree();
     List<OrderTree> orderTreeList;
+    List<String> uIds = new ArrayList<>();
     public RequestedPageViewModel(@NonNull Application application) {
         super(application);
     }
-    void retrieveData(String phoneNum, String category){
+
+    void retrieveData(String phoneNum) {
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
         orderTreeList = new ArrayList<>();
-        clientOrderRepo.retrieveData(phoneNum,category).addValueEventListener(new ValueEventListener() {
+        clientOrderRepo.addData(phoneNum).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    orderTree = postSnapshot.getValue(OrderTree.class);
-                    //orderTree = snapshot.getValue(OrderTree.class);
-                    orderTreeList.add(orderTree);
+                for (DataSnapshot postSnapshotCategory : snapshot.getChildren()) {
+                   DataSnapshot data = postSnapshotCategory.child("order Details");
+                   for(DataSnapshot postSnapshot : data.getChildren()){
+                       orderTree = postSnapshot.getValue(OrderTree.class);
+                       uIds.add(postSnapshot.getKey());
+                       orderTreeList.add(orderTree);
+                   }
+
                 }
                 requestedPageLiveData.postValue(orderTreeList);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
     }
+
+
 
 }
 
