@@ -51,9 +51,9 @@ public class ClientOrderRepo {
         final DatabaseReference myRef = database.getReference("Worker").child(categoryType).child("order Details").child(phoneNum);
         return myRef;
     }
-    public DatabaseReference editDataWorker(String categoryType,String phoneNum, String uid) {
+    public DatabaseReference editDataWorker(String categoryType,String phoneNum) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference("Worker").child(categoryType).child("order Details").child(phoneNum).child(uid);
+        final DatabaseReference myRef = database.getReference("Worker").child(categoryType).child("order Details").child(phoneNum);
 
         return myRef;
     }
