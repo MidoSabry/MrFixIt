@@ -101,9 +101,32 @@
     <string name="Credit">Credit Card</string>
     <string name="CheckOut">CheckOut Process</string>
 
+    <string name="done_with_rating">done rating</string>
+    <string name="job_address">job address</string>
+    <string name="type_of_job">job address</string>
+    <string name="emp_name">job address</string>
+    <string name="reply">job address</string>
+    <string name="reply_from">job address</string>
+
+    <string name="add_your_reply">job address</string>
+    <string name="reply_questions">reply_questions</string>
+    <string name="prev_questions">prev_questions</string>
+    <string name="my_previous_question">my_previous_question</string>
+
+
+    <string name="write_your_reply">job address</string>
+
+    <string name="add">add</string>
+    <string name="Update">Update</string>
+    <string name="work">work</string>
+
+
 
     <!--Facebook authentication-->
-<!--    <string name="facebook_app_id">313952036784410</string>-->
-<!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->
+    <!--    <string name="facebook_app_id">313952036784410</string>-->
+    <!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->
+
+
+    <string name="selected_worker">اختر العامل المناسب</string>
 
 </resources>

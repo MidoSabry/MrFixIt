@@ -24,6 +24,7 @@ public class ReceiveCode extends AppCompatActivity {
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
     String phoneNum,type,jobTitle;
+    int numOfJob,rating,like,disLike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,12 @@ public class ReceiveCode extends AppCompatActivity {
         phoneNum=getIntent().getStringExtra("phone");
         type=getIntent().getExtras().getString("type");
         jobTitle=getIntent().getExtras().getString("jobTitle");
+
+        //another worker data
+//        numOfJob = getIntent().getIntExtra("numOfJob",0);
+//        like = getIntent().getIntExtra("numOfLike",0);
+//        disLike = getIntent().getIntExtra("numOfDisLike",0);
+//        rating = getIntent().getIntExtra("rating",0);
 
 
 

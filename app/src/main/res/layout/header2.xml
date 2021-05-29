@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="200dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/secondColor"
     android:gravity="bottom"
     android:layout_marginBottom="50dp">
 
-    <ImageView
-        android:id="@+id/header_worker_img"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/logo"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/worker_profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            tools:src="@drawable/profile"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@android:color/white"
+            android:layout_gravity="left"/>
+
+        <ImageButton
+            android:id="@+id/change_image"
+            android:layout_width="35dp"
+            android:layout_height="28dp"
+            android:src="@drawable/camera_btn"
+            android:layout_marginLeft="68dp"
+            android:layout_marginTop="80dp"/>
+
+    </RelativeLayout>
+
+
     <TextView
         android:id="@+id/header_worker_name"
         android:layout_width="wrap_content"
@@ -26,5 +46,14 @@
         android:text="01225699594"
         android:textColor="@color/white"
         android:textSize="22sp"/>
+    <TextView
+        android:id="@+id/header_worker_job_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Electricity"
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
 
 </LinearLayout>
+
+

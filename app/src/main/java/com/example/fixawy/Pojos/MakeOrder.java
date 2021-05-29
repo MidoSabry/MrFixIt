@@ -4,22 +4,28 @@ public class MakeOrder {
     String time;
     String date;
     int    paymentMethod;
-    int    typeOfOrder;
+    String    typeOfOrder;
     String location;
     String phone;
+    String requestedPhone;
     String details;
+    String jobTitle;
+    String userName;
 
-    public MakeOrder(String time, String date, int paymentMethod, int typeOfOrder, String location, String phone, String details) {
+    public MakeOrder() {
+    }
+
+    public MakeOrder(String time, String date, int paymentMethod, String typeOfOrder, String location, String phone, String requestedPhone, String details, String jobTitle, String userName) {
         this.time = time;
         this.date = date;
         this.paymentMethod = paymentMethod;
         this.typeOfOrder = typeOfOrder;
         this.location = location;
         this.phone = phone;
+        this.requestedPhone = requestedPhone;
         this.details = details;
-    }
-
-    public MakeOrder() {
+        this.jobTitle = jobTitle;
+        this.userName = userName;
     }
 
     public String getTime() {
@@ -46,11 +52,11 @@ public class MakeOrder {
         this.paymentMethod = paymentMethod;
     }
 
-    public int getTypeOfOrder() {
+    public String getTypeOfOrder() {
         return typeOfOrder;
     }
 
-    public void setTypeOfOrder(int typeOfOrder) {
+    public void setTypeOfOrder(String typeOfOrder) {
         this.typeOfOrder = typeOfOrder;
     }
 
@@ -70,11 +76,35 @@ public class MakeOrder {
         this.phone = phone;
     }
 
+    public String getRequestedPhone() {
+        return requestedPhone;
+    }
+
+    public void setRequestedPhone(String requestedPhone) {
+        this.requestedPhone = requestedPhone;
+    }
+
     public String getDetails() {
         return details;
     }
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

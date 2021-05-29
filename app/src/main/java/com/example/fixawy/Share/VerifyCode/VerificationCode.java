@@ -35,12 +35,15 @@ public class VerificationCode extends AppCompatActivity {
     private String OTP;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
-    String userName,email,phoneNum,address,password,verification_code,type,jobTitle;
+    String userName,email,phoneNum,address,password,verification_code,type,jobTitle,image;
+    int numOfJob,rating,like,disLike;
     User userClient,userWorker;
 
     public static final String EXTR_USER_NAME ="userName";
     public static final String EXTR_PHONE_NUM ="phone";
     public static final String EXTRA_JOB_TITLE ="jobTitle";
+
+
 
     private FirebaseHandlerClient firebaseHandlerClient;
     private FirebaseHandlerWorker firebaseHandlerWorker;
@@ -67,6 +70,14 @@ public class VerificationCode extends AppCompatActivity {
         jobTitle=getIntent().getStringExtra("jobTitle");
 
 
+        //another worker data
+        image=getIntent().getStringExtra("image");
+        numOfJob = getIntent().getIntExtra("numOfJob",0);
+        like = getIntent().getIntExtra("numOfLike",0);
+        disLike = getIntent().getIntExtra("numOfDisLike",0);
+        rating = getIntent().getIntExtra("rating",0);
+
+
         mVerifyCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +98,7 @@ public class VerificationCode extends AppCompatActivity {
     private void sendToMain(){
 
         userClient = new User(userName,email,phoneNum,address,type,password);
-        userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle);
+        userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle,image,numOfJob,like,disLike,rating);
 
         if(type.equals("Owner")){
             registerClient(userClient);
@@ -125,19 +136,21 @@ public class VerificationCode extends AppCompatActivity {
 //            }
 //        });
 
+        //.putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating)
+
 
     }
 
     public void registerClient(User user){
         firebaseHandlerClient = new FirebaseHandlerClient();
-        firebaseHandlerClient.addClientrData(user,user.phone).addOnSuccessListener(suc->{
+        firebaseHandlerClient.addClientrData(user,user.getPhone()).addOnSuccessListener(suc->{
 
         });
     }
 
     public void registerWorker(User user){
         firebaseHandlerWorker = new FirebaseHandlerWorker();
-        firebaseHandlerWorker.addWorkerData(user,user.phone,user.jobTitle).addOnSuccessListener(suc->{
+        firebaseHandlerWorker.addWorkerData(user,user.getPhone(),user.getJobTitle()).addOnSuccessListener(suc->{
         });
     }
 }
