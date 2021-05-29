@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/primaryColor"
         android:padding="20dp">
 
@@ -23,19 +23,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/worker_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
             android:text="Mohamed Sabry"
             android:textColor="@color/black"
             android:textSize="25sp"
             app:layout_constraintStart_toEndOf="@+id/worker_img"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/worker_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:text="01225699594"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@+id/worker_img"
+            app:layout_constraintTop_toBottomOf="@+id/worker_name" />
 
         <TextView
             android:id="@+id/worker_description"
@@ -43,47 +55,31 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="I can do this job in 2 hour just"
             android:textColor="@color/fourthColor"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/worker_img"
-            app:layout_constraintTop_toBottomOf="@+id/worker_name" />
-
-        <RatingBar
-            android:id="@+id/emp_rate"
-            android:layout_width="256dp"
-            android:layout_height="58dp"
-            android:layout_marginStart="128dp"
-            android:layout_marginLeft="128dp"
-            android:layout_marginTop="4dp"
-            android:numStars="5"
-            android:progressTint="@color/black"
-            android:rating="2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/worker_description" />
+            app:layout_constraintTop_toBottomOf="@+id/worker_phone" />
 
         <Button
             android:id="@+id/call_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/call_icon"
+            app:layout_constraintEnd_toStartOf="@+id/chat_btn"
+            app:layout_constraintHorizontal_bias="0.009"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emp_rate" />
+            app:layout_constraintTop_toBottomOf="@+id/worker_img" />
 
         <Button
             android:id="@+id/chat_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:background="@drawable/chat_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emp_rate" />
+            tools:layout_editor_absoluteY="120dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

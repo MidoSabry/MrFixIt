@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.fixawy.Pojos.Advertisment;
 import com.example.fixawy.Pojos.AllCategory;
 //import com.example.fixawy.Pojos.EmployeeData;
+import com.example.fixawy.Pojos.EmployeeData;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 

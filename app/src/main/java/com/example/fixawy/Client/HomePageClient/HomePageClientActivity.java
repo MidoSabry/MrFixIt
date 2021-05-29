@@ -24,12 +24,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
+
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
+import com.example.fixawy.Client.SelectedPage.SelectedActivity;
 import com.example.fixawy.MainActivity;
 import com.example.fixawy.Pojos.AllCategory;
 
@@ -148,7 +149,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         List<User> employeeDataListSatellite = new ArrayList<>();
         List<User> employeeDataListAppliances = new ArrayList<>();
         List<AllCategory> allCategoryList = new ArrayList<>();
-        AllCategory allCategory = new AllCategory();
+
 
 
         //MainRecyclerView
@@ -526,10 +527,18 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 startActivity(intent2);
                 break;
 
+
+
+            case R.id.nav_selected_worker:
+                Intent intent4 = new Intent(HomePageClientActivity.this, SelectedActivity.class);
+                intent4.putExtra("phone", phoneNum);
+                startActivity(intent4);
+
             case R.id.nav_all_previous_questions:
                 Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
                 intent3.putExtra("phone", client_phone_num);
                 startActivity(intent3);
+
                 break;
 
 
