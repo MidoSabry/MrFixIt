@@ -1,25 +1,39 @@
 package com.example.fixawy.Client.MakeOrder.pojos;
 
 public class OrderTree {
-    private int typeOfOrder;
+    private String typeOfOrder;
     private String details;
     private String location;
     private String phone;
     private String date;
     private String time;
     private int paymentMethod;
-    private String phoneNum;
+    private String requestedPhone;
+    private String jobTitle;
+    private String userName;
 
-    public String getPhoneNum() {
-        return phoneNum;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public OrderTree(String phoneNum) {
-        this.phoneNum = phoneNum;
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getRequestedPhone() {
+        return requestedPhone;
+    }
+
+    public void setRequestedPhone(String requestedPhone) {
+        this.requestedPhone = requestedPhone;
     }
 
     public int getPaymentMethod() {
@@ -72,16 +86,16 @@ public class OrderTree {
     public OrderTree() {
     }
 
-    public OrderTree(int typeOfOrder, String details) {
+    public OrderTree(String typeOfOrder, String details) {
         this.typeOfOrder = typeOfOrder;
         this.details = details;
     }
 
-    public int getTypeOfOrder() {
+    public String getTypeOfOrder() {
         return typeOfOrder;
     }
 
-    public void setTypeOfOrder(int typeOfOrder) {
+    public void setTypeOfOrder(String typeOfOrder) {
         this.typeOfOrder = typeOfOrder;
     }
 

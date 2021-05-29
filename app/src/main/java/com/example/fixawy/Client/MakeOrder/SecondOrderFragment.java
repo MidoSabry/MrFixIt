@@ -65,7 +65,7 @@ public class SecondOrderFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         orderTree = new OrderTree();
-        orderTree.setTypeOfOrder(getArguments().getInt("Type"));
+        orderTree.setTypeOfOrder(getArguments().getString("Type"));
         orderTree.setDetails(getArguments().getString("Details"));
         timePicker = view.findViewById(R.id.time_picker);
         datePicker = view.findViewById(R.id.date_picker);
@@ -95,7 +95,7 @@ public class SecondOrderFragment extends Fragment {
                         bundle.putString("Client phone", orderTree.getPhone());
                         bundle.putString("Order Date", orderTree.getDate());
                         bundle.putString("Order time", orderTree.getTime());
-                        bundle.putInt("Type", orderTree.getTypeOfOrder());
+                        bundle.putString("Type", orderTree.getTypeOfOrder());
                         bundle.putString("Details", orderTree.getDetails());
                         replaceFragment(new ThirdOrderFragment(), bundle);
                         clientMakeOrder.Next.setText("finish");

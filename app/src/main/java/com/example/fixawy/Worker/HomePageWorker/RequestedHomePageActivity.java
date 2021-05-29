@@ -18,23 +18,35 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
+
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.Pojos.JobTitleCategory;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
+
 import com.example.fixawy.Worker.DetailsJobPage.DetailsJobActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
+import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -75,6 +87,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
     //textview which apear on side menue bar
     TextView textViewWorkerName,textViewWorkerPhone,textViewWorkerJobTitle;
     ImageButton change_image_button;
@@ -105,6 +118,9 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
 
 
+    String jobTitle,phoneWorker;
+
+
     //recyclerView
     RecyclerView recyclerView_worker_requested;
     FirebaseHandlerClient firebaseHandlerClient;
@@ -116,6 +132,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested_home_page);
+
 
         list = new ArrayList<>();
 
@@ -139,6 +156,9 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
         // mDatabaseRef = FirebaseDatabase.getInstance().getReference("Worker").child("Carpenter").child("Data").child("01225699594");
 
+
+        jobTitle = getIntent().getStringExtra("jobTitle");
+        phoneWorker=getIntent().getStringExtra("phone");
 
         //DrawLayout sidemenu-bar
         drawerLayout = findViewById(R.id.drawer_layout2);
@@ -286,7 +306,9 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         startActivityForResult(intent,1);
     }
 
+    //to select page from side menu
     @Override
+
     protected void onActivityResult(int requestCode, int resulCode, Intent data){
         super.onActivityResult(requestCode,resulCode,data);
 
@@ -349,6 +371,22 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         }else{
             Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
         }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.nav_all_previous_questions:
+                Intent intentPrevQuestions = new Intent(RequestedHomePageActivity.this, WorkerQuestionsActivity.class);
+                intentPrevQuestions.putExtra("jobTitle",jobTitle);
+                intentPrevQuestions.putExtra("phone",phoneWorker);
+                startActivity(intentPrevQuestions);
+                break;
+
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+
     }
 //end of change profile image of worker
 

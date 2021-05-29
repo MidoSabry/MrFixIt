@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.fixawy.Client.AskQuestionPage.AskQuestionActivity;
 import com.example.fixawy.Pojos.Questions;
@@ -21,10 +22,12 @@ import com.google.firebase.database.FirebaseDatabase;
 public class PreviousQuestionActivity extends AppCompatActivity {
 
     FloatingActionButton floatingButtonAsk;
-    String phoneNum;
+    String phoneNum,jobTitle;
     RecyclerView mRecyclerView;
     DatabaseReference mRef;
     PreviousQuestionAdapter questionAdapter;
+    Questions questions;
+    TextView textViewJobTitle;
 
 
 
@@ -34,13 +37,18 @@ public class PreviousQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_previous_question);
         mRecyclerView = findViewById(R.id.questionsList);
         floatingButtonAsk = findViewById(R.id.addQuestion);
+        textViewJobTitle=findViewById(R.id.txt_job_title);
         phoneNum = getIntent().getStringExtra("phone");
+        jobTitle = getIntent().getStringExtra("categoryName");
+
+        textViewJobTitle.setText("All Questions for "+jobTitle);
 
         floatingButtonAsk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PreviousQuestionActivity.this, AskQuestionActivity.class);
                 intent.putExtra("phone", phoneNum);
+                intent.putExtra("categoryName",jobTitle);
                 startActivity(intent);
             }
         });
@@ -55,14 +63,14 @@ public class PreviousQuestionActivity extends AppCompatActivity {
         readData();
         Toast.makeText(this, "all questions", Toast.LENGTH_SHORT).show();
     }
-    public void readData() {
-        mRef.child("Client").child("Questions").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+    // return all questions for specific job...
+    public void readData(){
+        mRef.child("Client").child("Questions").child("Question Category").child(jobTitle).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
-                questionAdapter.clear();
                 for (DataSnapshot snapshot : children) {
-                    Questions questions = snapshot.getValue(Questions.class);
+                    questions = snapshot.getValue(Questions.class);
                     questionAdapter.add(questions);
                 }
             }

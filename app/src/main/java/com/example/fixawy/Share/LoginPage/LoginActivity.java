@@ -325,9 +325,13 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (dataSnapshot.child(phone).exists()) {
                         if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                             userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                             startActivity(new Intent(LoginActivity.this, HomePageClientActivity.class)
                                     .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName));
+                            startActivity(new Intent(LoginActivity.this, HomePageClientActivity.class)
+                                    .putExtra("phone",phone));
+
                         } else {
                             Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                         }
@@ -350,6 +354,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -357,6 +362,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -378,6 +388,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -385,6 +396,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -406,6 +422,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -413,6 +430,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -434,6 +456,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -441,6 +464,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -462,6 +490,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -469,6 +498,10 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -490,6 +523,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -497,6 +531,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -518,6 +557,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -525,6 +565,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -546,6 +591,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -553,6 +599,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -574,6 +625,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -581,6 +633,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -603,6 +660,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -610,6 +668,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -631,6 +694,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -638,6 +702,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -659,6 +728,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -666,6 +736,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -687,6 +762,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -694,6 +770,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -715,6 +796,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -722,6 +804,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -743,6 +830,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -750,6 +838,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -771,6 +864,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
                             if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
+
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
@@ -778,6 +872,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
+                                        .putExtra("jobTitle",jobTitle).putExtra("phone",phone));
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }

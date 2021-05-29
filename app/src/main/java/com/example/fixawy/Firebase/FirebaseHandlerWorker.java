@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.example.fixawy.Client.HomePageClient.MainRecyclerAdapter;
 import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.Pojos.JobTitleCategory;
+import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.Pojos.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -30,8 +31,13 @@ public class FirebaseHandlerWorker {
     }
     public Task<Void> addWorkerData(User user, String phonNum,String jobTitle)
     {
-       // return databaseReference.child("jobTitle").child(jobTitle).child(phonNum).child("Data").setValue(user);
+        // return databaseReference.child("jobTitle").child(jobTitle).child(phonNum).child("Data").setValue(user);
         return databaseReference.child(jobTitle).child("Data").child(phonNum).setValue(user);
+    }
+
+    public Task<Void> addWorkerQuestion(Questions question, String phone ,String jobTitle)
+    {
+        return databaseReference.child(jobTitle).child("Questions").child(phone).setValue(question);
     }
 
 //    MainRecyclerAdapter mainRecyclerAdapter;

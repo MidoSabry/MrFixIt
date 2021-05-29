@@ -65,6 +65,11 @@
                         android:text="@string/Credit" />
 
                 </RadioGroup>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/enter_your_name"
+                    />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
