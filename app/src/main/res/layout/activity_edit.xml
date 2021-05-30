@@ -32,6 +32,14 @@
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Title"
+                    android:fontFamily="@font/mrdafoeregular"
+                    android:id="@+id/jobt_title_Edit"
+                    android:textSize="30sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/redressedregular"
