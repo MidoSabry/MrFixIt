@@ -25,7 +25,7 @@ import java.util.List;
 
 public class SelectedActivity extends AppCompatActivity {
 
-    String phoneNum;
+    String phoneClientNum;
 
     //recyclerView
     RecyclerView recyclerView_worker_selected;
@@ -38,8 +38,8 @@ public class SelectedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected);
 
-        phoneNum = getIntent().getStringExtra("phone");
-        Toast.makeText(this, phoneNum, Toast.LENGTH_SHORT).show();
+        phoneClientNum = getIntent().getStringExtra("phone");
+        Toast.makeText(this, phoneClientNum, Toast.LENGTH_SHORT).show();
 
 
         acceptedList = new ArrayList<>();
@@ -49,12 +49,12 @@ public class SelectedActivity extends AppCompatActivity {
         recyclerView_worker_selected.setHasFixedSize(true);
         recyclerView_worker_selected.setLayoutManager(new LinearLayoutManager(this));
 
-        selectedAdapter = new SelectedAdapter(this,acceptedList);
+        selectedAdapter = new SelectedAdapter(this,acceptedList,phoneClientNum);
         recyclerView_worker_selected.setAdapter(selectedAdapter);
 
 
 
-        database = FirebaseDatabase.getInstance().getReference("Client").child("make order").child(phoneNum).child("Accepted");
+        database = FirebaseDatabase.getInstance().getReference("Client").child("make order").child(phoneClientNum).child("Accepted");
 
         database.addValueEventListener(new ValueEventListener() {
             @Override

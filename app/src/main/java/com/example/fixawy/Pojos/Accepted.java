@@ -10,6 +10,7 @@ public class Accepted {
     String numOfLike;
     String numOfDisLike;
     String image;
+    String jobTitle;
 
 
     public Accepted() {
@@ -26,6 +27,7 @@ public class Accepted {
         this.numOfDisLike = numOfDisLike;
         this.image = image;
     }
+
 
     public String getNameOfWorker() {
         return nameOfWorker;

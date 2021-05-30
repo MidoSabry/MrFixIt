@@ -1,6 +1,7 @@
 package com.example.fixawy.Firebase;
 
 
+import com.example.fixawy.Pojos.Accepted;
 import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.Pojos.User;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +34,7 @@ public class FirebaseHandlerClient {
 
     }
 
-    public Task<Void> addAcceptedWorker(Accepted accepted, String phone, String jobTitle,String phoneOfWorker)
+    public Task<Void> addAcceptedWorker(Accepted accepted, String phone, String jobTitle, String phoneOfWorker)
     {
         return databaseReference.child("make order").child(phone).child("Accepted").child(phoneOfWorker).setValue(accepted);
 

@@ -10,10 +10,12 @@
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="match_parent"
         android:background="@color/primaryColor"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
         <ImageView
             android:id="@+id/worker_img"
@@ -61,6 +63,7 @@
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/worker_img"
             app:layout_constraintTop_toBottomOf="@+id/worker_phone" />
+
 
         <Button
             android:id="@+id/call_btn"

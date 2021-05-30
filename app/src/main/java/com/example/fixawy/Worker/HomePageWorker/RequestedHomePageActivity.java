@@ -337,19 +337,19 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         pd.setTitle("uploading Image.......");
         pd.show();
 
-        if(imageUri != null){
-            StorageReference fileReference = storageProfilePictureRef.child(System.currentTimeMillis()+"."+getFileExtension(imageUri));
+        if (imageUri != null) {
+            StorageReference fileReference = storageProfilePictureRef.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
             mUploadTask = fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     pd.dismiss();
-                    Snackbar.make(findViewById(android.R.id.content),"Image Uploaded",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
                     Toast.makeText(RequestedHomePageActivity.this, "upload Successfully", Toast.LENGTH_SHORT).show();
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             String url = uri.toString();
-                            User user = new User(w_name.trim(),w_email.trim(),w_phone.trim(),w_address.trim(),w_type.trim(),w_password.trim(),w_job.trim(),url);
+                            User user = new User(w_name.trim(), w_email.trim(), w_phone.trim(), w_address.trim(), w_type.trim(), w_password.trim(), w_job.trim(), url);
                             //User user = new User(url);
                             mDatabaseRef.setValue(user);
                         }
@@ -365,13 +365,23 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                     double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                    pd.setMessage("Percentage"+(int)progressPercent+"%");
+                    pd.setMessage("Percentage" + (int) progressPercent + "%");
                 }
             });
-        }else{
+        } else {
             Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
         }
 
+    }
+//end of change profile image of worker
+
+
+
+
+
+
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
 
@@ -387,18 +397,6 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
 
-    }
-//end of change profile image of worker
-
-
-
-
-
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
     }
 
 
