@@ -25,7 +25,7 @@ public class EditActivityViewModel  extends AndroidViewModel {
     public void addData(OrderTree orderTree ,String phoneNum, String category,String uid) {
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
         clientOrderRepo.addDataEdit(phoneNum, category,uid).setValue(orderTree);
-        clientOrderRepo.editDataWorker(category,phoneNum,uid).setValue(orderTree);
+        clientOrderRepo.editDataWorker(category,phoneNum).setValue(orderTree);
     }
 
 
