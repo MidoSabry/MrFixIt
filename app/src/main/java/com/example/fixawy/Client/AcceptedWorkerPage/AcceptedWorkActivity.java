@@ -27,7 +27,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
     TextView textViewNameOfWorker,textViewNumOfJobs,textViewNumOfLikes,textViewNumOfDisLike,textViewAddress,textViewPhone;
     RatingBar ratingBar;
     Button buttonAccept,buttonCancel;
-    String phoneWorker,phoneClient,date,time,location,phoneClientNum,nameClient,typeOfOrder,jobTitle,phoneWorkerNum,nameOfWorker;
+    String phoneWorker,phoneClient,date,time,location,phoneClientNum,nameClient,typeOfOrder,jobTitle,phoneWorkerNum,nameOfWorker,workerJobTitle;
     DatabaseReference reference1,reference2,reference3,reference4,reference5;
 
     @Override
@@ -48,6 +48,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
         phoneWorker = getIntent().getStringExtra("phoneWorker");
         phoneClient = getIntent().getStringExtra("phoneClient");
+        workerJobTitle = getIntent().getStringExtra("workerJobTitle");
 
 
         Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
@@ -88,6 +89,84 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
 
         buttonAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reference4 = FirebaseDatabase.getInstance().getReference();
+
+                reference5 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Accepted").child(phoneWorker);
+                reference5.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            reference2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details").child(phoneClient);
+                            reference2.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    // get data to restore it to another path
+                                    date = snapshot.child("date").getValue(String.class);
+                                    time = snapshot.child("time").getValue(String.class);
+                                    location = snapshot.child("location").getValue(String.class);
+                                    phoneClientNum = snapshot.child("requestedPhone").getValue(String.class);
+                                    nameClient = snapshot.child("userName").getValue(String.class);
+                                    typeOfOrder = snapshot.child("typeOfOrder").getValue(String.class);
+
+                                    //set time & date & location & phone for client & name of client for job accepted
+                                    MakeOrder order = new MakeOrder(time, date, location, phoneClientNum, nameClient);
+                                    reference4.child("Worker").child(workerJobTitle).child("Data").child(phoneWorker).child("Job Accepted").child(phoneClient).setValue(order);
+                                    MakeOrder historyOrder = new MakeOrder(time, date, typeOfOrder, jobTitle, nameOfWorker, phoneWorkerNum);
+                                    reference4.child("Client").child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
+                            reference3 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("Data").child(phoneWorker);
+                            reference3.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    // get data to restore it to another path
+                                    jobTitle = snapshot.child("jobTitle").getValue(String.class);
+                                    phoneWorkerNum = snapshot.child("phone").getValue(String.class);
+                                    nameOfWorker = snapshot.child("userName").getValue(String.class);
+                                    // set these data in History path for each client
+                                    MakeOrder historyOrder = new MakeOrder(time, date, typeOfOrder, jobTitle, nameOfWorker, phoneWorkerNum);
+                                    reference4.child("Client").child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                        }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AcceptedWorkActivity.this, workerJobTitle, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+    }
+}
+
+
+/*
+
+  buttonAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reference4 = FirebaseDatabase.getInstance().getReference();
@@ -251,5 +330,5 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
 
 
-    }
-}
+
+ */

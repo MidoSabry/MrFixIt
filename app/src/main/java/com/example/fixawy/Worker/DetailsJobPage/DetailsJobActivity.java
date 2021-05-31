@@ -176,10 +176,10 @@ public class DetailsJobActivity extends AppCompatActivity {
     }
     public void sendData()
     {
-        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage);
+        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,orderJobTitle);
         Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, accepted.getNumOfJob(), Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(this, orderJobTitle, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addAcceptedWorker(accepted,orderPhone,orderJobTitle,workerPhone);
