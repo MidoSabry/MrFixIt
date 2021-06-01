@@ -86,9 +86,24 @@
     <string name="code">الكود</string>
     <string name="next">التالي</string>
 
+    <!-- Settings Screen -->
+    <string name="personal_info">بيانات شخصية</string>
+    <string name="additional_info">بيانات اضافية</string>
+    <string name="birth_date">تاريخ الميلاد</string>
+    <string name="re_password">اعادة كلمة السر</string>
+    <string name="apply">تثبيت</string>
 
-
-
+    <!-- Worker Setting Screen -->
+    <string-array name="jobs_names">
+        <item>المهن</item>
+        <item>كهربائي</item>
+        <item>سباك</item>
+        <item>نجار</item>
+        <item>عامل دهانات</item>
+        <item>Tiles Handyman</item>
+        <item>دهان موبيليات</item>
+    </string-array>
+    <string name="Jobs">--المهنة--</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Finish">Finish</string>

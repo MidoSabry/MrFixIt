@@ -98,7 +98,23 @@
     <string name="or">Or</string>
     <string name="code">Code</string>
     <string name="next">Next</string>
-
+    <!-- Settings Screen -->
+    <string name="personal_info">Personal Info</string>
+    <string name="additional_info">Additional Info</string>
+    <string name="birth_date">DOB</string>
+    <string name="re_password">Repeat password</string>
+    <string name="apply">Apply</string>
+    <!-- Worker Setting Screen -->
+    <string-array name="jobs_names">
+        <item>Jobs</item>
+        <item>Electrician</item>
+        <item>Plumber</item>
+        <item>Carpenter</item>
+        <item>Painter</item>
+        <item>Tiles Handyman</item>
+        <item>Wood Painter</item>
+    </string-array>
+    <string name="Jobs">--Job--</string>
     <!--Navigation-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
