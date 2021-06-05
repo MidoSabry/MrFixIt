@@ -21,9 +21,12 @@
             android:title="@string/prev_questions"
             android:icon="@drawable/history_icon"/>
 
+
         <item android:id="@+id/nav_previous_question"
             android:title="@string/my_previous_question"
             android:icon="@drawable/pre_questions_icon"/>
+
+
 
         <item android:id="@+id/nav_chat"
             android:title="@string/chat"

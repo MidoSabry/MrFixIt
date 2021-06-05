@@ -80,9 +80,24 @@
     <string name="code">الكود</string>
     <string name="next">التالي</string>
 
+    <!-- Settings Screen -->
+    <string name="personal_info">بيانات شخصية</string>
+    <string name="additional_info">بيانات اضافية</string>
+    <string name="birth_date">تاريخ الميلاد</string>
+    <string name="re_password">اعادة كلمة السر</string>
+    <string name="apply">تثبيت</string>
 
-
-
+    <!-- Worker Setting Screen -->
+    <string-array name="jobs_names">
+        <item>المهن</item>
+        <item>كهربائي</item>
+        <item>سباك</item>
+        <item>نجار</item>
+        <item>عامل دهانات</item>
+        <item>Tiles Handyman</item>
+        <item>دهان موبيليات</item>
+    </string-array>
+    <string name="Jobs">--المهنة--</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Finish">Finish</string>
@@ -122,17 +137,38 @@
 
 
 
+
+
+    <string name="my_previous_question">my_previous_question</string>
+
+
+    <string name="Update">Update</string>
+    <string name="work">work</string>
+
+
+
+    <string name="reply_questions">التعليقات</string>
+    <string name="add_your_reply">اضف ردك</string>
+    <string name="write_your_reply">اكتب تعليقك</string>
+    <string name="add">اضف</string>
+    <string name="reply_from">رد من : </string>
+    <string name="reply">الرد : </string>
+
+
+
     <!--Facebook authentication-->
     <!--    <string name="facebook_app_id">313952036784410</string>-->
     <!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->
 
 
     <string name="selected_worker">اختر العامل المناسب</string>
+
     <string name="accepted_job">الوظائف المتاحه لك</string>
     <string name="previous_Job">المهمات السابقه</string>
     <string name="profile">الملف الشخصى</string>
 
 
     <string name="Next">التالى</string>
+
 
 </resources>

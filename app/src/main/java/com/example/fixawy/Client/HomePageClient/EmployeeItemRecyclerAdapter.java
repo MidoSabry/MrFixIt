@@ -39,8 +39,12 @@ public class EmployeeItemRecyclerAdapter extends RecyclerView.Adapter<EmployeeIt
         holder.empAddTv.setText(employeeDataItemList.get(position).getAddress());
         holder.empPhoneTv.setText(employeeDataItemList.get(position).getPhone());
         Picasso.get().load(employeeDataItemList.get(position).getImage()).placeholder(R.drawable.person).into(holder.imageView);
+
         holder.ratingBar.setRating(employeeDataItemList.get(position).getRating());
         //workerRatingBarProfile.setRating(Float.parseFloat(rate));
+
+        //holder.ratingBar.setText(employeeDataItemList.get(position).getEmp_rate());
+
 
     }
 

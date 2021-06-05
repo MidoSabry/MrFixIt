@@ -20,7 +20,7 @@ public class DetailsJobViewModel extends ViewModel {
         makeOrderMutableLiveData = detailsJobReposatory.getData(phone,jobTitle);
     }
 
-    public LiveData<MakeOrder>getProfileData(String phone, String jobTitle){
+
         return makeOrderMutableLiveData;
     }
 }

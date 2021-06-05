@@ -93,10 +93,27 @@
     <string name="or">Or</string>
     <string name="code">Code</string>
     <string name="next">Next</string>
-
+    <!-- Settings Screen -->
+    <string name="personal_info">Personal Info</string>
+    <string name="additional_info">Additional Info</string>
+    <string name="birth_date">DOB</string>
+    <string name="re_password">Repeat password</string>
+    <string name="apply">Apply</string>
+    <!-- Worker Setting Screen -->
+    <string-array name="jobs_names">
+        <item>Jobs</item>
+        <item>Electrician</item>
+        <item>Plumber</item>
+        <item>Carpenter</item>
+        <item>Painter</item>
+        <item>Tiles Handyman</item>
+        <item>Wood Painter</item>
+    </string-array>
+    <string name="Jobs">--Job--</string>
     <!--Navigation-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+
     <string name="reply_questions">reply_questions</string>
     <string name="prev_questions">prev_questions</string>
     <string name="my_previous_question">my_previous_question</string>
@@ -117,9 +134,27 @@
     <string name="work">work</string>
 
 
+
+
+    <string name="my_previous_question">my_previous_question</string>
+
+    <string name="Update">Update Order</string>
+    <string name="work">another work</string>
+
+
+    <string name="reply_questions">Replies</string>
+    <string name="add_your_reply">Add Your Reply</string>
+    <string name="write_your_reply">Write Your Reply</string>
+    <string name="add">Add</string>
+    <string name="reply_from">Reply from : </string>
+    <string name="reply">Reply : </string>
+    <string name="Title" translatable="false">job Title</string>
+
+
     <!--Facebook authentication-->
     <!--    <string name="facebook_app_id">313952036784410</string>-->
     <!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->
+
 
 
     <string name="selected_worker">Selected Worker</string>
@@ -131,6 +166,18 @@
     <string name="profile">Profile</string>
 
 
+
+
+
+
+
+
+
+
+
+
+
+    <string name="selected_worker">Selected Worker</string>
 
 
 

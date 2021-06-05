@@ -37,13 +37,14 @@ import java.util.List;
 public class EditActivity extends AppCompatActivity {
 EditActivityViewModel editActivityViewModel;
 EditText editDetails,editLocation,editNumber;
-TextView time,date;
+TextView time,date,jobtitle;
 RadioButton editTypeofOrderHard , editTypeofOrderEasy,paymentCash,paymentCreditCard,paymentPayPal;
 RadioGroup rg;
 ImageView timePicker, datePicker;
 String phoneNum;
 String categoryType;
 String uid;
+String jobTitle;
 Button updates;
 OrderTree orderTree;
 int position;
@@ -53,7 +54,8 @@ int position;
         setContentView(R.layout.activity_edit);
         phoneNum = getIntent().getStringExtra("phone");
         categoryType = getIntent().getExtras().getString("CategoryType");
-    uid = getIntent().getExtras().getString("uid");
+        uid = getIntent().getExtras().getString("uid");
+        jobTitle =  getIntent().getExtras().getString("job Title");
         editNumber = findViewById(R.id.edit_phone_modified);
        editDetails = findViewById(R.id.edittext_view_addnotes);
        editLocation= findViewById(R.id.edit_location);
@@ -64,6 +66,7 @@ int position;
        paymentPayPal= findViewById(R.id.radio_edit_pay_pal);
        time = findViewById(R.id.edit_time);
        date = findViewById(R.id.edit_date);
+       jobtitle = findViewById(R.id.jobt_title_Edit);
        timePicker = findViewById(R.id.time_picker);
        datePicker = findViewById(R.id.date_picker);
        rg = findViewById(R.id.radio_gp_edit_order);
@@ -86,6 +89,7 @@ int position;
                editDetails.setText(orderTree.getDetails());
                editLocation.setText(orderTree.getLocation());
                editNumber.setText(orderTree.getPhone());
+               jobtitle.setText(orderTree.getJobTitle());
                if (editTypeofOrderEasy.isChecked()) {
                    editTypeofOrderEasy.setText(orderTree.getTypeOfOrder());
                    editTypeofOrderEasy.setSelected(true);
@@ -100,6 +104,8 @@ int position;
                paymentCash.setId(orderTree.getPaymentMethod());
                paymentCreditCard.setId(orderTree.getPaymentMethod());
                paymentPayPal.setId(orderTree.getPaymentMethod());
+
+
            }
 
        });
@@ -117,6 +123,7 @@ int position;
                orderTree.setLocation(editLocation.getText().toString());
                orderTree.setPhone(editNumber.getText().toString());
                orderTree.setTime(time.getText().toString());
+               orderTree.setJobTitle(jobtitle.getText().toString());
                orderTree.setDate(date.getText().toString());
                orderTree.setDetails(editDetails.getText().toString());
                if (paymentCash.isChecked()) {
@@ -131,6 +138,7 @@ int position;
                Intent intent = new Intent(EditActivity.this, RequestedActivity.class);
                intent.putExtra("phone",phoneNum);
                intent.putExtra("CategoryType",categoryType);
+               intent.putExtra("job Title", jobTitle);
                startActivity(intent);
            }
 

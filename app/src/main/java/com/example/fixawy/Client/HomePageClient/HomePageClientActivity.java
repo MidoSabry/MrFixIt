@@ -26,7 +26,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
+
 import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
@@ -142,6 +142,28 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
 
 
 
+        //Lists of employees
+        List<User> employeeDataListElectricity = new ArrayList<>();
+        List<User> employeeDataListCarpenter = new ArrayList<>();
+        List<User> employeeDataListPulmber = new ArrayList<>();
+        List<User> employeeDataListPainter = new ArrayList<>();
+        List<User> employeeDataListTilesHandy = new ArrayList<>();
+        List<User> employeeDataListMason = new ArrayList<>();
+        List<User> employeeDataListSmith = new ArrayList<>();
+        List<User> employeeDataListParquet = new ArrayList<>();
+        List<User> employeeDataListGypsum = new ArrayList<>();
+        List<User> employeeDataListMarble = new ArrayList<>();
+        List<User> employeeDataListAlumetal = new ArrayList<>();
+        List<User> employeeDataListGlasses = new ArrayList<>();
+        List<User> employeeDataListWoodPainter = new ArrayList<>();
+        List<User> employeeDataListCurtains = new ArrayList<>();
+        List<User> employeeDataListSatellite = new ArrayList<>();
+        List<User> employeeDataListAppliances = new ArrayList<>();
+        List<AllCategory> allCategoryList = new ArrayList<>();
+
+
+
+
         //MainRecyclerView
         mainRecyclerView = findViewById(R.id.main_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -230,10 +252,18 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 startActivity(intent2);
                 break;
 
+
+
+            case R.id.nav_selected_worker:
+                Intent intent4 = new Intent(HomePageClientActivity.this, SelectedActivity.class);
+                intent4.putExtra("phone", phoneNum);
+                startActivity(intent4);
+
             case R.id.nav_all_previous_questions:
                 Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
                 intent3.putExtra("phone", client_phone_num);
                 startActivity(intent3);
+
                 break;
 
             case R.id.nav_selected_worker:

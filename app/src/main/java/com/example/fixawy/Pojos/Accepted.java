@@ -16,6 +16,20 @@ public class Accepted {
     public Accepted() {
     }
 
+
+    public Accepted(String nameOfWorker, String addressOfWorker, String phoneOfWorker, String commentLine, String numOfJob, String rating, String numOfLike, String numOfDisLike, String image) {
+        this.nameOfWorker = nameOfWorker;
+        this.addressOfWorker = addressOfWorker;
+        this.phoneOfWorker = phoneOfWorker;
+        this.commentLine = commentLine;
+        this.numOfJob = numOfJob;
+        this.rating = rating;
+        this.numOfLike = numOfLike;
+        this.numOfDisLike = numOfDisLike;
+        this.image = image;
+    }
+
+
     public Accepted(String nameOfWorker, String addressOfWorker, String phoneOfWorker, String commentLine, String numOfJob, String rating, String numOfLike, String numOfDisLike, String image, String jobTitle) {
         this.nameOfWorker = nameOfWorker;
         this.addressOfWorker = addressOfWorker;

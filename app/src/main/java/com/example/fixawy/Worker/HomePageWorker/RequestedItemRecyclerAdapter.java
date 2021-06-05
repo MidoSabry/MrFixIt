@@ -26,6 +26,7 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
 
 
 
+
     public RequestedItemRecyclerAdapter(Context context, List<MakeOrder> makeOrders) {
         this.context = context;
         this.makeOrders = makeOrders;
@@ -57,7 +58,6 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
         holder.worker_kindjobtv.setText(makeOrders.get(position).getTypeOfOrder());
         holder.worker_address_clientv.setText(makeOrders.get(position).getLocation());
         holder.worker_phone_client.setText(makeOrders.get(position).getPhone());
-
 
 
         //make call
