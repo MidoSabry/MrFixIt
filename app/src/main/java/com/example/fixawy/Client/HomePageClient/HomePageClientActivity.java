@@ -142,7 +142,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
 
 
 
-        //Lists of employees
+    /*    //Lists of employees
         List<User> employeeDataListElectricity = new ArrayList<>();
         List<User> employeeDataListCarpenter = new ArrayList<>();
         List<User> employeeDataListPulmber = new ArrayList<>();
@@ -159,7 +159,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         List<User> employeeDataListCurtains = new ArrayList<>();
         List<User> employeeDataListSatellite = new ArrayList<>();
         List<User> employeeDataListAppliances = new ArrayList<>();
-        List<AllCategory> allCategoryList = new ArrayList<>();
+        List<AllCategory> allCategoryList = new ArrayList<>();*/
 
 
 
@@ -249,27 +249,23 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
 
             case R.id.nav_previous_requested:
                 Intent intent2 = new Intent(HomePageClientActivity.this, HistoryActivity.class);
+                intent2.putExtra("phone", phoneNum);
                 startActivity(intent2);
                 break;
 
 
 
             case R.id.nav_selected_worker:
-                Intent intent4 = new Intent(HomePageClientActivity.this, SelectedActivity.class);
-                intent4.putExtra("phone", phoneNum);
-                startActivity(intent4);
+                Intent intentSelectedWorker = new Intent(HomePageClientActivity.this, SelectedActivity.class);
+                intentSelectedWorker.putExtra("phone", phoneNum);
+                startActivity(intentSelectedWorker);
+                break;
 
             case R.id.nav_all_previous_questions:
                 Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
-                intent3.putExtra("phone", client_phone_num);
+                intent3.putExtra("phone", phoneNum);
                 startActivity(intent3);
 
-                break;
-
-            case R.id.nav_selected_worker:
-                Intent intent4 = new Intent(HomePageClientActivity.this, SelectedActivity.class);
-                intent4.putExtra("phone", phoneNum);
-                startActivity(intent4);
                 break;
 
             case R.id.nav_logout:

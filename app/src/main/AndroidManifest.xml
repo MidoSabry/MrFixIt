@@ -21,7 +21,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,7 +28,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fixawy">
-        <activity android:name=".Worker.JobAccepted.JobAcceptedActivity"></activity>
+        <activity android:name=".Client.ReplyForMyQuestion.ReplyForMyQuestionActivity" />
+        <activity android:name=".Worker.JobAccepted.JobAcceptedActivity" />
         <activity android:name=".Worker.MapActivity.MapActivity" />
         <activity android:name=".Client.ReplyQuestions.AnswerActivity" />
         <activity android:name=".Worker.WorkerQuestions.WorkerQuestionsActivity" />
@@ -53,8 +53,7 @@
         <activity android:name=".Share.Homes.OwnerHome" />
         <activity android:name=".Share.VerifyCode.ReceiveCode" />
         <activity android:name=".Share.ChangePassword.ChangePassword" />
-        <activity android:name=".Share.ForgetPassword.ForgetPassword" />
-        <activity android:name=".Worker.WorkerSettingPage.WorkerSettingActivity" />
+        <activity android:name=".Share.ForgetPassword.ForgetPassword" /> <!-- <activity android:name=".Worker.WorkerSettingPage.WorkerSettingActivity" /> -->
         <activity android:name=".Worker.WorkerProfilePage.WorkerProfileActivity" />
         <activity android:name=".Worker.SelectJobPage.SelectJobActivity" />
         <activity android:name=".Worker.ReplayQuestionsPage.ReplayQuestionActivity" />
@@ -65,14 +64,11 @@
         <activity android:name=".Client.RatingPage.RatingActivity" />
         <activity android:name=".Client.PreviousQuestionPage.PreviousQuestionActivity" />
         <activity android:name=".Client.HistoryPage.HistoryActivity" />
-        <activity android:name=".Client.EditPage.EditActivity" />
-        <activity android:name=".Client.ClientSettingPage.ClientSettingActivity" />
+        <activity android:name=".Client.EditPage.EditActivity" /> <!-- <activity android:name=".Client.ClientSettingPage.ClientSettingActivity" /> -->
         <activity android:name=".Client.AskQuestionPage.AskQuestionActivity" />
         <activity android:name=".Client.RequestedPage.RequestedActivity" />
         <activity android:name=".Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity" />
-        <activity android:name=".Client.HomePageClient.HomePageClientActivity" >
-
-        </activity>
+        <activity android:name=".Client.HomePageClient.HomePageClientActivity" />
         <activity android:name=".Share.LoginPage.LoginActivity" />
         <activity android:name=".Share.VerifyCode.VerificationCode" />
         <activity android:name=".Share.RegisterPage.RegisterActivity" />

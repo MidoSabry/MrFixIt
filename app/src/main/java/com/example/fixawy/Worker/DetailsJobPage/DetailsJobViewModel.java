@@ -19,8 +19,5 @@ public class DetailsJobViewModel extends ViewModel {
         detailsJobReposatory = DetailsJobReposatory.getInstance();
         makeOrderMutableLiveData = detailsJobReposatory.getData(phone,jobTitle);
     }
-
-
-        return makeOrderMutableLiveData;
-    }
+//return makeOrderMutableLiveData;
 }

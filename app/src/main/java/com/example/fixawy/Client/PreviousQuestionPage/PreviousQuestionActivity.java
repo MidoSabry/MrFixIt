@@ -48,7 +48,7 @@ public class PreviousQuestionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PreviousQuestionActivity.this, AskQuestionActivity.class);
                 intent.putExtra("phone", phoneNum);
-                intent.putExtra("categoryName",jobTitle);
+                intent.putExtra("CategoryType",jobTitle);
                 startActivity(intent);
             }
         });
@@ -65,16 +65,18 @@ public class PreviousQuestionActivity extends AppCompatActivity {
     }
     // return all questions for specific job...
     public void readData(){
-        mRef.child("Client").child("Questions").child("Question Category").child(jobTitle).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Questions").child(jobTitle).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
                 for (DataSnapshot snapshot : children) {
-                    questions = snapshot.getValue(Questions.class);
-                    questionAdapter.add(questions);
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        questions = dataSnapshot.getValue(Questions.class);
+                        questionAdapter.add(questions);
+                    }
+
                 }
             }
         });
-
     }
 }

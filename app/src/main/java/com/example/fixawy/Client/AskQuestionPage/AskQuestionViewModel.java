@@ -13,24 +13,18 @@ public class AskQuestionViewModel extends ViewModel {
     private FirebaseHandlerWorker firebaseHandlerWorker;
 
 
-    public void addClientQuestion(Questions question){
+    public void addQuestionsDataForCategory(Questions questions , String phoneNum,String jobTitle) {
         firebaseHandlerClient = new FirebaseHandlerClient();
-        firebaseHandlerClient.addClientQuestion(question,question.phone,question.jobTitle).addOnSuccessListener(suc->{
-
-        });
+        firebaseHandlerClient.addQuestionsDataForCategory(phoneNum,jobTitle).push().setValue(questions);
     }
 
-    public void addClientQuestionForCategory(Questions question){
+    public void addPrevQuestionsForClientData(Questions questions , String phoneNum,String jobTitle) {
         firebaseHandlerClient = new FirebaseHandlerClient();
-        firebaseHandlerClient.addClientQuestionForCategory(question,question.phone,question.jobTitle).addOnSuccessListener(suc->{
-
-        });
+        firebaseHandlerClient.addPrevQuestionsForClientData(phoneNum,jobTitle).push().setValue(questions);
     }
 
-    public void addWorkerQuestion(Questions question){
+    public void addQuestionsToWorkers(Questions questions , String phoneNum,String jobTitle) {
         firebaseHandlerWorker = new FirebaseHandlerWorker();
-        firebaseHandlerWorker.addWorkerQuestion(question,question.phone,question.jobTitle).addOnSuccessListener(suc->{
-
-        });
+        firebaseHandlerWorker.addQuestionsToWorkers(phoneNum,jobTitle).push().setValue(questions);
     }
 }

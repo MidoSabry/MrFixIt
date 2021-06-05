@@ -57,7 +57,7 @@ public class AskQuestionActivity extends AppCompatActivity {
         askQuestionViewModel = new AskQuestionViewModel();
         storageReference = FirebaseStorage.getInstance().getReference();
         phoneNum=getIntent().getStringExtra("phone");
-        jobTitle = getIntent().getStringExtra("categoryName");
+        jobTitle = getIntent().getStringExtra("CategoryType");
 
 
         buttonUploadPhoto.setOnClickListener(new View.OnClickListener() {
@@ -106,12 +106,18 @@ public class AskQuestionActivity extends AppCompatActivity {
                         question = editTextQuestion.getText().toString().trim();
                         userQuestions = new Questions(phoneNum,question,jobTitle,uri.toString());
                         workerQuestions = new Questions(phoneNum,question,jobTitle,uri.toString());
-                       // askQuestionViewModel.addClientQuestion(userQuestions);
-                        askQuestionViewModel.addClientQuestionForCategory(userQuestions);
-                      //  askQuestionViewModel.addWorkerQuestion(workerQuestions);
+
+                        //add in Questions path for specific job...
+                        askQuestionViewModel.addQuestionsDataForCategory(userQuestions,phoneNum,jobTitle);
+                        //add in prev questions in clientData path...
+                        askQuestionViewModel.addPrevQuestionsForClientData(userQuestions,phoneNum,jobTitle);
+                        //add in worker path..
+                        askQuestionViewModel.addQuestionsToWorkers(workerQuestions,phoneNum,jobTitle);
+
                         Toast.makeText(AskQuestionActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(AskQuestionActivity.this, PreviousQuestionActivity.class));
-                      //  imageViewUploadPhoto.setImageResource(R.drawable.ic_google);
+                        startActivity(new Intent(AskQuestionActivity.this, PreviousQuestionActivity.class)
+                                .putExtra("CategoryType",jobTitle).putExtra("phone",phoneNum));
+                        //  imageViewUploadPhoto.setImageResource(R.drawable.ic_google);
                         Toast.makeText(AskQuestionActivity.this, "your question is added", Toast.LENGTH_SHORT).show();
 
                     }

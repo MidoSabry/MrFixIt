@@ -2,6 +2,7 @@ package com.example.fixawy.Firebase;
 
 import com.example.fixawy.Pojos.Accepted;
 //import com.example.fixawy.Pojos.Answer;
+import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.Pojos.User;
 import com.google.android.gms.tasks.Task;
@@ -38,4 +39,21 @@ public class FirebaseHandlerClient {
         return databaseReference.child("make order").child(phone).child("Accepted").child(phoneOfWorker).setValue(accepted);
 
     }
+
+
+    public Task<Void> addHistoryJobsToClient(MakeOrder historyOrder, String phoneClient, String phoneWorker)
+    {
+        return databaseReference.child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
+
+    }
+
+
+    public DatabaseReference addQuestionsDataForCategory(String phoneNum,String jobTitle) {
+        return databaseReference.child("Questions").child(jobTitle).child(phoneNum);
+    }
+
+    public DatabaseReference addPrevQuestionsForClientData(String phoneNum,String jobTitle) {
+        return databaseReference.child("Data").child(phoneNum).child("Previous Questions").child(jobTitle);
+    }
+
 }

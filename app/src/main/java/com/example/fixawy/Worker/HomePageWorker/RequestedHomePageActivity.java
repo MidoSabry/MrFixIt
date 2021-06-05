@@ -42,6 +42,7 @@ import com.example.fixawy.Worker.DetailsJobPage.DetailsJobActivity;
 import com.example.fixawy.Worker.HistoryJobsPage.HistoryJobActivity;
 import com.example.fixawy.Worker.JobAccepted.JobAcceptedActivity;
 import com.example.fixawy.Worker.WorkerProfilePage.WorkerProfileActivity;
+import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
 import com.example.fixawy.reminder.MyWorker;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -123,7 +124,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     public static final String REQUESTED_EXTRA_JOB_TITLE = "Requested_jobtitle";
     public static final String REQUESTED_EXTRA_WORKER_PHONE = "Requested_phone";
 
-
+    String jobTitle,phoneWorker;
     private RequestedHomePageViewModel requestedHomePageViewModel;
 
 
@@ -163,6 +164,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
         // mDatabaseRef = FirebaseDatabase.getInstance().getReference("Worker").child("Carpenter").child("Data").child("01225699594");
 
+        jobTitle = getIntent().getStringExtra("jobTitle");
+        phoneWorker=getIntent().getStringExtra("phone");
 
         //DrawLayout sidemenu-bar
         drawerLayout = findViewById(R.id.drawer_layout2);
@@ -424,6 +427,15 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 intent.putExtra(REQUESTED_EXTRA_WORKER_PHONE,w_phone);
                 intent.putExtra(REQUESTED_EXTRA_JOB_TITLE,worker_job_title);
                 startActivity(intent);
+                break;
+
+            case R.id.nav_all_previous_questions:
+                Intent intentPrevQuestions = new Intent(RequestedHomePageActivity.this, WorkerQuestionsActivity.class);
+                intentPrevQuestions.putExtra("jobTitle",worker_job_title);
+                intentPrevQuestions.putExtra("phoneWorker",w_phone);
+                Toast.makeText(this, "job : " + jobTitle, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "phone" + phoneWorker, Toast.LENGTH_SHORT).show();
+                startActivity(intentPrevQuestions);
                 break;
 
             case R.id.nav_profile:

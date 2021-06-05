@@ -44,13 +44,23 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(allPreviousQuestionsAdapter);
-        readData();
+        readAllMyQuestions();
         Toast.makeText(this, "all questions", Toast.LENGTH_SHORT).show();
     }
 
     // return all questions for specific phoneNumber...
-    public void readData() {
-        mRef.child("Client").child("Questions").child("Electricity").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+    public void readAllMyQuestions(){
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Electricity").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                Iterable<DataSnapshot> children = task.getResult().getChildren();
+                for (DataSnapshot snapshot : children) {
+                    questions = snapshot.getValue(Questions.class);
+                    allPreviousQuestionsAdapter.add(questions);
+                }
+            }
+        });
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Carpenter").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -61,7 +71,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Carpenter").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Plumber").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -72,7 +82,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Plumber").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Painter").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -83,7 +93,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Painter").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("TilesHandyMan").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -94,7 +104,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("TilesHandyMan").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Mason").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -105,7 +115,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Mason").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Smith").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -116,7 +126,17 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Smith").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Parquet").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                Iterable<DataSnapshot> children = task.getResult().getChildren();
+                for (DataSnapshot snapshot : children) {
+                    questions = snapshot.getValue(Questions.class);
+                    allPreviousQuestionsAdapter.add(questions);
+                }
+            }
+        });
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Gypsum").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -127,7 +147,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Parquet").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Marble").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -138,7 +158,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Gypsum").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Alumetal").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -149,7 +169,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Marble").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Glasses").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -160,7 +180,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Alumetal").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("WoodPainter").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -171,7 +191,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Glasses").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Curtains").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -182,7 +202,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("WoodPainter").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Appliances Maintenance").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -193,7 +213,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
 
-        mRef.child("Client").child("Questions").child("Curtains").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Data").child(phoneNum).child("Previous Questions").child("Satellite").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
@@ -203,29 +223,5 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
                 }
             }
         });
-
-        mRef.child("Client").child("Questions").child("Appliances Maintenance").child("Data").child(phoneNum).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                Iterable<DataSnapshot> children = task.getResult().getChildren();
-                for (DataSnapshot snapshot : children) {
-                    questions = snapshot.getValue(Questions.class);
-                    allPreviousQuestionsAdapter.add(questions);
-                }
-            }
-        });
-        mRef.child("Client").child("Questions").child("Satellite").child(phoneNum).child("Data").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                Iterable<DataSnapshot> children = task.getResult().getChildren();
-                for (DataSnapshot snapshot : children) {
-                    questions = snapshot.getValue(Questions.class);
-                    allPreviousQuestionsAdapter.add(questions);
-                }
-            }
-        });
-
-
-
     }
 }

@@ -120,27 +120,9 @@
     <string name="job_address">job address</string>
     <string name="type_of_job">job address</string>
     <string name="emp_name">job address</string>
-    <string name="reply">job address</string>
-    <string name="reply_from">job address</string>
+    <string name="my_previous_question">اسائلتي السابقة</string>
 
-    <string name="add_your_reply">job address</string>
-    <string name="reply_questions">reply_questions</string>
-    <string name="prev_questions">prev_questions</string>
-    <string name="my_previous_question">my_previous_question</string>
-
-
-    <string name="write_your_reply">job address</string>
-
-    <string name="add">add</string>
-    <string name="Update">Update</string>
-    <string name="work">work</string>
-
-
-
-
-
-    <string name="my_previous_question">my_previous_question</string>
-
+    <string name="prev_questions">Prev Questions</string>
 
     <string name="Update">Update</string>
     <string name="work">work</string>

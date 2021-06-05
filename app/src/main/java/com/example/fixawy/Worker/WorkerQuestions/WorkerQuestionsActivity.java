@@ -41,7 +41,7 @@ public class WorkerQuestionsActivity extends AppCompatActivity {
         textViewJobTitle=findViewById(R.id.txt_job_title);
 
         jobTitle = getIntent().getStringExtra("jobTitle");
-        phoneWorker = getIntent().getStringExtra("phone");
+        phoneWorker = getIntent().getStringExtra("phoneWorker");
 
         textViewJobTitle.setText("All Questions for "+jobTitle);
 
@@ -63,8 +63,10 @@ public class WorkerQuestionsActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
                 for (DataSnapshot snapshot : children) {
-                    questions = snapshot.getValue(Questions.class);
-                    workerQuestionsAdapter.add(questions);
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        questions = dataSnapshot.getValue(Questions.class);
+                        workerQuestionsAdapter.add(questions);
+                    }
                 }
             }
         });

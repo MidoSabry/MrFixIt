@@ -3,8 +3,8 @@ package com.example.fixawy.Pojos;
 public class MakeOrder {
     String time;
     String date;
-    int    paymentMethod;
-    String    typeOfOrder;
+    int paymentMethod;
+    String typeOfOrder;
     String location;
     String phone;
     String requestedPhone;
@@ -36,7 +36,7 @@ public class MakeOrder {
         this.userName = userName;
     }
 
-    public MakeOrder(String time, String date, String typeOfOrder, String jobTitle,String userName,String phone) {
+    public MakeOrder(String time, String date, String typeOfOrder, String jobTitle, String userName, String phone) {
         this.time = time;
         this.date = date;
         this.typeOfOrder = typeOfOrder;
@@ -124,3 +124,4 @@ public class MakeOrder {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+}
