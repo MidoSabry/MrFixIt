@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 //import com.example.fixawy.Pojos.EmployeeData;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,7 +38,9 @@ public class EmployeeItemRecyclerAdapter extends RecyclerView.Adapter<EmployeeIt
         holder.empNameTv.setText(employeeDataItemList.get(position).getUserName());
         holder.empAddTv.setText(employeeDataItemList.get(position).getAddress());
         holder.empPhoneTv.setText(employeeDataItemList.get(position).getPhone());
-        //holder.ratingBar.setText(employeeDataItemList.get(position).getEmp_rate());
+        Picasso.get().load(employeeDataItemList.get(position).getImage()).placeholder(R.drawable.person).into(holder.imageView);
+        holder.ratingBar.setRating(employeeDataItemList.get(position).getRating());
+        //workerRatingBarProfile.setRating(Float.parseFloat(rate));
 
     }
 

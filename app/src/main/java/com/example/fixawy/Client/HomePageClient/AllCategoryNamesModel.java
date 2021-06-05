@@ -15,7 +15,7 @@ public class AllCategoryNamesModel {
 
 
 
-   // AllCategory electricity = new AllCategory(1, R.string.electricity+"");
+    // AllCategory electricity = new AllCategory(1, R.string.electricity+"");
     AllCategory electricity = new AllCategory(1, "Electricity");
 
     AllCategory plumber = new AllCategory(2,"Plumber");

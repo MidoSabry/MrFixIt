@@ -17,6 +17,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,17 +26,20 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
 import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
+import com.example.fixawy.Client.SelectedPage.SelectedActivity;
 import com.example.fixawy.MainActivity;
 import com.example.fixawy.Pojos.AllCategory;
 
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
+import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,9 +63,13 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     TextView textViewUserName, textViewUserPhone;
     String client_phone_num, client_user_name;
 
+    List<AllCategory>allCategories;
 
-    MainRecyclerAdapter mainRecyclerAdapter;
+
+    static  MainRecyclerAdapter mainRecyclerAdapter;
     CategoryItemRecyclerAdapter categoryItemRecyclerAdapter;
+
+    static List<AllCategory> allCategoryList = new ArrayList<>();
 
 
     //DrawLayout side-menubar
@@ -83,11 +92,13 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         toolbar = findViewById(R.id.toolbar);
 
         //get data from verifiaction code page
-        /*Intent intent = getIntent();
+        Intent intent = getIntent();
         client_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
         client_user_name = intent.getStringExtra(EXTR_USER_NAME);
         Toast.makeText(this, client_user_name, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();*/
+        Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();
+
+
 
 
         //DrawLayout sidemenu-bar
@@ -130,26 +141,6 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         categoryRecyclerView.setAdapter(categoryItemRecyclerAdapter);
 
 
-        //Lists of employees
-        List<User> employeeDataListElectricity = new ArrayList<>();
-        List<User> employeeDataListCarpenter = new ArrayList<>();
-        List<User> employeeDataListPulmber = new ArrayList<>();
-        List<User> employeeDataListPainter = new ArrayList<>();
-        List<User> employeeDataListTilesHandy = new ArrayList<>();
-        List<User> employeeDataListMason = new ArrayList<>();
-        List<User> employeeDataListSmith = new ArrayList<>();
-        List<User> employeeDataListParquet = new ArrayList<>();
-        List<User> employeeDataListGypsum = new ArrayList<>();
-        List<User> employeeDataListMarble = new ArrayList<>();
-        List<User> employeeDataListAlumetal = new ArrayList<>();
-        List<User> employeeDataListGlasses = new ArrayList<>();
-        List<User> employeeDataListWoodPainter = new ArrayList<>();
-        List<User> employeeDataListCurtains = new ArrayList<>();
-        List<User> employeeDataListSatellite = new ArrayList<>();
-        List<User> employeeDataListAppliances = new ArrayList<>();
-        List<AllCategory> allCategoryList = new ArrayList<>();
-        AllCategory allCategory = new AllCategory();
-
 
         //MainRecyclerView
         mainRecyclerView = findViewById(R.id.main_recycler);
@@ -159,345 +150,58 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         mainRecyclerView.setAdapter(mainRecyclerAdapter);
 
         //retrive employee of carpenter
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Carpenter").child("Data");
+        HomePageReposatory homePageReposatory = new HomePageReposatory();
+        homePageReposatory = new HomePageReposatory();
+        List<User>employeeDataListCarpenter = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Carpenter",employeeDataListCarpenter);
 
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("ssssss", "user" + employeeData.getUserName());
-                    employeeDataListCarpenter.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
+        List<User>employeeDataListPulmber = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Plumber",employeeDataListPulmber);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        List<User>employeeDataListElectricity = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Electricity",employeeDataListElectricity);
 
-            }
-        });
-        //retrive employee of Electricity
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Electricity").child("Data");
+        List<User>employeeDataListPainter = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Painter",employeeDataListPainter);
 
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListElectricity.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
+        List<User>employeeDataListGlasses = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Glasses",employeeDataListGlasses);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        List<User>employeeDataListMason = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Mason",employeeDataListMason);
 
-            }
-        });
+        List<User>employeeDataListSmith = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Smith",employeeDataListSmith);
 
-        //retrive employee of Plumber
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Plumber").child("Data");
+        List<User>employeeDataListParquet = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Parquet",employeeDataListParquet);
 
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListPulmber.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
+        List<User>employeeDataListTilesHandy = new ArrayList<>();
+        homePageReposatory.getEmployeeData("TilesHandyMan",employeeDataListTilesHandy);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        List<User>employeeDataListGypsum = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Gypsum",employeeDataListGypsum);
 
-            }
-        });
+        List<User>employeeDataListMarble = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Marble",employeeDataListMarble);
 
-        //retrive employee of Painter
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Painter").child("Data");
+        List<User>employeeDataListAlumetal = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Alumetal",employeeDataListAlumetal);
 
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListPainter.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
+        List<User>employeeDataListAppliances = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Appliances",employeeDataListAppliances);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        List<User>employeeDataListWoodPainter = new ArrayList<>();
+        homePageReposatory.getEmployeeData("WoodPainter",employeeDataListWoodPainter);
 
-            }
-        });
+        List<User>employeeDataListCurtains = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Curtains",employeeDataListCurtains);
 
-        //retrive employee of TilesHandyMan
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("TilesHandyMan").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListTilesHandy.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of Mason
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Mason").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListMason.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of Smith
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Smith").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListSmith.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of Parquet
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Parquet").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListParquet.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of Gypsum
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Gypsum").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListGypsum.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of Marble
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Marble").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListMarble.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of Alumetal
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Alumetal").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListAlumetal.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of Glasses
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Glasses").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("glass", "user" + employeeData.getUserName());
-                    employeeDataListGlasses.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of WoodPainter
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("WoodPainter").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData2 = dataSnapshot.getValue(User.class);
-                    Log.d("wooooo", "user" + employeeData2.getUserName());
-                    employeeDataListWoodPainter.add(employeeData2);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        //retrive employee of Curtains
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Curtains").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("looooooo", "user" + employeeData.getUserName());
-                    employeeDataListCurtains.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-        //retrive employee of Satellite
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Satellite").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("5555", "user" + employeeData.getUserName());
-                    employeeDataListSatellite.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-        //retrive employee of Appliances
-        database = FirebaseDatabase.getInstance().getReference("Worker").child("Appliances").child("Data");
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User employeeData = dataSnapshot.getValue(User.class);
-                    Log.d("mmmm", "user" + employeeData.getUserName());
-                    employeeDataListAppliances.add(employeeData);
-                }
-                mainRecyclerAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-        allCategoryList.add(new AllCategory(1, "Electricity", employeeDataListElectricity));
-        allCategoryList.add(new AllCategory(2, "Carpenter", employeeDataListCarpenter));
-        allCategoryList.add(new AllCategory(3, "Plumber", employeeDataListPulmber));
-        allCategoryList.add(new AllCategory(4, "Painter", employeeDataListPainter));
-        allCategoryList.add(new AllCategory(5, "TilesHandyMan", employeeDataListTilesHandy));
-        allCategoryList.add(new AllCategory(6, "Mason", employeeDataListMason));
-        allCategoryList.add(new AllCategory(7, "Smith", employeeDataListSmith));
-        allCategoryList.add(new AllCategory(8, "Parquet", employeeDataListParquet));
-        allCategoryList.add(new AllCategory(9, "Gypsum", employeeDataListGypsum));
-        allCategoryList.add(new AllCategory(10, "Marble", employeeDataListMarble));
-        allCategoryList.add(new AllCategory(11, "Alumetal", employeeDataListAlumetal));
-        allCategoryList.add(new AllCategory(12, "Glasses", employeeDataListGlasses));
-        allCategoryList.add(new AllCategory(13, "WoodPainter", employeeDataListWoodPainter));
-        allCategoryList.add(new AllCategory(14, "Curtains", employeeDataListCurtains));
-        allCategoryList.add(new AllCategory(15, "Satellite", employeeDataListSatellite));
-        allCategoryList.add(new AllCategory(16, "Appliances Maintenance", employeeDataListAppliances));
+        List<User>employeeDataListSatellite = new ArrayList<>();
+        homePageReposatory.getEmployeeData("Satellite",employeeDataListSatellite);
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -530,6 +234,17 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
                 intent3.putExtra("phone", client_phone_num);
                 startActivity(intent3);
+                break;
+
+            case R.id.nav_selected_worker:
+                Intent intent4 = new Intent(HomePageClientActivity.this, SelectedActivity.class);
+                intent4.putExtra("phone", phoneNum);
+                startActivity(intent4);
+                break;
+
+            case R.id.nav_logout:
+                Intent intent5 = new Intent(HomePageClientActivity.this, SelectMembershipType.class);
+                startActivity(intent5);
                 break;
 
 

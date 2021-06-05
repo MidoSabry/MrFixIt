@@ -9,6 +9,10 @@
             android:title="@string/requested"
             android:icon="@drawable/requested_button"/>
 
+        <item android:id="@+id/nav_selected_worker"
+            android:title="@string/selected_worker"
+            android:icon="@drawable/person_icon"/>
+
         <item android:id="@+id/nav_previous_requested"
             android:title="@string/previous"
             android:icon="@drawable/history_icon"/>
@@ -16,6 +20,10 @@
         <item android:id="@+id/nav_all_previous_questions"
             android:title="@string/prev_questions"
             android:icon="@drawable/history_icon"/>
+
+        <item android:id="@+id/nav_previous_question"
+            android:title="@string/my_previous_question"
+            android:icon="@drawable/pre_questions_icon"/>
 
         <item android:id="@+id/nav_chat"
             android:title="@string/chat"

@@ -28,6 +28,7 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -121,7 +122,7 @@ public class SecondOrderFragment extends Fragment {
                             timeSelected.set(Calendar.MINUTE, selectedMinute);
                             timeSelected.set(Calendar.HOUR_OF_DAY, selectedHour);
                             timeSelected.set(Calendar.SECOND, 0);
-                            time.setText(selectedHour + " : " + selectedMinute);
+                            time.setText(selectedHour + ":" + selectedMinute);
                         }
                     }, hour, minute, true);//Yes 24 hour time
                     mTimePicker.setTitle("Select Time");
@@ -129,7 +130,7 @@ public class SecondOrderFragment extends Fragment {
 
                 }
             });
-
+           // SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             datePicker.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -141,7 +142,7 @@ public class SecondOrderFragment extends Fragment {
                             c.set(Calendar.MONTH, month);
                             c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                             String datec = DateFormat.getDateInstance(DateFormat.DEFAULT).format(c.getTime());
-                            date.setText(datec);
+                            date.setText(year+"/"+month+"/"+dayOfMonth);
                         }
 
                     }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));

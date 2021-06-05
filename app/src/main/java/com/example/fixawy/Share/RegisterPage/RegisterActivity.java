@@ -38,7 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnContinue;
     TextView textViewLogin;
     FirebaseAuth mAuth;
-    String userName,email,phoneNum,address,password,confirmPassword,codeSend,phoneNumber,type,jobTitle;
+    String userName,email,phoneNum,address,password,confirmPassword,codeSend,phoneNumber,type,jobTitle,image;
+    int numOfJob,rating,like,disLike;
     private TextView processText;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     FirebaseUser firebaseUser;
@@ -70,6 +71,17 @@ public class RegisterActivity extends AppCompatActivity {
         email=getIntent().getStringExtra("email");
         jobTitle=getIntent().getExtras().getString("jobTitle");
 
+//        numOfJob = getIntent().getExtras().getInt("numOfJob");
+//        like = getIntent().getExtras().getInt("numOfLike");
+//        disLike = getIntent().getExtras().getInt("numOfDisLike");
+//        rating = getIntent().getExtras().getInt("rating");
+
+        //another data to worker
+//        numOfJob = getIntent().getIntExtra("numOfJob",0);
+//        like = getIntent().getIntExtra("numOfLike",0);
+//        disLike = getIntent().getIntExtra("numOfDisLike",0);
+//        rating = getIntent().getIntExtra("rating",0);
+
         mAuth = FirebaseAuth.getInstance();
         firebaseUser=mAuth.getCurrentUser();
 
@@ -92,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               register();
+                register();
             }
         });
 
@@ -119,6 +131,8 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent otpIntent = new Intent(RegisterActivity.this , VerificationCode.class);
+                        //Intent otpIntent = new Intent(RegisterActivity.this , VerificationCode.class);
+
                         otpIntent.putExtra("auth" , s);
                         otpIntent.putExtra("userName",userName);
                         otpIntent.putExtra("email",email);
@@ -127,6 +141,13 @@ public class RegisterActivity extends AppCompatActivity {
                         otpIntent.putExtra("type",type);
                         otpIntent.putExtra("password",password);
                         otpIntent.putExtra("jobTitle",jobTitle);
+                        //another data to worker
+                        otpIntent.putExtra("image",image);
+                        otpIntent.putExtra("numOfJob",numOfJob);
+                        otpIntent.putExtra("numOfLike",like);
+                        otpIntent.putExtra("numOfDisLike",disLike);
+                        otpIntent.putExtra("rating",rating);
+
                         startActivity(otpIntent);
                     }
                 }, 10000);
@@ -163,6 +184,19 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword=editTextConfirmPassword.getEditText().toString().trim();
         type=getIntent().getExtras().getString("type");
         jobTitle=getIntent().getExtras().getString("jobTitle");
+        //another data to worker
+//        numOfJob = getIntent().getExtras().getInt("numOfJob");
+//        like = getIntent().getExtras().getInt("numOfLike");
+//        disLike = getIntent().getExtras().getInt("numOfDisLike");
+//        rating = getIntent().getExtras().getInt("rating");
+        //another worker data
+        image=getIntent().getStringExtra("image");
+        numOfJob = getIntent().getIntExtra("numOfJob",0);
+        like = getIntent().getIntExtra("numOfLike",0);
+        disLike = getIntent().getIntExtra("numOfDisLike",0);
+        rating = getIntent().getIntExtra("rating",0);
+
+
 
         if (userName.isEmpty()){
             editTextUserName.setError("UserName is required");
@@ -224,20 +258,20 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }*/
 
-       phoneNumber = "+" + country_code + "" + phoneNum;
-       if (!phoneNum.isEmpty()){
-           PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
-                   .setPhoneNumber(phoneNumber)
-                   .setTimeout(60L , TimeUnit.SECONDS)
-                   .setActivity(RegisterActivity.this)
-                   .setCallbacks(mCallBacks)
-                   .build();
-           PhoneAuthProvider.verifyPhoneNumber(options);
-       }else{
-           processText.setText("Please Enter Country Code and Phone Number");
-           processText.setTextColor(Color.RED);
-           processText.setVisibility(View.VISIBLE);
-       }
+        phoneNumber = "+" + country_code + "" + phoneNum;
+        if (!phoneNum.isEmpty()){
+            PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                    .setPhoneNumber(phoneNumber)
+                    .setTimeout(60L , TimeUnit.SECONDS)
+                    .setActivity(RegisterActivity.this)
+                    .setCallbacks(mCallBacks)
+                    .build();
+            PhoneAuthProvider.verifyPhoneNumber(options);
+        }else{
+            processText.setText("Please Enter Country Code and Phone Number");
+            processText.setTextColor(Color.RED);
+            processText.setVisibility(View.VISIBLE);
+        }
 
       /*  registerViewModel = new RegisterViewModel();
         userClient = new User(userName,email,phoneNum,address,type,password);

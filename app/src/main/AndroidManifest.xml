@@ -5,6 +5,21 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 
     <application
@@ -14,7 +29,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fixawy">
-        <activity android:name=".Client.ReplyQuestions.AnswerActivity"></activity>
+        <activity android:name=".Worker.JobAccepted.JobAcceptedActivity"></activity>
+        <activity android:name=".Worker.MapActivity.MapActivity" />
+        <activity android:name=".Client.ReplyQuestions.AnswerActivity" />
         <activity android:name=".Worker.WorkerQuestions.WorkerQuestionsActivity" />
         <activity android:name=".Client.AllPreviousQuestions.AllPreviousQuestionsActivity" />
         <activity android:name=".Worker.HomePageWorker.RequestedHomePageActivity" />
@@ -41,7 +58,7 @@
         <activity android:name=".Worker.WorkerProfilePage.WorkerProfileActivity" />
         <activity android:name=".Worker.SelectJobPage.SelectJobActivity" />
         <activity android:name=".Worker.ReplayQuestionsPage.ReplayQuestionActivity" />
-        <activity android:name=".Worker.HistoryJobsPage.HistoryJobActivity"></activity>
+        <activity android:name=".Worker.HistoryJobsPage.HistoryJobActivity" />
         <activity android:name=".Worker.DetailsJobPage.DetailsJobActivity" />
         <activity android:name=".Client.ShowAllWorkerPage.ShowAllWorkerActivity" />
         <activity android:name=".Client.SelectedSpecificWorkerPage.SelectedWorkerActivity" />
@@ -53,49 +70,29 @@
         <activity android:name=".Client.AskQuestionPage.AskQuestionActivity" />
         <activity android:name=".Client.RequestedPage.RequestedActivity" />
         <activity android:name=".Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity" />
-        <activity android:name=".Client.HomePageClient.HomePageClientActivity" />
+        <activity android:name=".Client.HomePageClient.HomePageClientActivity" >
+
+        </activity>
         <activity android:name=".Share.LoginPage.LoginActivity" />
         <activity android:name=".Share.VerifyCode.VerificationCode" />
-        <activity android:name=".Share.RegisterPage.RegisterActivity"/>
+        <activity android:name=".Share.RegisterPage.RegisterActivity" />
 
+        <service android:name=".reminder.MyService" />
 
+        <receiver
+            android:name=".reminder.MyReceiver"
+            android:enabled="true"
+            android:exported="true" />
 
-
-
-                <activity android:name=".Share.SelectionPage.SelectMembershipType">
-
+        <activity android:name=".Share.SelectionPage.SelectMembershipType">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Share.SplashScreen.SplashScreen" />
         <activity android:name=".MainActivity" />
-
-
-<!--        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
-        <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="@string/fb_login_protocol_scheme"
-                    tools:ignore="ManifestResource" />
-            </intent-filter>
-        </activity>
--->
     </application>
 
 </manifest>

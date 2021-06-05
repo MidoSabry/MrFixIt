@@ -36,16 +36,16 @@ public class SelectKindOfChoiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        phoneNum=getIntent().getStringExtra("phone");
-        jobTitle=getIntent().getStringExtra("categoryName");
+        Toast.makeText(SelectKindOfChoiceActivity.this,phoneNum , Toast.LENGTH_SHORT).show();
+        Toast.makeText(SelectKindOfChoiceActivity.this,categoryType , Toast.LENGTH_SHORT).show();
 
         askQuestionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SelectKindOfChoiceActivity.this, PreviousQuestionActivity.class);
                 intent.putExtra("phone", phoneNum);
-                intent.putExtra("categoryName",jobTitle);
-                Toast.makeText(SelectKindOfChoiceActivity.this, jobTitle, Toast.LENGTH_SHORT).show();
+                intent.putExtra("CategoryType",categoryType);
+                Toast.makeText(SelectKindOfChoiceActivity.this,phoneNum , Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

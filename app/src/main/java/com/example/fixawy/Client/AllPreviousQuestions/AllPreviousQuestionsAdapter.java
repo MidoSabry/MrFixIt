@@ -60,4 +60,3 @@ public class AllPreviousQuestionsAdapter extends RecyclerView.Adapter<AllPreviou
         }
     }
 }
-

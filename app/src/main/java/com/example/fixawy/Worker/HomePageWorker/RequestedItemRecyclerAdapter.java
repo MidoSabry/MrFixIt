@@ -1,6 +1,8 @@
 package com.example.fixawy.Worker.HomePageWorker;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fixawy.Client.HomePageClient.CategoryItemRecyclerAdapter;
 import com.example.fixawy.Client.RequestedPage.RequestedAdapter;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.R;
@@ -19,10 +22,20 @@ import java.util.List;
 public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<RequestedItemRecyclerAdapter.RequestedItemRecyclerViewHolder> {
     private Context context;
     List<MakeOrder>makeOrders;
+    private onItemClickListener mListener;
+
+
 
     public RequestedItemRecyclerAdapter(Context context, List<MakeOrder> makeOrders) {
         this.context = context;
         this.makeOrders = makeOrders;
+    }
+
+    public void setListMakeOrders(List<MakeOrder> makeOrderList) {
+        this.makeOrders = makeOrderList;
+    }
+    public void setOnItemClickListener(onItemClickListener listener){
+        mListener = listener;
     }
 
     @NonNull
@@ -40,10 +53,24 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
 
         holder.worker_clocktv.setText(makeOrders.get(position).getTime());
         holder.worker_datetv.setText(makeOrders.get(position).getDate());
-        //holder.worker_name_clienttv.setText(makeOrders.get(position).get());
-        holder.worker_kindjobtv.setText(makeOrders.get(position).getTypeOfOrder()+"");
+        holder.worker_name_clienttv.setText(makeOrders.get(position).getUserName());
+        holder.worker_kindjobtv.setText(makeOrders.get(position).getTypeOfOrder());
         holder.worker_address_clientv.setText(makeOrders.get(position).getLocation());
         holder.worker_phone_client.setText(makeOrders.get(position).getPhone());
+
+
+
+        //make call
+        holder.worker_phone_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mobileNumber =  makeOrders.get(position).getRequestedPhone();
+                String call = "tel:" +mobileNumber.trim();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse(call));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -71,6 +98,31 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
 
             worker_phone_btn = itemView.findViewById(R.id.worker_request_call_button);
             worker_chat_btn = itemView.findViewById(R.id.worker_request_chat_button);
+
+
+            //toClick on the item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
+
         }
     }
+
+
+
+    public interface onItemClickListener{
+        void onItemClick(int position);
+
+    }
 }
+
+

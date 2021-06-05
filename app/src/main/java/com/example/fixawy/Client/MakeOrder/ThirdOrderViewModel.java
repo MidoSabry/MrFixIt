@@ -1,3 +1,4 @@
+
 package com.example.fixawy.Client.MakeOrder;
 
 import android.app.Application;
@@ -19,9 +20,8 @@ public class ThirdOrderViewModel extends AndroidViewModel {
     }
     public void addDataToWorker(OrderTree orderTree , String category,String phoneNum){
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
-        clientOrderRepo.addDataToWorker(category,phoneNum).push().setValue(orderTree);
+        clientOrderRepo.addDataToWorker(category,phoneNum).setValue(orderTree);
 
     }
 
 }
-
