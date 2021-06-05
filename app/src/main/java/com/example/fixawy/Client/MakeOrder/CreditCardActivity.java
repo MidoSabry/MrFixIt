@@ -48,7 +48,7 @@ public class CreditCardActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
-                          //TODO //GO TO ANOTHER ACTIVITY OR FRAGMENT FROM HERE
+                            //TODO //GO TO ANOTHER ACTIVITY OR FRAGMENT FROM HERE
 
                         }
                     });

@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
+import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_JOB_TITLE;
 import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_WORKER_IMAGE;
 import static com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity.EXTRA_ORDER_JOB_TITLE;
 import static com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity.EXTRA_ORDER_PHONE;
@@ -63,7 +64,7 @@ public class DetailsJobActivity extends AppCompatActivity {
     //public int worker_likes,worker_dislikes,worker_num_of_job,worker_rating;
 //   public String phone,jobTitle,Worker_phone,worker_name,worker_address,comment;
 
-    public String workerName,workerPhone,workerAddress,workerNumOfJob,workerLikes,workerDisLikes,workerRating,orderPhone,orderJobTitle,workerImage,comment;
+    public String workerName,workerPhone,workerAddress,workerNumOfJob,workerLikes,workerDisLikes,workerRating,orderPhone,orderJobTitle,workerImage,workerJob,comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,8 @@ public class DetailsJobActivity extends AppCompatActivity {
         workerRating = intent.getStringExtra(EXTRA_WORKER_RATING);
 
         workerImage = intent.getStringExtra(EXTRA_WORKER_IMAGE);
+        workerJob = intent.getStringExtra(EXTRA_JOB_TITLE);
+
 
         Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, workerName, Toast.LENGTH_SHORT).show();
@@ -176,10 +179,10 @@ public class DetailsJobActivity extends AppCompatActivity {
     }
     public void sendData()
     {
-        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,orderJobTitle);
+        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob);
         Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, accepted.getNumOfJob(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, orderJobTitle, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
+
         Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addAcceptedWorker(accepted,orderPhone,orderJobTitle,workerPhone);

@@ -3,9 +3,8 @@ package com.example.fixawy.Client.HomePageClient;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 
-import com.example.fixawy.Firebase.FirebaseHandlerWorker;
+import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.Pojos.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,8 +12,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.fixawy.Client.HomePageClient.HomePageClientActivity.allCategoryList;
 
 public class HomePageReposatory {
     private User user = new User();
@@ -43,8 +43,10 @@ public class HomePageReposatory {
                     User employeeData = (User)dataSnapshot.getValue(User.class);
                     Log.d("ssssss","user"+employeeData.getUserName());
                     employees.add( employeeData);
-                }
-                //HomePageClientActivity.mainRecyclerAdapter.notifyDataSetChanged();
+                } if(employees.size()!=0){
+                    HomePageClientActivity.mainRecyclerAdapter.notifyDataSetChanged();
+                    allCategoryList.add(new AllCategory(2, jobTitle, employees));
+                }//HomePageClientActivity.mainRecyclerAdapter.notifyDataSetChanged();
             }
 
             @Override

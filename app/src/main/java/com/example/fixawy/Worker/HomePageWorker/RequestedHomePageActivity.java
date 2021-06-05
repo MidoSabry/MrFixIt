@@ -24,29 +24,30 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
 
-
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-
-
+import com.example.fixawy.Client.HistoryPage.HistoryActivity;
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
+import com.example.fixawy.Client.RequestedPage.RequestedActivity;
+import com.example.fixawy.Client.SelectedPage.SelectedActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.Pojos.JobTitleCategory;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
-
 import com.example.fixawy.Worker.DetailsJobPage.DetailsJobActivity;
+import com.example.fixawy.Worker.HistoryJobsPage.HistoryJobActivity;
+import com.example.fixawy.Worker.JobAccepted.JobAcceptedActivity;
+import com.example.fixawy.Worker.WorkerProfilePage.WorkerProfileActivity;
+import com.example.fixawy.reminder.MyWorker;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-
-import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -63,10 +64,15 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -87,13 +93,15 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-
     //textview which apear on side menue bar
     TextView textViewWorkerName,textViewWorkerPhone,textViewWorkerJobTitle;
     ImageButton change_image_button;
 
     String w_name,w_phone,w_job,w_type,w_address,w_email,w_password,w_image;
     String w_likes,w_numOfJob,w_disLike,w_rating;
+    String worker_image;
+    String worker_job_title;
+    private Calendar mCalendar;
 
     private Uri imageUri;
     private CircleImageView profileImageView;
@@ -112,13 +120,12 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     public static final String EXTRA_WORKER_DIS_LIKE = "wDisLike";
     public static final String EXTRA_WORKER_RATING = "wRating";
 
+    public static final String REQUESTED_EXTRA_JOB_TITLE = "Requested_jobtitle";
+    public static final String REQUESTED_EXTRA_WORKER_PHONE = "Requested_phone";
 
 
     private RequestedHomePageViewModel requestedHomePageViewModel;
 
-
-
-    String jobTitle,phoneWorker;
 
 
     //recyclerView
@@ -133,15 +140,15 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested_home_page);
 
-
         list = new ArrayList<>();
+        mCalendar = Calendar.getInstance();
 
         //get data from verifiaction code page
         Intent intent = getIntent();
         String worker_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
         String  worker_user_name = intent.getStringExtra(EXTR_USER_NAME);
-        String worker_job_title = intent.getStringExtra(EXTRA_JOB_TITLE);
-        String worker_image = intent.getStringExtra(EXTRA_WORKER_IMAGE);
+        worker_job_title = intent.getStringExtra(EXTRA_JOB_TITLE);
+        worker_image = intent.getStringExtra(EXTRA_WORKER_IMAGE);
 
 
 
@@ -156,9 +163,6 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
         // mDatabaseRef = FirebaseDatabase.getInstance().getReference("Worker").child("Carpenter").child("Data").child("01225699594");
 
-
-        jobTitle = getIntent().getStringExtra("jobTitle");
-        phoneWorker=getIntent().getStringExtra("phone");
 
         //DrawLayout sidemenu-bar
         drawerLayout = findViewById(R.id.drawer_layout2);
@@ -214,7 +218,9 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                     w_disLike = dataSnapshot.child("disLike").getValue().toString();
                     w_rating = dataSnapshot.child("rating").getValue().toString();
 
-                    w_image = dataSnapshot.child("image").getValue().toString();
+
+
+                    // w_image = dataSnapshot.child("image").getValue().toString();
 
 
                     if(dataSnapshot.child("image").exists())
@@ -258,12 +264,17 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
         database = FirebaseDatabase.getInstance().getReference("Worker").child(worker_job_title).child("order Details");
 
+
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     MakeOrder makeOrder = dataSnapshot.getValue(MakeOrder.class);
                     list.add(makeOrder);
+
+
+
                 }
                 RequestedHomePageActivity.myAdapter.notifyDataSetChanged();
             }
@@ -273,6 +284,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
             }
         });
+
+
 
 
         //requestedHomePageViewModel = new ViewModelProvider(this).get(RequestedHomePageViewModel.class);
@@ -295,7 +308,30 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 //            }
 //        });
 
+//        trip.setDate_time(binding.edDate.getText().toString()+" "+binding.edTime.getText().toString());
+
+
+//        Calendar calendar = Calendar.getInstance();
+//        long nowMillis = calendar.getTimeInMillis();
+//        long diff = mCalendar.getTimeInMillis() - nowMillis;
+
+
+        Calendar calendar = Calendar.getInstance();
+//        calendar.set(2021, 5, 30,
+//                20, 34, 0);
+//        long startTime = calendar.getTimeInMillis();
+//        Log.d("oooo","my time is "+startTime);
+
+
     }
+
+
+
+
+
+
+
+
 
 
     //Change profile worker image start
@@ -306,9 +342,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         startActivityForResult(intent,1);
     }
 
-    //to select page from side menu
     @Override
-
     protected void onActivityResult(int requestCode, int resulCode, Intent data){
         super.onActivityResult(requestCode,resulCode,data);
 
@@ -337,19 +371,19 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         pd.setTitle("uploading Image.......");
         pd.show();
 
-        if (imageUri != null) {
-            StorageReference fileReference = storageProfilePictureRef.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
+        if(imageUri != null){
+            StorageReference fileReference = storageProfilePictureRef.child(System.currentTimeMillis()+"."+getFileExtension(imageUri));
             mUploadTask = fileReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     pd.dismiss();
-                    Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(findViewById(android.R.id.content),"Image Uploaded",Snackbar.LENGTH_LONG).show();
                     Toast.makeText(RequestedHomePageActivity.this, "upload Successfully", Toast.LENGTH_SHORT).show();
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             String url = uri.toString();
-                            User user = new User(w_name.trim(), w_email.trim(), w_phone.trim(), w_address.trim(), w_type.trim(), w_password.trim(), w_job.trim(), url);
+                            User user = new User(w_name.trim(),w_email.trim(),w_phone.trim(),w_address.trim(),w_type.trim(),w_password.trim(),w_job.trim(),url);
                             //User user = new User(url);
                             mDatabaseRef.setValue(user);
                         }
@@ -365,13 +399,12 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 @Override
                 public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                     double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                    pd.setMessage("Percentage" + (int) progressPercent + "%");
+                    pd.setMessage("Percentage"+(int)progressPercent+"%");
                 }
             });
-        } else {
+        }else{
             Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
         }
-
     }
 //end of change profile image of worker
 
@@ -383,20 +416,52 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-
-            case R.id.nav_all_previous_questions:
-                Intent intentPrevQuestions = new Intent(RequestedHomePageActivity.this, WorkerQuestionsActivity.class);
-                intentPrevQuestions.putExtra("jobTitle",jobTitle);
-                intentPrevQuestions.putExtra("phone",phoneWorker);
-                startActivity(intentPrevQuestions);
+        switch (item.getItemId()) {
+            case R.id.nav_home2:
                 break;
+            case R.id.nav_accepted_job:
+                Intent intent = new Intent(RequestedHomePageActivity.this, JobAcceptedActivity.class);
+                intent.putExtra(REQUESTED_EXTRA_WORKER_PHONE,w_phone);
+                intent.putExtra(REQUESTED_EXTRA_JOB_TITLE,worker_job_title);
+                startActivity(intent);
+                break;
+
+            case R.id.nav_profile:
+                Intent intent2 = new Intent(RequestedHomePageActivity.this, WorkerProfileActivity.class);
+                intent2.putExtra(EXTRA_JOB_TITLE,worker_job_title);
+                intent2.putExtra(EXTRA_WORKER_PHONE,w_phone);
+                Log.d("uiuiuiuiu",w_phone);
+                Log.d("uiuiuiuiu",worker_job_title);
+                startActivity(intent2);
+                break;
+
+            case R.id.nav_previous_job:
+                Intent intent3 = new Intent(RequestedHomePageActivity.this, HistoryJobActivity.class);
+                intent3.putExtra(EXTRA_JOB_TITLE,worker_job_title);
+                intent3.putExtra(EXTRA_WORKER_PHONE,w_phone);
+                startActivity(intent3);
+                break;
+
+
+
+//            case R.id.nav_all_previous_questions:
+//                Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
+//                intent3.putExtra("phone", client_phone_num);
+//                startActivity(intent3);
+//                break;
+/*
+            case R.id.nav_selected_worker:
+                Intent intent4 = new Intent(HomePageClientActivity.this, SelectedActivity.class);
+                intent4.putExtra("phone", phoneNum);
+                startActivity(intent4);
+                break;
+
+ */
 
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
-
     }
 
 
@@ -417,7 +482,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         detailsIntent.putExtra(EXTRA_WORKER_LIKE,w_likes);
         detailsIntent.putExtra(EXTRA_WORKER_DIS_LIKE,w_disLike);
         detailsIntent.putExtra(EXTRA_WORKER_RATING,w_rating);
-        detailsIntent.putExtra(EXTRA_WORKER_IMAGE,w_image);
+        detailsIntent.putExtra(EXTRA_WORKER_IMAGE,worker_image);
+        detailsIntent.putExtra(EXTRA_JOB_TITLE,worker_job_title);
 
         startActivity(detailsIntent);
     }

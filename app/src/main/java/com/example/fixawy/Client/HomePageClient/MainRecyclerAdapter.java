@@ -1,6 +1,7 @@
 package com.example.fixawy.Client.HomePageClient;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     AllCategoryNamesModel allCategoryNamesModel = new AllCategoryNamesModel();
     AdvertisementsModel advertisementsModel = new AdvertisementsModel();
     List<Advertisment> advertisments;
+    List<AllCategory>allCategories;
     private List<AllCategory> allCategoryList;
+    AllCategory allCategory;
 
     public MainRecyclerAdapter(Context context,List<AllCategory> allCategoryList) {
 
@@ -45,22 +48,38 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
         //  setCategoryRecyclerView(holder.categoryRecycler,allCategoryNamesModel.getAllCategories());
         // setAdvertisement(holder.viewPager,advertisementsModel.getAllAdvertisement());
-        AllCategory allCategory=allCategoryList.get(position);
-        if(allCategory.getEmployeeDataList().size()==0)return;
+
+
+        allCategory=allCategoryList.get(position);
+        if(allCategory.getEmployeeDataList().isEmpty()){
+
+
+        }
+
         holder.categoryTitle.setText(allCategory.getCategoryTitle());
+        //if(allCategoryList.get(position).getEmployeeDataList().size()!=0)
         setEmployeeRecyclerView(holder.empItemRecycler,allCategoryList.get(position).getEmployeeDataList());
+
+
+
+
+
     }
 
     @Override
     public int getItemCount() {
-        int count=0;
-        for (AllCategory item:allCategoryList) {
-            if(item.getEmployeeDataList()==null)continue;
-            if(!item.getEmployeeDataList().isEmpty())
-                count++;
+//        int count=0;
+//
+//            for (AllCategory item:allCategoryList) {
+//            if(item.getEmployeeDataList()==null)continue;
+//            if(!item.getEmployeeDataList().isEmpty())
+//                count++;
+//
+//            }
 
-        }
-        return count;
+
+
+        return allCategoryList.size();
     }
 
     public class MainViewHolder extends RecyclerView.ViewHolder{

@@ -39,7 +39,7 @@ public class PreviousQuestionActivity extends AppCompatActivity {
         floatingButtonAsk = findViewById(R.id.addQuestion);
         textViewJobTitle=findViewById(R.id.txt_job_title);
         phoneNum = getIntent().getStringExtra("phone");
-        jobTitle = getIntent().getStringExtra("categoryName");
+        jobTitle = getIntent().getStringExtra("CategoryType");
 
         textViewJobTitle.setText("All Questions for "+jobTitle);
 

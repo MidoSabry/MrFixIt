@@ -15,7 +15,7 @@ public class SecondOrderViewModel extends AndroidViewModel {
         super(application);
     }
 
-   public void addData(OrderTree orderTree, String phoneNum, String category) {
+    public void addData(OrderTree orderTree, String phoneNum, String category) {
         ClientOrderRepo clientOrderRepo = new ClientOrderRepo();
         clientOrderRepo.addData(phoneNum,category).setValue(orderTree);
 

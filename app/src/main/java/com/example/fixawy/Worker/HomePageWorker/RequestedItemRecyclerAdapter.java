@@ -59,6 +59,7 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
         holder.worker_address_clientv.setText(makeOrders.get(position).getLocation());
         holder.worker_phone_client.setText(makeOrders.get(position).getPhone());
 
+
         //make call
         holder.worker_phone_btn.setOnClickListener(new View.OnClickListener() {
             @Override

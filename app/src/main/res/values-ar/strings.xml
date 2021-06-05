@@ -25,7 +25,6 @@
     <string name="make_order">اجراء طلب</string>
     <string name="show_all_worker">عرض جميع العاملين</string>
     <string name="ask_question">اجراء سؤال</string>
-    <string name="prev_questions">الاسئلة السابقة</string>
     <string name="edit">تعديل</string>
     <string name="typeOrder">نوع الطلب</string>
     <string name="easy">مهمه بسيطه</string>
@@ -60,11 +59,6 @@
     <string name="post">نشر</string>
     <string name="select_job">اختر الوظيفه</string>
     <string name="your_question">اسالتك</string>
-    <string name="Next">التالي</string>
-    <string name="done_with_rating">تمت بتقيم</string>
-    <string name="job_address">عنوان الوظيفة</string>
-    <string name="type_of_job">نوع الوظيفة</string>
-    <string name="emp_name">اسم العامل</string>
 
     <string name="navigation_drawer_open">افتح</string>
     <string name="navigation_drawer_close">اغلق</string>
@@ -122,6 +116,26 @@
     <string name="Credit">Credit Card</string>
     <string name="CheckOut">CheckOut Process</string>
 
+    <string name="done_with_rating">done rating</string>
+    <string name="job_address">job address</string>
+    <string name="type_of_job">job address</string>
+    <string name="emp_name">job address</string>
+    <string name="reply">job address</string>
+    <string name="reply_from">job address</string>
+
+    <string name="add_your_reply">job address</string>
+    <string name="reply_questions">reply_questions</string>
+    <string name="prev_questions">prev_questions</string>
+    <string name="my_previous_question">my_previous_question</string>
+
+
+    <string name="write_your_reply">job address</string>
+
+    <string name="add">add</string>
+    <string name="Update">Update</string>
+    <string name="work">work</string>
+
+
 
 
 
@@ -141,11 +155,20 @@
     <string name="reply">الرد : </string>
 
 
+
     <!--Facebook authentication-->
     <!--    <string name="facebook_app_id">313952036784410</string>-->
     <!--    <string name="fb_login_protocol_scheme">fb313952036784410</string>-->
 
 
     <string name="selected_worker">اختر العامل المناسب</string>
+
+    <string name="accepted_job">الوظائف المتاحه لك</string>
+    <string name="previous_Job">المهمات السابقه</string>
+    <string name="profile">الملف الشخصى</string>
+
+
+    <string name="Next">التالى</string>
+
 
 </resources>

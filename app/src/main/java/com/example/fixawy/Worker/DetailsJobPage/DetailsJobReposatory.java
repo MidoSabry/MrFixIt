@@ -4,16 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.fixawy.Pojos.MakeOrder;
-import com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity;
-import com.example.fixawy.Worker.HomePageWorker.RequestedHomePageRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class DetailsJobReposatory {
@@ -29,7 +25,7 @@ public class DetailsJobReposatory {
         return instance;
     }
 
-    public MutableLiveData<MakeOrder>getData(String phone,String jobTitle){
+    public MutableLiveData<MakeOrder>getData(String phone, String jobTitle){
         final MutableLiveData<MakeOrder>data = new MutableLiveData<>();
         database = FirebaseDatabase.getInstance().getReference("Worker").child("Electricity").child("order Details");
 
