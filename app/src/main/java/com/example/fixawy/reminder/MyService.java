@@ -81,8 +81,7 @@ public class MyService extends Service {
         String worker_jobTitle = JobAcceptedActivity.worker_job_title;
 
 
-
-        RemoteViews customView =new RemoteViews(getPackageName(), R.layout.notification_reminder);
+         RemoteViews customView =new RemoteViews(getPackageName(), R.layout.notification_reminder);
         Intent notificationIntent =new Intent(getApplicationContext(), RequestedHomePageActivity.class);
         Intent hungupIntent =new Intent(getApplicationContext(), MyReceiver.class);
         Intent answerIntent = new Intent(this, MapActivity.class);
@@ -107,6 +106,7 @@ public class MyService extends Service {
         PendingIntent answerPendingIntent = PendingIntent.getActivity(this, 0, answerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         customView.setOnClickPendingIntent(R.id.btnStart, answerPendingIntent);
+
         customView.setOnClickPendingIntent(R.id.btnDismiss, hungupPendingIntent);
 
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);

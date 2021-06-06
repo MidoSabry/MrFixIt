@@ -15,17 +15,19 @@ import android.widget.LinearLayout;
 import com.example.fixawy.Client.EditPage.EditActivity;
 import com.example.fixawy.Client.EditPage.EditActivityViewModel;
 import com.example.fixawy.Client.HomePageClient.OnItemClick;
+import com.example.fixawy.Client.MakeOrder.Repo.ClientOrderRepo;
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RequestedActivity extends AppCompatActivity implements OnItemClick {
+public class RequestedActivity extends AppCompatActivity implements onitemclick {
     RecyclerView requestedRecyclerView;
     String phoneNum, categoryType;
     RequestedAdapter requestedAdapter;
     RequestedPageViewModel requestedPageViewModel;
+    ArrayList<OrderTree> orderTreeItems;
 
 
     @Override
@@ -40,7 +42,7 @@ public class RequestedActivity extends AppCompatActivity implements OnItemClick 
         requestedPageViewModel.requestedPageLiveData.observe(this, new Observer<List<OrderTree>>() {
             @Override
             public void onChanged(List<OrderTree> orderTrees) {
-                requestedAdapter = new RequestedAdapter(RequestedActivity.this, orderTrees, RequestedActivity.this);
+                requestedAdapter = new RequestedAdapter(RequestedActivity.this, orderTrees,RequestedActivity.this);
                 requestedRecyclerView.setAdapter(requestedAdapter);
                 requestedAdapter.notifyDataSetChanged();
             }
@@ -49,18 +51,40 @@ public class RequestedActivity extends AppCompatActivity implements OnItemClick 
         requestedPageViewModel.retrieveData(phoneNum);
 
 
-
-
     }
 
 
-    @Override
+    /*@Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(RequestedActivity.this, EditActivity.class);
-        intent.putExtra("phone",phoneNum);
-        intent.putExtra("CategoryType",categoryType);
-        intent.putExtra("uid",requestedPageViewModel.uIds.get(position));
-        startActivity(intent);
+
+            Intent intent = new Intent(RequestedActivity.this, EditActivity.class);
+            intent.putExtra("phone", phoneNum);
+            intent.putExtra("CategoryType", categoryType);
+            intent.putExtra("uid", requestedPageViewModel.uIds.get(position));
+            startActivity(intent);
+
+
+    }*/
+
+
+    @Override
+    public void onclick(int position, int type) {
+        if(type ==0) {
+            Intent intent = new Intent(RequestedActivity.this, EditActivity.class);
+            intent.putExtra("phone", phoneNum);
+            intent.putExtra("CategoryType", categoryType);
+            intent.putExtra("uid", requestedPageViewModel.uIds.get(position));
+            startActivity(intent);
+        }
+        else if (type ==1){
+            //orderTreeItems = new ArrayList<>();
+           requestedAdapter.orderTreeItems.get(position);
+           requestedAdapter.orderTreeItems.remove(position);
+            requestedAdapter.notifyDataSetChanged();
+            ClientOrderRepo repo = new ClientOrderRepo();
+            repo.retrieveDataEdit(phoneNum,categoryType,requestedPageViewModel.uIds.get(position)).removeValue();
+
+        }
     }
 }
 
