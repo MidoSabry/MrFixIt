@@ -25,7 +25,7 @@ import java.util.List;
 public class SelectedAdapter extends RecyclerView.Adapter<SelectedAdapter.SelectedItemViewHolder> {
     private Context context;
     List<Accepted>accepteds;
-    String phoneWorkerNum,phoneClientNum,workerJobTitle;
+    String phoneWorkerNum,phoneClientNum,workerJobTitle,nameOfWorker;
 
 
 
@@ -57,10 +57,12 @@ public class SelectedAdapter extends RecyclerView.Adapter<SelectedAdapter.Select
             public void onClick(View v) {
                 phoneWorkerNum = accepteds.get(position).getPhoneOfWorker();
                 workerJobTitle = accepteds.get(position).getJobTitle();
+                nameOfWorker = accepteds.get(position).getNameOfWorker();
                 v.getContext().startActivity(new Intent(v.getContext(), AcceptedWorkActivity.class)
                         .putExtra("phoneWorker",phoneWorkerNum)
                         .putExtra("phoneClient",phoneClientNum)
-                        .putExtra("workerJobTitle",workerJobTitle));
+                        .putExtra("workerJobTitle",workerJobTitle)
+                        .putExtra("nameOfWorker",nameOfWorker));
 
                 Toast.makeText(v.getContext(),phoneClientNum, Toast.LENGTH_SHORT).show();
             }

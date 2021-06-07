@@ -29,7 +29,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
     TextView textViewNameOfWorker,textViewNumOfJobs,textViewNumOfLikes,textViewNumOfDisLike,textViewAddress,textViewPhone;
     RatingBar ratingBar;
     Button buttonAccept,buttonCancel;
-    String phoneWorker,phoneClient,date,time,location,phoneClientNum,nameClient,typeOfOrder,jobTitle,phoneWorkerNum,nameOfWorker,workerJobTitle;
+    String phoneWorker,phoneClient,date,time,location,phoneClientNum,nameClient,typeOfOrder,nameOfWorker,workerJobTitle;
     DatabaseReference reference1,reference2,reference4,reference5;
     DatabaseReference referenceDelete1,referenceDelete2;
     AcceptWorkModel acceptWorkModel ;
@@ -53,6 +53,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
         phoneWorker = getIntent().getStringExtra("phoneWorker");
         phoneClient = getIntent().getStringExtra("phoneClient");
         workerJobTitle = getIntent().getStringExtra("workerJobTitle");
+        nameOfWorker = getIntent().getStringExtra("nameOfWorker");
 
 
         Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
@@ -109,25 +110,21 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                                 phoneClientNum = snapshot.child("requestedPhone").getValue(String.class);
                                 nameClient = snapshot.child("userName").getValue(String.class);
                                 typeOfOrder = snapshot.child("typeOfOrder").getValue(String.class);
-                                jobTitle = workerJobTitle;
-                                phoneWorkerNum = phoneWorker;
-                                // way to get name of worker
-                                nameOfWorker = "testForNow";
+
 
                                 //set time & date & location & phone for client & name of client for job accepted
                                 MakeOrder order = new MakeOrder(time, date, location, phoneClientNum, nameClient);
                                 reference4.child("Worker").child(workerJobTitle).child("Data").child(phoneWorker).child("Job Accepted").child(phoneClient).setValue(order);
-                                MakeOrder historyOrder = new MakeOrder(time, date, typeOfOrder, jobTitle, nameOfWorker, phoneWorkerNum);
+                                MakeOrder historyOrder = new MakeOrder(time, date, typeOfOrder, workerJobTitle, nameOfWorker, phoneWorker);
                                 reference4.child("Client").child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
 
 
                                 //delete
 
                                 referenceDelete1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order");
-                                referenceDelete1.child(phoneClient).child("Accepted").child(phoneWorkerNum).setValue(null);
+                                referenceDelete1.child(phoneClient).child("Accepted").child(phoneWorker).setValue(null);
 
                                 referenceDelete1.child(phoneClient).child(workerJobTitle).child("order Details").setValue(null);
-
 
                                 referenceDelete2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details");
                                 referenceDelete2.child(phoneClient).setValue(null);
@@ -153,13 +150,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(AcceptedWorkActivity.this, workerJobTitle, Toast.LENGTH_SHORT).show();
                 referenceDelete1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order");
-                referenceDelete1.child(phoneClient).child("Accepted").setValue(null);
-
-                referenceDelete1.child(phoneClient).child(workerJobTitle).child("order Details").setValue(null);
-
-
-                referenceDelete2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details");
-                referenceDelete2.child(phoneClient).setValue(null);
+                referenceDelete1.child(phoneClient).child("Accepted").child(phoneWorker).setValue(null);
             }
         });
 
