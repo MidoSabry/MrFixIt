@@ -12,6 +12,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fixawy.Client.SelectedPage.SelectedActivity;
+import com.example.fixawy.MainActivity;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
@@ -58,7 +60,8 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
         Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
 
-        reference1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Accepted").child(phoneWorker);
+          reference1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Accepted").child(phoneWorker);
+     //   reference1 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("Data").child(phoneWorker);
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -81,6 +84,26 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 textViewPhone.setText(phoneOfWorker);
                 ratingBar.setRating(Float.parseFloat(rating));
 
+
+
+             /*   String url = snapshot.child("image").getValue(String.class);
+                String nameOfWorker = snapshot.child("userName").getValue(String.class);
+                Integer numOfJob = snapshot.child("numOfJob").getValue(Integer.class);
+                Integer numOfLike = snapshot.child("like").getValue(Integer.class);
+                Integer numOfDisLike = snapshot.child("disLike").getValue(Integer.class);
+                String addressOfWorker = snapshot.child("address").getValue(String.class);
+                String phoneOfWorker = snapshot.child("phone").getValue(String.class);
+                Float rating = snapshot.child("rating").getValue(Float.class);
+
+                Picasso.get().load(url).into(imageViewWorker);
+                textViewNameOfWorker.setText(nameOfWorker);
+                textViewNumOfJobs.setText((numOfJob).toString());
+                textViewNumOfLikes.setText((numOfLike).toString());
+                textViewNumOfDisLike.setText((numOfDisLike).toString());
+                textViewAddress.setText(addressOfWorker);
+                textViewPhone.setText(phoneOfWorker);
+                ratingBar.setRating(rating);*/
+
             }
 
             @Override
@@ -94,11 +117,6 @@ public class AcceptedWorkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 reference4 = FirebaseDatabase.getInstance().getReference();
-
-                reference5 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Accepted").child(phoneWorker);
-                reference5.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
                         reference2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details").child(phoneClient);
                         reference2.addValueEventListener(new ValueEventListener() {
                             @Override
@@ -118,6 +136,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                                 MakeOrder historyOrder = new MakeOrder(time, date, typeOfOrder, workerJobTitle, nameOfWorker, phoneWorker);
                                 reference4.child("Client").child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
 
+                                Toast.makeText(AcceptedWorkActivity.this, "Job Accepted", Toast.LENGTH_SHORT).show();
 
                                 //delete
 
@@ -135,13 +154,6 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                             }
                         });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
             }
         });
 
