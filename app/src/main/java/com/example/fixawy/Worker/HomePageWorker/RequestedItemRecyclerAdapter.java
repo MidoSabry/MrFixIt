@@ -2,12 +2,14 @@ package com.example.fixawy.Worker.HomePageWorker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -72,6 +74,25 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
             }
         });
 
+        //open whatsApp chat
+        holder.worker_chat_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mobileNumber =  makeOrders.get(position).getRequestedPhone();
+                String whatsapp_URL = "http://api.whatsapp.com/send?phone=";
+                boolean Installed = isAppInstalled("com.whatsapp");
+                if(Installed)
+                {
+                    Intent whatsapp_intent = new Intent(Intent.ACTION_VIEW);
+                    whatsapp_intent.setData(Uri.parse(whatsapp_URL+"02"+mobileNumber));
+                    context.startActivity(whatsapp_intent);
+                }
+                else{
+                    Toast.makeText(context,"whatsapp is not installed",Toast.LENGTH_SHORT).show();}
+            }
+        });
+
+
     }
 
     @Override
@@ -122,6 +143,22 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
     public interface onItemClickListener{
         void onItemClick(int position);
 
+    }
+
+
+    // for whatsApp chat
+    private boolean isAppInstalled(String url){
+
+        PackageManager packageManager = context.getPackageManager();
+        boolean appInstalled = false;
+        try
+        {
+            packageManager.getPackageInfo(url,packageManager.GET_ACTIVITIES);
+            appInstalled = true;
+        }
+        catch(PackageManager.NameNotFoundException e) {appInstalled = false;}
+
+        return appInstalled;
     }
 }
 

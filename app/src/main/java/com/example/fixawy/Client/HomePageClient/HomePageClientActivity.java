@@ -244,6 +244,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 break;
             case R.id.nav_requested:
                 Intent intent = new Intent(HomePageClientActivity.this, RequestedActivity.class);
+                intent.putExtra("phone", phoneNum);
                 startActivity(intent);
                 break;
 
