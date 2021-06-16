@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     tools:context=".Client.MakeOrder.FirstOrderFragment">
 
 
@@ -14,13 +15,16 @@
         android:layout_below="@+id/textView_title">
 
         <androidx.cardview.widget.CardView
+            android:background="@drawable/bcmodified"
             android:id="@+id/card_view"
-         android:layout_marginTop="80dp"
+         android:layout_marginTop="110dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="20dp"
+            android:outlineAmbientShadowColor="@color/white"
+            app:cardElevation="4dp"
+            app:contentPadding="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,9 +35,10 @@
                 <TextView
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:fontFamily="@font/redressedregular"
+                    android:layout_marginLeft="2dp"
+                    android:fontFamily="@font/coolveticacompressedrg"
                     android:text="@string/ordertype"
+                    android:textColor="@color/darkPurple"
                     android:textSize="35dp" />
 
                 <RadioGroup
@@ -46,6 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
+                        android:layout_marginTop="4dp"
                         android:buttonTint="@color/black"
                         android:text="@string/Maintenance" />
 
@@ -53,6 +59,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:text="@string/working" />
 
 
@@ -67,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
+                        android:textColor="@color/black"
                         android:text="@string/littlework" />
 
                 </RadioGroup>
@@ -75,10 +83,10 @@
                     android:layout_height="match_parent"
                     android:text="@string/more_details"
                     android:layout_marginTop="15dp"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/redressedregular"
-                    android:layout_marginLeft="10dp"/>
+                    android:textSize="35sp"
+                    android:textColor="@color/darkPurple"
+                    android:fontFamily="@font/coolveticacompressedrg"
+                    android:layout_marginLeft="2dp"/>
                 <EditText
                     android:id="@+id/edittext_view_addnotes"
                     android:layout_width="match_parent"
@@ -88,6 +96,7 @@
                     android:background="@drawable/et_layout"
                     android:gravity="start"
                     android:hint="Comment about this worker"
+                    android:textColor="@color/colorPurple"
                     android:inputType="textMultiLine"
                     android:maxLines="50"
                     android:padding="10dp"

@@ -16,4 +16,9 @@
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorAccent">#4CAF50</color>
+    <color name="colorPurple">#9C27B0</color>
+    <color name="darkPurple">#8E24AA</color>
+    <color name="twhite"> #E0E0E0</color>
+    <color name="homecolor"> #9C27B0</color>
+
 </resources>

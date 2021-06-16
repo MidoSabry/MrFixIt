@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondColor"
+    android:background="@drawable/bcmodified"
+   android:paddingBottom="12dp"
     tools:context=".Client.EditPage.EditActivity">
 
     <ScrollView
@@ -12,18 +13,22 @@
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/primaryColor"
+            app:cardBackgroundColor="@color/white"
+            android:gravity="center"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.111">
+            app:layout_constraintVertical_bias="0.111"
+            android:layout_marginHorizontal="12dp"
+            android:elevation="12dp"
+            android:outlineAmbientShadowColor="@color/white"
+            app:cardElevation="4dp"
+            app:contentPadding="4dp"
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,67 +36,87 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/user_name_Edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/coolveticacompressedrg"
+                    android:text="@string/editusername"
+                    android:textColor="@color/darkPurple"
+                    android:textSize="35sp" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/Title"
-                    android:fontFamily="@font/mrdafoeregular"
+                    android:fontFamily="@font/coolveticacompressedrg"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:id="@+id/jobt_title_Edit"
-                    android:textSize="30sp"/>
+                    android:textColor="@color/darkPurple"
+                    android:textSize="35sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/redressedregular"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/coolveticacompressedrg"
                     android:text="@string/typeOrder"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/darkPurple"
+                    android:textSize="35sp" />
 
                 <RadioGroup
                     android:id="@+id/radio_gp_edit_order"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="6dp"
                     android:layout_marginTop="10dp">
 
                     <RadioButton
                         android:id="@+id/radio_edit_long_work"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="4dp"
                         android:buttonTint="@color/black"
                         android:checked="true"
-                        android:text="@string/Maintenance" />
+                        android:text="@string/maintanance" />
 
 
                     <RadioButton
                         android:id="@+id/radio_edit_short_work"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="4dp"
                         android:buttonTint="@color/black"
-                        android:text="@string/work" />
-
+                        android:text="@string/hard_work" />
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="6dp"
                         android:layout_marginTop="15dp"
-                        android:fontFamily="@font/redressedregular"
+                        android:fontFamily="@font/coolveticacompressedrg"
                         android:text="@string/more_details"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/darkPurple"
+                        android:textSize="35sp" />
 
                     <EditText
                         android:id="@+id/edittext_view_addnotes"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_margin="20dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_margin="16dp"
                         android:background="@drawable/et_layout"
                         android:gravity="start"
+                        android:paddingLeft="16dp"
                         android:hint="Comment about this worker"
+
                         android:inputType="textMultiLine"
                         android:maxLines="50"
                         android:padding="10dp"
@@ -102,41 +127,43 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="4dp"
                         android:layout_marginTop="8dp"
                         android:text="@string/location"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/darkPurple"
+                        android:fontFamily="@font/coolveticacompressedrg"
+                        android:textSize="35sp" />
 
                     <EditText
                         android:id="@+id/edit_location"
                         android:layout_width="match_parent"
                         android:layout_height="53dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/custom_edit_text"
+                       android:layout_margin="16dp"
+                        android:background="@drawable/et_layout"
                         android:drawableRight="@drawable/location_img"
+                        android:paddingLeft="16dp"
+                       android:paddingRight="4dp"
                         android:hint="@string/your_location"
                         android:textColor="#78849E" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="4dp"
                         android:layout_marginTop="15dp"
                         android:text="@string/phone"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+                    android:fontFamily="@font/coolveticacompressedrg"
+                        android:textColor="@color/darkPurple"
+                        android:textSize="35sp"
+                       />
 
                     <EditText
                         android:id="@+id/edit_phone_modified"
                         android:layout_width="match_parent"
                         android:layout_height="53dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="25dp"
-                        android:background="@drawable/custom_edit_text"
+                  android:layout_margin="16dp"
+                        android:background="@drawable/et_layout"
+                        android:paddingLeft="16dp"
                         android:hint="@string/your_phone"
                         android:textColor="#78849E" />
                 </RadioGroup>
@@ -154,7 +181,7 @@
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_access_time" />
+                        android:src="@drawable/timec" />
 
                     <ImageView
                         android:id="@+id/date_picker"
@@ -162,7 +189,7 @@
                         android:layout_height="100dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="8dp"
-                        android:src="@drawable/ic_event" />
+                        android:src="@drawable/date" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -175,16 +202,16 @@
                         android:id="@+id/edit_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/black"
+                        android:layout_marginLeft="75dp"
+                        android:textColor="@color/colorPurple"
                         android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/edit_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="180dp"
-                        android:textColor="@color/black"
+                        android:layout_marginLeft="110dp"
+                        android:textColor="@color/colorPurple"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -197,8 +224,10 @@
                     <TextView
                         android:layout_width="210dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/redressedregular"
+                        android:fontFamily="@font/coolveticacompressedrg"
+                        android:textColor="@color/darkPurple"
                         android:text="@string/Payment"
                         android:textSize="35dp" />
 
@@ -212,7 +241,8 @@
                             android:id="@+id/radio_edit_cash"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="4dp"
                             android:buttonTint="@color/black"
                             android:checked="true"
                             android:text="@string/Cash" />
@@ -222,7 +252,8 @@
                             android:id="@+id/radio_edit_pay_pal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="4dp"
                             android:buttonTint="@color/black"
                             android:text="@string/PayPal" />
 
@@ -230,7 +261,8 @@
                             android:id="@+id/radio_edit_credit_card"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="4dp"
                             android:buttonTint="@color/black"
                             android:text="@string/Credit" />
 
@@ -244,10 +276,11 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="30dp"
-                    android:background="@drawable/custom_button2"
+                    android:background="@drawable/custom_button"
                     android:text="@string/Update"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/coolveticacompressedrg"
+                    android:textSize="35sp"
                     android:textStyle="bold" />
 
             </LinearLayout>

@@ -4,21 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background"
+    android:background="@drawable/bc"
     android:orientation="vertical"
     tools:context=".Share.LoginPage.LoginActivity">
-
-    <TextView
+    <ImageView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="130dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="95dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:src="@drawable/bb"
         android:text="@string/login"
         android:textColor="#FFFFFF"
         android:textSize="38sp"
@@ -39,7 +38,7 @@
                 android:layout_width="378dp"
                 android:layout_height="450dp"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="30dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="4dp"
                 app:contentPadding="15dp">
@@ -95,7 +94,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:text="@string/forgetPassword"
-                        android:textColor="#0277BD"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPurple"
+                        android:fontFamily="@font/coolveticacompressedrg"
                         android:layout_gravity="right"/>
 
 
@@ -107,8 +108,9 @@
                         android:text="@string/login"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="30sp"
                         android:background="@drawable/btn_check_type"
+                        android:fontFamily="@font/cool"
                         android:layout_marginTop="15sp"/>
 
 
@@ -123,6 +125,7 @@
                         android:layout_marginTop="30dp"
                         android:text="@string/or"
                         android:layout_gravity="center_horizontal"
+
                         android:textSize="20sp" />
 
                     <LinearLayout
@@ -163,9 +166,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:text="Doesn't Have Account?"
-                            android:textColor="#0277BD"
+                            android:text="Don't Have Account?"
+                            android:textColor="@color/colorPurple"
+                            android:fontFamily="@font/coolveticacompressedrg"
                             android:layout_marginTop="25dp"
+                            android:textSize="22sp"
                             android:layout_gravity="center_horizontal"
                             />
 
@@ -175,8 +180,11 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="@string/signUp"
-                            android:textColor="#C11515"
-                            android:layout_marginTop="25dp"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/coolveticacompressedrg"
                             android:layout_gravity="center_horizontal"
                             />
 

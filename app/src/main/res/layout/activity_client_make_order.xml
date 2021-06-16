@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:background="@drawable/bcmodified"
     tools:context=".Client.MakeOrder.ClientMakeOrder">
 
     <com.anton46.stepsview.StepsView
@@ -16,12 +17,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <FrameLayout
         android:id="@+id/first_fragment_order"
         android:name="com.example.fixawy.Client.MakeOrder.First_Order_Fragment"
         android:layout_width="392dp"
-        android:layout_height="656dp"
+        android:layout_height="590dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -33,12 +33,18 @@
 
     <Button
         android:id="@+id/Next_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="584dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="552dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/btn_fragmentorders"
+        android:fontFamily="@font/coolveticacompressedrg"
         android:text="@string/Next"
+        android:textColor="@color/colorPurple"
+        android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/step_indicator" />
 

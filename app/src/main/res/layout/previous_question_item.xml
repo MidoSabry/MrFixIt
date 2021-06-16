@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="#FFB900"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="30dp"
     app:cardElevation="3dp"
     app:contentPadding="5dp"
@@ -18,23 +18,28 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_gravity="center"
             android:id="@+id/phone"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:text="Phone"
-            android:textColor="#fff"
+            android:textColor="@color/darkPurple"
+            android:fontFamily="@font/robotocndensed"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="25sp"
             android:textAlignment="center"
+            android:layout_marginTop="6dp"
             android:gravity="center_horizontal" />
         <TextView
             android:id="@+id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Question"
-            android:textColor="#fff"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/darkPurple"
+            android:fontFamily="@font/robotocndensed"
             android:textStyle="bold"
-            android:textSize="22sp" />
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/imageFromQuestion"
@@ -42,7 +47,8 @@
             android:layout_height="150dp"
             android:layout_marginTop="25dp"
             android:layout_gravity="center"
-            tools:srcCompat="@drawable/logo"/>
+            android:layout_margin="8dp"
+            tools:srcCompat="@drawable/bb"/>
 
     </LinearLayout>
 

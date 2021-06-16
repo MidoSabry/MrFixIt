@@ -7,11 +7,11 @@
     android:background="@color/secondColor"
     tools:context=".Client.AcceptedWorkerPage.AcceptedWorkActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/emp_img"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/person"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,8 @@
         android:layout_marginTop="8dp"
         android:text="Mohamed Sabry"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="25sp"
+        android:fontFamily="@font/coolveticacompressedrg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emp_img" />
@@ -76,9 +77,11 @@
 
         <androidx.cardview.widget.CardView
         android:id="@+id/card_id"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="32dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +91,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/primaryColor"
+            android:background="@drawable/custom_button"
             android:gravity="center">
 
             <RatingBar

@@ -149,5 +149,19 @@
     <string name="previous_Job">Your Previous Jobs</string>
 
     <string name="profile">Profile</string>
+    <string name="UserName">UserName</string>
+    <string name="requestedusername">User Name</string>
+    <string name="requestdesc">description</string>
+    <string name="editusername">User Name</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Client_name">Client Name</string>
+    <string name="Client_phone">Client Phone</string>
+    <string name="Worker_name">Worker Name</string>
+    <string name="Worker_Name">Worker Name</string>
+    <string name="worker_phone">Worker Phone</string>
+    <string name="w_category">Worker Category</string>
+    <string name="MR_FIX_IT">MR.FIX.IT</string>
+    <string name="maintanance"><![CDATA["maintenance & repair "]]></string>
+    <string name="hard_work">Hard Work</string>
 
 </resources>

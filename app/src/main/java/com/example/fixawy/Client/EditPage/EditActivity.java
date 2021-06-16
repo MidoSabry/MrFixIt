@@ -37,7 +37,7 @@ import java.util.List;
 public class EditActivity extends AppCompatActivity {
 EditActivityViewModel editActivityViewModel;
 EditText editDetails,editLocation,editNumber;
-TextView time,date,jobtitle;
+TextView time,date,jobtitle,username;
 RadioButton editTypeofOrderHard , editTypeofOrderEasy,paymentCash,paymentCreditCard,paymentPayPal;
 RadioGroup rg;
 ImageView timePicker, datePicker;
@@ -71,6 +71,10 @@ int position;
        datePicker = findViewById(R.id.date_picker);
        rg = findViewById(R.id.radio_gp_edit_order);
        updates = findViewById(R.id.edit_make_order);
+       username = findViewById(R.id.user_name_Edit);
+        editTypeofOrderEasy.setText("Maintenance and repair");
+        editTypeofOrderHard.setText("Hard work");
+
         Places.initialize(this.getApplicationContext(), getString(R.string.api_key));
        editLocation.setOnClickListener(v -> {
             List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
@@ -84,23 +88,28 @@ int position;
 
            @Override
            public void onChanged(OrderTree orderTree) {
-
-
                editDetails.setText(orderTree.getDetails());
                editLocation.setText(orderTree.getLocation());
                editNumber.setText(orderTree.getPhone());
                jobtitle.setText(orderTree.getJobTitle());
-               if (editTypeofOrderEasy.isChecked()) {
-                   editTypeofOrderEasy.setText(orderTree.getTypeOfOrder());
-                   editTypeofOrderEasy.setSelected(true);
+               //editTypeofOrderEasy.setText(orderTree.getTypeOfOrder());
+               //editTypeofOrderHard.setText(orderTree.getTypeOfOrder());
+               if(orderTree.getTypeOfOrder().equals(editTypeofOrderEasy.getText().toString())){
+                   editTypeofOrderEasy.setChecked(true);
+                   editTypeofOrderHard.setChecked(false);
                }
-               if (editTypeofOrderHard.isChecked()) {
-                   editTypeofOrderHard.setText(orderTree.getTypeOfOrder());
-                   editTypeofOrderHard.setSelected(true);
-               }
+               else {
+
+
+                       editTypeofOrderHard.setChecked(true);
+                       editTypeofOrderEasy.setChecked(false);
+                   }
+
+
 
                time.setText(orderTree.getTime());
                date.setText(orderTree.getDate());
+               username.setText(orderTree.getUserName());
                paymentCash.setId(orderTree.getPaymentMethod());
                paymentCreditCard.setId(orderTree.getPaymentMethod());
                paymentPayPal.setId(orderTree.getPaymentMethod());
@@ -122,6 +131,7 @@ int position;
                }
                orderTree.setLocation(editLocation.getText().toString());
                orderTree.setPhone(editNumber.getText().toString());
+               orderTree.setUserName(username.getText().toString());
                orderTree.setTime(time.getText().toString());
                orderTree.setJobTitle(jobtitle.getText().toString());
                orderTree.setDate(date.getText().toString());

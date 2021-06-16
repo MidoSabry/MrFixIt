@@ -77,7 +77,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     NavigationView navigationView;
     Toolbar toolbar;
     String phoneNum;
-
+    int position;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -244,6 +244,11 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 break;
             case R.id.nav_requested:
                 Intent intent = new Intent(HomePageClientActivity.this, RequestedActivity.class);
+
+                intent.putExtra("phone",phoneNum);
+                AllCategory selectCategory = allCategoryNamesModel.getAllCategories().get(position);
+                intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
+
                 intent.putExtra("phone", phoneNum);
                 startActivity(intent);
                 break;

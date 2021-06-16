@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardMaxElevation="10dp"
-    android:layout_margin="5dp"
     android:elevation="10dp"
-    app:cardCornerRadius="20dp">
+    android:padding="8dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="20dp"
+    android:outlineAmbientShadowColor="@color/white"
+    app:cardElevation="4dp"
+    app:contentPadding="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
-        android:padding="20dp">
+        android:background="@color/white"
+        android:padding="8dp">
 
         <LinearLayout
             android:id="@+id/grd"
@@ -26,47 +32,62 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/clock_btn" />
+                android:src="@drawable/timec" />
 
             <TextView
                 android:id="@+id/requested_clock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginTop="8dp"
                 android:text="1:34"
-                android:textColor="@color/fourthColor"
+                android:fontFamily="@font/robotocndensed"
+                android:textColor="@color/darkPurple"
                 android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="end"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/calender_btn" />
+                android:fontFamily="@font/robotocndensed"
+                android:src="@drawable/date" />
 
             <TextView
                 android:id="@+id/requested_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2-8-2021"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/fourthColor"
+                android:textColor="@color/darkPurple"
                 android:textSize="20sp" />
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/requested_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/requestedusername"
+            android:fontFamily="@font/robotocndensed"
+            android:textColor="@color/darkPurple"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grd" />
+
+        <TextView
             android:id="@+id/requested_job_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="4dp"
             android:text="@string/electricity"
+            android:textColor="@color/darkPurple"
+            android:fontFamily="@font/robotocndensed"
             android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/grd" />
@@ -75,12 +96,13 @@
             android:id="@+id/requsted_kind_job"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="@string/easy"
-            android:textColor="@color/fourthColor"
+            android:fontFamily="@font/robotocndensed"
+            android:textColor="@color/darkPurple"
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.093"
+            app:layout_constraintHorizontal_bias="0.003"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/requested_job_title" />
 
@@ -88,11 +110,11 @@
             android:id="@+id/requsted_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="32dp"
+
+            android:layout_marginTop="16dp"
             android:text="Sidibeshr-Alex"
-            android:textColor="@color/fourthColor"
+            android:fontFamily="@font/robotocndensed"
+            android:textColor="@color/darkPurple"
             android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/requsted_kind_job" />
@@ -101,68 +123,77 @@
             android:id="@+id/requsted_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginTop="60dp"
+
+            android:layout_marginTop="16dp"
             android:text="01225699594"
-            android:textColor="@color/fourthColor"
+            android:fontFamily="@font/robotocndensed"
+            android:textColor="@color/darkPurple"
             android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/requsted_address" />
+
+        <TextView
+            android:id="@+id/requested_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="310dp"
+            android:fontFamily="@font/robotocndensed"
+            android:text="@string/requestdesc"
+            android:textColor="@color/darkPurple"
+            android:textSize="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/grd" />
 
         <View
             android:id="@+id/linevw"
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginLeft="116dp"
+            android:layout_marginTop="88dp"
             android:background="@color/white"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/requsted_phone" />
 
-        <GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linevw">
 
+
             <Button
                 android:id="@+id/request_edit_button"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
+
                 android:background="@drawable/edit_btn" />
 
-
-            <Button
+p            <Button
                 android:id="@+id/requested_prosess_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_row="0"
-                android:layout_column="2"
-                android:layout_gravity=""
-                android:layout_marginLeft="65dp"
-                android:background="@drawable/custom_button2"
+                android:background="@drawable/custom_button"
                 android:enabled="false"
                 android:text="@string/proccessing"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                android:layout_marginLeft="10dp"
                 android:textStyle="bold" />
-
 
             <Button
                 android:id="@+id/request_delete_button"
                 android:layout_width="30dp"
-                android:layout_height="25dp"
-                android:layout_gravity="end"
-                android:layout_marginRight="20dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/delete_icon" />
 
 
-        </GridLayout>
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

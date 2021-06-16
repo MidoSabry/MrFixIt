@@ -15,13 +15,13 @@
         android:id="@+id/nav_view2"
         app:headerLayout="@layout/header2"
         app:menu="@menu/main_menu2"
-        android:background="@color/primaryColor"
+        android:background="@drawable/custom_button"
         android:layout_gravity = "start"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/secondColor">
+        android:background="@drawable/bcmodified">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
@@ -36,21 +36,24 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginLeft="76dp"
-            android:layout_marginTop="16dp"
+          android:layout_marginRight="60dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
             android:text="@string/requested"
             android:textColor="@color/white"
+            android:fontFamily="@font/coolveticacompressedrg"
             android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/toolbar2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewRequestedOwner"
-            android:layout_width="wrap_content"
-            android:layout_height="676dp"
-
-            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
