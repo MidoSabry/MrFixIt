@@ -29,8 +29,8 @@ public class ClientMakeOrder extends AppCompatActivity {
 
         binding.stepIndicator.setLabels(DescriptionData)
                 .setBarColorIndicator(Color.BLACK)
-                .setProgressColorIndicator(getResources().getColor(R.color.black))
-                .setLabelColorIndicator(getResources().getColor(R.color.primaryColor))
+                .setProgressColorIndicator(getResources().getColor(R.color.white))
+                .setLabelColorIndicator(getResources().getColor(R.color.colorPurple))
                 .setCompletedPosition(0)
                 .drawView();
         binding.stepIndicator.setCompletedPosition(current_state);

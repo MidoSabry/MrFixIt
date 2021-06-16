@@ -32,6 +32,7 @@ public class RequestedPageViewModel extends AndroidViewModel {
         clientOrderRepo.addData(phoneNum).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                orderTreeList.clear();
                 for (DataSnapshot postSnapshotCategory : snapshot.getChildren()) {
                    DataSnapshot data = postSnapshotCategory.child("order Details");
                    for(DataSnapshot postSnapshot : data.getChildren()){
@@ -41,6 +42,7 @@ public class RequestedPageViewModel extends AndroidViewModel {
                    }
 
                 }
+                requestedPageLiveData.postValue(new ArrayList<OrderTree>());
                 requestedPageLiveData.postValue(orderTreeList);
             }
 

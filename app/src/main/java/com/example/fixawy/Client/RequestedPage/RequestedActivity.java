@@ -72,19 +72,21 @@ public class RequestedActivity extends AppCompatActivity implements onitemclick 
         if(type ==0) {
             Intent intent = new Intent(RequestedActivity.this, EditActivity.class);
             intent.putExtra("phone", phoneNum);
-            intent.putExtra("CategoryType", categoryType);
+            intent.putExtra("CategoryType",requestedPageViewModel.requestedPageLiveData.getValue().get(position).getJobTitle() );
             intent.putExtra("uid", requestedPageViewModel.uIds.get(position));
             startActivity(intent);
         }
         else if (type ==1){
-            //orderTreeItems = new ArrayList<>();
-           requestedAdapter.orderTreeItems.get(position);
-           requestedAdapter.orderTreeItems.remove(position);
-            requestedAdapter.notifyDataSetChanged();
             ClientOrderRepo repo = new ClientOrderRepo();
-            repo.retrieveDataEdit(phoneNum,categoryType,requestedPageViewModel.uIds.get(position)).removeValue();
+            repo.retrieveDataEdit(phoneNum,requestedPageViewModel.requestedPageLiveData.getValue().get(position).getJobTitle(),requestedPageViewModel.uIds.get(position)).removeValue();
+           requestedAdapter.orderTreeItems.remove(position);
+            requestedAdapter.notifyItemRemoved(position);
+            requestedAdapter.notifyItemRangeChanged(position,requestedAdapter.orderTreeItems.size());
+
+            requestedPageViewModel.uIds.remove(position);
+
 
         }
-    }
+          }
 }
 

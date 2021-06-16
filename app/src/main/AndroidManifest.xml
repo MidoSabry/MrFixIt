@@ -53,7 +53,9 @@
         <activity android:name=".Share.Homes.OwnerHome" />
         <activity android:name=".Share.VerifyCode.ReceiveCode" />
         <activity android:name=".Share.ChangePassword.ChangePassword" />
-        <activity android:name=".Share.ForgetPassword.ForgetPassword" /> <!-- <activity android:name=".Worker.WorkerSettingPage.WorkerSettingActivity" /> -->
+        <activity android:name=".Share.ForgetPassword.ForgetPassword" />
+        <activity android:name=".Activity_Tips"/>
+        <activity android:name=".Worker.WorkerSettingPage.WorkerSettingActivity" />
         <activity android:name=".Worker.WorkerProfilePage.WorkerProfileActivity" />
         <activity android:name=".Worker.SelectJobPage.SelectJobActivity" />
         <activity android:name=".Worker.ReplayQuestionsPage.ReplayQuestionActivity" />
@@ -64,7 +66,8 @@
         <activity android:name=".Client.RatingPage.RatingActivity" />
         <activity android:name=".Client.PreviousQuestionPage.PreviousQuestionActivity" />
         <activity android:name=".Client.HistoryPage.HistoryActivity" />
-        <activity android:name=".Client.EditPage.EditActivity" /> <!-- <activity android:name=".Client.ClientSettingPage.ClientSettingActivity" /> -->
+        <activity android:name=".Client.EditPage.EditActivity" />
+         <activity android:name=".Client.ClientSettingPage.ClientSettingActivity" />
         <activity android:name=".Client.AskQuestionPage.AskQuestionActivity" />
         <activity android:name=".Client.RequestedPage.RequestedActivity" />
         <activity android:name=".Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity" />
@@ -80,14 +83,21 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Share.SelectionPage.SelectMembershipType">
+        <!--<activity android:name=".Share.SelectionPage.SelectMembershipType">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+        <activity android:name=".Share.SplashScreen.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Share.SplashScreen.SplashScreen" />
+        <activity android:name=".Share.SelectionPage.SelectMembershipType" />
         <activity android:name=".MainActivity" />
     </application>
 

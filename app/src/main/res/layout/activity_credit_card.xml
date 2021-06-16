@@ -20,7 +20,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/colorPurple"
         android:text="@string/CheckOut"
         android:textColor="@android:color/white" />
 

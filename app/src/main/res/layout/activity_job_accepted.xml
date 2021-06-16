@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Worker.JobAccepted.JobAcceptedActivity"
-    android:background="@color/secondColor">
+    android:background="@drawable/bcmodified">
 
     <TextView
         android:id="@+id/textView3"
@@ -18,7 +18,8 @@
         android:layout_marginRight="24dp"
         android:text="@string/accepted_job"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:fontFamily="@font/coolveticacompressedrg"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

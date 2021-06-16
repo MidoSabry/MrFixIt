@@ -59,8 +59,10 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
     public void onBindViewHolder(@NonNull RequestedItemViewHolder holder, int position) {
         holder.jobTitle.setText(orderTreeItems.get(position).getJobTitle());
         holder.typeOfOrder.setText(orderTreeItems.get(position).getTypeOfOrder());
+        holder.desc.setText(orderTreeItems.get(position).getDetails());
         holder.location.setText(orderTreeItems.get(position).getLocation());
         holder.phone.setText(orderTreeItems.get(position).getPhone());
+        holder.username.setText(orderTreeItems.get(position).getUserName());
         holder.time.setText(orderTreeItems.get(position).getTime());
         holder.date.setText(orderTreeItems.get(position).getDate());
         holder.request_btn.setOnClickListener(new View.OnClickListener() {
@@ -85,14 +87,7 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
                     @Override
                     public void onClick(View view) {
                       onItemClick.onclick(position,1);
-
-
-                        /*Toast.makeText(v.getContext(), "delete", Toast.LENGTH_SHORT).show();
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        final DatabaseReference myRef = database.getReference("Client").child("make order").child(orderTreeItems.get(position).getPhone()).child(orderTreeItems.get(position).getJobTitle()).child("order Details").child(String.valueOf(uIds));
-                        myRef.setValue(null);*/
-
-                        alertDialog.cancel();
+                      alertDialog.cancel();
                     }
                 });
                 btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -119,13 +114,15 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
     }
 
     class RequestedItemViewHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, typeOfOrder, location, phone, date, time;
+        TextView jobTitle, typeOfOrder, location, phone, date, time,username,desc;
         Button request_btn,delete_btn;
         public RequestedItemViewHolder(@NonNull View itemView) {
             super(itemView);
             jobTitle = itemView.findViewById(R.id.requested_job_title);
             typeOfOrder = itemView.findViewById(R.id.requsted_kind_job);
             location = itemView.findViewById(R.id.requsted_address);
+            username = itemView.findViewById(R.id.requested_user_name);
+            desc= itemView.findViewById(R.id.requested_desc);
             phone = itemView.findViewById(R.id.requsted_phone);
             date = itemView.findViewById(R.id.requested_date);
             time = itemView.findViewById(R.id.requested_clock);

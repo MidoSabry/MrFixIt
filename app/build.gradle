@@ -93,7 +93,8 @@ dependencies {
     def work_version = "2.5.0"
     // (Java only)
     implementation "androidx.work:work-runtime:$work_version"
-
+ //design
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 
 }
