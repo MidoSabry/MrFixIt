@@ -53,7 +53,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     @NonNull
     @Override
     public HistoryItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_item,null,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.history_client_item,null,false);
         HistoryAdapter.HistoryItemViewHolder viewHolder = new HistoryAdapter.HistoryItemViewHolder(v);
         return viewHolder;
     }
@@ -64,6 +64,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
         holder.textViewDate.setText(clientHistories.get(position).getDate());
         holder.textViewEmpName.setText(clientHistories.get(position).getUserName());
         holder.textViewTypeOfJob.setText(clientHistories.get(position).getTypeOfOrder());
+        holder.textViewJobTitle.setText(clientHistories.get(position).getJobTitle());
         holder.ratingBar.setRating(3);
         String phoneWorker = clientHistories.get(position).getPhone();
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +113,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     }
 
     public class HistoryItemViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewTime,textViewDate,textViewEmpName,textViewTypeOfJob;
+        TextView textViewTime,textViewDate,textViewEmpName,textViewTypeOfJob,textViewJobTitle;
         RatingBar ratingBar;
         Button buttonDelete;
         public View layout;
@@ -123,6 +124,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
             textViewTime = itemView.findViewById(R.id.history_worker_clock);
             textViewEmpName = itemView.findViewById(R.id.history_user_name);
             textViewTypeOfJob = itemView.findViewById(R.id.history_kind_job);
+            textViewJobTitle = itemView.findViewById(R.id.job_title_of_worker);
             ratingBar = itemView.findViewById(R.id.ratingBar);
             buttonDelete = itemView.findViewById(R.id.delete);
 

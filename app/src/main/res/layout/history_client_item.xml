@@ -63,7 +63,7 @@
             android:id="@+id/history_user_name"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:text="@string/userName"
+            android:text="@string/emp_name"
             android:textColor="#fff"
             android:textStyle="bold"
             android:layout_marginLeft="25dp"
@@ -71,26 +71,27 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/history_user_phone"
+            android:id="@+id/job_title_of_worker"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:text="@string/phone"
+            android:text="@string/Job"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="14dp"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/history_kind_job"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:text="@string/type_of_job"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="25dp"
             android:textColor="@color/grey_font"
             android:textStyle="bold"
             android:textSize="22sp" />
 
-        <TextView
-            android:id="@+id/history_user_address"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:text="@string/address"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="25dp"
-            android:textColor="@color/grey_font"
-            android:textStyle="bold"
-            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"

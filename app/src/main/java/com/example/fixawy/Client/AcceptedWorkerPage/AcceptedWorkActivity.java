@@ -12,6 +12,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fixawy.Client.SelectedPage.SelectedActivity;
+import com.example.fixawy.MainActivity;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
@@ -29,7 +31,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
     TextView textViewNameOfWorker,textViewNumOfJobs,textViewNumOfLikes,textViewNumOfDisLike,textViewAddress,textViewPhone;
     RatingBar ratingBar;
     Button buttonAccept,buttonCancel;
-    String phoneWorker,phoneClient,date,time,location,phoneClientNum,nameClient,typeOfOrder,jobTitle,phoneWorkerNum,nameOfWorker,workerJobTitle;
+    String phoneWorker,phoneClient,date,time,location,phoneClientNum,nameClient,typeOfOrder,nameOfWorker,workerJobTitle;
     DatabaseReference reference1,reference2,reference4,reference5;
     DatabaseReference referenceDelete1,referenceDelete2;
     AcceptWorkModel acceptWorkModel ;
@@ -53,11 +55,13 @@ public class AcceptedWorkActivity extends AppCompatActivity {
         phoneWorker = getIntent().getStringExtra("phoneWorker");
         phoneClient = getIntent().getStringExtra("phoneClient");
         workerJobTitle = getIntent().getStringExtra("workerJobTitle");
+        nameOfWorker = getIntent().getStringExtra("nameOfWorker");
 
 
         Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
 
-        reference1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Accepted").child(phoneWorker);
+          reference1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Accepted").child(phoneWorker);
+     //   reference1 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("Data").child(phoneWorker);
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,6 +84,26 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 textViewPhone.setText(phoneOfWorker);
                 ratingBar.setRating(Float.parseFloat(rating));
 
+
+
+             /*   String url = snapshot.child("image").getValue(String.class);
+                String nameOfWorker = snapshot.child("userName").getValue(String.class);
+                Integer numOfJob = snapshot.child("numOfJob").getValue(Integer.class);
+                Integer numOfLike = snapshot.child("like").getValue(Integer.class);
+                Integer numOfDisLike = snapshot.child("disLike").getValue(Integer.class);
+                String addressOfWorker = snapshot.child("address").getValue(String.class);
+                String phoneOfWorker = snapshot.child("phone").getValue(String.class);
+                Float rating = snapshot.child("rating").getValue(Float.class);
+
+                Picasso.get().load(url).into(imageViewWorker);
+                textViewNameOfWorker.setText(nameOfWorker);
+                textViewNumOfJobs.setText((numOfJob).toString());
+                textViewNumOfLikes.setText((numOfLike).toString());
+                textViewNumOfDisLike.setText((numOfDisLike).toString());
+                textViewAddress.setText(addressOfWorker);
+                textViewPhone.setText(phoneOfWorker);
+                ratingBar.setRating(rating);*/
+
             }
 
             @Override
@@ -93,11 +117,6 @@ public class AcceptedWorkActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 reference4 = FirebaseDatabase.getInstance().getReference();
-
-                reference5 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Accepted").child(phoneWorker);
-                reference5.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
                         reference2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details").child(phoneClient);
                         reference2.addValueEventListener(new ValueEventListener() {
                             @Override
@@ -109,25 +128,22 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                                 phoneClientNum = snapshot.child("requestedPhone").getValue(String.class);
                                 nameClient = snapshot.child("userName").getValue(String.class);
                                 typeOfOrder = snapshot.child("typeOfOrder").getValue(String.class);
-                                jobTitle = workerJobTitle;
-                                phoneWorkerNum = phoneWorker;
-                                // way to get name of worker
-                                nameOfWorker = "testForNow";
+
 
                                 //set time & date & location & phone for client & name of client for job accepted
                                 MakeOrder order = new MakeOrder(time, date, location, phoneClientNum, nameClient);
                                 reference4.child("Worker").child(workerJobTitle).child("Data").child(phoneWorker).child("Job Accepted").child(phoneClient).setValue(order);
-                                MakeOrder historyOrder = new MakeOrder(time, date, typeOfOrder, jobTitle, nameOfWorker, phoneWorkerNum);
+                                MakeOrder historyOrder = new MakeOrder(time, date, typeOfOrder, workerJobTitle, nameOfWorker, phoneWorker);
                                 reference4.child("Client").child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
 
+                                Toast.makeText(AcceptedWorkActivity.this, "Job Accepted", Toast.LENGTH_SHORT).show();
 
                                 //delete
 
                                 referenceDelete1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order");
-                                referenceDelete1.child(phoneClient).child("Accepted").child(phoneWorkerNum).setValue(null);
+                                referenceDelete1.child(phoneClient).child("Accepted").child(phoneWorker).setValue(null);
 
                                 referenceDelete1.child(phoneClient).child(workerJobTitle).child("order Details").setValue(null);
-
 
                                 referenceDelete2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details");
                                 referenceDelete2.child(phoneClient).setValue(null);
@@ -138,13 +154,6 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                             }
                         });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
             }
         });
 
@@ -153,13 +162,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(AcceptedWorkActivity.this, workerJobTitle, Toast.LENGTH_SHORT).show();
                 referenceDelete1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order");
-                referenceDelete1.child(phoneClient).child("Accepted").setValue(null);
-
-                referenceDelete1.child(phoneClient).child(workerJobTitle).child("order Details").setValue(null);
-
-
-                referenceDelete2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details");
-                referenceDelete2.child(phoneClient).setValue(null);
+                referenceDelete1.child(phoneClient).child("Accepted").child(phoneWorker).setValue(null);
             }
         });
 

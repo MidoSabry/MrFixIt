@@ -249,6 +249,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 AllCategory selectCategory = allCategoryNamesModel.getAllCategories().get(position);
                 intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
 
+                intent.putExtra("phone", phoneNum);
                 startActivity(intent);
                 break;
 
