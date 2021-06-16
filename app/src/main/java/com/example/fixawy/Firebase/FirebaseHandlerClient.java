@@ -5,6 +5,7 @@ import com.example.fixawy.Pojos.Accepted;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.Pojos.User;
+import com.example.fixawy.Pojos.WorkersAccepted;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,6 +40,13 @@ public class FirebaseHandlerClient {
         return databaseReference.child("make order").child(phone).child("Accepted").child(phoneOfWorker).setValue(accepted);
 
     }
+
+    public Task<Void> addAcceptedPath(WorkersAccepted workersAccepted, String phone, String jobTitle, String phoneOfWorker)
+    {
+        return databaseReference.child("make order").child(phone).child("Workers Accepted Jobs").child(phoneOfWorker).setValue(workersAccepted);
+
+    }
+
 
 
     public Task<Void> addHistoryJobsToClient(MakeOrder historyOrder, String phoneClient, String phoneWorker)

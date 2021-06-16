@@ -153,4 +153,28 @@
     <string name="Next">التالى</string>
 
 
+    <!--ShopOwner-->
+    <string name="shopName">اسم المحل</string>
+    <string name="shopOwner">صاحب المحل</string>
+    <string name="all_shops">عرض جميع المحلات</string>
+
+    <!--Shops-->
+    <string name="electrical_shop">محلات ادوات كهربائية</string>
+    <string name="plumbing_shop">محلات ادوات صحية</string>
+    <string name="Carpentry_shop">محلات ادواات نجارة</string>
+    <string name="paint_shop">محلات مواد الطلاء</string>
+    <string name="tile_shop">محلات البلاط</string>
+    <string name="Building_tools_shop">محلات أدوات البناء</string>
+    <string name="metal_shop">محلات بيع المعدن</string>
+    <string name="Parquet_shop">متاجر باركيه</string>
+    <string name="gypsum_shop">محلات جبس</string>
+    <string name="marble_shop">محلات رخام</string>
+    <string name="Alumetal_shop">محلات الوميتال</string>
+    <string name="eyeglasses_shop">محلات نظارات</string>
+    <string name="wooden_tool_shop">محلات الأدوات الخشبية</string>
+    <string name="curtain_shop">محلات ستائر</string>
+    <string name="satellite_store">متاجر الأقمار الصناعية</string>
+    <string name="application_companies">شركات للتطبيقات</string>
+
+
 </resources>

@@ -18,6 +18,11 @@
             android:title="@string/accepted_job"
             android:icon="@drawable/history_icon"/>
 
+        <item android:id="@+id/all_shops"
+            android:title="@string/all_shops"
+            android:icon="@drawable/add_shopping" />
+
+
         <item android:id="@+id/nav_chat"
             android:title="@string/chat"
             android:icon="@drawable/chat_icon"/>

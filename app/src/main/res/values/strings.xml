@@ -164,4 +164,28 @@
     <string name="maintanance"><![CDATA["maintenance & repair "]]></string>
     <string name="hard_work">Hard Work</string>
 
+
+    <!--ShopOwner-->
+    <string name="shopName">shopName</string>
+    <string name="shopOwner">Shop Owner</string>
+    <string name="all_shops">Show All Shops</string>
+
+    <!--Shops-->
+    <string name="electrical_shop">Electrical Shops</string>
+    <string name="plumbing_shop">Plumbing Shops</string>
+    <string name="Carpentry_shop">Carpentry Shops</string>
+    <string name="paint_shop">Paint Shops</string>
+    <string name="tile_shop">Tile Shops</string>
+    <string name="Building_tools_shop">Building Tools Shops</string>
+    <string name="metal_shop">Metal Shops</string>
+    <string name="Parquet_shop">Parquet Shops</string>
+    <string name="gypsum_shop">Gypsum Shops</string>
+    <string name="marble_shop">Marble Shops</string>
+    <string name="Alumetal_shop">Alumetal Shops</string>
+    <string name="eyeglasses_shop">Eyeglasses Shops</string>
+    <string name="wooden_tool_shop">Wooden Tool Shops</string>
+    <string name="curtain_shop">Curtain Shops</string>
+    <string name="satellite_store">Satellite Stores</string>
+    <string name="application_companies">Application Companies</string>
+
 </resources>

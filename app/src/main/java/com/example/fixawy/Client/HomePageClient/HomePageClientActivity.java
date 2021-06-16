@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 
 import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
+import com.example.fixawy.Client.AllTypesOfShops.AllTypesOfShopsActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
@@ -259,6 +260,11 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 startActivity(intent2);
                 break;
 
+            case R.id.all_shops:
+                Intent intentShowAllShops = new Intent(HomePageClientActivity.this, AllTypesOfShopsActivity.class);
+                intentShowAllShops.putExtra("phone",phoneNum);
+                startActivity(intentShowAllShops);
+                break;
 
 
             case R.id.nav_selected_worker:

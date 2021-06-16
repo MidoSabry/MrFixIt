@@ -33,6 +33,7 @@ import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.Client.SelectedPage.SelectedActivity;
+import com.example.fixawy.Client.ShowProductsOfShopType.ShowProductsOfShopTypeActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.Pojos.JobTitleCategory;
 import com.example.fixawy.Pojos.MakeOrder;
@@ -454,7 +455,12 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 startActivity(intent3);
                 break;
 
-
+            case R.id.all_shops:
+                Intent intentAllShops = new Intent(RequestedHomePageActivity.this, ShowProductsOfShopTypeActivity.class);
+                intentAllShops.putExtra("shopType",worker_job_title);
+                intentAllShops.putExtra("phone",w_phone);
+                startActivity(intentAllShops);
+                break;
 
 //            case R.id.nav_all_previous_questions:
 //                Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
@@ -485,6 +491,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         Intent detailsIntent = new Intent(this, DetailsJobActivity.class);
         MakeOrder clickedItem = list.get(position);
         User user = new User();
+        String clientName = clickedItem.getUserName();
+        Toast.makeText(this, clientName, Toast.LENGTH_SHORT).show();
         detailsIntent.putExtra(EXTRA_ORDER_PHONE,clickedItem.getRequestedPhone());
         detailsIntent.putExtra(EXTRA_ORDER_JOB_TITLE,clickedItem.getJobTitle());
         detailsIntent.putExtra(EXTRA_WORKER_NAME,w_name);
@@ -496,6 +504,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         detailsIntent.putExtra(EXTRA_WORKER_RATING,w_rating);
         detailsIntent.putExtra(EXTRA_WORKER_IMAGE,worker_image);
         detailsIntent.putExtra(EXTRA_JOB_TITLE,worker_job_title);
+        detailsIntent.putExtra("clientName",clientName);
 
         startActivity(detailsIntent);
     }

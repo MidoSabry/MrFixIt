@@ -7,18 +7,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.Homes.OwnerHome;
 import com.example.fixawy.Share.Homes.WorkerHome;
+import com.example.fixawy.Share.LoginPage.LoginActivity;
 import com.example.fixawy.Share.RegisterPage.RegisterActivity;
 import com.example.fixawy.Share.Session.SharedPreferencesConfig;
+import com.example.fixawy.ShopOwner.AllShopsAvailable.AllShopsAvailableActivity;
 import com.example.fixawy.Worker.SelectJobPage.SelectJobActivity;
 
 
 public class SelectMembershipType extends AppCompatActivity {
 
-    Button btnOwner,btnWorker;
-  //  SharedPreferencesConfig preferencesConfig;
+    Button btnOwner,btnWorker,btnShopOwner;
+    SharedPreferencesConfig preferencesConfig;
 
 
     @Override
@@ -28,17 +31,12 @@ public class SelectMembershipType extends AppCompatActivity {
 
         btnOwner=findViewById(R.id.client_btn);
         btnWorker=findViewById(R.id.worker_btn);
+        btnShopOwner=findViewById(R.id.shop_owner_btn);
 
 
       /*  preferencesConfig = new SharedPreferencesConfig(getApplicationContext());
-
         if (preferencesConfig.readUserLoginStatus()) {
-            Intent intent = new Intent(SelectMembershipType.this, OwnerHome.class);
-            startActivity(intent);
-            finish();
-        }
-        if (preferencesConfig.readWorkerLoginStatus()) {
-            Intent intent = new Intent(SelectMembershipType.this, WorkerHome.class);
+            Intent intent = new Intent(SelectMembershipType.this, HomePageClientActivity.class);
             startActivity(intent);
             finish();
         }*/
@@ -47,9 +45,11 @@ public class SelectMembershipType extends AppCompatActivity {
         btnOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
-                        .putExtra("type", "Owner"));
-              //  preferencesConfig.writeUserLoginStatus(true);
+                  startActivity(new Intent(getApplicationContext(), RegisterActivity.class)
+                          .putExtra("type", "Owner"));
+
+                //  preferencesConfig.writeUserLoginStatus(true);
+
             }
         });
 
@@ -59,6 +59,14 @@ public class SelectMembershipType extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SelectJobActivity.class)
                         .putExtra("type", "Worker"));
                 //preferencesConfig.writeWorkerLoginStatus(true);
+            }
+        });
+
+        btnShopOwner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AllShopsAvailableActivity.class)
+                        .putExtra("type","ShopOwner"));
             }
         });
 
