@@ -1,6 +1,7 @@
 package com.example.fixawy.Client.HistoryPage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fixawy.Client.RatingPage.RatingActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedAdapter;
 import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.Pojos.ClientHistory;
@@ -65,7 +67,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
         holder.textViewEmpName.setText(clientHistories.get(position).getUserName());
         holder.textViewTypeOfJob.setText(clientHistories.get(position).getTypeOfOrder());
         holder.textViewJobTitle.setText(clientHistories.get(position).getJobTitle());
-        holder.ratingBar.setRating(3);
+
         String phoneWorker = clientHistories.get(position).getPhone();
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +103,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
                 alertDialog.setView(dialogView);
                 alertDialog.show();
 
+            }
+        });
+
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.getContext().startActivity(new Intent(v.getContext(), RatingActivity.class)
+                        .putExtra("phoneClient",phoneClient)
+                        .putExtra("phoneWorker",phoneWorker));
             }
         });
 

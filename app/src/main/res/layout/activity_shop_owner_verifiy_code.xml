@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background"
+    android:background="@drawable/bc"
     android:orientation="vertical"
     tools:context=".ShopOwner.VerifiyCode.ShopOwnerVerifiyCodeActivity">
 
@@ -16,12 +16,13 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:text="@string/code"
+        android:fontFamily="@font/coolveticacompressedrg"
+        android:text="Receive Code"
         android:textColor="#FFFFFF"
-        android:textSize="38sp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <ScrollView
@@ -39,7 +40,7 @@
                 android:layout_width="378dp"
                 android:layout_height="200dp"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="40dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp"
                 app:contentPadding="15dp">
@@ -66,44 +67,21 @@
                             android:inputType="textEmailAddress" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+
                     <Button
-                        android:id="@+id/btn_signUp"
+                        android:id="@+id/btnNext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/signUp"
+                        android:text="@string/next"
                         android:background="@drawable/btn_check_type"
                         android:textAllCaps="false"
-                        android:layout_marginTop="20dp"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/card_view"
-                android:layout_alignStart="@+id/card_view"
-                android:layout_alignLeft="@+id/card_view"
-                android:layout_alignRight="@+id/card_view"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="-22dp"
-                android:layout_marginRight="35dp"
-                android:elevation="10dp">
-
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/text_or"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/card_view"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:textSize="20sp" />
 
         </RelativeLayout>
     </ScrollView>

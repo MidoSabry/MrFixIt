@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bcmodified"
     tools:context=".Client.AllTypesOfShops.AllTypesOfShopsActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ALL SHOPS"
-        android:textSize="30sp"
+        android:textSize="35sp"
+        android:fontFamily="@font/coolveticacompressedrg"
         android:layout_gravity="center"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +37,14 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/electrical_shop"/>
 
             <Button
                 android:id="@+id/plumber"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:textColor="@color/colorPurple"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
                 android:text="@string/plumbing_shop"/>
@@ -51,6 +55,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/Carpentry_shop"/>
 
             <Button
@@ -59,6 +64,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/paint_shop"/>
 
             <Button
@@ -67,6 +73,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/tile_shop"/>
 
             <Button
@@ -75,6 +82,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/Building_tools_shop"/>
 
             <Button
@@ -83,6 +91,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/metal_shop"/>
 
             <Button
@@ -91,6 +100,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/Parquet_shop"/>
 
 
@@ -100,6 +110,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/gypsum_shop"/>
 
             <Button
@@ -108,6 +119,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/marble_shop"/>
 
             <Button
@@ -116,6 +128,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/eyeglasses_shop"/>
 
             <Button
@@ -124,6 +137,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/wooden_tool_shop"/>
 
             <Button
@@ -132,6 +146,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/Alumetal_shop"/>
 
             <Button
@@ -140,6 +155,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/curtain_shop"/>
 
             <Button
@@ -148,6 +164,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/satellite_store"/>
 
             <Button
@@ -156,6 +173,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/all_shops_shape"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/colorPurple"
                 android:text="@string/application_companies"/>
 
 

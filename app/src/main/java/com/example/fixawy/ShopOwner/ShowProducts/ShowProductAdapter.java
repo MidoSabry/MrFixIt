@@ -52,7 +52,7 @@ public class ShowProductAdapter extends RecyclerView.Adapter<ShowProductAdapter.
      @Override
      public void onBindViewHolder(@NonNull ProductItemViewHolder holder, int position) {
          holder.textViewProductName.setText(products.get(position).getProductName());
-         holder.textViewProductPrice.setText(products.get(position).getProductPrice());
+         holder.textViewProductPrice.setText(products.get(position).getProductPrice()+" LE");
          holder.textViewProductDesc.setText(products.get(position).getProductDesc());
          Picasso.get().load(products.get(position).getProductImage()).into(holder.imageViewProduct);
 
