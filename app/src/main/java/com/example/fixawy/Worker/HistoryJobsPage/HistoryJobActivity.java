@@ -15,6 +15,8 @@ import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.R;
 import com.example.fixawy.Worker.JobAccepted.JobAcceptedActivity;
 import com.example.fixawy.Worker.JobAccepted.JobAcceptedAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +37,7 @@ public class HistoryJobActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
    static HistoryJobAdapter historyJobAdapter;
     List<HistoryWorker> historyWorkers;
-    DatabaseReference databaseReference;
+    Task<DataSnapshot> databaseReference;
     public static String worker_job_title, worker_phone;
 
     @Override
@@ -62,23 +64,22 @@ public class HistoryJobActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(historyJobAdapter);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Worker").child(worker_job_title).child("Data").child(worker_phone).child("HistoryWorker");
+        //databaseReference = FirebaseDatabase.getInstance().getReference("Worker").child(worker_job_title).child("Data").child(worker_phone).child("HistoryWorker");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("Worker").child(worker_job_title).child("Data").child(worker_phone).child("HistoryWorker").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    HistoryWorker historyWorker = dataSnapshot.getValue(HistoryWorker.class);
-                    historyWorkers.add(historyWorker);
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DataSnapshot> task) {
+                Iterable<DataSnapshot> children = task.getResult().getChildren();
+                for (DataSnapshot snapshot : children) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        HistoryWorker historyWorker = dataSnapshot.getValue(HistoryWorker.class);
+                        historyWorkers.add(historyWorker);
+                    }
+                    HistoryJobActivity.historyJobAdapter.notifyDataSetChanged();
                 }
-                HistoryJobActivity.historyJobAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
+
 
     }
 }

@@ -1,6 +1,7 @@
 package com.example.fixawy.Client.HistoryPage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fixawy.Client.RatingPage.RatingActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedAdapter;
 import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.Pojos.ClientHistory;
@@ -60,12 +62,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
 
     @Override
     public void onBindViewHolder(@NonNull HistoryItemViewHolder holder, int position) {
+        String worker_phone = clientHistories.get(position).getPhone();
+        String worker_job = clientHistories.get(position).getJobTitle();
         holder.textViewTime.setText(clientHistories.get(position).getTime());
         holder.textViewDate.setText(clientHistories.get(position).getDate());
         holder.textViewEmpName.setText(clientHistories.get(position).getUserName());
         holder.textViewTypeOfJob.setText(clientHistories.get(position).getTypeOfOrder());
         holder.textViewJobTitle.setText(clientHistories.get(position).getJobTitle());
-        holder.ratingBar.setRating(3);
         String phoneWorker = clientHistories.get(position).getPhone();
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +107,22 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
             }
         });
 
+        //get phonClient
+        String phoneClient = HistoryActivity.phoneClient;
+
+        //go to rate page
+        holder.buttonRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(context, RatingActivity.class);
+                intent.putExtra("worker_phone",worker_phone);
+                intent.putExtra("worker_job",worker_job);
+                intent.putExtra("client_phone",phoneClient);
+                context.startActivity(intent);
+
+            }
+        });
+
 
     }
 
@@ -115,7 +134,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     public class HistoryItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewTime,textViewDate,textViewEmpName,textViewTypeOfJob,textViewJobTitle;
         RatingBar ratingBar;
-        Button buttonDelete;
+        Button buttonDelete,buttonRate;
         public View layout;
         public HistoryItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -127,6 +146,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
             textViewJobTitle = itemView.findViewById(R.id.job_title_of_worker);
             ratingBar = itemView.findViewById(R.id.ratingBar);
             buttonDelete = itemView.findViewById(R.id.delete);
+            buttonRate = itemView.findViewById(R.id.ratebtn);
 
         }
     }

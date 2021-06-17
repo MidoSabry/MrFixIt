@@ -82,7 +82,7 @@ public class RequestedActivity extends AppCompatActivity implements onitemclick 
            requestedAdapter.orderTreeItems.remove(position);
             requestedAdapter.notifyDataSetChanged();
             ClientOrderRepo repo = new ClientOrderRepo();
-            repo.retrieveDataEdit(phoneNum,categoryType,requestedPageViewModel.uIds.get(position)).removeValue();
+            //repo.retrieveDataEdit(phoneNum,categoryType,requestedPageViewModel.uIds.get(position)).removeValue();
 
         }
     }

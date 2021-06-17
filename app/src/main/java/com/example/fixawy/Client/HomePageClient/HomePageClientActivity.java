@@ -7,9 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,24 +14,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.os.PersistableBundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
-import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
-import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
 import com.example.fixawy.Client.SelectedPage.SelectedActivity;
-import com.example.fixawy.MainActivity;
+//import com.example.fixawy.Notification.FirebasePushNotification;
+import com.example.fixawy.NotificationToClient.FirebasePushNotification;
 import com.example.fixawy.Pojos.AllCategory;
 
 import com.example.fixawy.Pojos.User;
@@ -50,6 +41,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_PHONE_NUM;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
@@ -62,6 +54,8 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     DatabaseReference database;
     TextView textViewUserName, textViewUserPhone;
     String client_phone_num, client_user_name;
+
+    DatabaseReference ref;
 
     List<AllCategory>allCategories;
 
@@ -77,6 +71,8 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     NavigationView navigationView;
     Toolbar toolbar;
     String phoneNum;
+    String user_token_id;
+    String tokenID;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -85,7 +81,13 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_client);
 
+        Intent intentBackgroundService = new Intent(this, FirebasePushNotification.class);
+        startService(intentBackgroundService);
+
         phoneNum = getIntent().getStringExtra("phone");
+
+
+
         //DrawLayout sidemenu-bar
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -95,8 +97,9 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         Intent intent = getIntent();
         client_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
         client_user_name = intent.getStringExtra(EXTR_USER_NAME);
-        Toast.makeText(this, client_user_name, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();
+        user_token_id = intent.getStringExtra("token");
+//        Toast.makeText(this, client_user_name, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();
 
 
 
@@ -272,6 +275,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
             case R.id.nav_logout:
                 Intent intent5 = new Intent(HomePageClientActivity.this, SelectMembershipType.class);
                 startActivity(intent5);
+                allCategoryList.clear();
                 break;
 
 
@@ -289,11 +293,31 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
 
     @Override
     public void onItemClick(int position) {
-        AllCategory selectCategory = allCategoryNamesModel.getAllCategories().get(position);
-        Intent intent = new Intent(HomePageClientActivity.this, SelectKindOfChoiceActivity.class);
-        intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
-        intent.putExtra("phone", phoneNum);
-        startActivity(intent);
+
+        //Get Token id
+        ref = FirebaseDatabase.getInstance().getReference().child("Client").child("Data").child(phoneNum);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tokenID = snapshot.child("tokenId").getValue().toString();
+
+
+
+                AllCategory selectCategory = allCategoryNamesModel.getAllCategories().get(position);
+                Intent intent = new Intent(HomePageClientActivity.this, SelectKindOfChoiceActivity.class);
+                intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
+                intent.putExtra("phone", phoneNum);
+                intent.putExtra("token",tokenID);
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
     }
 

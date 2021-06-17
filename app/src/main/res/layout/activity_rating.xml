@@ -121,6 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/card_id" />
 
     <Button
+        android:id="@+id/ok_btn"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"

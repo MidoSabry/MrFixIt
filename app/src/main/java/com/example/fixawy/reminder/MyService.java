@@ -1,5 +1,6 @@
 package com.example.fixawy.reminder;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -85,6 +86,7 @@ public class MyService extends Service {
         Intent notificationIntent =new Intent(getApplicationContext(), RequestedHomePageActivity.class);
         Intent hungupIntent =new Intent(getApplicationContext(), MyReceiver.class);
         Intent answerIntent = new Intent(this, MapActivity.class);
+
         //answerIntent.putExtra(UpcomingTripsFragment.UPCOMING_DETAILS_EXTRA,trip);
         answerIntent.putExtra("dataHistoryName",name);
         answerIntent.putExtra("dataHistoryDate",date);

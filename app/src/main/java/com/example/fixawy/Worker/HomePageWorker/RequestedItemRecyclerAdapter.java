@@ -53,7 +53,6 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
     public void onBindViewHolder(@NonNull RequestedItemRecyclerViewHolder holder, int position) {
 
 
-
         holder.worker_clocktv.setText(makeOrders.get(position).getTime());
         holder.worker_datetv.setText(makeOrders.get(position).getDate());
         holder.worker_name_clienttv.setText(makeOrders.get(position).getUserName());

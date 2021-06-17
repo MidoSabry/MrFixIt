@@ -11,6 +11,7 @@ public class Accepted {
     String numOfDisLike;
     String image;
     String jobTitle;
+    String tokenid;
 
 
     public Accepted() {
@@ -30,7 +31,7 @@ public class Accepted {
     }
 
 
-    public Accepted(String nameOfWorker, String addressOfWorker, String phoneOfWorker, String commentLine, String numOfJob, String rating, String numOfLike, String numOfDisLike, String image, String jobTitle) {
+    public Accepted(String nameOfWorker, String addressOfWorker, String phoneOfWorker, String commentLine, String numOfJob, String rating, String numOfLike, String numOfDisLike, String image, String jobTitle, String tokenid) {
         this.nameOfWorker = nameOfWorker;
         this.addressOfWorker = addressOfWorker;
         this.phoneOfWorker = phoneOfWorker;
@@ -41,6 +42,7 @@ public class Accepted {
         this.numOfDisLike = numOfDisLike;
         this.image = image;
         this.jobTitle = jobTitle;
+        this.tokenid = tokenid;
     }
 
 
@@ -122,5 +124,13 @@ public class Accepted {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
+    }
+
+    public String getTokenid() {
+        return tokenid;
+    }
+
+    public void setTokenid(String tokenid) {
+        this.tokenid = tokenid;
     }
 }

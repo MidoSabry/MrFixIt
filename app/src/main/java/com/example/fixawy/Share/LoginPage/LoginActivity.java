@@ -31,6 +31,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
@@ -44,8 +45,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -62,7 +65,12 @@ public class LoginActivity extends AppCompatActivity {
     String email,type,userName,jobTitle,image;
     int numOfJob,rating,like,disLike;
     FirebaseUser user;
+    FirebaseDatabase database;
     DatabaseReference databaseReference;
+    DatabaseReference mDatabaseReference;
+
+    String tokenId;
+    String newTokenID;
 
     public static final String EXTR_USER_NAME ="userName";
     public static final String EXTR_PHONE_NUM ="phone";
@@ -74,6 +82,8 @@ public class LoginActivity extends AppCompatActivity {
     public static final String EXTRA_LIKE ="numOfLike";
     public static final String EXTRA_DIS_LIKE ="numOfDisLike";
     public static final String EXTRA_RATING ="rating";
+
+
 
 
 
@@ -92,16 +102,23 @@ public class LoginActivity extends AppCompatActivity {
         textViewForgetPassword=findViewById(R.id.forgetPassword);
         fAuth = FirebaseAuth.getInstance();
         mCallbackManager=CallbackManager.Factory.create();
+
+        database = FirebaseDatabase.getInstance();
+
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        mDatabaseReference = database.getReference();
         user=fAuth.getCurrentUser();
         type=getIntent().getExtras().getString("type");
         jobTitle=getIntent().getExtras().getString("jobTitle");
+        tokenId = getIntent().getExtras().getString("token");
 
         //another worker data
         numOfJob = getIntent().getIntExtra("numOfJob",0);
         like = getIntent().getIntExtra("numOfLike",0);
         disLike = getIntent().getIntExtra("numOfDisLike",0);
         rating = getIntent().getIntExtra("rating",0);
+
+        tokenId = getIntent().getStringExtra("token");
 
 
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
@@ -272,6 +289,8 @@ public class LoginActivity extends AppCompatActivity {
             intent.putExtra("numOfLike",like);
             intent.putExtra("numOfDisLike",disLike);
             intent.putExtra("rating",rating);
+
+            intent.putExtra("token",tokenId);
             startActivity(intent);
             finish();
 
@@ -301,7 +320,94 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+//    //get TokenId
+//    public String getTokenID(){
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            return;
+//                        }
+//
+//                        // Get new FCM registration token
+//                        tokenId = task.getResult();
+//                        Log.d("tokeniddddddd",tokenId);
+//
+//                        // Log and toast
+//                        // String msg = getString(R.string.msg_token_fmt, token);
+//                        Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//        return tokenId;
+//    }
+
+
+    //update TokenId for client
+    public void updateTokinIDClient(String phone){
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        tokenId = task.getResult();
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("tokenId",tokenId);
+                        mDatabaseReference.child("Client").child("Data").child(phone).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                            @Override
+                            public void onSuccess(Object o) {
+                                Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        // Log and toast
+                        // String msg = getString(R.string.msg_token_fmt, token);
+                        Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+    }
+
+    //update TokenId for worker
+    public void updateTokinIDWorker(String jobTitle,String phone){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        tokenId = task.getResult();
+                        Log.d("tokeniddddddd",tokenId);
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("tokenId",tokenId);
+                        databaseReference.child("Worker").child(jobTitle).child("Data").child(phone).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                            @Override
+                            public void onSuccess(Object o) {
+                                Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+                        // Log and toast
+                        // String msg = getString(R.string.msg_token_fmt, token);
+                        Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+    }
+
     public void phoneLogin() {
+
         phone = editTextPhone.getEditText().getText().toString();
         password = editTextPassword.getEditText().getText().toString();
 
@@ -327,7 +433,12 @@ public class LoginActivity extends AppCompatActivity {
                         if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                             userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                             startActivity(new Intent(LoginActivity.this, HomePageClientActivity.class)
-                                    .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName));
+                                    .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra("token",tokenId));
+
+
+
+                            updateTokinIDClient(phone);
+
                         } else {
                             Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                         }
@@ -357,6 +468,9 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -385,6 +499,9 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -413,6 +530,9 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -441,6 +561,9 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -469,6 +592,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -497,6 +622,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -525,6 +652,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -553,6 +682,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -581,6 +712,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -610,6 +743,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -638,6 +773,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -654,7 +791,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             else if (jobTitle.equals("Glass")){
-                databaseReference.child("Worker").child("Glass").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
+                databaseReference.child("Worker").child("Glasses").child("Data").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.child(phone).exists()) {
@@ -666,6 +803,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -694,6 +833,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -722,6 +863,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -750,6 +893,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -778,6 +923,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
+
+                                updateTokinIDWorker(jobTitle,phone);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }

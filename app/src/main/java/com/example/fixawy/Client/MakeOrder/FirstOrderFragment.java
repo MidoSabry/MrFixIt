@@ -49,6 +49,7 @@ public class FirstOrderFragment extends Fragment {
         shortworkbtn = view.findViewById(R.id.radio_short_work);
         addDetails = view.findViewById(R.id.edittext_view_addnotes);
         String phoneNum= getActivity().getIntent().getStringExtra("phone");
+        String tokinid = getActivity().getIntent().getStringExtra("token");
 
         //MVVM
         viewModel = new ViewModelProvider(this).get(FirstOrderViewModel.class);

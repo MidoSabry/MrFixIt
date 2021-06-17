@@ -25,7 +25,7 @@ public class HistoryActivity extends AppCompatActivity {
     DatabaseReference mRef;
     HistoryAdapter historyAdapter;
     ClientHistory clientHistory;
-    String phoneClient;
+   static String phoneClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

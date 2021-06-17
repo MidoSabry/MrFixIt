@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
@@ -29,6 +31,7 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     FirebaseUser firebaseUser;
 
+    String tokenId;
 
 
 
@@ -108,6 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+
         mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -148,6 +153,8 @@ public class RegisterActivity extends AppCompatActivity {
                         otpIntent.putExtra("numOfDisLike",disLike);
                         otpIntent.putExtra("rating",rating);
 
+                        otpIntent.putExtra("token",tokenId);
+
                         startActivity(otpIntent);
                     }
                 }, 10000);
@@ -174,37 +181,58 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void register(){
+    public void register() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        tokenId = task.getResult();
+                        Log.d("tokeniddddddd",tokenId);
+
+                        // Log and toast
+                        // String msg = getString(R.string.msg_token_fmt, token);
+                        Toast.makeText(RegisterActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
         String country_code = "20";
         phoneNum = editTextPhone.getEditText().getText().toString().trim();
-        userName=editTextUserName.getEditText().getText().toString().trim();
+        userName = editTextUserName.getEditText().getText().toString().trim();
         email = editTextEmail.getEditText().getText().toString().trim();
-        address=editTextAddress.getEditText().getText().toString().trim();
+        address = editTextAddress.getEditText().getText().toString().trim();
         password = editTextPassword.getEditText().getText().toString().trim();
-        confirmPassword=editTextConfirmPassword.getEditText().toString().trim();
-        type=getIntent().getExtras().getString("type");
-        jobTitle=getIntent().getExtras().getString("jobTitle");
+        confirmPassword = editTextConfirmPassword.getEditText().toString().trim();
+        type = getIntent().getExtras().getString("type");
+        jobTitle = getIntent().getExtras().getString("jobTitle");
+
         //another data to worker
 //        numOfJob = getIntent().getExtras().getInt("numOfJob");
 //        like = getIntent().getExtras().getInt("numOfLike");
 //        disLike = getIntent().getExtras().getInt("numOfDisLike");
 //        rating = getIntent().getExtras().getInt("rating");
         //another worker data
-        image=getIntent().getStringExtra("image");
-        numOfJob = getIntent().getIntExtra("numOfJob",0);
-        like = getIntent().getIntExtra("numOfLike",0);
-        disLike = getIntent().getIntExtra("numOfDisLike",0);
-        rating = getIntent().getIntExtra("rating",0);
+        image = getIntent().getStringExtra("image");
+        numOfJob = getIntent().getIntExtra("numOfJob", 0);
+        like = getIntent().getIntExtra("numOfLike", 0);
+        disLike = getIntent().getIntExtra("numOfDisLike", 0);
+        rating = getIntent().getIntExtra("rating", 0);
+       // Log.d("tokeniddddddd",tokenId);
+        tokenId = getIntent().getStringExtra("token");
 
 
-
-        if (userName.isEmpty()){
+        if (userName.isEmpty()) {
             editTextUserName.setError("UserName is required");
             editTextUserName.requestFocus();
             return;
         }
 
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             editTextEmail.setError("Email is required");
             editTextEmail.requestFocus();
             return;
@@ -216,7 +244,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (phoneNum.isEmpty()){
+        if (phoneNum.isEmpty()) {
             editTextPhone.setError("Phone is required");
             editTextPhone.requestFocus();
             return;
@@ -228,25 +256,25 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (address.isEmpty()){
+        if (address.isEmpty()) {
             editTextAddress.setError("Address is required");
             editTextAddress.requestFocus();
             return;
         }
 
-        if (password.isEmpty()){
+        if (password.isEmpty()) {
             editTextPassword.setError("Password is required");
             editTextPassword.requestFocus();
             return;
         }
 
-        if (confirmPassword.isEmpty()){
+        if (confirmPassword.isEmpty()) {
             editTextConfirmPassword.setError("ConfirmPassword is required");
             editTextConfirmPassword.requestFocus();
             return;
         }
 
-        if (password.length() < 6){
+        if (password.length() < 6) {
             editTextPassword.setError("password is required 6 character");
             editTextPassword.requestFocus();
             return;
@@ -259,19 +287,24 @@ public class RegisterActivity extends AppCompatActivity {
                 }*/
 
         phoneNumber = "+" + country_code + "" + phoneNum;
-        if (!phoneNum.isEmpty()){
+        if (!phoneNum.isEmpty()) {
             PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
                     .setPhoneNumber(phoneNumber)
-                    .setTimeout(60L , TimeUnit.SECONDS)
+                    .setTimeout(60L, TimeUnit.SECONDS)
                     .setActivity(RegisterActivity.this)
                     .setCallbacks(mCallBacks)
                     .build();
             PhoneAuthProvider.verifyPhoneNumber(options);
-        }else{
+        } else {
             processText.setText("Please Enter Country Code and Phone Number");
             processText.setTextColor(Color.RED);
             processText.setVisibility(View.VISIBLE);
         }
+
+
+
+
+
 
       /*  registerViewModel = new RegisterViewModel();
         userClient = new User(userName,email,phoneNum,address,type,password);
