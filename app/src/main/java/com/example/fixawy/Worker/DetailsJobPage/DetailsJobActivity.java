@@ -20,6 +20,7 @@ import com.example.fixawy.NotificationToClient.MyResponse;
 import com.example.fixawy.NotificationToClient.NotificationAPI;
 import com.example.fixawy.NotificationToClient.NotificationSender;
 import com.example.fixawy.Pojos.Accepted;
+import com.example.fixawy.Pojos.WorkersAccepted;
 import com.example.fixawy.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -65,7 +66,10 @@ public class DetailsJobActivity extends AppCompatActivity {
     DatabaseReference ref;
     FirebaseHandlerClient firebaseHandlerClient;
 
+
     NotificationAPI notificationAPI;
+
+    String jobDate,jobDetails,jobLocation,jobPhone,jobTime,jobTypeOfOrder,clientName;
 
 
     //public int worker_likes,worker_dislikes,worker_num_of_job,worker_rating;
@@ -93,7 +97,11 @@ public class DetailsJobActivity extends AppCompatActivity {
         workerImage = intent.getStringExtra(EXTRA_WORKER_IMAGE);
         workerJob = intent.getStringExtra(EXTRA_JOB_TITLE);
 
+
         workerTokenid = intent.getStringExtra(EXTRA_TOKEN_ID);
+
+        clientName = intent.getStringExtra("clientName");
+
 
 
 //        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
@@ -139,14 +147,14 @@ public class DetailsJobActivity extends AppCompatActivity {
                 if(snapshot.exists()) {
                     /* ----- 1-Retrieve the data from firebase ----- */
                     Map<String,Object> map = (Map<String, Object>) snapshot.getValue();
-                    String jobDate = (String) map.get("date");
-                    String jobDetails =(String) map.get("details");
+                    jobDate = (String) map.get("date");
+                    jobDetails =(String) map.get("details");
                     //Object jobTitle = map.get("jobTitle");
-                    String jobLocation = (String) map.get("location");
+                    jobLocation = (String) map.get("location");
                     //String jobPaymentMethod = (String) map.get("paymentMethod");
-                    String jobPhone = (String) map.get("phone");
-                    String jobTime =(String) map.get("time");
-                    String jobTypeOfOrder = (String) map.get("typeOfOrder");
+                    jobPhone = (String) map.get("phone");
+                    jobTime =(String) map.get("time");
+                    jobTypeOfOrder = (String) map.get("typeOfOrder");
 
                     /* ----- 2-Set the values in the text fields ----- */
                     date.setText(jobDate);
@@ -192,14 +200,25 @@ public class DetailsJobActivity extends AppCompatActivity {
     }
     public void sendData()
     {
+
         Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob,workerTokenid);
 //        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
 //
 //        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
+
+        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob);
+        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "date is " + jobDate + "time is " + jobTime + "typeOfOrder is " + jobTypeOfOrder, Toast.LENGTH_SHORT).show();
+
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addAcceptedWorker(accepted,orderPhone,orderJobTitle,workerPhone);
+        WorkersAccepted workersAccepted = new WorkersAccepted(jobTime,jobDate,jobTypeOfOrder,jobLocation,orderPhone,orderJobTitle,clientName,workerName,workerAddress,workerPhone,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage);
+        firebaseHandlerClient.addAcceptedPath(workersAccepted,orderPhone,orderJobTitle,workerPhone);
 
 //        FirebaseDatabase.getInstance().getReference("Worker").child(orderJobTitle).child("order Details").child(orderPhone).child("tokenId").addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override

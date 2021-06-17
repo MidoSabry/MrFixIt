@@ -34,7 +34,6 @@ public class VerificationCode extends AppCompatActivity {
     private TextInputLayout otpEdit;
     private String OTP;
     private FirebaseAuth mAuth;
-    ProgressBar progressBar;
     String userName,email,phoneNum,address,password,verification_code,type,jobTitle,image;
     int numOfJob,rating,like,disLike;
     User userClient,userWorker;
@@ -61,7 +60,7 @@ public class VerificationCode extends AppCompatActivity {
         otpEdit = findViewById(R.id.edit_code);
         mVerifyCodeBtn = findViewById(R.id.btn_signUp);
 
-        progressBar=findViewById(R.id.progress);
+
         mAuth = FirebaseAuth.getInstance();
 
 

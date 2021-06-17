@@ -22,7 +22,6 @@ public class ReceiveCode extends AppCompatActivity {
     private TextInputLayout otpEdit;
     private String OTP,verification_code;
     private FirebaseAuth mAuth;
-    ProgressBar progressBar;
     String phoneNum,type,jobTitle;
     int numOfJob,rating,like,disLike;
 
@@ -33,7 +32,7 @@ public class ReceiveCode extends AppCompatActivity {
         otpEdit = findViewById(R.id.edit_code);
         mVerifyCodeBtn = findViewById(R.id.btnNext);
 
-        progressBar=findViewById(R.id.progress);
+
         mAuth = FirebaseAuth.getInstance();
 
 

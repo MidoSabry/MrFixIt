@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/secondColor">
+    android:background="@color/homecolor">
 
 <!--    <TextView-->
 <!--        android:id="@+id/categorytv"-->
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
@@ -52,7 +52,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_emp_recycler"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

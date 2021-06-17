@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 
 import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
+import com.example.fixawy.Client.AllTypesOfShops.AllTypesOfShopsActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
@@ -71,8 +72,12 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     NavigationView navigationView;
     Toolbar toolbar;
     String phoneNum;
+
     String user_token_id;
     String tokenID;
+
+
+    int position;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -247,6 +252,11 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 break;
             case R.id.nav_requested:
                 Intent intent = new Intent(HomePageClientActivity.this, RequestedActivity.class);
+
+                intent.putExtra("phone",phoneNum);
+                AllCategory selectCategory = allCategoryNamesModel.getAllCategories().get(position);
+                intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
+
                 intent.putExtra("phone", phoneNum);
                 startActivity(intent);
                 break;
@@ -257,6 +267,11 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 startActivity(intent2);
                 break;
 
+            case R.id.all_shops:
+                Intent intentShowAllShops = new Intent(HomePageClientActivity.this, AllTypesOfShopsActivity.class);
+                intentShowAllShops.putExtra("phone",phoneNum);
+                startActivity(intentShowAllShops);
+                break;
 
 
             case R.id.nav_selected_worker:

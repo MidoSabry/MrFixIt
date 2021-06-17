@@ -29,6 +29,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fixawy">
+        <activity android:name=".ShopOwner.Login.ShopOwnerLoginActivity"></activity>
+        <activity android:name=".ShopOwner.SignUp.ShopOwnerSignUPActivity" />
+        <activity android:name=".ShopOwner.ShowProducts.ShowProductsActivity" />
+        <activity android:name=".ShopOwner.AddNewProduct.AddNewProductActivity" />
+        <activity android:name=".ShopOwner.VerifiyCode.ShopOwnerVerifiyCodeActivity" />
+        <activity android:name=".ShopOwner.AllShopsAvailable.AllShopsAvailableActivity" />
+        <activity android:name=".Client.AllTypesOfShops.AllTypesOfShopsActivity" />
+        <activity android:name=".Client.ShowProductsOfShopType.ShowProductsOfShopTypeActivity" />
+        <activity android:name=".ShopOwner.ChangePassword.ChangePasswordSOActivity" />
+        <activity android:name=".ShopOwner.ForgetPassword.ForgetPasswordSOActivity" />
+        <activity android:name=".ShopOwner.VerifiyCode.ReceiveCodeSOActivity" />
         <activity android:name=".Client.ReplyForMyQuestion.ReplyForMyQuestionActivity" />
         <activity android:name=".Worker.JobAccepted.JobAcceptedActivity" />
         <activity android:name=".Worker.MapActivity.MapActivity" />
@@ -54,7 +65,9 @@
         <activity android:name=".Share.Homes.OwnerHome" />
         <activity android:name=".Share.VerifyCode.ReceiveCode" />
         <activity android:name=".Share.ChangePassword.ChangePassword" />
-        <activity android:name=".Share.ForgetPassword.ForgetPassword" /> <!-- <activity android:name=".Worker.WorkerSettingPage.WorkerSettingActivity" /> -->
+        <activity android:name=".Share.ForgetPassword.ForgetPassword" />
+        <activity android:name=".Activity_Tips" />
+        <activity android:name=".Worker.WorkerSettingPage.WorkerSettingActivity" />
         <activity android:name=".Worker.WorkerProfilePage.WorkerProfileActivity" />
         <activity android:name=".Worker.SelectJobPage.SelectJobActivity" />
         <activity android:name=".Worker.ReplayQuestionsPage.ReplayQuestionActivity" />
@@ -65,7 +78,8 @@
         <activity android:name=".Client.RatingPage.RatingActivity" />
         <activity android:name=".Client.PreviousQuestionPage.PreviousQuestionActivity" />
         <activity android:name=".Client.HistoryPage.HistoryActivity" />
-        <activity android:name=".Client.EditPage.EditActivity" /> <!-- <activity android:name=".Client.ClientSettingPage.ClientSettingActivity" /> -->
+        <activity android:name=".Client.EditPage.EditActivity" />
+        <activity android:name=".Client.ClientSettingPage.ClientSettingActivity" />
         <activity android:name=".Client.AskQuestionPage.AskQuestionActivity" />
         <activity android:name=".Client.RequestedPage.RequestedActivity" />
         <activity android:name=".Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity" />
@@ -99,16 +113,27 @@
             android:name=".reminder.MyReceiver"
             android:enabled="true"
             android:exported="true" />
+        <!--
+<activity android:name=".Share.SelectionPage.SelectMembershipType">
 
 
         <activity android:name=".Share.SelectionPage.SelectMembershipType">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        -->
+        <activity android:name=".Share.SplashScreen.SplashScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Share.SplashScreen.SplashScreen" />
+        <activity android:name=".Share.SelectionPage.SelectMembershipType" />
         <activity android:name=".MainActivity" />
 
     </application>

@@ -4,21 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="#FFB900"
-    app:cardCornerRadius="30dp"
-    app:cardElevation="3dp"
-    app:contentPadding="5dp"
+    app:cardMaxElevation="10dp"
+    android:elevation="10dp"
+    android:padding="8dp"
     app:cardUseCompatPadding="true"
-    android:textAlignment="center"
-    android:gravity="center_horizontal">
+    app:cardCornerRadius="20dp"
+    android:outlineAmbientShadowColor="@color/white"
+    app:cardElevation="4dp"
+    app:contentPadding="15dp">
 
     <LinearLayout
+        android:layout_gravity="center"
+        android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp">
 
@@ -26,23 +29,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reply_from"
-                android:textColor="@color/red"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textColor="@color/colorPurple"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp"/>
 
             <TextView
                 android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/phone"
-                android:textColor="#fff"
-                android:textSize="22sp" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp" />
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp">
 
@@ -50,23 +54,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reply to : "
-                android:textColor="@color/red"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textColor="@color/colorPurple"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp" />
 
             <TextView
                 android:id="@+id/phoneOfClient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/phone"
-                android:textColor="#fff"
-                android:textSize="22sp" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp"  />
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp">
 
@@ -74,17 +79,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="question : "
-                android:textColor="@color/red"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textColor="@color/colorPurple"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp"/>
 
             <TextView
                 android:id="@+id/question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="question"
-                android:textColor="#fff"
-                android:textSize="22sp" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp"  />
 
         </LinearLayout>
 
@@ -98,16 +103,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reply"
-                android:textColor="@color/red"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textColor="@color/colorPurple"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp"/>
             <TextView
                 android:id="@+id/answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reply_questions"
-                android:textColor="#fff"
-                android:textSize="22sp" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp" />
 
 
         </LinearLayout>

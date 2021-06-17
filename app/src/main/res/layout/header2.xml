@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/secondColor"
+    android:background="@color/grey_font"
     android:gravity="bottom"
     android:layout_marginBottom="50dp">
 
@@ -17,6 +17,8 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             tools:src="@drawable/profile"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="16dp"
             app:civ_border_width="2dp"
             app:civ_border_color="@android:color/white"
             android:layout_gravity="left"/>
@@ -26,8 +28,9 @@
             android:layout_width="35dp"
             android:layout_height="28dp"
             android:src="@drawable/camera_btn"
+
             android:layout_marginLeft="68dp"
-            android:layout_marginTop="80dp"/>
+            android:layout_marginTop="90dp"/>
 
     </RelativeLayout>
 
@@ -36,23 +39,35 @@
         android:id="@+id/header_worker_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mohamed Sabry"
-        android:textColor="@color/white"
-        android:textSize="24sp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/redressedregular"
+        android:text="@string/Worker_Name"
+        android:textColor="@color/darkPurple"
+        android:textSize="24sp" />
+
     <TextView
         android:id="@+id/header_worker_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="01225699594"
-        android:textColor="@color/white"
-        android:textSize="22sp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/redressedregular"
+        android:text="@string/worker_phone"
+        android:textColor="@color/darkPurple"
+        android:textSize="24sp" />
+
     <TextView
         android:id="@+id/header_worker_job_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Electricity"
-        android:textColor="@color/white"
-        android:textSize="22sp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/redressedregular"
+        android:text="@string/w_category"
+        android:textColor="@color/darkPurple"
+        android:layout_marginBottom="16dp"
+        android:textSize="24sp" />
 
 </LinearLayout>
 

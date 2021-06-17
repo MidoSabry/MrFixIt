@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bcmodified"
     tools:context=".Client.AllPreviousQuestions.AllPreviousQuestionsActivity">
 
     <TextView
@@ -10,11 +11,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="All Previous Questions"
+        android:fontFamily="@font/coolveticacompressedrg"
         android:layout_gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="14dp"
-        android:textSize="20sp"
-        android:textColor="@color/red"
+        android:textSize="35sp"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

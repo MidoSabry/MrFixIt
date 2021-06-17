@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Worker.WorkerSettingPage.WorkerSettingActivity"
-    android:background="@drawable/bg2">
+    android:background="@drawable/bcmodified">
 
     <TextView
         android:id="@+id/setting_txt_worker"
@@ -15,9 +15,10 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:text="@string/settings"
-        android:textColor="@color/white"
         android:textSize="35sp"
         android:textStyle="bold"
+        android:fontFamily="@font/robotocndensed"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -50,9 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/personal_info"
-                android:textColor="@color/white"
-                android:textSize="28dp"
-                android:textStyle="bold|italic" />
+                android:textColor="@color/colorPurple"
+                android:fontFamily="@font/robotocndensed"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_name_settings_worker"
@@ -140,10 +142,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/additional_info"
-                android:textColor="@color/white"
-                android:textSize="28dp"
-                android:textStyle="bold|italic" />
+                android:textColor="@color/colorPurple"
+                android:textSize="25dp"
+                android:fontFamily="@font/robotocndensed"
+                android:textStyle="bold"  />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -185,15 +187,15 @@
                 android:layout_weight="1"
                 android:background="@color/white">
 
-                <TextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_address_settings_worker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
                     android:drawableRight="@drawable/location"
                     android:textSize="18dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginLeft="16dp"/>
+                    android:padding="16dp"
+                  />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -240,8 +242,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginLeft="92dp"
-        android:background="@color/white"
-        android:text="@string/cancel"
+        android:background="@drawable/btn_fragmentorders"
+        android:fontFamily="@font/robotocndensed"
+        android:text="@string/Cancel"
+        android:textColor="@color/colorPurple"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/second_CardView_settings_worker"
@@ -253,7 +258,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="88dp"
         android:layout_marginRight="88dp"
-        android:background="@color/purple_200"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/robotocndensed"
+        android:textStyle="bold"
         android:text="@string/apply"
         android:textColor="@color/white"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_cancel_settings_worker"
