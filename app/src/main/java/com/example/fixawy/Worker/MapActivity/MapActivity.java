@@ -1,6 +1,8 @@
 package com.example.fixawy.Worker.MapActivity;
 
+import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fixawy.Pojos.ClientHistory;
 import com.example.fixawy.Pojos.HistoryWorker;
 import com.example.fixawy.R;
+import com.example.fixawy.reminder.MyService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -38,11 +41,19 @@ public class MapActivity extends AppCompatActivity {
     String worker_jobTitle, Worker_phone, phone;
   TextView btnYes, btnNo;
     long maxid = 0;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+
+//        NotificationManager manager = (NotificationManager)getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+//        manager.cancelAll();
+        Intent intent2 = new Intent(this, MyService.class);
+        this.stopService(intent2);
+
         Intent intent = getIntent();
         Worker_phone = intent.getStringExtra("phone_worker");
         worker_jobTitle = intent.getStringExtra("jobTitle_worker");

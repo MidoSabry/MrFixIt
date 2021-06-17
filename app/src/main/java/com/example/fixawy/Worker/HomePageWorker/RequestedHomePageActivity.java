@@ -39,6 +39,7 @@ import com.example.fixawy.Pojos.JobTitleCategory;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
+import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
 import com.example.fixawy.Worker.DetailsJobPage.DetailsJobActivity;
 import com.example.fixawy.Worker.HistoryJobsPage.HistoryJobActivity;
 import com.example.fixawy.Worker.JobAccepted.JobAcceptedActivity;
@@ -91,6 +92,8 @@ import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAM
 public class RequestedHomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RequestedItemRecyclerAdapter.onItemClickListener {
 
 
+
+
     //DrawLayout side-menubar
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -103,6 +106,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     String w_likes,w_numOfJob,w_disLike,w_rating;
     String worker_image;
     String worker_job_title;
+    String w_tokenid;
     private Calendar mCalendar;
 
     private Uri imageUri;
@@ -125,6 +129,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     public static final String REQUESTED_EXTRA_JOB_TITLE = "Requested_jobtitle";
     public static final String REQUESTED_EXTRA_WORKER_PHONE = "Requested_phone";
 
+    public static final String EXTRA_TOKEN_ID = "tokenid";
+
     String jobTitle,phoneWorker;
     private RequestedHomePageViewModel requestedHomePageViewModel;
 
@@ -133,7 +139,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     //recyclerView
     RecyclerView recyclerView_worker_requested;
     FirebaseHandlerClient firebaseHandlerClient;
-    static RequestedItemRecyclerAdapter myAdapter;
+    public static RequestedItemRecyclerAdapter myAdapter;
     List<MakeOrder> list;
     DatabaseReference database;
 
@@ -222,9 +228,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                     w_disLike = dataSnapshot.child("disLike").getValue().toString();
                     w_rating = dataSnapshot.child("rating").getValue().toString();
 
-
-
-                    // w_image = dataSnapshot.child("image").getValue().toString();
+                     //w_image = dataSnapshot.child("image").getValue().toString();
+                     w_tokenid = dataSnapshot.child("tokenId").getValue().toString();
 
 
                     if(dataSnapshot.child("image").exists())
@@ -387,7 +392,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                         @Override
                         public void onSuccess(Uri uri) {
                             String url = uri.toString();
-                            User user = new User(w_name.trim(),w_email.trim(),w_phone.trim(),w_address.trim(),w_type.trim(),w_password.trim(),w_job.trim(),url);
+                            User user = new User(w_name.trim(),w_email.trim(),w_phone.trim(),w_address.trim(),w_type.trim(),w_password.trim(),w_job.trim(),w_tokenid.trim(),url);
                             //User user = new User(url);
                             mDatabaseRef.setValue(user);
                         }
@@ -455,12 +460,20 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 startActivity(intent3);
                 break;
 
+
+            case R.id.nav_logout:
+                Intent intent4 = new Intent(RequestedHomePageActivity.this, SelectMembershipType.class);
+                break;
+
+
+
             case R.id.all_shops:
                 Intent intentAllShops = new Intent(RequestedHomePageActivity.this, ShowProductsOfShopTypeActivity.class);
                 intentAllShops.putExtra("shopType",worker_job_title);
                 intentAllShops.putExtra("phone",w_phone);
                 startActivity(intentAllShops);
                 break;
+
 
 //            case R.id.nav_all_previous_questions:
 //                Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
@@ -490,9 +503,13 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     public void onItemClick(int position) {
         Intent detailsIntent = new Intent(this, DetailsJobActivity.class);
         MakeOrder clickedItem = list.get(position);
+
+       // User user = new User();
+
         User user = new User();
         String clientName = clickedItem.getUserName();
         Toast.makeText(this, clientName, Toast.LENGTH_SHORT).show();
+
         detailsIntent.putExtra(EXTRA_ORDER_PHONE,clickedItem.getRequestedPhone());
         detailsIntent.putExtra(EXTRA_ORDER_JOB_TITLE,clickedItem.getJobTitle());
         detailsIntent.putExtra(EXTRA_WORKER_NAME,w_name);
@@ -504,7 +521,11 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         detailsIntent.putExtra(EXTRA_WORKER_RATING,w_rating);
         detailsIntent.putExtra(EXTRA_WORKER_IMAGE,worker_image);
         detailsIntent.putExtra(EXTRA_JOB_TITLE,worker_job_title);
+
+        detailsIntent.putExtra(EXTRA_TOKEN_ID,w_tokenid);
+
         detailsIntent.putExtra("clientName",clientName);
+
 
         startActivity(detailsIntent);
     }

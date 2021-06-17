@@ -62,6 +62,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
 
     @Override
     public void onBindViewHolder(@NonNull HistoryItemViewHolder holder, int position) {
+        String worker_phone = clientHistories.get(position).getPhone();
+        String worker_job = clientHistories.get(position).getJobTitle();
         holder.textViewTime.setText(clientHistories.get(position).getTime());
         holder.textViewDate.setText(clientHistories.get(position).getDate());
         holder.textViewEmpName.setText(clientHistories.get(position).getUserName());
@@ -106,12 +108,28 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
             }
         });
 
+
+        //get phonClient
+        String phoneClient = HistoryActivity.phoneClient;
+
+        //go to rate page
+        holder.buttonRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(context, RatingActivity.class);
+                intent.putExtra("worker_phone",worker_phone);
+                intent.putExtra("worker_job",worker_job);
+                intent.putExtra("client_phone",phoneClient);
+                context.startActivity(intent);
+
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.getContext().startActivity(new Intent(v.getContext(), RatingActivity.class)
                         .putExtra("phoneClient",phoneClient)
                         .putExtra("phoneWorker",phoneWorker));
+
             }
         });
 
@@ -126,7 +144,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     public class HistoryItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewTime,textViewDate,textViewEmpName,textViewTypeOfJob,textViewJobTitle;
         RatingBar ratingBar;
-        Button buttonDelete;
+        Button buttonDelete,buttonRate;
         public View layout;
         public HistoryItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -138,6 +156,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
             textViewJobTitle = itemView.findViewById(R.id.job_title_of_worker);
             ratingBar = itemView.findViewById(R.id.ratingBar);
             buttonDelete = itemView.findViewById(R.id.delete);
+            buttonRate = itemView.findViewById(R.id.ratebtn);
 
         }
     }

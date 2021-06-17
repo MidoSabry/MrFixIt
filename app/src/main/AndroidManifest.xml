@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -89,12 +90,34 @@
 
         <service android:name=".reminder.MyService" />
 
+<!--        <service-->
+<!--            android:name=".Notification.FirebasePushNotification"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+        <service
+            android:name=".NotificationToClient.FirebasePushNotification"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+
         <receiver
             android:name=".reminder.MyReceiver"
             android:enabled="true"
             android:exported="true" />
         <!--
 <activity android:name=".Share.SelectionPage.SelectMembershipType">
+
+
+        <activity android:name=".Share.SelectionPage.SelectMembershipType">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -103,6 +126,7 @@
             </intent-filter>
         -->
         <activity android:name=".Share.SplashScreen.SplashScreen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -111,6 +135,7 @@
         </activity>
         <activity android:name=".Share.SelectionPage.SelectMembershipType" />
         <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>

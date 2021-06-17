@@ -38,9 +38,14 @@ public class VerificationCode extends AppCompatActivity {
     int numOfJob,rating,like,disLike;
     User userClient,userWorker;
 
+    String tokenId;
+
     public static final String EXTR_USER_NAME ="userName";
     public static final String EXTR_PHONE_NUM ="phone";
     public static final String EXTRA_JOB_TITLE ="jobTitle";
+
+    //tokinId
+    public static final String EXTRA_TOKEN_ID ="tokenid";
 
 
 
@@ -76,6 +81,8 @@ public class VerificationCode extends AppCompatActivity {
         disLike = getIntent().getIntExtra("numOfDisLike",0);
         rating = getIntent().getIntExtra("rating",0);
 
+        //tokenid
+        tokenId = getIntent().getStringExtra("token");
 
         mVerifyCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,13 +103,13 @@ public class VerificationCode extends AppCompatActivity {
 
     private void sendToMain(){
 
-        userClient = new User(userName,email,phoneNum,address,type,password);
-        userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle,image,numOfJob,like,disLike,rating);
+        userClient = new User(userName,email,phoneNum,address,type,password,tokenId);
+        userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle,image,numOfJob,like,disLike,rating,tokenId);
 
         if(type.equals("Owner")){
             registerClient(userClient);
             startActivity(new Intent(VerificationCode.this, HomePageClientActivity.class)
-                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName));
+                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_TOKEN_ID,tokenId));
         }
         else if(type.equals("Worker")){
             registerWorker(userWorker);

@@ -44,6 +44,7 @@ public class ThirdOrderFragment extends Fragment {
     EditText username;
     String categoryType;
     String phoneNum;
+    String tokinid;
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             .clientId(Config.payPalKey);
@@ -86,6 +87,7 @@ public class ThirdOrderFragment extends Fragment {
         orderTree.setDetails(getArguments().getString("Details"));
         orderTree.setTypeOfOrder(getArguments().getString("Type"));
         phoneNum = getActivity().getIntent().getStringExtra("phone");
+        tokinid = getActivity().getIntent().getStringExtra("token");
         categoryType = getActivity().getIntent().getStringExtra("CategoryType");
         thirdOrderViewModel = new ViewModelProvider(this).get(ThirdOrderViewModel.class);
         clientMakeOrder = (ClientMakeOrder) getActivity();
@@ -107,6 +109,7 @@ public class ThirdOrderFragment extends Fragment {
                 orderTree.setJobTitle(categoryType);
                 orderTree.setRequestedPhone(phoneNum);
                 orderTree.setUserName(username.getText().toString());
+                orderTree.setTokenid(tokinid);
                 thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
                 thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
                 processPayment();
@@ -118,6 +121,7 @@ public class ThirdOrderFragment extends Fragment {
                 orderTree.setPaymentMethod(2);
                 orderTree.setJobTitle(categoryType);
                 orderTree.setRequestedPhone(phoneNum);
+                orderTree.setTokenid(tokinid);
                 thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
                 orderTree.setUserName(username.getText().toString());
                 thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
@@ -132,6 +136,7 @@ public class ThirdOrderFragment extends Fragment {
                 orderTree.setJobTitle(categoryType);
                 orderTree.setRequestedPhone(phoneNum);
                 orderTree.setUserName(username.getText().toString());
+                orderTree.setTokenid(tokinid);
                 thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
                 thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
             }

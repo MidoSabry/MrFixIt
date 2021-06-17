@@ -51,10 +51,10 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
 
         allCategory=allCategoryList.get(position);
-        if(allCategory.getEmployeeDataList().isEmpty()){
-
-
-        }
+//        if(allCategory.getEmployeeDataList().isEmpty()){
+//
+//
+//        }
 
         holder.categoryTitle.setText(allCategory.getCategoryTitle());
         //if(allCategoryList.get(position).getEmployeeDataList().size()!=0)

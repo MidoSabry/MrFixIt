@@ -4,13 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -18,7 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
-import com.example.fixawy.Firebase.FirebaseHandlerWorker;
+import com.example.fixawy.NotificationToClient.Client;
+import com.example.fixawy.NotificationToClient.Data;
+import com.example.fixawy.NotificationToClient.MyResponse;
+import com.example.fixawy.NotificationToClient.NotificationAPI;
+import com.example.fixawy.NotificationToClient.NotificationSender;
 import com.example.fixawy.Pojos.Accepted;
 import com.example.fixawy.Pojos.WorkersAccepted;
 import com.example.fixawy.R;
@@ -30,10 +30,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_JOB_TITLE;
 import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_WORKER_IMAGE;
 import static com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity.EXTRA_ORDER_JOB_TITLE;
 import static com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity.EXTRA_ORDER_PHONE;
+import static com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity.EXTRA_TOKEN_ID;
 import static com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity.EXTRA_WORKER_ADDRESS;
 import static com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity.EXTRA_WORKER_DIS_LIKE;
 import static com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity.EXTRA_WORKER_LIKE;
@@ -60,12 +65,17 @@ public class DetailsJobActivity extends AppCompatActivity {
     Button accept;
     DatabaseReference ref;
     FirebaseHandlerClient firebaseHandlerClient;
+
+
+    NotificationAPI notificationAPI;
+
     String jobDate,jobDetails,jobLocation,jobPhone,jobTime,jobTypeOfOrder,clientName;
+
 
     //public int worker_likes,worker_dislikes,worker_num_of_job,worker_rating;
 //   public String phone,jobTitle,Worker_phone,worker_name,worker_address,comment;
 
-    public String workerName,workerPhone,workerAddress,workerNumOfJob,workerLikes,workerDisLikes,workerRating,orderPhone,orderJobTitle,workerImage,workerJob,comment;
+    public String workerName,workerPhone,workerAddress,workerNumOfJob,workerLikes,workerDisLikes,workerRating,orderPhone,orderJobTitle,workerImage,workerJob,workerTokenid,comment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +96,18 @@ public class DetailsJobActivity extends AppCompatActivity {
 
         workerImage = intent.getStringExtra(EXTRA_WORKER_IMAGE);
         workerJob = intent.getStringExtra(EXTRA_JOB_TITLE);
+
+
+        workerTokenid = intent.getStringExtra(EXTRA_TOKEN_ID);
+
         clientName = intent.getStringExtra("clientName");
 
-        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, workerName, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, workerNumOfJob, Toast.LENGTH_SHORT).show();
+
+
+//        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, workerName, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, workerNumOfJob, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
 
 //        Intent intent = getIntent();
 //        String phone = intent.getStringExtra(EXTRA_ORDER_PHONE);
@@ -108,6 +125,9 @@ public class DetailsJobActivity extends AppCompatActivity {
 
 //        Toast.makeText(this, phone, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, jobTitle, Toast.LENGTH_SHORT).show();
+
+        //to notification
+        notificationAPI = Client.getClient("https://fcm.googleapis.com/").create(NotificationAPI.class);
 
 
         setContentView(R.layout.activity_details_job);
@@ -180,16 +200,74 @@ public class DetailsJobActivity extends AppCompatActivity {
     }
     public void sendData()
     {
+
+        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob,workerTokenid);
+//        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
+//
+//        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
+
         Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob);
         Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
 
         Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "date is " + jobDate + "time is " + jobTime + "typeOfOrder is " + jobTypeOfOrder, Toast.LENGTH_SHORT).show();
+
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addAcceptedWorker(accepted,orderPhone,orderJobTitle,workerPhone);
         WorkersAccepted workersAccepted = new WorkersAccepted(jobTime,jobDate,jobTypeOfOrder,jobLocation,orderPhone,orderJobTitle,clientName,workerName,workerAddress,workerPhone,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage);
         firebaseHandlerClient.addAcceptedPath(workersAccepted,orderPhone,orderJobTitle,workerPhone);
 
+//        FirebaseDatabase.getInstance().getReference("Worker").child(orderJobTitle).child("order Details").child(orderPhone).child("tokenId").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                String usertoken=dataSnapshot.getValue(String.class);
+//                sendNotifications(usertoken, "Accepted Your Job","??????");
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+        ref = FirebaseDatabase.getInstance().getReference().child("Worker").child(orderJobTitle).child("order Details").child(orderPhone);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String usertoken = snapshot.child("tokenid").getValue().toString();
+                Log.d("tooooookkk",usertoken);
+                sendNotifications(usertoken, "Accepted Your Job","??????");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void sendNotifications(String usertoken, String title, String message) {
+        Data data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+        //Log.d("iiiiiiiiiiiiii",usertoken);
+        notificationAPI.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+            @Override
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body().success != 1) {
+                        Toast.makeText(DetailsJobActivity.this, "Failed ", Toast.LENGTH_LONG);
+                    }
+                }
+            }
+           // Intent intent = new Intent(getApplicationContext(), SelectedWorkerActivity.class);
+
+            @Override
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

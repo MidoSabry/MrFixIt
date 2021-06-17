@@ -1,5 +1,7 @@
 package com.example.fixawy.Firebase;
 
+import android.util.Log;
+
 import com.example.fixawy.Pojos.Accepted;
 //import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.Pojos.MakeOrder;
@@ -21,6 +23,7 @@ public class FirebaseHandlerClient {
     }
     public Task<Void> addClientrData(User user, String phonNum)
     {
+
         return databaseReference.child("Data").child(phonNum).setValue(user);
     }
 

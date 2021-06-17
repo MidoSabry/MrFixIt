@@ -15,6 +15,8 @@ public class User {
     private int disLike;
     private int rating;
 
+    private String tokenId;
+
     public User() {
     }
 
@@ -31,16 +33,26 @@ public class User {
 
     public User(String userName, String email, String phoneNum, String address, String type, String password, String jobTitle, int numOfJob, int like, int disLike, int rating){}
 
-    public User(String userName, String email, String phone, String address, String type, String password) {
+//    public User(String userName, String email, String phone, String address, String type, String password) {
+//        this.userName = userName;
+//        this.email = email;
+//        this.phone = phone;
+//        this.address = address;
+//        this.type = type;
+//        this.password=password;
+//    }
+
+    public User(String userName, String email, String phone, String address, String type, String password,String tokenId) {
         this.userName = userName;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.type = type;
         this.password=password;
+        this.tokenId = tokenId;
     }
 
-    public User(String userName, String email, String phone, String address, String type, String password, String jobTitle,String image) {
+    public User(String userName, String email, String phone, String address, String type, String password, String jobTitle,String tokenId,String image) {
         this.userName = userName;
         this.email = email;
         this.phone = phone;
@@ -48,28 +60,30 @@ public class User {
         this.type = type;
         this.password = password;
         this.jobTitle = jobTitle;
+        this.tokenId = tokenId;
         this.image = image;
 
     }
 
-    public User(String userName, String email, String phone, String address, String type, String password, String jobTitle) {
-        this.userName = userName;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.type = type;
-        this.password = password;
-        this.jobTitle = jobTitle;
-    }
+//    public User(String userName, String email, String phone, String address, String type, String password, String jobTitle) {
+//        this.userName = userName;
+//        this.email = email;
+//        this.phone = phone;
+//        this.address = address;
+//        this.type = type;
+//        this.password = password;
+//        this.jobTitle = jobTitle;
+//    }
 
-    public User(String userName, String phone, String address) {
-        this.userName = userName;
-        this.phone = phone;
-        this.address = address;
-    }
+//    public User(String userName, String phone, String address) {
+//        this.userName = userName;
+//        this.phone = phone;
+//        this.address = address;
+//    }
 
 
-    public User(String userName, String email, String phone, String address, String type, String password, String jobTitle, String image, int numOfJob, int like, int disLike, int rating) {
+
+    public User(String userName, String email, String phone, String address, String type, String password, String jobTitle, String image, int numOfJob, int like, int disLike, int rating,String tokenId) {
         this.userName = userName;
         this.email = email;
         this.phone = phone;
@@ -82,6 +96,15 @@ public class User {
         this.like = like;
         this.disLike = disLike;
         this.rating = rating;
+        this.tokenId = tokenId;
+    }
+
+    public String getTokenId() {
+        return tokenId;
+    }
+
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
     }
 
     public int getNumOfJob() {

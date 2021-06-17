@@ -14,9 +14,12 @@ import com.example.fixawy.Client.MakeOrder.ClientMakeOrder;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
 import com.example.fixawy.R;
 
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTRA_TOKEN_ID;
+
 public class SelectKindOfChoiceActivity extends AppCompatActivity {
     Button askQuestionBtn, makeOrderBtn;
     String phoneNum,jobTitle,categoryType;
+    String tokinid;
 
 
 
@@ -27,6 +30,7 @@ public class SelectKindOfChoiceActivity extends AppCompatActivity {
         askQuestionBtn = findViewById(R.id.ask_question_btn);
         phoneNum = getIntent().getStringExtra("phone");
         categoryType = getIntent().getStringExtra("CategoryType");
+        tokinid = getIntent().getStringExtra("token");
         makeOrderBtn = findViewById(R.id.make_order_btn);
         makeOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,11 +38,14 @@ public class SelectKindOfChoiceActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectKindOfChoiceActivity.this, ClientMakeOrder.class);
                 intent.putExtra("phone", phoneNum);
                 intent.putExtra("CategoryType",categoryType);
+                intent.putExtra("token",tokinid);
                 startActivity(intent);
             }
         });
-        Toast.makeText(SelectKindOfChoiceActivity.this,phoneNum , Toast.LENGTH_SHORT).show();
-        Toast.makeText(SelectKindOfChoiceActivity.this,categoryType , Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SelectKindOfChoiceActivity.this,phoneNum , Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SelectKindOfChoiceActivity.this,categoryType , Toast.LENGTH_SHORT).show();
+       // Toast.makeText(SelectKindOfChoiceActivity.this,tokinid+"123456789" , Toast.LENGTH_SHORT).show();
+
 
 
         askQuestionBtn.setOnClickListener(new View.OnClickListener() {

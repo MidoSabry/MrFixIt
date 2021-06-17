@@ -12,6 +12,16 @@ public class OrderTree {
     private String jobTitle;
     private String userName;
 
+    private String tokenid;
+
+    public String getTokenid() {
+        return tokenid;
+    }
+
+    public void setTokenid(String tokenid) {
+        this.tokenid = tokenid;
+    }
+
     public String getUserName() {
         return userName;
     }

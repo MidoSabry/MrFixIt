@@ -3,8 +3,8 @@ package com.example.fixawy.Client.AcceptedWorkerPage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,14 +12,26 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.example.fixawy.NotificationToClient.Client;
+import com.example.fixawy.NotificationToClient.Data;
+import com.example.fixawy.NotificationToClient.MyResponse;
+import com.example.fixawy.NotificationToClient.NotificationAPI;
+import com.example.fixawy.NotificationToClient.NotificationSender;
+
+
 import com.example.fixawy.Client.RequestedPage.RequestedPageViewModel;
 import com.example.fixawy.Client.SelectedPage.SelectedActivity;
 import com.example.fixawy.MainActivity;
+
 import com.example.fixawy.Pojos.MakeOrder;
-import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
+
+import com.example.fixawy.Worker.DetailsJobPage.DetailsJobActivity;
+
 import com.example.fixawy.Worker.WorkerProfilePage.WorkerProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +39,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class AcceptedWorkActivity extends AppCompatActivity {
 
@@ -42,6 +60,8 @@ public class AcceptedWorkActivity extends AppCompatActivity {
     List<String> uIds = new ArrayList<>();
     AcceptWorkModel acceptWorkModel ;
     RequestedPageViewModel requestedPageViewModel;
+
+    NotificationAPI notificationAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +83,8 @@ public class AcceptedWorkActivity extends AppCompatActivity {
         phoneClient = getIntent().getStringExtra("phoneClient");
         workerJobTitle = getIntent().getStringExtra("workerJobTitle");
         nameOfWorker = getIntent().getStringExtra("nameOfWorker");
+
+        notificationAPI = Client.getClient("https://fcm.googleapis.com/").create(NotificationAPI.class);
 
 
         Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
@@ -206,6 +228,23 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                                 referenceDelete2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details");
                                 referenceDelete2.child(phoneClient).setValue(null);
+
+
+                                //send notification
+//                                reference5 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Accepted").child(phoneWorker);
+//                                reference5.addValueEventListener(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                        String usertoken = snapshot.child("tokenid").getValue().toString();
+//                                        Log.d("tooooookkk",usertoken);
+//                                        sendNotifications(usertoken, "Accepted Your Requested","??????");
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                    }
+//                                });
                             }
 
                             @Override
@@ -213,6 +252,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                             }
                         });
+
             }
         });
 
@@ -228,4 +268,28 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
 
     }
+
+    public void sendNotifications(String usertoken, String title, String message) {
+        Data data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+        //Log.d("iiiiiiiiiiiiii",usertoken);
+        notificationAPI.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+            @Override
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body().success != 1) {
+                        Toast.makeText(AcceptedWorkActivity.this, "Failed ", Toast.LENGTH_LONG);
+                    }
+                }
+            }
+            // Intent intent = new Intent(getApplicationContext(), SelectedWorkerActivity.class);
+
+            @Override
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+
 }

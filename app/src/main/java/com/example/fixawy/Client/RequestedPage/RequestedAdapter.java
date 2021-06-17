@@ -34,6 +34,10 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
     AlertDialog alertDialog;
     LayoutInflater inflater;
     Button btnDelete,btnCancel;
+    RequestedActivity requestedActivity;
+
+    DatabaseReference database;
+    DatabaseReference database2;
 
     public RequestedAdapter(Context context, List<OrderTree> orderTreeItems,onitemclick onItemClick) {
         this.context = context;
@@ -57,6 +61,9 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
 
     @Override
     public void onBindViewHolder(@NonNull RequestedItemViewHolder holder, int position) {
+        String my_select_job =  orderTreeItems.get(position).getJobTitle();
+        String my_phone = orderTreeItems.get(position).getRequestedPhone();
+
         holder.jobTitle.setText(orderTreeItems.get(position).getJobTitle());
         holder.typeOfOrder.setText(orderTreeItems.get(position).getTypeOfOrder());
         holder.desc.setText(orderTreeItems.get(position).getDetails());
@@ -87,7 +94,23 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
                     @Override
                     public void onClick(View view) {
                       onItemClick.onclick(position,1);
+
+
+
+                        /*Toast.makeText(v.getContext(), "delete", Toast.LENGTH_SHORT).show();
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        final DatabaseReference myRef = database.getReference("Client").child("make order").child(orderTreeItems.get(position).getPhone()).child(orderTreeItems.get(position).getJobTitle()).child("order Details").child(String.valueOf(uIds));
+                        myRef.setValue(null);*/
+                        requestedActivity = new RequestedActivity();
+                        //String my_phone = requestedActivity.phoneNum;
+                        database = FirebaseDatabase.getInstance().getReference("Client").child("make order").child(my_phone).child(my_select_job);
+                        database2 = FirebaseDatabase.getInstance().getReference("Worker").child(my_select_job).child("order Details").child(my_phone);
+                        database.removeValue();
+                        database2.removeValue();
+                        alertDialog.cancel();
+
                       alertDialog.cancel();
+
                     }
                 });
                 btnCancel.setOnClickListener(new View.OnClickListener() {
