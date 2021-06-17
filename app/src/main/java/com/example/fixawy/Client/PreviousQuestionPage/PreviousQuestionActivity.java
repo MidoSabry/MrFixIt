@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class PreviousQuestionActivity extends AppCompatActivity {
 
     FloatingActionButton floatingButtonAsk;
-    String phoneNum,jobTitle;
+    String phoneNum,jobTitle,clientName;
     RecyclerView mRecyclerView;
     DatabaseReference mRef;
     PreviousQuestionAdapter questionAdapter;
@@ -40,7 +40,7 @@ public class PreviousQuestionActivity extends AppCompatActivity {
         textViewJobTitle=findViewById(R.id.txt_job_title);
         phoneNum = getIntent().getStringExtra("phone");
         jobTitle = getIntent().getStringExtra("CategoryType");
-
+        clientName = getIntent().getStringExtra("clientName");
         textViewJobTitle.setText("All Questions for "+jobTitle);
 
         floatingButtonAsk.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +49,7 @@ public class PreviousQuestionActivity extends AppCompatActivity {
                 Intent intent = new Intent(PreviousQuestionActivity.this, AskQuestionActivity.class);
                 intent.putExtra("phone", phoneNum);
                 intent.putExtra("CategoryType",jobTitle);
+                intent.putExtra("clientName",clientName);
                 startActivity(intent);
             }
         });

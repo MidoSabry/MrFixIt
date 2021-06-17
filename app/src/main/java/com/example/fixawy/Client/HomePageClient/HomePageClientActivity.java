@@ -323,6 +323,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
                 intent.putExtra("phone", phoneNum);
                 intent.putExtra("token",tokenID);
+                intent.putExtra("clientName",client_user_name);
                 startActivity(intent);
 
             }

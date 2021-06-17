@@ -59,6 +59,8 @@
     <string name="select_job">Select Job</string>
     <string name="your_question">Your Questions</string>
     <string name="Next">Next</string>
+    <string name="dontHaveAccount">Do not Have Account?</string>
+    <string name="alreadyHaveAccount">Already Have Account?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Finish">Finish</string>
@@ -166,9 +168,21 @@
 
 
     <!--ShopOwner-->
-    <string name="shopName">shopName</string>
+    <string name="shopName">shop Name</string>
     <string name="shopOwner">Shop Owner</string>
     <string name="all_shops">Show All Shops</string>
+    <string name="allShops">All Shops</string>
+    <string name="products">Products</string>
+    <string name="my_products">My Products</string>
+    <string name="select_shop">Choose Shop</string>
+    <string name="enterProductName">Enter Product Name</string>
+    <string name="enterPrice">Enter Price</string>
+    <string name="addDescOfProduct">Add Desc Of Product</string>
+    <string name="nameOfProduct">Name Of Product :</string>
+    <string name="productName">ProductName</string>
+    <string name="priceOfProduct">Price Of Product   :</string>
+    <string name="productPrice">ProductPrice</string>
+    <string name="productDescription">ProductDescription</string>
 
     <!--Shops-->
     <string name="electrical_shop">Electrical Shops</string>

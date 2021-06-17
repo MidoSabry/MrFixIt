@@ -166,7 +166,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:text="Don't Have Account?"
+                            android:text="@string/dontHaveAccount"
                             android:textColor="@color/colorPurple"
                             android:fontFamily="@font/coolveticacompressedrg"
                             android:layout_marginTop="25dp"

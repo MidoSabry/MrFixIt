@@ -207,8 +207,6 @@ public class DetailsJobActivity extends AppCompatActivity {
 //
 //        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
-
-        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob);
         Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
 

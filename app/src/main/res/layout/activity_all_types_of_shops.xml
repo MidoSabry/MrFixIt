@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ALL SHOPS"
+        android:text="@string/allShops"
         android:textSize="35sp"
         android:fontFamily="@font/coolveticacompressedrg"
         android:layout_gravity="center"

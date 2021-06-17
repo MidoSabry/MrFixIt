@@ -62,7 +62,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Product Name"
+                            android:hint="@string/enterProductName"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +76,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Price"
+                            android:hint="@string/enterPrice"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +91,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Add Desc Of Product"
+                            android:hint="@string/addDescOfProduct"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,7 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:background="@drawable/btn_check_type"
-                        android:text="Post"
+                        android:text="@string/post"
                         android:layout_marginTop="28dp"
                         android:textAllCaps="false"
                         android:textColor="@color/white"

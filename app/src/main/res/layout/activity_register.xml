@@ -180,7 +180,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_gravity="center_horizontal"
                             android:fontFamily="@font/coolveticacompressedrg"
-                            android:text="Already Have Account?"
+                            android:text="@string/alreadyHaveAccount"
                             android:textColor="@color/colorPurple"
                             android:layout_marginRight="8dp"
                             android:textSize="20sp" />

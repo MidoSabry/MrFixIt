@@ -59,7 +59,8 @@
     <string name="post">نشر</string>
     <string name="select_job">اختر الوظيفه</string>
     <string name="your_question">اسالتك</string>
-
+    <string name="dontHaveAccount">ليس لديك حساب؟</string>
+    <string name="alreadyHaveAccount">لدي حساب بالفعل؟</string>
     <string name="navigation_drawer_open">افتح</string>
     <string name="navigation_drawer_close">اغلق</string>
 
@@ -173,8 +174,20 @@
 
     <!--ShopOwner-->
     <string name="shopName">اسم المحل</string>
-    <string name="shopOwner">صاحب المحل</string>
+    <string name="shopOwner">صاحب محل</string>
     <string name="all_shops">عرض جميع المحلات</string>
+    <string name="allShops">جميع المحلات</string>
+    <string name="products">المنتجات</string>
+    <string name="my_products">منتجاتي</string>
+    <string name="select_shop">اختار محل</string>
+    <string name="enterProductName">ادخل اسم المنتج</string>
+    <string name="enterPrice">ادخل سعر المنتج</string>
+    <string name="addDescOfProduct">اضف وصف للمنتج</string>
+    <string name="nameOfProduct">اسم المنتج :</string>
+    <string name="productName">اسم المنتج</string>
+    <string name="priceOfProduct">سعر المنتج   :</string>
+    <string name="productPrice">سعر المنتج</string>
+    <string name="productDescription">وصف المنتج</string>
 
     <!--Shops-->
     <string name="electrical_shop">محلات ادوات كهربائية</string>
