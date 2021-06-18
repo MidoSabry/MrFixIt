@@ -88,9 +88,9 @@ public class SecondOrderFragment extends Fragment {
                     if (clientMakeOrder.current_state < (clientMakeOrder.DescriptionData.length - 1))
                         clientMakeOrder.current_state = clientMakeOrder.current_state + 1;
                     clientMakeOrder.binding.stepIndicator.setCompletedPosition(clientMakeOrder.current_state).drawView();
-                    int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
-                    Fragment current = getActivity().getSupportFragmentManager().getFragments().get(count > 0 ? count - 1 : count);
-                    if (current instanceof SecondOrderFragment) {
+                    //int count = getActivity().getSupportFragmentManager().getBackStackEntryCount();
+                    //Fragment current = getActivity().getSupportFragmentManager().getFragments().get(count > 1 ? count - 1 : count);
+                   {
                         Bundle bundle = new Bundle();
                         bundle.putString("Client location", orderTree.getLocation());
                         bundle.putString("Client phone", orderTree.getPhone());
@@ -170,7 +170,7 @@ public class SecondOrderFragment extends Fragment {
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.first_fragment_order, fragment);
+        fragmentTransaction.replace(R.id.first_fragment_order, fragment).addToBackStack(null);
         fragmentTransaction.commit();
 
     }

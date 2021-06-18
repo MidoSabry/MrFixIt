@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import com.example.fixawy.databinding.ActivityClientMakeOrderBinding;
 
 public class ClientMakeOrder extends AppCompatActivity {
     Button Next;
+    private long backPressedTime;
     ActivityClientMakeOrderBinding binding;
     String[] DescriptionData = {"", "", ""};
     int current_state = 0;
@@ -63,10 +65,11 @@ public class ClientMakeOrder extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.first_fragment_order, fragment);
+        fragmentTransaction.replace(R.id.first_fragment_order, fragment).addToBackStack(null);
         fragmentTransaction.commit();
 
     }
+
 
 
 }

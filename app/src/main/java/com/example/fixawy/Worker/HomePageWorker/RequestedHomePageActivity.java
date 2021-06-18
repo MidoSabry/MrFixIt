@@ -463,6 +463,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
             case R.id.nav_logout:
                 Intent intent4 = new Intent(RequestedHomePageActivity.this, SelectMembershipType.class);
+                startActivity(intent4);
+                finish();
                 break;
 
 
