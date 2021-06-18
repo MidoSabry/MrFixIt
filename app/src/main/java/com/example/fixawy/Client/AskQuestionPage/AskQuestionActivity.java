@@ -13,6 +13,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
@@ -38,12 +39,13 @@ public class AskQuestionActivity extends AppCompatActivity {
 
     EditText editTextQuestion;
     Button buttonPostQuestion,buttonUploadPhoto;
-    String question,phoneNum,jobTitle;
+    String question,phoneNum,jobTitle,clientName;
     AskQuestionViewModel askQuestionViewModel;
     Questions userQuestions,workerQuestions;
     ImageView imageViewUploadPhoto;
     StorageReference storageReference;
     Uri imageUri;
+    TextView textViewClientName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +56,15 @@ public class AskQuestionActivity extends AppCompatActivity {
         buttonPostQuestion=findViewById(R.id.postQuestion);
         buttonUploadPhoto = findViewById(R.id.image_btn);
         imageViewUploadPhoto = findViewById(R.id.uploadPhoto);
+        textViewClientName = findViewById(R.id.client_name);
         askQuestionViewModel = new AskQuestionViewModel();
         storageReference = FirebaseStorage.getInstance().getReference();
         phoneNum=getIntent().getStringExtra("phone");
         jobTitle = getIntent().getStringExtra("CategoryType");
+        clientName = getIntent().getStringExtra("clientName");
 
+
+        textViewClientName.setText(clientName);
 
         buttonUploadPhoto.setOnClickListener(new View.OnClickListener() {
             @Override

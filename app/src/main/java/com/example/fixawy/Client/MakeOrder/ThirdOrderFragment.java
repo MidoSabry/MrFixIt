@@ -100,12 +100,13 @@ public class ThirdOrderFragment extends Fragment {
                 intent.putExtra("phone", phoneNum);
                 intent.putExtra("CategoryType",categoryType);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
         payPalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orderTree.setPaymentMethod(1);
+                orderTree.setPaymentMethod("paypal");
                 orderTree.setJobTitle(categoryType);
                 orderTree.setRequestedPhone(phoneNum);
                 orderTree.setUserName(username.getText().toString());
@@ -118,7 +119,7 @@ public class ThirdOrderFragment extends Fragment {
         creditCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orderTree.setPaymentMethod(2);
+                orderTree.setPaymentMethod("creditCard");
                 orderTree.setJobTitle(categoryType);
                 orderTree.setRequestedPhone(phoneNum);
                 orderTree.setTokenid(tokinid);
@@ -126,13 +127,15 @@ public class ThirdOrderFragment extends Fragment {
                 orderTree.setUserName(username.getText().toString());
                 thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
                 Intent intent = new Intent(getActivity(), CreditCardActivity.class);
+                intent.putExtra("phone", phoneNum);
+                intent.putExtra("CategoryType",categoryType);
                 startActivity(intent);
             }
         });
         cash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orderTree.setPaymentMethod(0);
+                orderTree.setPaymentMethod("cash");
                 orderTree.setJobTitle(categoryType);
                 orderTree.setRequestedPhone(phoneNum);
                 orderTree.setUserName(username.getText().toString());

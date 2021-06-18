@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:fontFamily="@font/redressedregular"
         android:text="@string/Client_name"
         android:textColor="@color/darkPurple"
@@ -26,8 +27,8 @@
         android:id="@+id/header_client_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
         android:fontFamily="@font/redressedregular"
         android:text="@string/Client_phone"
         android:textColor="@color/darkPurple"

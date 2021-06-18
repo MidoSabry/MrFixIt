@@ -33,8 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="110dp"
+            android:layout_marginStart="110dp"
             android:layout_marginTop="16dp"
-            android:text="Job"
+           android:text="@string/job"
             android:textColor="@color/colorPurple"
             android:fontFamily="@font/robotocndensed"
             android:textSize="25sp"
@@ -46,10 +47,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="110dp"
+            android:layout_marginStart="110dp"
             android:layout_marginTop="56dp"
             android:fontFamily="@font/robotocndensed"
-
-            android:text="Mohamed Sabry"
+            android:text="@string/Worker_Name"
             android:textColor="@color/colorPurple"
             android:textSize="25sp"
             app:layout_constraintStart_toEndOf="@+id/worker_img"
@@ -61,8 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="110dp"
+            android:layout_marginStart="110dp"
             android:layout_marginTop="4dp"
-            android:text="01225699594"
+           android:text="@string/phone_w"
             android:textColor="@color/colorPurple"
             android:fontFamily="@font/robotocndensed"
 
@@ -75,13 +77,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="6dp"
             android:text="I can do this job in 2 hour just"
             android:textColor="@color/fourthColor"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             android:fontFamily="@font/robotocndensed"
-
             app:layout_constraintTop_toBottomOf="@+id/worker_phone" />
 
         <Button

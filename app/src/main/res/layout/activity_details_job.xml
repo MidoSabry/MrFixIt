@@ -13,12 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/coolveticacompressedrg"
         android:gravity="center"
-        android:text="Details"
+        android:text="@string/Accept_details"
+        android:textColor="@color/white"
         android:textSize="35dp"
         android:textStyle="bold"
-        android:fontFamily="@font/coolveticacompressedrg"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,22 +55,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Type of order"
+                  android:text="@string/typeOrder"
                     android:textColor="@color/colorPurple"
                     android:textSize="25dp"
                     android:fontFamily="@font/robotocndensed"
                     android:textStyle="bold|italic"/>
+
                 <TextView
                     android:id="@+id/text_typeOfOrder_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginTop="4dp"
-                    android:hint="Maintenance and repair"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
+                    android:layout_weight="1"
+
+                    android:hint="@string/Maintanance_repair"
                     android:textColor="@color/grey_font"
-                    android:textColorHint="@color/grey_font"/>
+                    android:textColorHint="@color/grey_font"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -85,24 +87,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Details of job"
+                   android:text="@string/Details"
                     android:textColor="@color/colorPurple"
                     android:textSize="25dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/robotocndensed"
                     android:textStyle="bold|italic"/>
+
                 <TextView
                     android:id="@+id/text_detailsOfJob_details"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_weight="1"
                     android:layout_marginTop="12dp"
+                    android:layout_weight="1"
                     android:background="@drawable/et_layout"
+                    android:hint="@string/description"
                     android:padding="10dp"
-                    android:hint=" Description of the problem"
-                    android:textStyle="bold"
+                    android:textColor="@color/grey_font"
                     android:textSize="18dp"
-                    android:textColor="@color/grey_font"/>
+                    android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -116,25 +119,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Location"
+                 android:text="@string/location"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/colorPurple"
                     android:textSize="25dp"
                     android:fontFamily="@font/robotocndensed"
                     android:textStyle="bold|italic"/>
+
                 <TextView
                     android:id="@+id/text_location_details"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_weight="1"
                     android:layout_marginTop="7dp"
-                    android:hint="Sidi Beshr-Alex"
-                    android:textStyle="bold"
-                    android:padding="10dp"
-                    android:textSize="20dp"
+                    android:layout_weight="1"
+
                     android:background="@drawable/et_layout"
+                    android:hint="@string/hint_location"
+                    android:padding="10dp"
+                    android:textColor="@color/grey_font"
                     android:textColorHint="@color/grey_font"
-                    android:textColor="@color/grey_font"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
             <LinearLayout
@@ -149,26 +154,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Phone"
+                   android:text="@string/phone"
                     android:textColor="@color/colorPurple"
                     android:textSize="25dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/robotocndensed"
                     android:textStyle="bold|italic"/>
+
                 <TextView
                     android:id="@+id/text_phone_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:hint="01225699594"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-
                     android:layout_marginTop="4dp"
-               android:background="@drawable/et_layout"
-                   android:padding="6dp"
+
+                    android:layout_weight="1"
+                    android:background="@drawable/et_layout"
+
+                    android:hint="@string/phone_details"
+                    android:padding="6dp"
+                    android:textColor="@color/grey_font"
                     android:textColorHint="@color/grey_font"
-                    android:textColor="@color/grey_font"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -189,17 +196,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Time"
+                        android:fontFamily="@font/robotocndensed"
+
+                        android:text="@string/Time"
                         android:textColor="@color/colorPurple"
                         android:textSize="25dp"
-                        android:fontFamily="@font/robotocndensed"
-                        android:textStyle="bold|italic"/>
+                        android:textStyle="bold|italic" />
                     <TextView
                         android:id="@+id/text_time_details"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="     2:30"
+                        android:hint="@string/time_hint"
                         android:layout_margin="5dp"
                         android:background="@drawable/et_layout"
                         android:textStyle="bold"
@@ -220,11 +228,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Date"
+
+                        android:fontFamily="@font/robotocndensed"
+                        android:text="@string/Date"
                         android:textColor="@color/colorPurple"
                         android:textSize="25dp"
-                        android:fontFamily="@font/robotocndensed"
-                        android:textStyle="bold|italic"/>
+                        android:textStyle="bold|italic" />
                     <TextView
                         android:id="@+id/text_date_details"
                         android:layout_width="match_parent"
@@ -254,23 +263,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Payment"
+                    android:text="@string/Payment"
                     android:textColor="@color/colorPurple"
                     android:textSize="25dp"
                     android:textStyle="bold|italic"/>
+
                 <TextView
                     android:id="@+id/text_payment_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:hint="Visa"
-                    android:padding="5dp"
-                    android:textStyle="bold"
-                    android:textSize="22dp"
-                    android:paddingLeft="8dp"
                     android:background="@drawable/et_layout"
+                    android:hint="@string/payment_hint"
+                    android:padding="5dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/grey_font"
                     android:textColorHint="@color/grey_font"
-                    android:textColor="@color/grey_font"/>
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <Button
@@ -278,7 +288,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_check_type"
-                android:text="Accept"
+                android:text="@string/accept"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
                 android:textColor="@color/white"

@@ -124,7 +124,9 @@ public class LoginActivity extends AppCompatActivity {
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class)
+                        .putExtra("type",type)
+                        .putExtra("jobTitle",jobTitle));
             }
         });
 

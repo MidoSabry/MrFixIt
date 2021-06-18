@@ -9,12 +9,13 @@
         android:id="@+id/txt_job_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Previous Questions"
         android:layout_gravity="center_horizontal"
+       android:fontFamily="@font/coolveticacompressedrg"
         android:layout_marginTop="14dp"
-        android:textSize="20sp"
-        android:textColor="@color/white" />
+        android:gravity="center_horizontal"
+        android:text="@string/Previous_question"
+        android:textColor="@color/white"
+        android:textSize="35sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

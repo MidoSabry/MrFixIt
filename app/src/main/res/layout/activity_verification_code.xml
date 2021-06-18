@@ -89,8 +89,10 @@
                 android:layout_alignLeft="@+id/card_view"
                 android:layout_alignRight="@+id/card_view"
                 android:layout_marginLeft="35dp"
+                android:layout_marginStart="35dp"
                 android:layout_marginTop="-22dp"
                 android:layout_marginRight="35dp"
+                android:layout_marginEnd="35dp"
                 android:elevation="10dp">
 
 

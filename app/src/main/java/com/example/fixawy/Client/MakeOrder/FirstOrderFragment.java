@@ -100,7 +100,7 @@ public class FirstOrderFragment extends Fragment {
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.first_fragment_order, fragment);
+        fragmentTransaction.replace(R.id.first_fragment_order, fragment).addToBackStack(null);
         fragmentTransaction.commit();
     }
 }

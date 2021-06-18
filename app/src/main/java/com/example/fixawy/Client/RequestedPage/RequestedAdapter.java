@@ -72,6 +72,8 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
         holder.username.setText(orderTreeItems.get(position).getUserName());
         holder.time.setText(orderTreeItems.get(position).getTime());
         holder.date.setText(orderTreeItems.get(position).getDate());
+        holder.anotherphone.setText(orderTreeItems.get(position).getRequestedPhone());
+        holder.payment.setText(orderTreeItems.get(position).getPaymentMethod());
         holder.request_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,20 +96,13 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
                     @Override
                     public void onClick(View view) {
                       onItemClick.onclick(position,1);
-
-
-
-                        /*Toast.makeText(v.getContext(), "delete", Toast.LENGTH_SHORT).show();
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        final DatabaseReference myRef = database.getReference("Client").child("make order").child(orderTreeItems.get(position).getPhone()).child(orderTreeItems.get(position).getJobTitle()).child("order Details").child(String.valueOf(uIds));
-                        myRef.setValue(null);*/
-                        requestedActivity = new RequestedActivity();
+                        //requestedActivity = new RequestedActivity();
                         //String my_phone = requestedActivity.phoneNum;
-                        database = FirebaseDatabase.getInstance().getReference("Client").child("make order").child(my_phone).child(my_select_job);
-                        database2 = FirebaseDatabase.getInstance().getReference("Worker").child(my_select_job).child("order Details").child(my_phone);
-                        database.removeValue();
-                        database2.removeValue();
-                        alertDialog.cancel();
+                        //database = FirebaseDatabase.getInstance().getReference("Client").child("make order").child(my_phone).child(my_select_job);
+                        //database2 = FirebaseDatabase.getInstance().getReference("Worker").child(my_select_job).child("order Details").child(my_phone);
+                        //database.removeValue();
+                        //database2.removeValue();
+                        //alertDialog.cancel();
 
                       alertDialog.cancel();
 
@@ -137,7 +132,7 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
     }
 
     class RequestedItemViewHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, typeOfOrder, location, phone, date, time,username,desc;
+        TextView jobTitle, typeOfOrder, location, phone, date, time,username,desc,anotherphone ,payment;
         Button request_btn,delete_btn;
         public RequestedItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -151,6 +146,8 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
             time = itemView.findViewById(R.id.requested_clock);
             request_btn = itemView.findViewById(R.id.request_edit_button);
             delete_btn = itemView.findViewById(R.id.request_delete_button);
+            anotherphone= itemView.findViewById(R.id.another_requsted_phone);
+            payment = itemView.findViewById(R.id.requested_payment);
         }
 
     }

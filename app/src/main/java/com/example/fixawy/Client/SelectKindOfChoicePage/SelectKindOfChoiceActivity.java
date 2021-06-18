@@ -18,7 +18,7 @@ import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTRA_TOKEN_I
 
 public class SelectKindOfChoiceActivity extends AppCompatActivity {
     Button askQuestionBtn, makeOrderBtn;
-    String phoneNum,jobTitle,categoryType;
+    String phoneNum,jobTitle,categoryType,clientName;
     String tokinid;
 
 
@@ -31,6 +31,7 @@ public class SelectKindOfChoiceActivity extends AppCompatActivity {
         phoneNum = getIntent().getStringExtra("phone");
         categoryType = getIntent().getStringExtra("CategoryType");
         tokinid = getIntent().getStringExtra("token");
+        clientName = getIntent().getStringExtra("clientName");
         makeOrderBtn = findViewById(R.id.make_order_btn);
         makeOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +55,7 @@ public class SelectKindOfChoiceActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectKindOfChoiceActivity.this, PreviousQuestionActivity.class);
                 intent.putExtra("phone", phoneNum);
                 intent.putExtra("CategoryType",categoryType);
+                intent.putExtra("clientName",clientName);
                 Toast.makeText(SelectKindOfChoiceActivity.this,phoneNum , Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
