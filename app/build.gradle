@@ -114,6 +114,9 @@ dependencies {
  //design
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //design of dialog
+    implementation 'com.google.android.material:material:1.0.0'
+
 
 
 }

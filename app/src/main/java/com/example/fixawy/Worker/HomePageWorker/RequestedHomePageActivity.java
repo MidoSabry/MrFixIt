@@ -230,6 +230,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
                      //w_image = dataSnapshot.child("image").getValue().toString();
                      w_tokenid = dataSnapshot.child("tokenId").getValue().toString();
+                    Toast.makeText(RequestedHomePageActivity.this, w_tokenid, Toast.LENGTH_SHORT).show();
 
 
                     if(dataSnapshot.child("image").exists())

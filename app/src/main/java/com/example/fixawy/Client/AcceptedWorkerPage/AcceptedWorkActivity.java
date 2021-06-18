@@ -3,6 +3,7 @@ package com.example.fixawy.Client.AcceptedWorkerPage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -84,6 +85,9 @@ public class AcceptedWorkActivity extends AppCompatActivity {
         workerJobTitle = getIntent().getStringExtra("workerJobTitle");
         nameOfWorker = getIntent().getStringExtra("nameOfWorker");
 
+        Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, phoneWorker, Toast.LENGTH_SHORT).show();
+
         notificationAPI = Client.getClient("https://fcm.googleapis.com/").create(NotificationAPI.class);
 
 
@@ -102,7 +106,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 String numOfDisLike = snapshot.child("numOfDisLike").getValue(String.class);
                 String addressOfWorker = snapshot.child("addressOfWorker").getValue(String.class);
                 String phoneOfWorker = snapshot.child("phoneOfWorker").getValue(String.class);
-                String rating = snapshot.child("rating").getValue(String.class);
+               // String rating = snapshot.child("rating").getValue(String.class);
 
                 Picasso.get().load(url).into(imageViewWorker);
                 textViewNameOfWorker.setText(nameOfWorker);
@@ -111,7 +115,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 textViewNumOfDisLike.setText(numOfDisLike);
                 textViewAddress.setText(addressOfWorker);
                 textViewPhone.setText(phoneOfWorker);
-                ratingBar.setRating(Float.parseFloat(rating));
+                //ratingBar.setRating(Float.parseFloat(rating));
 
 
 
@@ -182,6 +186,23 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                         startActivity(new Intent(AcceptedWorkActivity.this,SelectedActivity.class)
                                 .putExtra("phone",phoneClient));
+
+
+                        //send notification
+                                reference5 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Workers Accepted Jobs").child(phoneWorker);
+                                reference5.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        String usertoken = snapshot.child("tokenid").getValue().toString();
+                                        Log.d("tooooookkk",usertoken);
+                                        sendNotifications(usertoken, "Accepted Your Requested","??????");
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
                     }
 
                     @Override

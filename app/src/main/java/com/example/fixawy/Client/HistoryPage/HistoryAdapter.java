@@ -69,7 +69,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
         holder.textViewEmpName.setText(clientHistories.get(position).getUserName());
         holder.textViewTypeOfJob.setText(clientHistories.get(position).getTypeOfOrder());
         holder.textViewJobTitle.setText(clientHistories.get(position).getJobTitle());
-
         String phoneWorker = clientHistories.get(position).getPhone();
         holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +107,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
             }
         });
 
-
         //get phonClient
         String phoneClient = HistoryActivity.phoneClient;
 
@@ -121,14 +119,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
                 intent.putExtra("worker_job",worker_job);
                 intent.putExtra("client_phone",phoneClient);
                 context.startActivity(intent);
-
-
-        holder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.getContext().startActivity(new Intent(v.getContext(), RatingActivity.class)
-                        .putExtra("phoneClient",phoneClient)
-                        .putExtra("phoneWorker",phoneWorker));
 
             }
         });

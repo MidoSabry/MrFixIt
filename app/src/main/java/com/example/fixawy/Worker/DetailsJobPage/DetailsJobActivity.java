@@ -201,14 +201,14 @@ public class DetailsJobActivity extends AppCompatActivity {
     public void sendData()
     {
 
-        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob,workerTokenid);
+  //      Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob,workerTokenid);
 //        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
 //
 //        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
 
-        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob);
+        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob,workerTokenid);
         Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
 
@@ -217,7 +217,7 @@ public class DetailsJobActivity extends AppCompatActivity {
 
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addAcceptedWorker(accepted,orderPhone,orderJobTitle,workerPhone);
-        WorkersAccepted workersAccepted = new WorkersAccepted(jobTime,jobDate,jobTypeOfOrder,jobLocation,orderPhone,orderJobTitle,clientName,workerName,workerAddress,workerPhone,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage);
+        WorkersAccepted workersAccepted = new WorkersAccepted(jobTime,jobDate,jobTypeOfOrder,jobLocation,orderPhone,orderJobTitle,clientName,workerName,workerAddress,workerPhone,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerTokenid);
         firebaseHandlerClient.addAcceptedPath(workersAccepted,orderPhone,orderJobTitle,workerPhone);
 
 //        FirebaseDatabase.getInstance().getReference("Worker").child(orderJobTitle).child("order Details").child(orderPhone).child("tokenId").addListenerForSingleValueEvent(new ValueEventListener() {

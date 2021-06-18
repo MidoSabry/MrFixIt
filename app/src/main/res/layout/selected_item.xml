@@ -90,9 +90,18 @@
             android:layout_height="40dp"
             android:layout_marginTop="68dp"
             android:background="@drawable/call_icon"
-            app:layout_constraintEnd_toStartOf="@+id/chat_btn"
             app:layout_constraintHorizontal_bias="0.007"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/worker_img" />
+
+        <Button
+            android:id="@+id/mab_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/map_pic"
+            app:layout_constraintEnd_toStartOf="@+id/chat_btn"
+            app:layout_constraintStart_toEndOf="@+id/call_btn"
             app:layout_constraintTop_toBottomOf="@+id/worker_img" />
 
         <Button

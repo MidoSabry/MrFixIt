@@ -1,6 +1,7 @@
 package com.example.fixawy.Share.RegisterPage;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,8 +20,13 @@ import com.example.fixawy.R;
 import com.example.fixawy.Share.LoginPage.LoginActivity;
 import com.example.fixawy.Share.VerifyCode.VerificationCode;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -33,6 +39,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -74,6 +82,25 @@ public class RegisterActivity extends AppCompatActivity {
         userName=getIntent().getStringExtra("userName");
         email=getIntent().getStringExtra("email");
         jobTitle=getIntent().getExtras().getString("jobTitle");
+
+
+        //Detect Location
+        Places.initialize(getApplicationContext(),getString(R.string.api_key));
+        //setEditText non focusable
+        editTextAddress.setFocusable(false);
+        editTextAddress.getEditText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //initialize place field list
+                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
+                //create intent
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).build(RegisterActivity.this);
+                //start Activity result
+                startActivityForResult(intent,1);
+
+            }
+        });
+
 
 //        numOfJob = getIntent().getExtras().getInt("numOfJob");
 //        like = getIntent().getExtras().getInt("numOfLike");
@@ -226,6 +253,9 @@ public class RegisterActivity extends AppCompatActivity {
         tokenId = getIntent().getStringExtra("token");
 
 
+
+
+
         if (userName.isEmpty()) {
             editTextUserName.setError("UserName is required");
             editTextUserName.requestFocus();
@@ -318,4 +348,17 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            //when success Initialize place
+            Place place = Autocomplete.getPlaceFromIntent(data);
+            //set address on editText
+            editTextAddress.getEditText().setText(place.getAddress());
+
+        }
+
+    }
 }

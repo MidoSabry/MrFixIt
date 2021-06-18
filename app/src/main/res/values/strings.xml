@@ -205,4 +205,6 @@
 
     <string name="nodata">No data available now</string>
 
+    <string name="distance">The Distance</string>
+
 </resources>
