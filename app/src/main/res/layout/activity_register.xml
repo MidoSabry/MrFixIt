@@ -15,12 +15,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="92dp"
+        android:layout_marginStart="92dp"
         android:layout_marginTop="20dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:src="@drawable/bb"
         android:text="@string/login"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="38sp"
         android:textStyle="bold" />
 
@@ -183,6 +184,7 @@
                             android:text="@string/alreadyHaveAccount"
                             android:textColor="@color/colorPurple"
                             android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
                             android:textSize="20sp" />
 
                         <TextView

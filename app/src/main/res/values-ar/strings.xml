@@ -46,7 +46,7 @@
     <string name="selected">المتقدمين للطلب</string>
     <string name="jobs">وظيفه</string>
     <string name="likes">اعجبنى</string>
-    <string name="dislikes">كرهه</string>
+    <string name="dislikes">لم يعجبني</string>
     <string name="cancel">الغاء</string>
     <string name="accept">قبول</string>
     <string name="history">طلبات سابقه</string>
@@ -100,33 +100,33 @@
     </string-array>
     <string name="Jobs">--المهنة--</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Finish">Finish</string>
-    <string name="Maintenance">Maintenance and repair</string>
-    <string name="Job">Hard Job</string>
-    <string name="working">less than 1 hour work</string>
-    <string name="littlework">"More than 1 hour to repair "</string>
-    <string name="ordertype">Type Of Order</string>
-    <string name="Details">More Details</string>
-    <string name="Location">Location</string>
-    <string name="Phone">Phone</string>
+    <string name="hello_blank_fragment">اهلا من داخل هذا الجزء </string>
+    <string name="Finish">نهايه</string>
+    <string name="Maintenance">الصيانة والإصلاح</string>
+    <string name="Job">عمل صعب</string>
+    <string name="working">أقل من  ساعة عمل</string>
+    <string name="littlework">أكثر من ساعة للإصلاح </string>
+    <string name="ordertype">نوع الطلب</string>
+    <string name="Details">التفاصيل</string>
+    <string name="Location">الموقع</string>
+    <string name="Phone">الهاتف</string>
     <string name="api_key">AIzaSyCVOvMSNN18_AJKQjfKfoWKxsYNF5GNxK0</string>
-    <string name="Payment">Payment Way</string>
-    <string name="Cash">Cash</string>
-    <string name="PayPal">PayPal</string>
-    <string name="Credit">Credit Card</string>
-    <string name="CheckOut">CheckOut Process</string>
+    <string name="Payment">طريقه الدفع</string>
+    <string name="Cash">نقدي</string>
+    <string name="PayPal">الكتروني</string>
+    <string name="Credit">بطاقة إئتمان</string>
+    <string name="CheckOut">انهاء العمليه</string>
 
-    <string name="done_with_rating">done rating</string>
-    <string name="job_address">job address</string>
-    <string name="type_of_job">job address</string>
+    <string name="done_with_rating">تفعيل التقييم</string>
+    <string name="job_address">عنوان الوظيفة</string>
+    <string name="type_of_job">عنوان الوظيفة</string>
     <string name="emp_name">job address</string>
     <string name="my_previous_question">اسائلتي السابقة</string>
 
-    <string name="prev_questions">Prev Questions</string>
+    <string name="prev_questions">اسائلتي السابقة</string>
 
-    <string name="Update">Update</string>
-    <string name="work">work</string>
+    <string name="Update">تحديث</string>
+    <string name="work">عمل</string>
 
 
 
@@ -207,6 +207,65 @@
     <string name="satellite_store">متاجر الأقمار الصناعية</string>
     <string name="application_companies">شركات للتطبيقات</string>
 
+
+
+
+
+
+
+
+    <string name="UserName">اسم المستخدم</string>
+    <string name="requestedusername">اسم المستخدم</string>
+    <string name="requestdesc">الوصف</string>
+    <string name="editusername">اسم المستخدم</string>
+    <string name="Cancel">الغاء</string>
+    <string name="Client_name">اسم العميل</string>
+    <string name="Client_phone">رقم العميل</string>
+    <string name="Worker_name">اسم العامل</string>
+    <string name="Worker_Name">اسم العامل</string>
+    <string name="worker_phone">رقم العامل</string>
+    <string name="w_category">فئه العامل</string>
+    <string name="MR_FIX_IT">MR.FIX.IT</string>
+    <string name="maintanance"><![CDATA["maintenance & repair "]]></string>
+    <string name="hard_work">عمل صعب</string>
+
+
+
+
+
+
+
+    <string name="Worker_rating_name">اسم العامل</string>
+    <string name="jobs_num">عدد المهن</string>
+    <string name="job">مهنة</string>
+    <string name="Likes">اعجاب</string>
+    <string name="dislike">عدم الاعجاب</string>
+    <string name="address_w">العنوان</string>
+    <string name="phone_w">الهاتف</string>
+    <string name="Accept">قبول</string>
+
+    <string name="All_pervious_questions">الاسئله السابقه</string>
+    <string name="Change_password">تغيير كلمه المرور</string>
+    <string name="Accept_details">التفاصيل</string>
+    <string name="Maintanance_repair">الصيانة والإصلاح</string>
+    <string name="description">الوصف</string>
+    <string name="hint_location">المزيد عن الموقع</string>
+    <string name="phone_details">تفاصيل الهاتف</string>
+    <string name="Time">الوقت</string>
+    <string name="time_hint">الوقت</string>
+    <string name="Date">التاريخ</string>
+    <string name="payment_hint">تفاصيل الدفع</string>
+    <string name="Phone_reset_pass">الهاتف لإعادة تعيين كلمة المرور</string>
+    <string name="add_phone">اضف الهاتف</string>
+    <string name="Previous_question">الاسئله السابقه</string>
+    <string name="comment_worker_hint">قيم العامل</string>
+    <string name="Receive_Code">تلقي الرمز</string>
+    <string name="Previous_btn">السابق </string>
+    <string name="Replay_to">الرد على :</string>
+    <string name="Question">الاسئله</string>
+    <string name="Are_you_sure_you_want_delete_item">هل تريد حذف العنصر؟</string>
+    <string name="Delete">حذف</string>
+    <string name="another_phone">هاتف اخر</string>
 
 
 </resources>

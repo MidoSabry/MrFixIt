@@ -18,6 +18,7 @@ import com.example.fixawy.Client.HomePageClient.OnItemClick;
 import com.example.fixawy.Client.MakeOrder.Repo.ClientOrderRepo;
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.R;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +83,8 @@ public class RequestedActivity extends AppCompatActivity implements onitemclick 
             //repo.retrieveDataEdit(phoneNum,categoryType,requestedPageViewModel.uIds.get(position)).removeValue();
 
             repo.retrieveDataEdit(phoneNum,requestedPageViewModel.requestedPageLiveData.getValue().get(position).getJobTitle(),requestedPageViewModel.uIds.get(position)).removeValue();
-           requestedAdapter.orderTreeItems.remove(position);
+            repo.removeDataFromWorker(categoryType,phoneNum).removeValue();
+            requestedAdapter.orderTreeItems.remove(position);
             requestedAdapter.notifyItemRemoved(position);
             requestedAdapter.notifyItemRangeChanged(position,requestedAdapter.orderTreeItems.size());
 

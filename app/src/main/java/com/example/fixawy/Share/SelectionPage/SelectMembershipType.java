@@ -1,11 +1,19 @@
 package com.example.fixawy.Share.SelectionPage;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.R;
@@ -17,30 +25,39 @@ import com.example.fixawy.Share.Session.SharedPreferencesConfig;
 import com.example.fixawy.ShopOwner.AllShopsAvailable.AllShopsAvailableActivity;
 import com.example.fixawy.Worker.SelectJobPage.SelectJobActivity;
 
+import java.util.Locale;
+
 
 public class SelectMembershipType extends AppCompatActivity {
 
     Button btnOwner,btnWorker,btnShopOwner;
     SharedPreferencesConfig preferencesConfig;
-
+  ImageView langChange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_membership_type);
-
+          loadLocal();
         btnOwner=findViewById(R.id.client_btn);
         btnWorker=findViewById(R.id.worker_btn);
         btnShopOwner=findViewById(R.id.shop_owner_btn);
+        langChange = findViewById(R.id.select_lang);
 
-
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.setTitle(getResources().getString(R.string.app_name));
       /*  preferencesConfig = new SharedPreferencesConfig(getApplicationContext());
         if (preferencesConfig.readUserLoginStatus()) {
             Intent intent = new Intent(SelectMembershipType.this, HomePageClientActivity.class);
             startActivity(intent);
             finish();
         }*/
-
+     langChange.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             showChangeLanguageDialog();
+         }
+     });
 
         btnOwner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,5 +88,45 @@ public class SelectMembershipType extends AppCompatActivity {
         });
 
 
+    }
+    public void showChangeLanguageDialog(){
+         String items[] = {"English","Arabic"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(SelectMembershipType.this);
+        builder.setTitle("Choose language");
+        builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0){
+                    setLocalization("en");
+                    recreate();
+                }
+                else if (which ==1){
+                    setLocalization("ar");
+                    recreate();
+                }
+                dialog.dismiss();
+            }
+        });
+        AlertDialog mDialog = builder.create();
+        mDialog.show();
+
+    }
+
+    private void setLocalization(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("Settings",MODE_PRIVATE).edit();
+        editor.putString("my_lang",lang);
+        editor.apply();
+
+
+    }
+    public void loadLocal(){
+        SharedPreferences preferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String lang = preferences.getString("my_lang","");
+        setLocalization(lang);
     }
 }

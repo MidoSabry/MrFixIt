@@ -42,7 +42,7 @@
             android:layout_marginBottom="22dp"
             android:background="@android:color/transparent"
             android:fontFamily="@font/coolveticacompressedrg"
-            android:text="previous"
+            android:text="@string/Previous_btn"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:visibility="invisible" />
@@ -59,7 +59,7 @@
             android:layout_marginBottom="22dp"
             android:background="@android:color/transparent"
             android:fontFamily="@font/coolveticacompressedrg"
-            android:text="Next"
+          android:text="@string/Next"
             android:textColor="@color/white"
             android:textSize="25sp" />
 

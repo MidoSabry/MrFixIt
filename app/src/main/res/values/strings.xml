@@ -218,5 +218,36 @@
 
 
     <string name="nodata">No data available now</string>
+    <string name="Worker_rating_name">Worker Name</string>
+    <string name="jobs_num">jobs_num</string>
+    <string name="job">job</string>
+    <string name="Likes">Likes</string>
+    <string name="dislike">dislike</string>
+    <string name="address_w">address</string>
+    <string name="phone_w">phone</string>
+    <string name="Accept">Accept</string>
+
+    <string name="All_pervious_questions">All Pervious Questions</string>
+    <string name="Change_password">Change Password</string>
+    <string name="Accept_details">Details</string>
+    <string name="Maintanance_repair">Maintanance and Repair</string>
+    <string name="description">description</string>
+    <string name="hint_location">more about location</string>
+    <string name="phone_details">phone details</string>
+    <string name="Time">Time</string>
+    <string name="time_hint">time</string>
+    <string name="Date">Date</string>
+    <string name="payment_hint">payment hint</string>
+    <string name="Phone_reset_pass">Phone For Reset Password</string>
+    <string name="add_phone">add phone</string>
+    <string name="Previous_question">Previous Questions</string>
+    <string name="comment_worker_hint">Comment your worker</string>
+    <string name="Receive_Code">Receive Code</string>
+    <string name="Previous_btn">Previous</string>
+    <string name="Replay_to">Replay to :</string>
+    <string name="Question">Question :</string>
+    <string name="Are_you_sure_you_want_delete_item">Are you sure you want delete item ?</string>
+    <string name="Delete">Delete</string>
+    <string name="another_phone">another phone</string>
 
 </resources>

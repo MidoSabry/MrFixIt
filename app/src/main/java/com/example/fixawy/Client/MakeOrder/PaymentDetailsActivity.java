@@ -20,6 +20,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         txtId = findViewById(R.id.textView_id);
         txtAmount = findViewById(R.id.textView_amount);
         txtStatus = findViewById(R.id.textView_status);
+
         Intent intent = getIntent();
         try {
             JSONObject jsonObject =  new JSONObject(intent.getStringExtra("payment Details"));
