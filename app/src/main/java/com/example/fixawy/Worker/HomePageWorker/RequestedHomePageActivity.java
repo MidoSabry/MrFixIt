@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,23 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.work.Data;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
-import androidx.work.WorkRequest;
 
-import com.example.fixawy.Client.HistoryPage.HistoryActivity;
-import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
-import com.example.fixawy.Client.RequestedPage.RequestedActivity;
-import com.example.fixawy.Client.SelectedPage.SelectedActivity;
+import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.Client.ShowProductsOfShopType.ShowProductsOfShopTypeActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
-import com.example.fixawy.Pojos.JobTitleCategory;
-import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
@@ -45,12 +33,8 @@ import com.example.fixawy.Worker.HistoryJobsPage.HistoryJobActivity;
 import com.example.fixawy.Worker.JobAccepted.JobAcceptedActivity;
 import com.example.fixawy.Worker.WorkerProfilePage.WorkerProfileActivity;
 import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
-import com.example.fixawy.reminder.MyWorker;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -64,25 +48,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_DIS_LIKE;
-import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_LIKE;
-import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_NUM_OF_JOB;
-import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_RATING;
 import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_WORKER_IMAGE;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTRA_JOB_TITLE;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_PHONE_NUM;
@@ -140,7 +112,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     RecyclerView recyclerView_worker_requested;
     FirebaseHandlerClient firebaseHandlerClient;
     public static RequestedItemRecyclerAdapter myAdapter;
-    List<MakeOrder> list;
+    List<OrderTree> list;
     DatabaseReference database;
 
     @Override
@@ -148,7 +120,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested_home_page);
 
-        list = new ArrayList<>();
+        list = new ArrayList<OrderTree>();
         mCalendar = Calendar.getInstance();
 
         //get data from verifiaction code page
@@ -280,7 +252,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    MakeOrder makeOrder = dataSnapshot.getValue(MakeOrder.class);
+                    OrderTree makeOrder = dataSnapshot.getValue(OrderTree.class);
                     list.add(makeOrder);
 
 
@@ -505,7 +477,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     @Override
     public void onItemClick(int position) {
         Intent detailsIntent = new Intent(this, DetailsJobActivity.class);
-        MakeOrder clickedItem = list.get(position);
+        OrderTree clickedItem = list.get(position);
 
        // User user = new User();
 

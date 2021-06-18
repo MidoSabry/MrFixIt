@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fixawy.Client.HomePageClient.CategoryItemRecyclerAdapter;
+import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.Client.RequestedPage.RequestedAdapter;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.R;
@@ -23,18 +24,18 @@ import java.util.List;
 
 public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<RequestedItemRecyclerAdapter.RequestedItemRecyclerViewHolder> {
     private Context context;
-    List<MakeOrder>makeOrders;
+    List<OrderTree>makeOrders;
     private onItemClickListener mListener;
 
 
 
 
-    public RequestedItemRecyclerAdapter(Context context, List<MakeOrder> makeOrders) {
+    public RequestedItemRecyclerAdapter(Context context, List<OrderTree> makeOrders) {
         this.context = context;
         this.makeOrders = makeOrders;
     }
 
-    public void setListMakeOrders(List<MakeOrder> makeOrderList) {
+    public void setListMakeOrders(List<OrderTree> makeOrderList) {
         this.makeOrders = makeOrderList;
     }
     public void setOnItemClickListener(onItemClickListener listener){
