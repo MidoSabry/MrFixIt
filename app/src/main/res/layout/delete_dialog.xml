@@ -10,10 +10,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/coolveticacompressedrg"
         android:gravity="center"
-        android:text="Are you sure you want delete item  ?"
-        android:layout_marginTop="12dp"
+        android:text="@string/Are_you_sure_you_want_delete_item"
         android:textColor="@color/colorPurple"
         android:textSize="30sp" />
 
@@ -43,12 +43,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/custom_button"
             android:fontFamily="@font/coolveticacompressedrg"
-            android:textColor="@color/white"
             android:radius="80dp"
-            android:layout_marginTop="4dp"
-            android:text="Delete"
+            android:text="@string/Delete"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
     </LinearLayout>

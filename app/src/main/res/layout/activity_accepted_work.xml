@@ -21,13 +21,13 @@
         android:id="@+id/emp_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Mohamed Sabry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
         android:fontFamily="@font/coolveticacompressedrg"
+        android:text="@string/Worker_rating_name"
         android:textColor="@color/white"
         android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emp_img" />
 
     <androidx.cardview.widget.CardView
@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -57,9 +58,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
-                    android:text="25"
                     android:fontFamily="@font/cool"
+                    android:text="25"
                     android:textColor="@color/colorPurple"
                     android:textSize="20sp" />
 
@@ -69,10 +71,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="30dp"
-                    android:text="@string/jobs"
+                    android:layout_marginStart="30dp"
+                    android:text="@string/job"
                     android:textColor="@color/fourthColor"
-                    android:textStyle="bold"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
             </GridLayout>
 
@@ -82,7 +85,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/requsted_phone" />
@@ -93,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -101,6 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:text="22"
                     android:fontFamily="@font/cool"
                     android:textColor="@color/colorPurple"
@@ -112,10 +119,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="30dp"
-                    android:text="@string/likes"
+                    android:layout_marginStart="30dp"
+                    android:text="@string/Likes"
                     android:textColor="@color/fourthColor"
-                    android:textStyle="bold"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
             </GridLayout>
 
@@ -125,7 +133,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:background="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/requsted_phone" />
@@ -136,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginRight="25dp"
+                android:layout_marginEnd="25dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -144,6 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:text="3"
                     android:fontFamily="@font/cool"
                     android:textColor="@color/colorPurple"
@@ -155,10 +167,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
-                    android:text="@string/dislikes"
-                    android:textStyle="bold"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/dislike"
                     android:textColor="@color/fourthColor"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
             </GridLayout>
 
@@ -188,10 +201,10 @@
 
             <TextView
                 android:id="@+id/emp_address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sedibishr-Alex"
                 android:fontFamily="@font/cool"
+                android:text="@string/address_w"
                 android:textColor="@color/colorPurple"
                 android:textSize="20sp" />
 
@@ -207,13 +220,12 @@
 
             <TextView
                 android:id="@+id/emp_phone"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="01225699594"
                 android:fontFamily="@font/cool"
+                android:text="@string/phone_w"
                 android:textColor="@color/colorPurple"
-                android:textSize="20sp"
-             />
+                android:textSize="20sp" />
 
             <View
                 android:id="@+id/linevw4"
@@ -246,14 +258,15 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_id2"
         android:fontFamily="@font/coolveticacompressedrg"
-        android:textSize="25dp"
+        android:text="@string/Accept"
         android:textColor="@color/white"
-        android:text="@string/accept"/>
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_id2" />
 
     <Button
         android:id="@+id/cancel_btn"
@@ -263,11 +276,11 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="32dp"
         android:background="@drawable/btn_fragmentorders"
+        android:fontFamily="@font/coolveticacompressedrg"
+        android:text="@string/Cancel"
+        android:textColor="@color/colorPurple"
+        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/accept_btn"
-        app:layout_constraintTop_toBottomOf="@+id/card_id2"
-        android:fontFamily="@font/coolveticacompressedrg"
-        android:textSize="25dp"
-        android:textColor="@color/colorPurple"
-        android:text="@string/cancel"/>
+        app:layout_constraintTop_toBottomOf="@+id/card_id2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

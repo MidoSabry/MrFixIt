@@ -163,7 +163,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="6dp"
-                    android:hint="Address" />
+                  android:hint="@string/address" />
                 <Spinner
                     android:id="@+id/spinner_job_settings_worker"
                     android:layout_width="match_parent"
@@ -241,7 +241,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
-        android:layout_marginLeft="92dp"
+        android:layout_marginLeft="88dp"
         android:background="@drawable/btn_fragmentorders"
         android:fontFamily="@font/robotocndensed"
         android:text="@string/Cancel"

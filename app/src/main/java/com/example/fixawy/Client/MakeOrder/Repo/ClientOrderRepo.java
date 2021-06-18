@@ -39,6 +39,11 @@ public class ClientOrderRepo {
         final DatabaseReference myRef = database.getReference("Client").child("make order").child(phoneNum).child(categoryType).child("order Details");
         return myRef;
     }
+    public DatabaseReference removeDataFromWorker(String categoryType , String phoneNum) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef =  database.getReference("Worker").child(categoryType).child("order Details").child(phoneNum);
+        return myRef;
+    }
 
     public DatabaseReference retrieveDataEdit(String phoneNum, String categoryType,String uid) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();

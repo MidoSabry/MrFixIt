@@ -7,7 +7,7 @@ public class OrderTree {
     private String phone;
     private String date;
     private String time;
-    private int paymentMethod;
+    private String paymentMethod;
     private String requestedPhone;
     private String jobTitle;
     private String userName;
@@ -46,11 +46,11 @@ public class OrderTree {
         this.requestedPhone = requestedPhone;
     }
 
-    public int getPaymentMethod() {
+    public String getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(int paymentMethod) {
+    public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 

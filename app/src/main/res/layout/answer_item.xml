@@ -53,9 +53,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reply to : "
-                android:textColor="@color/colorPurple"
                 android:fontFamily="@font/robotocndensed"
+                android:text="@string/Replay_to"
+                android:textColor="@color/colorPurple"
                 android:textSize="25dp" />
 
             <TextView
@@ -78,10 +78,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="question : "
-                android:textColor="@color/colorPurple"
+
                 android:fontFamily="@font/robotocndensed"
-                android:textSize="25dp"/>
+                android:text="@string/Question"
+                android:textColor="@color/colorPurple"
+                android:textSize="25dp" />
 
             <TextView
                 android:id="@+id/question"

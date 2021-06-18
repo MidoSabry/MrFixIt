@@ -1,6 +1,7 @@
 package com.example.fixawy.Client.MakeOrder;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -11,19 +12,22 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.braintreepayments.cardform.view.CardForm;
+import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.R;
 
 public class CreditCardActivity extends AppCompatActivity {
     CardForm cardForm;
     Button checkOutBtn;
     AlertDialog.Builder alertBuilder;
-
+  String categoryType , phoneNum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit_card);
 
         cardForm = findViewById(R.id.card_form);
+        phoneNum = getIntent().getStringExtra("phone");
+        categoryType =getIntent().getStringExtra("CategoryType");
         checkOutBtn = findViewById(R.id.btnBuy);
         cardForm.cardRequired(true)
                 .expirationRequired(true)
@@ -47,8 +51,12 @@ public class CreditCardActivity extends AppCompatActivity {
                     alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(CreditCardActivity.this, RequestedActivity.class);
+                            intent.putExtra("phone", phoneNum);
+                            intent.putExtra("CategoryType",categoryType);
+                            startActivity(intent);
                             dialogInterface.dismiss();
-                            //TODO //GO TO ANOTHER ACTIVITY OR FRAGMENT FROM HERE
+
 
                         }
                     });
