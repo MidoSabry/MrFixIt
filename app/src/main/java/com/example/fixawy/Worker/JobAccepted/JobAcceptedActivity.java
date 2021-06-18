@@ -102,7 +102,7 @@ public class JobAcceptedActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     long millis = date.getTime();
-                    //Log.d("oooo","my time is "+millis);
+                    Log.d("oooo","my time is "+millis);
 
                     long nowMillis = System.currentTimeMillis();;
                     Log.d("oooo","time is now "+nowMillis);
