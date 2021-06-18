@@ -76,6 +76,7 @@ public class RequestedActivity extends AppCompatActivity implements onitemclick 
             intent.putExtra("CategoryType",requestedPageViewModel.requestedPageLiveData.getValue().get(position).getJobTitle() );
             intent.putExtra("uid", requestedPageViewModel.uIds.get(position));
             startActivity(intent);
+
         }
         else if (type ==1){
             ClientOrderRepo repo = new ClientOrderRepo();
@@ -93,6 +94,7 @@ public class RequestedActivity extends AppCompatActivity implements onitemclick 
 
 
         }
-          }
+    }
+
 }
 

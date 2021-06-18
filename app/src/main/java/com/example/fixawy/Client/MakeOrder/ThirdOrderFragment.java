@@ -100,6 +100,7 @@ public class ThirdOrderFragment extends Fragment {
                 intent.putExtra("phone", phoneNum);
                 intent.putExtra("CategoryType",categoryType);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
         payPalBtn.setOnClickListener(new View.OnClickListener() {
