@@ -3,7 +3,7 @@ package com.example.fixawy.Pojos;
 public class MakeOrder {
     String time;
     String date;
-    int paymentMethod;
+   int paymentMethod;
     String typeOfOrder;
     String location;
     String phone;

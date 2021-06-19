@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:columnCount="2"
-            android:layout_margin="20dp"
+            android:padding="30dp"
             android:rowCount="8">
 
             <Button

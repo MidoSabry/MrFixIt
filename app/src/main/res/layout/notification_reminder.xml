@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="130dp"
+    android:layout_marginTop="12dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -20,14 +21,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:text="Caller's Name" />
 
             <TextView
                 android:id="@+id/tripEndPoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-10dp"
+                android:layout_marginTop="10dp"
                 android:padding="5dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:text="Incoming Call" />
         </LinearLayout>
 
@@ -36,6 +42,9 @@
             android:id="@+id/photo"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginEnd="12dp"
             android:src="@drawable/ic_alarm_clock" />
 
     </LinearLayout>
@@ -54,7 +63,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="0.5"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPurple"
             android:text="dismiss"
             android:textColor="@color/white" />
 
@@ -65,7 +74,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_weight="0.5"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPurple"
             android:text="start"
             android:textColor="@color/white" />
 
