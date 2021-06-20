@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -102,9 +103,9 @@ public class VerificationCode extends AppCompatActivity {
     }
 
     private void sendToMain(){
-
+        String urlDefaultImage = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Felectric-man-icon-flat-style-vector-23229025&psig=AOvVaw0TYMxMmyUjvkXdxecYmHg0&ust=1624235781566000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCJi5w_j7pPECFQAAAAAdAAAAABAD";
         userClient = new User(userName,email,phoneNum,address,type,password,tokenId);
-        userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle,image,numOfJob,like,disLike,rating,tokenId);
+        userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle,urlDefaultImage,numOfJob,like,disLike,rating,tokenId);
 
         if(type.equals("Owner")){
             registerClient(userClient);
@@ -119,31 +120,6 @@ public class VerificationCode extends AppCompatActivity {
         else {
             Toast.makeText(VerificationCode.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();
         }
-//        com.example.fixawy.Pojos.User user = new com.example.fixawy.Pojos.User(userName,email,phoneNum,address,type,password);
-//        FirebaseDatabase.getInstance().getReference("Users").child(phoneNum)
-//                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if (task.isSuccessful()){
-//                    Toast.makeText(VerificationCode.this, type, Toast.LENGTH_SHORT).show();
-//                    if (type.equals("Owner")){
-//                        startActivity(new Intent(VerificationCode.this, OwnerHome.class));
-//
-//                    }
-//                    else if (type.equals("Worker")){
-//                        startActivity(new Intent(VerificationCode.this, WorkerHome.class));
-//
-//                    }
-//                }
-//                else {
-//                    Toast.makeText(VerificationCode.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//        });
-
-        //.putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating)
-
 
     }
 
@@ -158,5 +134,16 @@ public class VerificationCode extends AppCompatActivity {
         firebaseHandlerWorker = new FirebaseHandlerWorker();
         firebaseHandlerWorker.addWorkerData(user,user.getPhone(),user.getJobTitle()).addOnSuccessListener(suc->{
         });
+    }
+
+    //backButton
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
+
+        return;
     }
 }
