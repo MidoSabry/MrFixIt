@@ -212,14 +212,4 @@ public class ShopOwnerSignUPActivity extends AppCompatActivity {
 
     }
 
-    //backButton
-    public void onBackPressed() {
-        Log.d("CDA", "onBackPressed Called");
-        Intent setIntent = new Intent(Intent.ACTION_MAIN);
-        setIntent.addCategory(Intent.CATEGORY_HOME);
-        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(setIntent);
-
-        return;
-    }
 }
