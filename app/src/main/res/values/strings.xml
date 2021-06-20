@@ -251,6 +251,13 @@
     <string name="another_phone">another phone</string>
 
     <string name="distance">The Distance</string>
+    <string name="map">Do You want open map ?</string>
+    <string name="No">No</string>
+    <string name="Yes">Yes</string>
+    <string name="caller">caller\'s Name</string>
+    <string name="income_call">Incoming Call</string>
+    <string name="Dismiss">Dismiss</string>
+    <string name="Start">Start</string>
 
     <string name="done">Done</string>
 

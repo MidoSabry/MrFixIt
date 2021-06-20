@@ -104,7 +104,6 @@ public class AcceptedWorkActivity extends AppCompatActivity {
         Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
 
         reference1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Workers Accepted Jobs").child(phoneWorker);
-        //     reference1 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("Data").child(phoneWorker);
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -126,7 +125,6 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 textViewAddress.setText(addressOfWorker);
                 textViewPhone.setText(phoneOfWorker);
                 //ratingBar.setRating(Float.parseFloat(rating));
-
 
             }
 
@@ -152,7 +150,6 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         // get data to restore it to another path
-                        //  uIds.add(snapshot.getKey());
                         date = snapshot.child("date").getValue(String.class);
                         time = snapshot.child("time").getValue(String.class);
                         location = snapshot.child("location").getValue(String.class);
@@ -207,6 +204,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 });
 
 
+
             }
 
 
@@ -221,6 +219,10 @@ public class AcceptedWorkActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.accept_worker_dialog);
 
         dialog.show();
+
+
+            }
+        });
 
     }
 
@@ -245,6 +247,4 @@ public class AcceptedWorkActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

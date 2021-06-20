@@ -39,7 +39,7 @@ public class MapActivity extends AppCompatActivity {
     AlertDialog alertDialog;
     LayoutInflater inflater;
     String worker_jobTitle, Worker_phone, phone;
-  TextView btnYes, btnNo;
+    TextView btnYes, btnNo;
     long maxid = 0;
     private Context context;
 
@@ -78,7 +78,7 @@ public class MapActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-          DisplayTrack(address);
+              DisplayTrack(address);
                 alertDialog.cancel();
             }
         });

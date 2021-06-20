@@ -32,8 +32,9 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:columnCount="2"
-            android:layout_margin="20dp"
+            android:padding="35dp"
             android:rowCount="8">
 
             <Button
@@ -43,12 +44,15 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
                 android:layout_margin="3dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/electrical_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,12 +63,15 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
+                android:layout_marginRight="36dp"
+                android:layout_marginEnd="-36dp"
                 android:layout_margin="5dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/plumbing_shop"
-                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,8 +86,11 @@
                 android:background="@drawable/circle"
                 android:textColor="@color/colorPurple"
                 android:gravity="center"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
                 android:text="@string/Carpentry_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,8 +105,11 @@
                 android:background="@drawable/circle"
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
+                android:layout_marginRight="36dp"
+                android:layout_marginEnd="-36dp"
                 android:text="@string/paint_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,7 +125,10 @@
                 android:background="@drawable/circle"
                 android:gravity="center"
                 android:text="@string/tile_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,7 +143,10 @@
                 android:background="@drawable/circle"
                 android:gravity="center"
                 android:text="@string/Building_tools_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginEnd="-36dp"
                 android:textColor="@color/colorPurple"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -144,7 +163,10 @@
                 android:gravity="center"
                 android:text="@string/metal_shop"
                 android:textColor="@color/colorPurple"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -160,7 +182,10 @@
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/Parquet_shop"
-                android:textSize="20dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginEnd="-36dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -176,7 +201,10 @@
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/gypsum_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -192,7 +220,10 @@
                 android:background="@drawable/circle"
                 android:gravity="center"
                 android:text="@string/marble_shop"
-                android:textSize="20dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginEnd="-36dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -208,7 +239,10 @@
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/Alumetal_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -224,7 +258,10 @@
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/eyeglasses_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginEnd="-36dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -240,7 +277,10 @@
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/wooden_tool_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -256,7 +296,10 @@
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/curtain_shop"
-                android:textSize="20dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginEnd="-36dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -272,7 +315,11 @@
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/satellite_store"
-                android:textSize="20dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginBottom="60dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -288,7 +335,11 @@
                 android:gravity="center"
                 android:textColor="@color/colorPurple"
                 android:text="@string/application_companies"
-                android:textSize="20dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginEnd="-36dp"
+                android:fontFamily="@font/cool"
+                android:textSize="18dp"
+                android:layout_marginBottom="60dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
