@@ -20,21 +20,21 @@
                 android:id="@+id/tripName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
-                android:text="Caller's Name" />
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:padding="5dp"
+                android:text="@string/caller" />
 
             <TextView
                 android:id="@+id/tripEndPoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginTop="10dp"
                 android:padding="5dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:text="Incoming Call" />
+                android:text="@string/income_call" />
         </LinearLayout>
 
 
@@ -64,7 +64,7 @@
             android:layout_marginRight="5dp"
             android:layout_weight="0.5"
             android:backgroundTint="@color/colorPurple"
-            android:text="dismiss"
+            android:text="@string/Dismiss"
             android:textColor="@color/white" />
 
         <Button
@@ -75,7 +75,7 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="0.5"
             android:backgroundTint="@color/colorPurple"
-            android:text="start"
+            android:text="@string/Start"
             android:textColor="@color/white" />
 
     </LinearLayout>
