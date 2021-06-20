@@ -22,11 +22,13 @@ import android.widget.TextView;
 
 import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
 import com.example.fixawy.Client.AllTypesOfShops.AllTypesOfShopsActivity;
+import com.example.fixawy.Client.ClientSettingPage.ClientSettingActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.RequestedPage.RequestedActivity;
 import com.example.fixawy.Client.SelectKindOfChoicePage.SelectKindOfChoiceActivity;
 import com.example.fixawy.Client.SelectedPage.SelectedActivity;
 //import com.example.fixawy.Notification.FirebasePushNotification;
+import com.example.fixawy.NotificationToClient.Client;
 import com.example.fixawy.NotificationToClient.FirebasePushNotification;
 import com.example.fixawy.Pojos.AllCategory;
 
@@ -267,6 +269,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
 
                 intent.putExtra("phone", phoneNum);
+                intent.putExtra("token",tokenID);
                 startActivity(intent);
                 break;
 
@@ -295,6 +298,10 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 startActivity(intent3);
 
                 break;
+
+            case R.id.nav_settings:
+                Intent intent6 = new Intent(HomePageClientActivity.this, ClientSettingActivity.class);
+                startActivity(intent6);
 
             case R.id.nav_logout:
                 Intent intent5 = new Intent(HomePageClientActivity.this, SelectMembershipType.class);

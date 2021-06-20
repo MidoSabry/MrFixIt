@@ -276,5 +276,8 @@
     <string name="Dismiss">رفض</string>
     <string name="Start">بدأ</string>
 
+    <string name="done">تم</string>
+    <string name="accept_msg">انتظر العامل فى الموعد المحدد</string>
+    <string name="accept_worker_msg">انتظر الموافقه على طلبك</string>
 
 </resources>

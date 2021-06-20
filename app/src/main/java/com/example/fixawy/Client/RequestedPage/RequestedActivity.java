@@ -25,7 +25,7 @@ import java.util.List;
 
 public class RequestedActivity extends AppCompatActivity implements onitemclick {
     RecyclerView requestedRecyclerView;
-    String phoneNum, categoryType;
+    String phoneNum, categoryType,tokinid;
     RequestedAdapter requestedAdapter;
     RequestedPageViewModel requestedPageViewModel;
     ArrayList<OrderTree> orderTreeItems;
@@ -36,6 +36,7 @@ public class RequestedActivity extends AppCompatActivity implements onitemclick 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested);
         phoneNum = getIntent().getStringExtra("phone");
+        tokinid = getIntent().getStringExtra("token");
         categoryType = getIntent().getExtras().getString("CategoryType");
         requestedRecyclerView = findViewById(R.id.requestedrv);
         requestedRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -74,6 +75,7 @@ public class RequestedActivity extends AppCompatActivity implements onitemclick 
             Intent intent = new Intent(RequestedActivity.this, EditActivity.class);
             intent.putExtra("phone", phoneNum);
             intent.putExtra("CategoryType",requestedPageViewModel.requestedPageLiveData.getValue().get(position).getJobTitle() );
+            intent.putExtra("tokenid",requestedPageViewModel.requestedPageLiveData.getValue().get(position).getTokenid() );
             intent.putExtra("uid", requestedPageViewModel.uIds.get(position));
             startActivity(intent);
 

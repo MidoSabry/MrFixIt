@@ -128,7 +128,7 @@ public class MapActivity extends AppCompatActivity {
 
             }
         });
-        databaseReference2.child(worker_jobTitle).child("Data").child(Worker_phone).child("HistoryWorker").push().setValue(historyWorkers);
+        databaseReference2.child(worker_jobTitle).child("Data").child(Worker_phone).child("HistoryWorker").child(phone).setValue(historyWorkers);
 
 
         //to delete data from request

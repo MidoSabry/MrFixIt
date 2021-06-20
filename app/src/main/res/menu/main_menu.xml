@@ -27,9 +27,7 @@
             android:title="@string/all_shops"
             android:icon="@drawable/add_shopping" />
 
-        <item android:id="@+id/nav_chat"
-            android:title="@string/chat"
-            android:icon="@drawable/chat_icon"/>
+
 
         <item android:id="@+id/nav_settings"
             android:title="@string/settings"

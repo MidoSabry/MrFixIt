@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,7 +70,7 @@ public class DetailsJobActivity extends AppCompatActivity {
 
     NotificationAPI notificationAPI;
 
-    String jobDate,jobDetails,jobLocation,jobPhone,jobTime,jobTypeOfOrder,clientName;
+    String jobDate,jobDetails,jobLocation,jobPhone,jobTime,jobTypeOfOrder,clientName,clientTokenId;
 
 
     //public int worker_likes,worker_dislikes,worker_num_of_job,worker_rating;
@@ -77,6 +78,8 @@ public class DetailsJobActivity extends AppCompatActivity {
 
     public String workerName,workerPhone,workerAddress,workerNumOfJob,workerLikes,workerDisLikes,workerRating,orderPhone,orderJobTitle,workerImage,workerJob,workerTokenid,comment;
 
+
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +104,8 @@ public class DetailsJobActivity extends AppCompatActivity {
         workerTokenid = intent.getStringExtra(EXTRA_TOKEN_ID);
 
         clientName = intent.getStringExtra("clientName");
+
+        dialog = new Dialog(this);
 
 
 
@@ -155,6 +160,7 @@ public class DetailsJobActivity extends AppCompatActivity {
                     jobPhone = (String) map.get("phone");
                     jobTime =(String) map.get("time");
                     jobTypeOfOrder = (String) map.get("typeOfOrder");
+                    clientTokenId = (String) map.get("tokenid");
 
                     /* ----- 2-Set the values in the text fields ----- */
                     date.setText(jobDate);
@@ -219,7 +225,7 @@ public class DetailsJobActivity extends AppCompatActivity {
 
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addAcceptedWorker(accepted,orderPhone,orderJobTitle,workerPhone);
-        WorkersAccepted workersAccepted = new WorkersAccepted(jobTime,jobDate,jobTypeOfOrder,jobLocation,orderPhone,orderJobTitle,clientName,workerName,workerAddress,workerPhone,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerTokenid);
+        WorkersAccepted workersAccepted = new WorkersAccepted(jobTime,jobDate,jobTypeOfOrder,jobLocation,orderPhone,orderJobTitle,clientName,workerName,workerAddress,workerPhone,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerTokenid,clientTokenId);
         firebaseHandlerClient.addAcceptedPath(workersAccepted,orderPhone,orderJobTitle,workerPhone);
 
 //        FirebaseDatabase.getInstance().getReference("Worker").child(orderJobTitle).child("order Details").child(orderPhone).child("tokenId").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -235,11 +241,11 @@ public class DetailsJobActivity extends AppCompatActivity {
 //            }
 //        });
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Worker").child(orderJobTitle).child("order Details").child(orderPhone);
+        ref = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(orderPhone).child("Workers Accepted Jobs").child(workerPhone);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String usertoken = snapshot.child("tokenid").getValue().toString();
+                String usertoken = snapshot.child("clientTokenId").getValue().toString();
                 Log.d("tooooookkk",usertoken);
                 sendNotifications(usertoken, "Accepted Your Job","??????");
             }
@@ -249,6 +255,9 @@ public class DetailsJobActivity extends AppCompatActivity {
 
             }
         });
+
+        Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
+        openDialog();
     }
 
     public void sendNotifications(String usertoken, String title, String message) {
@@ -271,5 +280,15 @@ public class DetailsJobActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //create the dialog
+    private void openDialog() {
+
+
+        dialog.setContentView(R.layout.details_dialog);
+
+        dialog.show();
+
     }
 }

@@ -3,17 +3,22 @@ package com.example.fixawy.Client.AcceptedWorkerPage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
+import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.NotificationToClient.Client;
 import com.example.fixawy.NotificationToClient.Data;
 import com.example.fixawy.NotificationToClient.MyResponse;
@@ -47,6 +52,7 @@ import retrofit2.Response;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class AcceptedWorkActivity extends AppCompatActivity {
@@ -63,6 +69,8 @@ public class AcceptedWorkActivity extends AppCompatActivity {
     RequestedPageViewModel requestedPageViewModel;
 
     NotificationAPI notificationAPI;
+
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +92,8 @@ public class AcceptedWorkActivity extends AppCompatActivity {
         phoneClient = getIntent().getStringExtra("phoneClient");
         workerJobTitle = getIntent().getStringExtra("workerJobTitle");
         nameOfWorker = getIntent().getStringExtra("nameOfWorker");
+
+        dialog = new Dialog(this);
 
         Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, phoneWorker, Toast.LENGTH_SHORT).show();
@@ -107,7 +117,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 String phoneOfWorker = snapshot.child("phoneOfWorker").getValue(String.class);
                // String rating = snapshot.child("rating").getValue(String.class);
 
-                Picasso.get().load(url).into(imageViewWorker);
+                Picasso.get().load(url).placeholder(R.drawable.person).into(imageViewWorker);
                 textViewNameOfWorker.setText(nameOfWorker);
                 textViewNumOfJobs.setText(numOfJob);
                 textViewNumOfLikes.setText(numOfLike);
@@ -115,6 +125,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 textViewAddress.setText(addressOfWorker);
                 textViewPhone.setText(phoneOfWorker);
                 //ratingBar.setRating(Float.parseFloat(rating));
+
             }
 
             @Override
@@ -129,6 +140,10 @@ public class AcceptedWorkActivity extends AppCompatActivity {
         buttonAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //open dialog
+                openDialog();
+
                 reference4 = FirebaseDatabase.getInstance().getReference();
                 reference2 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Workers Accepted Jobs").child(phoneWorker);
                 reference2.addValueEventListener(new ValueEventListener() {
@@ -144,9 +159,9 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                         Toast.makeText(AcceptedWorkActivity.this, "New Path...."+date+""+time, Toast.LENGTH_SHORT).show();
                         //set time & date & location & phone for client & name of client for job accepted
-                        MakeOrder order = new MakeOrder(time, date, location, phoneClientNum, nameClient);
+                        OrderTree order = new OrderTree(time, date, location, phoneClientNum, nameClient);
                         reference4.child("Worker").child(workerJobTitle).child("Data").child(phoneWorker).child("Job Accepted").child(phoneClient).setValue(order);
-                        MakeOrder historyOrder = new MakeOrder(time, date, typeOfOrder, workerJobTitle, nameOfWorker, phoneWorker);
+                        OrderTree historyOrder = new OrderTree(time, date, typeOfOrder, workerJobTitle, nameOfWorker, phoneWorker);
                         reference4.child("Client").child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
 
                         Toast.makeText(AcceptedWorkActivity.this, "Job Accepted", Toast.LENGTH_SHORT).show();
@@ -154,15 +169,15 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                         //delete
 
                         referenceDelete1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order");
-                        referenceDelete1.child(phoneClient).child("Accepted").child(phoneWorker).setValue(null);
+                        referenceDelete1.child(phoneClient).child("Accepted").setValue(null);
 
                         referenceDelete1.child(phoneClient).child(workerJobTitle).child("order Details").setValue(null);
 
                         referenceDelete2 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("order Details");
                         referenceDelete2.child(phoneClient).setValue(null);
 
-                        startActivity(new Intent(AcceptedWorkActivity.this,SelectedActivity.class)
-                                .putExtra("phone",phoneClient));
+//                        startActivity(new Intent(AcceptedWorkActivity.this,SelectedActivity.class)
+//                                .putExtra("phone",phoneClient));
 
 
                         //send notification
@@ -187,8 +202,28 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                     }
                 });
+
+
+
+            }
+
+
+
+        });
+    }
+
+    //create the dialog
+    private void openDialog() {
+
+
+        dialog.setContentView(R.layout.accept_worker_dialog);
+
+        dialog.show();
+
+
             }
         });
+
     }
 
     public void sendNotifications(String usertoken, String title, String message) {
