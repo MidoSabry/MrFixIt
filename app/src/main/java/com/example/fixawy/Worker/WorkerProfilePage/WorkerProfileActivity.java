@@ -64,7 +64,40 @@ public class WorkerProfileActivity extends AppCompatActivity {
         workerRatingBarProfile = findViewById(R.id.emp_rate_profile);
 
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Worker");
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Worker").child(worker_job_title).child("Data").child(worker_phone_num);
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String nameOfWorker = snapshot.child("userName").getValue().toString();
+                String addressOfWorker = snapshot.child("address").getValue().toString();
+                String numOfLike = snapshot.child("like").getValue().toString();
+                String numOfDisLike = snapshot.child("disLike").getValue().toString();
+                String numOfJob = snapshot.child("numOfJob").getValue().toString();
+                String phoneOfWorker = snapshot.child("phone").getValue().toString();
+                String url = snapshot.child("image").getValue().toString();
+                String rating = snapshot.child("rating").getValue().toString();
+
+                workerName.setText(nameOfWorker);
+                workerAddress.setText(addressOfWorker);
+                workerNumOfJob.setText(numOfJob);
+                workerNumOfLike.setText(numOfLike);
+                workerNumOfDisLike.setText(numOfDisLike);
+                workerPhone.setText(phoneOfWorker);
+                Picasso.get().load(url).placeholder(R.drawable.person).into(workerImageView);
+                workerRatingBarProfile.setRating(Float.parseFloat(rating));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+  /*      mDatabaseRef = FirebaseDatabase.getInstance().getReference("Worker");
         mDatabaseRef.child(worker_job_title).child("Data").child(worker_phone_num).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -94,6 +127,8 @@ public class WorkerProfileActivity extends AppCompatActivity {
                 }
             }
         });
+
+   */
 
 
 //        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Worker");
