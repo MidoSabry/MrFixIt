@@ -45,6 +45,7 @@ String phoneNum;
 String categoryType;
 String uid;
 String jobTitle;
+String tokenid;
 Button updates;
 OrderTree orderTree;
 int position;
@@ -56,6 +57,7 @@ int position;
         categoryType = getIntent().getExtras().getString("CategoryType");
         uid = getIntent().getExtras().getString("uid");
         jobTitle =  getIntent().getExtras().getString("job Title");
+        tokenid = getIntent().getExtras().getString("tokenid");
         editNumber = findViewById(R.id.edit_phone_modified);
        editDetails = findViewById(R.id.edittext_view_addnotes);
        editLocation= findViewById(R.id.edit_location);
@@ -149,6 +151,7 @@ int position;
                orderTree.setRequestedPhone(editAnotherPhone.getText().toString());
                orderTree.setDate(date.getText().toString());
                orderTree.setDetails(editDetails.getText().toString());
+               orderTree.setTokenid(tokenid);
                if (paymentCash.isChecked()) {
                    orderTree.setPaymentMethod("cash");
                } else if (paymentPayPal.isChecked()) {

@@ -252,4 +252,9 @@
 
     <string name="distance">The Distance</string>
 
+    <string name="done">Done</string>
+
+    <string name="accept_msg">Wait for the worker at the appointed time</string>
+    <string name="accept_worker_msg">Wait the client for accept your request</string>
+
 </resources>

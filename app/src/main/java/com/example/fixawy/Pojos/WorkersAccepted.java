@@ -24,10 +24,11 @@ public class WorkersAccepted {
     String image;
 
     String tokenid;
+    String clientTokenId;
 
     public WorkersAccepted(){}
 
-    public WorkersAccepted(String time, String date, String typeOfOrder, String location, String requestedPhone, String jobTitle, String userName, String nameOfWorker, String addressOfWorker, String phoneOfWorker, String numOfJob, String rating, String numOfLike, String numOfDisLike, String image,String tokenid) {
+    public WorkersAccepted(String time, String date, String typeOfOrder, String location, String requestedPhone, String jobTitle, String userName, String nameOfWorker, String addressOfWorker, String phoneOfWorker, String numOfJob, String rating, String numOfLike, String numOfDisLike, String image,String tokenid,String clientTokenId) {
         this.time = time;
         this.date = date;
         this.typeOfOrder = typeOfOrder;
@@ -44,6 +45,15 @@ public class WorkersAccepted {
         this.numOfDisLike = numOfDisLike;
         this.image = image;
         this.tokenid = tokenid;
+        this.clientTokenId = clientTokenId;
+    }
+
+    public String getClientTokenId() {
+        return clientTokenId;
+    }
+
+    public void setClientTokenId(String clientTokenId) {
+        this.clientTokenId = clientTokenId;
     }
 
     public String getTokenid() {

@@ -3,14 +3,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fixawy.Pojos.ClientHistory;
 import com.example.fixawy.Pojos.HistoryWorker;
+import com.example.fixawy.Pojos.JobTitleCategory;
 import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -18,6 +25,12 @@ import java.util.List;
 public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.HistoryJobsItemViewHolder> {
     List<HistoryWorker>historyWorkerList;
     Context context;
+    AlertDialog alertDialog;
+    LayoutInflater inflater;
+    Button btnDelete,btnCancel;
+
+    FirebaseDatabase db ;
+    DatabaseReference reference;
 
     public HistoryJobAdapter(Context context, List<HistoryWorker> historyWorkerList) {
         this.context = context;
@@ -34,11 +47,50 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
 
     @Override
     public void onBindViewHolder(@NonNull HistoryJobAdapter.HistoryJobsItemViewHolder holder, int position) {
+        String jobTitle = HistoryJobActivity.worker_job_title;
+        String phoneWorker = HistoryJobActivity.worker_phone;
+        String phoneClient = historyWorkerList.get(position).getPhone();
+
         holder.textViewClock.setText(historyWorkerList.get(position).getTime());
         holder.textViewDate.setText(historyWorkerList.get(position).getDate());
         holder.textViewUserAddress.setText(historyWorkerList.get(position).getAddress());
         holder.textViewUserName.setText(historyWorkerList.get(position).getName());
         holder.textViewUserPhone.setText(historyWorkerList.get(position).getPhone());
+
+        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog = new AlertDialog.Builder(v.getContext()).create();
+                inflater = LayoutInflater.from(v.getContext());
+                View dialogView = inflater.inflate(R.layout.delete_dialog, null);
+                btnDelete= dialogView.findViewById(R.id.btnDelete);
+                btnCancel=dialogView.findViewById(R.id.btnCancel);
+                db = FirebaseDatabase.getInstance();
+                reference = db.getReference("Worker");
+                btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        notifyDataSetChanged();
+                        Toast.makeText(v.getContext(), "delete", Toast.LENGTH_SHORT).show();
+                        reference = FirebaseDatabase.getInstance().getReference().child("Worker").child(jobTitle).child("Data");
+                        reference.child(phoneWorker).child("HistoryWorker").child(phoneClient).setValue(null);
+
+                        alertDialog.cancel();
+                    }
+                });
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    {
+
+                        alertDialog.cancel();
+                    }
+                });
+                alertDialog.setView(dialogView);
+                alertDialog.show();
+
+            }
+        });
 
     }
     @Override
@@ -52,6 +104,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
 
     public class HistoryJobsItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewClock,textViewDate,textViewUserName,textViewUserAddress,textViewUserPhone;
+        Button deleteBtn;
         public HistoryJobsItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -60,6 +113,8 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
             textViewUserName=itemView.findViewById(R.id.history_user_name);
             textViewUserAddress=itemView.findViewById(R.id.history_user_address);
             textViewUserPhone=itemView.findViewById(R.id.history_user_phone);
+
+            deleteBtn = itemView.findViewById(R.id.delete);
 
         }
     }

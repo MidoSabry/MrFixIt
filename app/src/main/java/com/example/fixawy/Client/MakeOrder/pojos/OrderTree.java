@@ -12,6 +12,23 @@ public class OrderTree {
     private String jobTitle;
     private String userName;
 
+    public OrderTree(String time, String date, String location, String phone, String userName) {
+        this.time = time;
+        this.date = date;
+        this.location = location;
+        this.phone = phone;
+        this.userName = userName;
+    }
+
+    public OrderTree(String time, String date, String typeOfOrder, String jobTitle, String userName, String phone) {
+        this.time = time;
+        this.date = date;
+        this.typeOfOrder = typeOfOrder;
+        this.jobTitle = jobTitle;
+        this.userName = userName;
+        this.phone = phone;
+    }
+
     private String tokenid;
 
     public String getTokenid() {

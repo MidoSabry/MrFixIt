@@ -21,7 +21,7 @@ public class AllCategoryNamesModel {
     AllCategory plumber = new AllCategory(2,"Plumber");
     AllCategory carpenter = new AllCategory(3,"Carpenter");
     AllCategory painter = new AllCategory(4,"Painter");
-    AllCategory tilesHandyman = new AllCategory(5,"tilesHandyman");
+    AllCategory TilesHandyMan = new AllCategory(5,"TilesHandyMan");
     AllCategory mason = new AllCategory(6,"Mason");
     AllCategory smith = new AllCategory(7,"Smith");
     AllCategory parquet = new AllCategory(8,"Parquet");
@@ -41,7 +41,7 @@ public class AllCategoryNamesModel {
         categories.add(plumber);
         categories.add(carpenter);
         categories.add(painter);
-        categories.add(tilesHandyman);
+        categories.add(TilesHandyMan);
         categories.add(mason);
         categories.add(smith);
         categories.add(parquet);

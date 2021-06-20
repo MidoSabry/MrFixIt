@@ -109,7 +109,7 @@ public class MyService extends Service {
 
         customView.setOnClickPendingIntent(R.id.btnStart, answerPendingIntent);
 
-        customView.setOnClickPendingIntent(R.id.btnDismiss, hungupPendingIntent);
+        //customView.setOnClickPendingIntent(R.id.btnDismiss, hungupPendingIntent);
 
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

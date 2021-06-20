@@ -269,5 +269,8 @@
     <string name="Delete">حذف</string>
     <string name="another_phone">هاتف اخر</string>
 
+    <string name="done">تم</string>
+    <string name="accept_msg">انتظر العامل فى الموعد المحدد</string>
+    <string name="accept_worker_msg">انتظر الموافقه على طلبك</string>
 
 </resources>
