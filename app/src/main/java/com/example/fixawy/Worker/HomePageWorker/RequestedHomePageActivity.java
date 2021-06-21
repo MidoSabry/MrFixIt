@@ -33,6 +33,7 @@ import com.example.fixawy.Worker.HistoryJobsPage.HistoryJobActivity;
 import com.example.fixawy.Worker.JobAccepted.JobAcceptedActivity;
 import com.example.fixawy.Worker.WorkerProfilePage.WorkerProfileActivity;
 import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
+import com.example.fixawy.Worker.WorkerSettingPage.WorkerSettingActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -438,6 +439,13 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 Intent intent4 = new Intent(RequestedHomePageActivity.this, SelectMembershipType.class);
                 startActivity(intent4);
                 finish();
+                break;
+
+            case R.id.nav_worker_settings:
+                Intent settingIntent = new Intent(RequestedHomePageActivity.this, WorkerSettingActivity.class);
+                settingIntent.putExtra("phone",w_phone);
+                settingIntent.putExtra("job",worker_job_title);
+                startActivity(settingIntent);
                 break;
 
 

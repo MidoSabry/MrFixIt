@@ -50,7 +50,7 @@ public class FirebasePushNotification extends FirebaseMessagingService {
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.ic_alarm_clock)
+                .setSmallIcon(R.drawable.bbpurple)
                 .setContentTitle(title)
                 .setContentInfo(message)
                 .setContentInfo("Info")

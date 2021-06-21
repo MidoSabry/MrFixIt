@@ -1,13 +1,16 @@
 package com.example.fixawy.Worker.DetailsJobPage;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -80,6 +83,10 @@ public class DetailsJobActivity extends AppCompatActivity {
 
 
     Dialog dialog;
+    Dialog alertDialog;
+    LayoutInflater inflater;
+    Button btnAddReplyDialog,btnCancelDialog;
+    EditText addReplyText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +113,7 @@ public class DetailsJobActivity extends AppCompatActivity {
         clientName = intent.getStringExtra("clientName");
 
         dialog = new Dialog(this);
+        alertDialog = new Dialog(this);
 
 
 
@@ -176,32 +184,43 @@ public class DetailsJobActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-
-        accept.setOnClickListener(v -> {
-            // 1- Create object from alertDialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(DetailsJobActivity.this);
-            // 2-Set builder Title
-            builder.setTitle("Alert Title");
-            // 3-Set Dialog Message
-            builder.setMessage("Enter Data");
-            // 4-Set Dialog EditText
-            final EditText inputData = new EditText(DetailsJobActivity.this);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT);
-            inputData.setLayoutParams(lp);
-            builder.setView(inputData);
-            comment = inputData.getText().toString();
-
-            // 5- set cancelable false
-            builder.setCancelable(false);
-            // 6-Positive button
-            builder.setPositiveButton("DONE", (dialog, which) -> sendData());
-            // 7-Negative Button
-            builder.setNegativeButton("CANCEL", (dialog, which) -> dialog.cancel());
-            // 8-Show the Alert Dialog box
-            builder.show();
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCommentDialog();
+            }
         });
+
+
+//        accept.setOnClickListener(v -> {
+////            // 1- Create object from alertDialog
+////            AlertDialog.Builder builder = new AlertDialog.Builder(DetailsJobActivity.this);
+////            // 2-Set builder Title
+////            builder.setTitle("Alert Title");
+////            // 3-Set Dialog Message
+////            builder.setMessage("Enter Data");
+////            // 4-Set Dialog EditText
+////            final EditText inputData = new EditText(DetailsJobActivity.this);
+////            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+////                    LinearLayout.LayoutParams.MATCH_PARENT,
+////                    LinearLayout.LayoutParams.MATCH_PARENT);
+////            inputData.setLayoutParams(lp);
+////            builder.setView(inputData);
+////            comment = inputData.getText().toString();
+////
+////            // 5- set cancelable false
+////            builder.setCancelable(false);
+////            // 6-Positive button
+////            builder.setPositiveButton("DONE", (dialog, which) -> sendData());
+////            // 7-Negative Button
+////            builder.setNegativeButton("CANCEL", (dialog, which) -> dialog.cancel());
+////            // 8-Show the Alert Dialog box
+////            builder.show();
+//
+//
+//
+//
+//        });
 
     }
     public void sendData()
@@ -290,5 +309,37 @@ public class DetailsJobActivity extends AppCompatActivity {
 
         dialog.show();
 
+    }
+
+    //create dialog for write comment
+    private void openCommentDialog(){
+//        alertDialog = new AlertDialog.Builder(v.getContext()).create();
+//        inflater = LayoutInflater.from(v.getContext());
+//        View dialogView = inflater.inflate(R.layout.add_comment_dialog, null);
+        alertDialog.setContentView(R.layout.add_comment_dialog);
+        btnAddReplyDialog= alertDialog.findViewById(R.id.btn_addNoteDialog);
+        btnCancelDialog=alertDialog.findViewById(R.id.btn_cancelNoteDialog);
+        addReplyText=alertDialog.findViewById(R.id.txt_addNoteDialog);
+        addReplyText.getText().toString().trim();
+        addReplyText = new EditText(DetailsJobActivity.this);
+        addReplyText.setInputType(InputType.TYPE_CLASS_TEXT);
+        //alertDialog.setContentView(addReplyText);
+        comment = addReplyText.getText().toString().trim()+"comment";
+
+
+        btnAddReplyDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendData();
+            }
+        });
+
+        btnCancelDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.cancel();
+            }
+        });
+        alertDialog.show();
     }
 }

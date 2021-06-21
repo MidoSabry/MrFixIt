@@ -264,4 +264,8 @@
     <string name="accept_msg">Wait for the worker at the appointed time</string>
     <string name="accept_worker_msg">Wait the client for accept your request</string>
 
+    <string name="oldpassword">Old password</string>
+    <string name="add_your_comment">Add your comment</string>
+    <string name="write_your_comment">add your comment</string>
+
 </resources>
