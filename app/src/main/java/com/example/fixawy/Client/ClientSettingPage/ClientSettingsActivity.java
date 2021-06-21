@@ -1,4 +1,4 @@
-package com.example.fixawy.Worker.WorkerSettingPage;
+package com.example.fixawy.Client.ClientSettingPage;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,26 +16,20 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fixawy.Client.ClientSettingPage.ClientSettingsActivity;
-import com.example.fixawy.Helper.LocaleHelper;
 import com.example.fixawy.R;
-import com.google.android.gms.common.api.Status;
+import com.example.fixawy.Share.RegisterPage.RegisterActivity;
+import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
-import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
@@ -48,11 +42,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-public class WorkerSettingActivity extends AppCompatActivity {
+public class ClientSettingsActivity extends AppCompatActivity {
+
     TextInputEditText textInputEditTextName,textInputEditTextEmail,textInputEditTextPhone,
-            textInputEditTextPassword,textInputEditTextRepassword;
+           textInputEditTextPassword,textInputEditTextRepassword;
     TextView textViewAddress;
     Button buttonCancel,buttonApply;
     ImageButton imageButtonLanguages;
@@ -64,19 +58,20 @@ public class WorkerSettingActivity extends AppCompatActivity {
 
 
     String phone;
-    String job;
     String oldPass;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_worker_setting);
+        setContentView(R.layout.activity_client_settings);
 
         Intent intent = getIntent();
         phone = intent.getStringExtra("phone");
-        job = intent.getStringExtra("job");
 
+        // Calling action bar
+        //ActionBar actionBar = getSupportActionBar();
+        // Showing back button on action bar
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         /* ----- Components Assigning ----- */
         textInputEditTextName = findViewById(R.id.editText_name_settings);
@@ -95,9 +90,7 @@ public class WorkerSettingActivity extends AppCompatActivity {
             }
         });
 
-
-
-        ref = FirebaseDatabase.getInstance().getReference().child("Worker").child(job).child("Data").child(phone);
+        ref = FirebaseDatabase.getInstance().getReference().child("Client").child("Data").child(phone);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -131,7 +124,7 @@ public class WorkerSettingActivity extends AppCompatActivity {
                 //initialize place field list
                 List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
                 //create intent
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).build(WorkerSettingActivity.this);
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).build(ClientSettingsActivity.this);
                 //start Activity result
                 startActivityForResult(intent,1);
 
@@ -146,8 +139,8 @@ public class WorkerSettingActivity extends AppCompatActivity {
             }
         });
 
-    }
 
+    }
 
     private void updateData() {
         String new_name = textInputEditTextName.getText().toString();
@@ -160,23 +153,23 @@ public class WorkerSettingActivity extends AppCompatActivity {
 
 
 
-        if (new_name.isEmpty()) {
-            textInputEditTextName.setError("UserName is required");
-            textInputEditTextName.requestFocus();
-            return;
-        }
+            if (new_name.isEmpty()) {
+                textInputEditTextName.setError("UserName is required");
+                textInputEditTextName.requestFocus();
+                return;
+            }
 
-        else if (new_email.isEmpty()) {
-            textInputEditTextEmail.setError("Email is required");
-            textInputEditTextEmail.requestFocus();
-            return;
-        }
+           else if (new_email.isEmpty()) {
+                textInputEditTextEmail.setError("Email is required");
+                textInputEditTextEmail.requestFocus();
+                return;
+            }
 
-        else if (!Patterns.EMAIL_ADDRESS.matcher(new_email).matches()) {
-            textInputEditTextEmail.setError("Please Enter Valid Email");
-            textInputEditTextEmail.requestFocus();
-            return;
-        }
+           else if (!Patterns.EMAIL_ADDRESS.matcher(new_email).matches()) {
+                textInputEditTextEmail.setError("Please Enter Valid Email");
+                textInputEditTextEmail.requestFocus();
+                return;
+            }
 
 //        if (phoneNum.isEmpty()) {
 //            editTextPhone.setError("Phone is required");
@@ -190,48 +183,48 @@ public class WorkerSettingActivity extends AppCompatActivity {
 //            return;
 //        }
 
-        else if (new_address.isEmpty()) {
-            textViewAddress.setError("Address is required");
-            textViewAddress.requestFocus();
-            return;
-        }
+          else if (new_address.isEmpty()) {
+                textViewAddress.setError("Address is required");
+                textViewAddress.requestFocus();
+                return;
+            }
 
-        else if (new_password.isEmpty()) {
-            textInputEditTextPassword.setError("Password is required");
-            textInputEditTextPassword.requestFocus();
-            return;
-        }
+           else if (new_password.isEmpty()) {
+                textInputEditTextPassword.setError("Password is required");
+                textInputEditTextPassword.requestFocus();
+                return;
+            }
 
-        else if (rep_password.isEmpty()) {
-            textInputEditTextRepassword.setError("ConfirmPassword is required");
-            textInputEditTextRepassword.requestFocus();
-            return;
-        }
+          else if (rep_password.isEmpty()) {
+                textInputEditTextRepassword.setError("ConfirmPassword is required");
+                textInputEditTextRepassword.requestFocus();
+                return;
+            }
 
-        else if (new_password.length() < 6) {
-            textInputEditTextPassword.setError("password is required 6 character");
-            textInputEditTextPassword.requestFocus();
-            return;
-        }
+           else if (new_password.length() < 6) {
+                textInputEditTextPassword.setError("password is required 6 character");
+                textInputEditTextPassword.requestFocus();
+                return;
+            }
 
         // 3-Checking if the password == repeat password
-        else if (!(new_password.equals(rep_password))) {
-            Toast.makeText(WorkerSettingActivity.this, "Mismatched passwords", Toast.LENGTH_SHORT).show();
+           else if (!(new_password.equals(rep_password))) {
+            Toast.makeText(ClientSettingsActivity.this, "Mismatched passwords", Toast.LENGTH_SHORT).show();
         }else{
-            HashMap hashMap = new HashMap();
-            hashMap.put("userName", new_name);
-            hashMap.put("email", new_email);
-            hashMap.put("address", new_address);
-            hashMap.put("password", new_password);
+                HashMap hashMap = new HashMap();
+                hashMap.put("userName", new_name);
+                hashMap.put("email", new_email);
+                hashMap.put("address", new_address);
+                hashMap.put("password", new_password);
 
-            updateRef = FirebaseDatabase.getInstance().getReference().child("Client").child("Data");
-            updateRef.child(phone).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-                @Override
-                public void onSuccess(Object o) {
-                    Toast.makeText(WorkerSettingActivity.this, "Update successfully", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+                updateRef = FirebaseDatabase.getInstance().getReference().child("Client").child("Data");
+                updateRef.child(phone).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        Toast.makeText(ClientSettingsActivity.this, "Update successfully", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
 
 
 
@@ -254,11 +247,9 @@ public class WorkerSettingActivity extends AppCompatActivity {
     }
 
 
-
-
     public void showChangeLanguageDialog(){
         String items[] = {"English","Arabic"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(WorkerSettingActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClientSettingsActivity.this);
         builder.setTitle("Choose language");
         builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
             @Override
@@ -296,4 +287,5 @@ public class WorkerSettingActivity extends AppCompatActivity {
         String lang = preferences.getString("my_lang","");
         setLocalization(lang);
     }
+
 }

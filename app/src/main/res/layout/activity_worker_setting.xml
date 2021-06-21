@@ -4,26 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Worker.WorkerSettingPage.WorkerSettingActivity"
-    android:background="@drawable/bcmodified">
+    android:background="@drawable/bcmodified"
+    tools:context=".Worker.WorkerSettingPage.WorkerSettingActivity">
 
     <TextView
-        android:id="@+id/setting_txt_worker"
+        android:id="@+id/setting_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:text="@string/settings"
+        android:textColor="@color/white"
         android:textSize="35sp"
         android:textStyle="bold"
         android:fontFamily="@font/robotocndensed"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/CardView_settings_worker"
+        android:id="@+id/CardView_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -34,13 +34,14 @@
         app:cardCornerRadius="15dp"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
-        app:layout_constraintBottom_toTopOf="@+id/second_CardView_settings_worker"
+        app:layout_constraintBottom_toTopOf="@+id/second_CardView_settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_txt_worker"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/setting_txt"
+
+        >
 
         <LinearLayout
-            android:id="@+id/linear_layout_settings_worker"
+            android:id="@+id/linear_layout_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -49,15 +50,16 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/personal_info"
                 android:textColor="@color/colorPurple"
                 android:fontFamily="@font/robotocndensed"
                 android:textSize="25dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_name_settings_worker"
+                android:id="@+id/text_name_settings"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
@@ -66,16 +68,16 @@
                 android:hint="@string/userName">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_name_settings_worker"
+                    android:id="@+id/editText_name_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPersonName"
+                    android:inputType="text"
                     android:drawableRight="@drawable/your_name"
                     android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_email_settings_worker"
+                android:id="@+id/text_email_settings"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
@@ -84,7 +86,7 @@
                 android:hint="@string/email">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_email_settings_worker"
+                    android:id="@+id/editText_email_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textEmailAddress"
@@ -92,95 +94,27 @@
                     android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_phone_settings_worker"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:hint="@string/phone">
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                android:id="@+id/text_phone_settings"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="60dp"-->
+            <!--                android:layout_margin="5dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:background="@color/white"-->
+            <!--                android:hint="@string/phone">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_phone_settings_worker"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="phone"
-                    android:drawableRight="@drawable/phone_number"
-                    android:padding="16dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:id="@+id/editText_phone_settings"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:inputType="phone"-->
+            <!--                    android:drawableRight="@drawable/phone_number"-->
+            <!--                    android:padding="16dp" />-->
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/second_CardView_settings_worker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="15dp"
-        android:elevation="10dp"
-        android:orientation="vertical"
-        app:cardCornerRadius="15dp"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cancel_settings_worker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
-        app:layout_constraintTop_toBottomOf="@+id/CardView_settings_worker"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:id="@+id/second_linear_layout_settings_worker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:weightSum="5">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/colorPurple"
-                android:textSize="25dp"
-                android:fontFamily="@font/robotocndensed"
-                android:textStyle="bold"  />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:weightSum="2"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView_job_settings"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:layout_weight="1"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_margin="6dp"
-                  android:hint="@string/address" />
-                <Spinner
-                    android:id="@+id/spinner_job_settings_worker"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@color/white"
-                    android:layout_alignRight="@+id/textView_job_settings"
-                    android:layout_below="@+id/textView_job_settings"
-                    android:layout_weight="1"
-                    android:spinnerMode="dropdown"
-                    android:layout_margin="5dp">
-                </Spinner>
-
-
-            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_address_settings_worker"
+                android:id="@+id/text_address_settings"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
@@ -188,27 +122,83 @@
                 android:background="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_address_settings_worker"
+                    android:id="@+id/editText_address_settings"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="@string/address"
                     android:drawableRight="@drawable/location"
                     android:textSize="18dp"
-                    android:padding="16dp"
-                  />
+                    android:padding="16dp"/>
             </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/second_CardView_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:elevation="10dp"
+        android:orientation="vertical"
+
+        app:cardCornerRadius="15dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toTopOf="@+id/btn_cancel_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintTop_toBottomOf="@+id/CardView_settings"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/second_linear_layout_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/additional_info"
+                android:textColor="@color/colorPurple"
+                android:textSize="25dp"
+                android:fontFamily="@font/robotocndensed"
+                android:textStyle="bold" />
+
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                android:id="@+id/text_oldpassword_settings"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="60dp"-->
+            <!--                android:layout_margin="5dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:background="@color/white"-->
+            <!--                android:hint="@string/oldpassword">-->
+
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:id="@+id/editText_oldpassword_settings"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:inputType="textPassword"-->
+            <!--                    android:drawableRight="@drawable/password"-->
+            <!--                    android:padding="16dp"-->
+            <!--                  />-->
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_password_settings_worker"
+                android:id="@+id/text_newpassword_settings"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:hint="@string/password">
+                android:hint="@string/newPassword">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_password_settings_worker"
+                    android:id="@+id/editText_newpassword_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
@@ -217,7 +207,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_repassword_settings_worker"
+                android:id="@+id/text_repassword_settings"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
@@ -226,7 +216,7 @@
                 android:hint="@string/re_password">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_repassword_settings_worker"
+                    android:id="@+id/editText_repassword_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
@@ -237,11 +227,11 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btn_cancel_settings_worker"
+        android:id="@+id/btn_cancel_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
+        android:layout_marginLeft="92dp"
         android:background="@drawable/btn_fragmentorders"
         android:fontFamily="@font/robotocndensed"
         android:text="@string/Cancel"
@@ -249,11 +239,11 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/second_CardView_settings_worker"
+        app:layout_constraintTop_toBottomOf="@+id/second_CardView_settings"
         app:layout_constraintVertical_bias="0.273" />
 
     <Button
-        android:id="@+id/btn_apply_settings_worker"
+        android:id="@+id/btn_apply_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="88dp"
@@ -263,21 +253,20 @@
         android:textStyle="bold"
         android:text="@string/apply"
         android:textColor="@color/white"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_cancel_settings_worker"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_cancel_settings"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageBtn_languages_settings_worker"
+        android:id="@+id/imageBtn_languages_settings"
         android:layout_width="53dp"
         android:layout_height="47dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/CardView_settings_worker"
+        app:layout_constraintEnd_toEndOf="@+id/CardView_settings"
         app:layout_constraintHorizontal_bias="0.989"
-        app:layout_constraintStart_toEndOf="@+id/setting_txt_worker"
+        app:layout_constraintStart_toEndOf="@+id/setting_txt"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/language"
         tools:ignore="VectorDrawableCompat" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

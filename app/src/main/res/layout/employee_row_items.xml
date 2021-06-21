@@ -13,7 +13,7 @@
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="334dp"
         android:layout_height="271dp"
         android:layout_gravity="center"
         android:background="@color/white"
@@ -45,7 +45,7 @@
             android:textColor="@color/darkPurple"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emp_name" />
+            app:layout_constraintTop_toBottomOf="@+id/emp_phone" />
 
         <TextView
             android:id="@+id/emp_phone"
@@ -59,7 +59,7 @@
             android:textColor="@color/darkPurple"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emp_address" />
+            app:layout_constraintTop_toBottomOf="@+id/emp_name" />
 
         <RatingBar
             android:id="@+id/emp_rate"
@@ -68,19 +68,20 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="20dp"
+            android:isIndicator="true"
             android:numStars="5"
             android:progressTint="@color/darkPurple"
             android:rating="2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emp_phone" />
+            app:layout_constraintTop_toBottomOf="@+id/emp_address" />
 
         <ImageView
             android:id="@+id/emp_img"
-            android:layout_width="130dp"
-            android:layout_height="103dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_width="111dp"
+            android:layout_height="88dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/person" />

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bcmodified"
-    tools:context=".Client.ClientSettingPage.ClientSettingActivity">
+    tools:context=".Client.ClientSettingPage.ClientSettingsActivity">
 
     <TextView
         android:id="@+id/setting_txt"
@@ -54,7 +54,7 @@
                 android:text="@string/personal_info"
                 android:textColor="@color/colorPurple"
                 android:fontFamily="@font/robotocndensed"
-              android:textSize="25dp"
+                android:textSize="25dp"
                 android:textStyle="bold"
                 />
 
@@ -94,22 +94,41 @@
                     android:padding="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/text_phone_settings"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@color/white"-->
+<!--                android:hint="@string/phone">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/editText_phone_settings"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:inputType="phone"-->
+<!--                    android:drawableRight="@drawable/phone_number"-->
+<!--                    android:padding="16dp" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_phone_settings"
+                android:id="@+id/text_address_settings"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@color/white"
-                android:hint="@string/phone">
+                android:background="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_phone_settings"
+                    android:id="@+id/editText_address_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="phone"
-                    android:drawableRight="@drawable/phone_number"
-                    android:padding="16dp" />
+                    android:hint="@string/address"
+                    android:drawableRight="@drawable/location"
+                    android:textSize="18dp"
+                    android:padding="16dp"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -150,35 +169,36 @@
                 android:fontFamily="@font/robotocndensed"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_address_settings"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@color/white">
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/text_oldpassword_settings"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@color/white"-->
+<!--                android:hint="@string/oldpassword">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_address_settings"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/address"
-                    android:drawableRight="@drawable/location"
-                    android:textSize="18dp"
-                   android:padding="16dp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/editText_oldpassword_settings"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:drawableRight="@drawable/password"-->
+<!--                    android:padding="16dp"-->
+<!--                  />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_password_settings"
+                android:id="@+id/text_newpassword_settings"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:hint="@string/password">
+                android:hint="@string/newPassword">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_password_settings"
+                    android:id="@+id/editText_newpassword_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"

@@ -35,6 +35,7 @@ public class EmployeeItemRecyclerAdapter extends RecyclerView.Adapter<EmployeeIt
 
     @Override
     public void onBindViewHolder(@NonNull EmployeeItemViewHolder holder, int position) {
+        int rate = employeeDataItemList.get(position).getRating();
         holder.empNameTv.setText(employeeDataItemList.get(position).getUserName());
         holder.empAddTv.setText(employeeDataItemList.get(position).getAddress());
         holder.empPhoneTv.setText(employeeDataItemList.get(position).getPhone());
@@ -43,7 +44,7 @@ public class EmployeeItemRecyclerAdapter extends RecyclerView.Adapter<EmployeeIt
         holder.ratingBar.setRating(employeeDataItemList.get(position).getRating());
         //workerRatingBarProfile.setRating(Float.parseFloat(rate));
 
-        //holder.ratingBar.setText(employeeDataItemList.get(position).getEmp_rate());
+       // holder.ratingBar.setText(employeeDataItemList.get(position).getEmp_rate());
 
 
     }
