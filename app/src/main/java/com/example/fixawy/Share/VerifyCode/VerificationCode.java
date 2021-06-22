@@ -24,6 +24,7 @@ import com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -38,6 +39,8 @@ public class VerificationCode extends AppCompatActivity {
     String userName,email,phoneNum,address,password,verification_code,type,jobTitle,image;
     int numOfJob,rating,like,disLike;
     User userClient,userWorker;
+
+    PhoneAuthCredential credential;
 
     String tokenId;
 
@@ -89,12 +92,27 @@ public class VerificationCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 verification_code = otpEdit.getEditText().getText().toString();
-                if(!verification_code.isEmpty()){
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(OTP , verification_code);
-                    signIn(credential);
-                }else{
+                if(verification_code.isEmpty()){
                     Toast.makeText(VerificationCode.this, "Please Enter OTP", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                if (OTP != null){
+                    credential = PhoneAuthProvider.getCredential(OTP , verification_code);
+                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                signIn(credential);
+                            }
+                            else {
+                                Toast.makeText(VerificationCode.this, "OTP is invalid", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+
             }
         });
     }
@@ -110,12 +128,14 @@ public class VerificationCode extends AppCompatActivity {
         if(type.equals("Owner")){
             registerClient(userClient);
             startActivity(new Intent(VerificationCode.this, HomePageClientActivity.class)
-                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_TOKEN_ID,tokenId));
+                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_TOKEN_ID,tokenId)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         }
         else if(type.equals("Worker")){
             registerWorker(userWorker);
             startActivity(new Intent(VerificationCode.this, RequestedHomePageActivity.class)
-                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle));
+                    .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         }
         else {
             Toast.makeText(VerificationCode.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();

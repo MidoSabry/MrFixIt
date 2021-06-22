@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionAdapter;
 import com.example.fixawy.Pojos.Product;
 import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.R;
+import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
 import com.example.fixawy.ShopOwner.AddNewProduct.AddNewProductActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +37,7 @@ public class ShowProductsActivity extends AppCompatActivity {
     ShowProductAdapter showProductAdapter;
     Product product;
     TextView textViewJobTitle;
+    ImageView imageViewLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class ShowProductsActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.productList);
         floatingButtonAsk = findViewById(R.id.addProduct);
         textViewJobTitle=findViewById(R.id.txt_job_title);
+        imageViewLogout = findViewById(R.id.logout);
         phoneNum = getIntent().getStringExtra("phone");
         shopType = getIntent().getStringExtra("shopType");
         shopName = getIntent().getStringExtra("shopName");
@@ -58,6 +62,14 @@ public class ShowProductsActivity extends AppCompatActivity {
                 intent.putExtra("shopType",shopType);
                 intent.putExtra("shopName",shopName);
                 startActivity(intent);
+            }
+        });
+
+        imageViewLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentBack = new Intent(ShowProductsActivity.this, SelectMembershipType.class);
+                startActivity(intentBack);
             }
         });
 

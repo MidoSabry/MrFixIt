@@ -1,5 +1,6 @@
 package com.example.fixawy.ShopOwner.VerifiyCode;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,8 +14,12 @@ import android.widget.Toast;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.ChangePassword.ChangePassword;
 import com.example.fixawy.Share.VerifyCode.ReceiveCode;
+import com.example.fixawy.Share.VerifyCode.VerificationCode;
 import com.example.fixawy.ShopOwner.ChangePassword.ChangePasswordSOActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -26,6 +31,8 @@ public class ReceiveCodeSOActivity extends AppCompatActivity {
     private String OTP,verification_code;
     private FirebaseAuth mAuth;
     String phoneNum,type,shopType;
+
+    PhoneAuthCredential credential;
 
 
     @Override
@@ -49,12 +56,27 @@ public class ReceiveCodeSOActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 verification_code = otpEdit.getEditText().getText().toString();
-                if(!verification_code.isEmpty()){
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(OTP , verification_code);
-                    signIn(credential);
-                }else{
+                if(verification_code.isEmpty()){
                     Toast.makeText(ReceiveCodeSOActivity.this, "Please Enter OTP", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                if (OTP != null){
+                    credential = PhoneAuthProvider.getCredential(OTP , verification_code);
+                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                signIn(credential);
+                            }
+                            else {
+                                Toast.makeText(ReceiveCodeSOActivity.this, "OTP is invalid", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+
             }
         });
     }
@@ -69,6 +91,7 @@ public class ReceiveCodeSOActivity extends AppCompatActivity {
         intentChangePassword.putExtra("phone",phoneNum);
         intentChangePassword.putExtra("type",type);
         intentChangePassword.putExtra("shopType",shopType);
+        intentChangePassword.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intentChangePassword);
         finish();
     }

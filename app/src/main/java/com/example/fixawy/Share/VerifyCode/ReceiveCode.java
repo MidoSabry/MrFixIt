@@ -8,11 +8,15 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fixawy.R;
 import com.example.fixawy.Share.ChangePassword.ChangePassword;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -25,6 +29,7 @@ public class ReceiveCode extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String phoneNum,type,jobTitle;
     int numOfJob,rating,like,disLike;
+    PhoneAuthCredential credential;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +59,27 @@ public class ReceiveCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 verification_code = otpEdit.getEditText().getText().toString();
-                if(!verification_code.isEmpty()){
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(OTP , verification_code);
-                    signIn(credential);
-                }else{
+                if(verification_code.isEmpty()){
                     Toast.makeText(ReceiveCode.this, "Please Enter OTP", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                if (OTP != null){
+                    credential = PhoneAuthProvider.getCredential(OTP , verification_code);
+                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                signIn(credential);
+                            }
+                            else {
+                                Toast.makeText(ReceiveCode.this, "OTP is invalid", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+
             }
         });
     }
@@ -74,6 +94,7 @@ public class ReceiveCode extends AppCompatActivity {
         intentChangePassword.putExtra("phone",phoneNum);
         intentChangePassword.putExtra("type",type);
         intentChangePassword.putExtra("jobTitle",jobTitle);
+        intentChangePassword.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intentChangePassword);
         finish();
     }

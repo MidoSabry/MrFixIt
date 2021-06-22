@@ -1,5 +1,6 @@
 package com.example.fixawy.ShopOwner.VerifiyCode;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,7 +21,10 @@ import com.example.fixawy.R;
 import com.example.fixawy.Share.VerifyCode.VerificationCode;
 import com.example.fixawy.ShopOwner.ShowProducts.ShowProductsActivity;
 import com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -38,6 +42,8 @@ public class ShopOwnerVerifiyCodeActivity extends AppCompatActivity {
     String shopName,phoneNum,address,password,verification_code,type,shopType,image;
     ShopOwnerUser shopOwnerUser;
 
+    PhoneAuthCredential credential;
+
     public static final String EXTRA_SHOP_NAME ="shopName";
     public static final String EXTRA_PHONE_NUM ="phone";
     public static final String EXTRA_SHOP_TYPE ="shopType";
@@ -50,7 +56,7 @@ public class ShopOwnerVerifiyCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop_owner_verifiy_code);
 
         otpEdit = findViewById(R.id.edit_code);
-        mVerifyCodeBtn = findViewById(R.id.btn_signUp);
+        mVerifyCodeBtn = findViewById(R.id.btnNext);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -68,12 +74,27 @@ public class ShopOwnerVerifiyCodeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 verification_code = otpEdit.getEditText().getText().toString();
-                if(!verification_code.isEmpty()){
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(OTP , verification_code);
-                    signIn(credential);
-                }else{
+                if(verification_code.isEmpty()){
                     Toast.makeText(ShopOwnerVerifiyCodeActivity.this, "Please Enter OTP", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                if (OTP != null){
+                    credential = PhoneAuthProvider.getCredential(OTP , verification_code);
+                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                signIn(credential);
+                            }
+                            else {
+                                Toast.makeText(ShopOwnerVerifiyCodeActivity.this, "OTP is invalid", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+
+
             }
         });
     }
@@ -88,7 +109,8 @@ public class ShopOwnerVerifiyCodeActivity extends AppCompatActivity {
             startActivity(new Intent(ShopOwnerVerifiyCodeActivity.this, ShowProductsActivity.class)
                     .putExtra(EXTRA_PHONE_NUM, phoneNum)
                     .putExtra(EXTRA_SHOP_NAME, shopName)
-                    .putExtra(EXTRA_SHOP_TYPE,shopType));
+                    .putExtra(EXTRA_SHOP_TYPE,shopType)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
         }
         else {
             Toast.makeText(ShopOwnerVerifiyCodeActivity.this, "Faillllllllllllllllled", Toast.LENGTH_SHORT).show();

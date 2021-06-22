@@ -56,7 +56,7 @@ public class ChangePasswordSOActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (newPassword.length() > 6){
+                if (newPassword.length() < 6){
                     editTextNewPassword.setError("password is required 6 character");
                     editTextNewPassword.requestFocus();
                     return;
