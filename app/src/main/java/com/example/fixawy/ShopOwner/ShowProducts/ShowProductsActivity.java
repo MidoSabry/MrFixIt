@@ -1,6 +1,7 @@
 package com.example.fixawy.ShopOwner.ShowProducts;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 import com.example.fixawy.Client.AskQuestionPage.AskQuestionActivity;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionAdapter;
+import com.example.fixawy.Pojos.ClientHistory;
 import com.example.fixawy.Pojos.Product;
 import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.R;
@@ -38,6 +42,10 @@ public class ShowProductsActivity extends AppCompatActivity {
     Product product;
     TextView textViewJobTitle;
     ImageView imageViewLogout;
+    AlertDialog alertDialog;
+    LayoutInflater inflater;
+    Button btnYes,btnNo;
+    FirebaseDatabase db ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +73,30 @@ public class ShowProductsActivity extends AppCompatActivity {
             }
         });
 
+
         imageViewLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentBack = new Intent(ShowProductsActivity.this, SelectMembershipType.class);
-                startActivity(intentBack);
+                alertDialog = new AlertDialog.Builder(ShowProductsActivity.this).create();
+                inflater = LayoutInflater.from(getApplicationContext());
+                View dialogView = inflater.inflate(R.layout.logout_dialog, null);
+                btnYes= dialogView.findViewById(R.id.yes);
+                btnNo=dialogView.findViewById(R.id.no);
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intentBack = new Intent(ShowProductsActivity.this, SelectMembershipType.class);
+                        startActivity(intentBack);
+                        alertDialog.cancel();
+                    }
+                });
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    { alertDialog.cancel(); }
+                });
+                alertDialog.setView(dialogView);
+                alertDialog.show();
             }
         });
 
