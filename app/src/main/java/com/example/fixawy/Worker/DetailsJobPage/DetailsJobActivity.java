@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.NotificationToClient.Client;
 import com.example.fixawy.NotificationToClient.Data;
@@ -289,6 +290,7 @@ public class DetailsJobActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     if (response.body().success != 1) {
                         Toast.makeText(DetailsJobActivity.this, "Failed ", Toast.LENGTH_LONG);
+                        HomePageClientActivity.allCategoryList.clear();
                     }
                 }
             }
@@ -342,4 +344,6 @@ public class DetailsJobActivity extends AppCompatActivity {
         });
         alertDialog.show();
     }
+
+
 }

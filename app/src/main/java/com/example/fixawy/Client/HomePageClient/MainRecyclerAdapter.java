@@ -80,6 +80,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
 
         return allCategoryList.size();
+        //return 2;
     }
 
     public class MainViewHolder extends RecyclerView.ViewHolder{

@@ -22,9 +22,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.Client.ShowProductsOfShopType.ShowProductsOfShopTypeActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
+import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
@@ -34,8 +36,10 @@ import com.example.fixawy.Worker.JobAccepted.JobAcceptedActivity;
 import com.example.fixawy.Worker.WorkerProfilePage.WorkerProfileActivity;
 import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
 import com.example.fixawy.Worker.WorkerSettingPage.WorkerSettingActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -56,6 +60,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.example.fixawy.Client.HomePageClient.HomePageClientActivity.allCategoryList;
 import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_WORKER_IMAGE;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTRA_JOB_TITLE;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_PHONE_NUM;
@@ -248,24 +253,36 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         database = FirebaseDatabase.getInstance().getReference("Worker").child(worker_job_title).child("order Details");
 
 
+//
+//        database.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                    OrderTree makeOrder = dataSnapshot.getValue(OrderTree.class);
+//                    list.add(makeOrder);
+//
+//
+//
+//                }
+//                RequestedHomePageActivity.myAdapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                for(DataSnapshot dataSnapshot : task.getResult().getChildren()){
                     OrderTree makeOrder = dataSnapshot.getValue(OrderTree.class);
                     list.add(makeOrder);
-
-
-
                 }
                 RequestedHomePageActivity.myAdapter.notifyDataSetChanged();
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
         });
 
 

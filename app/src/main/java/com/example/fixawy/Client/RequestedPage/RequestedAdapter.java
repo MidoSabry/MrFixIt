@@ -72,7 +72,7 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
         holder.username.setText(orderTreeItems.get(position).getUserName());
         holder.time.setText(orderTreeItems.get(position).getTime());
         holder.date.setText(orderTreeItems.get(position).getDate());
-        holder.anotherphone.setText(orderTreeItems.get(position).getRequestedPhone());
+       // holder.anotherphone.setText(orderTreeItems.get(position).getRequestedPhone());
         holder.payment.setText(orderTreeItems.get(position).getPaymentMethod());
         holder.request_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +146,7 @@ public class RequestedAdapter extends RecyclerView.Adapter<RequestedAdapter.Requ
             time = itemView.findViewById(R.id.requested_clock);
             request_btn = itemView.findViewById(R.id.request_edit_button);
             delete_btn = itemView.findViewById(R.id.request_delete_button);
-            anotherphone= itemView.findViewById(R.id.another_requsted_phone);
+            //anotherphone= itemView.findViewById(R.id.another_requsted_phone);
             payment = itemView.findViewById(R.id.requested_payment);
         }
 

@@ -66,7 +66,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     static  MainRecyclerAdapter mainRecyclerAdapter;
     CategoryItemRecyclerAdapter categoryItemRecyclerAdapter;
 
-    static List<AllCategory> allCategoryList = new ArrayList<>();
+    public static List<AllCategory> allCategoryList = new ArrayList<>();
 
 
     //DrawLayout side-menubar
@@ -187,11 +187,13 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         List<User>employeeDataListCarpenter = new ArrayList<>();
         homePageReposatory.getEmployeeData("Carpenter",employeeDataListCarpenter);
 
+
         List<User>employeeDataListPulmber = new ArrayList<>();
         homePageReposatory.getEmployeeData("Plumber",employeeDataListPulmber);
 
         List<User>employeeDataListElectricity = new ArrayList<>();
         homePageReposatory.getEmployeeData("Electricity",employeeDataListElectricity);
+
 
         List<User>employeeDataListPainter = new ArrayList<>();
         homePageReposatory.getEmployeeData("Painter",employeeDataListPainter);
@@ -295,7 +297,6 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
                 intent3.putExtra("phone", phoneNum);
                 startActivity(intent3);
-
                 break;
 
             case R.id.nav_client_settings:
@@ -354,4 +355,8 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }
