@@ -188,6 +188,7 @@
     <string name="priceOfProduct">سعر المنتج   :</string>
     <string name="productPrice">سعر المنتج</string>
     <string name="productDescription">وصف المنتج</string>
+    <string name="logoutDialog">هل تريد الخروج ؟</string>
 
     <!--Shops-->
     <string name="electrical_shop">محلات ادوات كهربائية</string>

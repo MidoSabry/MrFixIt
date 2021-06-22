@@ -183,6 +183,7 @@
     <string name="priceOfProduct">Price Of Product   :</string>
     <string name="productPrice">ProductPrice</string>
     <string name="productDescription">ProductDescription</string>
+    <string name="logoutDialog">Do you want to logout?</string>
 
     <!--Shops-->
     <string name="electrical_shop">Electrical Shops</string>
