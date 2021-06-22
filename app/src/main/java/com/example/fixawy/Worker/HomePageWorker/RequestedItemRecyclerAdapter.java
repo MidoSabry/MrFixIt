@@ -63,34 +63,34 @@ public class RequestedItemRecyclerAdapter extends RecyclerView.Adapter<Requested
 
 
         //make call
-        holder.worker_phone_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String mobileNumber =  makeOrders.get(position).getRequestedPhone();
-                String call = "tel:" +mobileNumber.trim();
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse(call));
-                context.startActivity(intent);
-            }
-        });
+//        holder.worker_phone_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String mobileNumber =  makeOrders.get(position).getRequestedPhone();
+//                String call = "tel:" +mobileNumber.trim();
+//                Intent intent = new Intent(Intent.ACTION_DIAL);
+//                intent.setData(Uri.parse(call));
+//                context.startActivity(intent);
+//            }
+//        });
 
         //open whatsApp chat
-        holder.worker_chat_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String mobileNumber =  makeOrders.get(position).getRequestedPhone();
-                String whatsapp_URL = "http://api.whatsapp.com/send?phone=";
-                boolean Installed = isAppInstalled("com.whatsapp");
-                if(Installed)
-                {
-                    Intent whatsapp_intent = new Intent(Intent.ACTION_VIEW);
-                    whatsapp_intent.setData(Uri.parse(whatsapp_URL+"02"+mobileNumber));
-                    context.startActivity(whatsapp_intent);
-                }
-                else{
-                    Toast.makeText(context,"whatsapp is not installed",Toast.LENGTH_SHORT).show();}
-            }
-        });
+//        holder.worker_chat_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String mobileNumber =  makeOrders.get(position).getRequestedPhone();
+//                String whatsapp_URL = "http://api.whatsapp.com/send?phone=";
+//                boolean Installed = isAppInstalled("com.whatsapp");
+//                if(Installed)
+//                {
+//                    Intent whatsapp_intent = new Intent(Intent.ACTION_VIEW);
+//                    whatsapp_intent.setData(Uri.parse(whatsapp_URL+"02"+mobileNumber));
+//                    context.startActivity(whatsapp_intent);
+//                }
+//                else{
+//                    Toast.makeText(context,"whatsapp is not installed",Toast.LENGTH_SHORT).show();}
+//            }
+//        });
 
 
     }

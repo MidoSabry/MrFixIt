@@ -191,6 +191,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                                 String usertoken = snapshot.child("tokenid").getValue().toString();
                                 Log.d("tooooookkk",usertoken);
                                 sendNotifications(usertoken, "Accepted Your Requested","??????");
+                                HomePageClientActivity.allCategoryList.clear();
                             }
 
                             @Override
