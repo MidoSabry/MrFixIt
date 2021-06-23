@@ -83,7 +83,7 @@ public class AskQuestionActivity extends AppCompatActivity {
                     uploadToFirebase(imageUri);
                 }
                 else {
-                    Toast.makeText(AskQuestionActivity.this, "Please Select Image", Toast.LENGTH_SHORT).show();
+                    uploadQuestionToFirebase();
                 }
 
             }
@@ -119,12 +119,10 @@ public class AskQuestionActivity extends AppCompatActivity {
                         askQuestionViewModel.addPrevQuestionsForClientData(userQuestions,phoneNum,jobTitle);
                         //add in worker path..
                         askQuestionViewModel.addQuestionsToWorkers(workerQuestions,phoneNum,jobTitle);
-
-                        Toast.makeText(AskQuestionActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AskQuestionActivity.this, "your question is added", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(AskQuestionActivity.this, PreviousQuestionActivity.class)
                                 .putExtra("CategoryType",jobTitle).putExtra("phone",phoneNum));
-                        //  imageViewUploadPhoto.setImageResource(R.drawable.ic_google);
-                        Toast.makeText(AskQuestionActivity.this, "your question is added", Toast.LENGTH_SHORT).show();
+
 
                     }
                 });
@@ -148,6 +146,23 @@ public class AskQuestionActivity extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cr.getType(mUri));
 
+    }
+
+    private void uploadQuestionToFirebase() {
+
+        question = editTextQuestion.getText().toString().trim();
+        userQuestions = new Questions(phoneNum, question, jobTitle);
+        workerQuestions = new Questions(phoneNum, question, jobTitle);
+
+        //add in Questions path for specific job...
+        askQuestionViewModel.addQuestionsDataForCategory(userQuestions, phoneNum, jobTitle);
+        //add in prev questions in clientData path...
+        askQuestionViewModel.addPrevQuestionsForClientData(userQuestions, phoneNum, jobTitle);
+        //add in worker path..
+        askQuestionViewModel.addQuestionsToWorkers(workerQuestions, phoneNum, jobTitle);
+        Toast.makeText(AskQuestionActivity.this, "your question is added", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(AskQuestionActivity.this, PreviousQuestionActivity.class)
+                .putExtra("CategoryType", jobTitle).putExtra("phone", phoneNum));
     }
 
 }

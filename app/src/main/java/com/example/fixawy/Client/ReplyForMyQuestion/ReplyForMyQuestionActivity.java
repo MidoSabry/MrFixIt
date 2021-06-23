@@ -43,7 +43,7 @@ public class ReplyForMyQuestionActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(replyQuestionsAdapter);
         read();
-        Toast.makeText(this, "all questions", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "all replies of your questions", Toast.LENGTH_SHORT).show();
     }
 
     public void read(){

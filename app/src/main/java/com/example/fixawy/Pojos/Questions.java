@@ -27,12 +27,17 @@ public class Questions {
         this.imageUri = imageUri;
     }
 
-    public Questions(String phone, String question,String imageUri) {
+   /* public Questions(String phone, String question,String imageUri) {
         this.phone = phone;
         this.question = question;
         this.imageUri = imageUri;
-    }
+    }*/
 
+    public Questions(String phone, String question, String jobTitle) {
+        this.phone = phone;
+        this.question = question;
+        this.jobTitle = jobTitle;
+    }
 
     public Questions() {
     }

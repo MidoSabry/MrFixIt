@@ -45,7 +45,7 @@ public class AnswerActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(answerAdapter);
         // readReply();
         read();
-        Toast.makeText(this, "all questions", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "all replies of your questions", Toast.LENGTH_SHORT).show();
     }
 
     public void read(){
