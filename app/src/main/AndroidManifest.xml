@@ -28,7 +28,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fixawy">
-        <activity android:name=".Client.ClientSettingPage.ClientSettingsActivity"></activity>
+        <activity android:name=".Worker.CommentsForWorker.CommentsForWorkerActivity"></activity>
+        <activity android:name=".Client.CommentsFromAllClients.CommentsFromAllClientsActivity" />
+        <activity android:name=".Client.CommentOfReply.CommentOfReplyActivity" />
+        <activity android:name=".Client.ClientSettingPage.ClientSettingsActivity" />
         <activity android:name=".ShopOwner.Login.ShopOwnerLoginActivity" />
         <activity android:name=".ShopOwner.SignUp.ShopOwnerSignUPActivity" />
         <activity android:name=".ShopOwner.ShowProducts.ShowProductsActivity" />

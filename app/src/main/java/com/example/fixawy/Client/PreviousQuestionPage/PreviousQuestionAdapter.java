@@ -1,5 +1,6 @@
 package com.example.fixawy.Client.PreviousQuestionPage;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 public class PreviousQuestionAdapter extends RecyclerView.Adapter<PreviousQuestionAdapter.PreviousQuestionItemViewHolder> {
 
     ArrayList<Questions> questions = new ArrayList<>();
+    String phoneNum;
+    Context context;
 
     public void clear() {
         questions.clear();
@@ -27,6 +30,11 @@ public class PreviousQuestionAdapter extends RecyclerView.Adapter<PreviousQuesti
     public void add(Questions ques){
         questions.add(ques);
         notifyDataSetChanged();
+    }
+
+    public PreviousQuestionAdapter(Context context, String phoneNum) {
+        this.context = context;
+        this.phoneNum = phoneNum;
     }
 
     @NonNull
@@ -49,7 +57,8 @@ public class PreviousQuestionAdapter extends RecyclerView.Adapter<PreviousQuesti
                 String jobTitle = questions.get(position).getJobTitle();
                 String phone = holder.textViewPhone.getText().toString();
                 v.getContext().startActivity(new Intent(v.getContext(), AnswerActivity.class)
-                        .putExtra("phone",phone).putExtra("jobTitle",jobTitle));
+                        .putExtra("phone",phone).putExtra("jobTitle",jobTitle)
+                        .putExtra("phoneNum",phoneNum));
             }
         });
 

@@ -138,6 +138,8 @@
     <string name="reply_from">Reply from : </string>
     <string name="reply">Reply : </string>
     <string name="Title" translatable="false">job Title</string>
+    <string name="commentOfReply">Comments</string>
+    <string name="comment">Comment</string>
 
 
     <!--Facebook authentication-->

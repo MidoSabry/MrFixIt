@@ -25,19 +25,22 @@ public class AnswerActivity extends AppCompatActivity {
     Answer answer;
     AnswerAdapter answerAdapter;
     RecyclerView mRecyclerView;
-    String phoneNum,jobTitle;
+    String phoneNum,jobTitle,phoneNumOfReply,phoneBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
 
-        mRef = FirebaseDatabase.getInstance().getReference();
-        answerAdapter = new AnswerAdapter();
-        mRecyclerView = findViewById(R.id.questionsList);
-
         phoneNum = getIntent().getStringExtra("phone");
         jobTitle = getIntent().getStringExtra("jobTitle");
+        phoneNumOfReply = getIntent().getStringExtra("phoneNum");
+
+        phoneBack = getIntent().getStringExtra("phoneBack");
+
+        mRef = FirebaseDatabase.getInstance().getReference();
+        answerAdapter = new AnswerAdapter(this,jobTitle,phoneNumOfReply);
+        mRecyclerView = findViewById(R.id.questionsList);
 
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);

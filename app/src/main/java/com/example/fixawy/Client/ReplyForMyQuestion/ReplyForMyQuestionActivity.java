@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ReplyForMyQuestionActivity extends AppCompatActivity {
 
     DatabaseReference mRef;
-    String phoneClient,jobTitle,clientQuestion;
+    String phoneClient,jobTitle,phoneWorker;
     Answer answer;
     ReplyForMyQuestionAdapter replyQuestionsAdapter;
     RecyclerView mRecyclerView;
@@ -31,12 +31,14 @@ public class ReplyForMyQuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reply_for_my_question);
 
+        phoneClient = getIntent().getStringExtra("phone");
+        phoneWorker = getIntent().getStringExtra("phoneWorker");
+        jobTitle = getIntent().getStringExtra("jobTitle");
+
         mRef = FirebaseDatabase.getInstance().getReference();
-        replyQuestionsAdapter = new ReplyForMyQuestionAdapter();
+        replyQuestionsAdapter = new ReplyForMyQuestionAdapter(this,jobTitle);
         mRecyclerView = findViewById(R.id.questionsList);
 
-        phoneClient = getIntent().getStringExtra("phone");
-        jobTitle = getIntent().getStringExtra("jobTitle");
 
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
