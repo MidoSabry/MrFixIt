@@ -39,7 +39,7 @@ public class CommentsFromAllClientsActivity extends AppCompatActivity {
     AlertDialog alertDialog;
     LayoutInflater inflater;
     Button btnAddReplyDialog,btnCancelDialog;
-    EditText addReplyText;
+    EditText addComment;
     DatabaseReference databaseReference;
     FirebaseDatabase db ;
 
@@ -60,16 +60,16 @@ public class CommentsFromAllClientsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 alertDialog = new AlertDialog.Builder(v.getContext()).create();
                 inflater = LayoutInflater.from(v.getContext());
-                View dialogView = inflater.inflate(R.layout.add_reply_dialog, null);
+                View dialogView = inflater.inflate(R.layout.add_comment_dialog, null);
                 btnAddReplyDialog= dialogView.findViewById(R.id.btn_addNoteDialog);
                 btnCancelDialog=dialogView.findViewById(R.id.btn_cancelNoteDialog);
-                addReplyText=dialogView.findViewById(R.id.txt_addNoteDialog);
+                addComment=dialogView.findViewById(R.id.add_comment);
                 db = FirebaseDatabase.getInstance();
                 databaseReference = db.getReference("Client");
                 btnAddReplyDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String comment = addReplyText.getText().toString().trim();
+                        String comment = addComment.getText().toString().trim();
                         Comment  commentModel = new Comment(phoneWorker,phoneClient,comment,reply);
                         databaseReference.child("Questions").child("Comments").child(jobTitle).child(phoneWorker).child(phoneClient).push().setValue(commentModel);
                         Toast.makeText(CommentsFromAllClientsActivity.this, "your comment will be added soon...", Toast.LENGTH_SHORT).show();
