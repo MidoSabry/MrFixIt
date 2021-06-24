@@ -75,7 +75,8 @@ public class CommentsForWorkerActivity extends AppCompatActivity {
                         databaseReference.child("Questions").child("Comments").child(jobTitle).child(phoneWorker).child(phoneClient).push().setValue(commentModel);
                         Toast.makeText(CommentsForWorkerActivity.this, "your comment will be added soon...", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(CommentsForWorkerActivity.this, WorkerQuestionsActivity.class)
-                                .putExtra("jobTitle",jobTitle));
+                                .putExtra("jobTitle",jobTitle)
+                                .putExtra("phoneWorker",phoneWorker));
                         alertDialog.cancel();
                     }
                 });
