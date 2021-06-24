@@ -57,7 +57,8 @@ public class PreviousQuestionAdapter extends RecyclerView.Adapter<PreviousQuesti
                 String jobTitle = questions.get(position).getJobTitle();
                 String phone = holder.textViewPhone.getText().toString();
                 v.getContext().startActivity(new Intent(v.getContext(), AnswerActivity.class)
-                        .putExtra("phone",phone).putExtra("jobTitle",jobTitle)
+                        .putExtra("phone",phone)
+                        .putExtra("jobTitle",jobTitle)
                         .putExtra("phoneNum",phoneNum));
             }
         });
