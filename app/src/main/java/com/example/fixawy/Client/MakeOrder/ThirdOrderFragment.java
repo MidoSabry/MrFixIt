@@ -129,9 +129,9 @@ public class ThirdOrderFragment extends Fragment {
         orderTree.setTime(getArguments().getString("Order time"));
         orderTree.setDetails(getArguments().getString("Details"));
         orderTree.setTypeOfOrder(getArguments().getString("Type"));
-//        phoneNum = getActivity().getIntent().getStringExtra("phone");
+        phoneNum = getActivity().getIntent().getStringExtra("phone");
 //        tokinid = getActivity().getIntent().getStringExtra("token");
-//        categoryType = getActivity().getIntent().getStringExtra("CategoryType");
+     categoryType = getActivity().getIntent().getStringExtra("CategoryType");
         thirdOrderViewModel = new ViewModelProvider(this).get(ThirdOrderViewModel.class);
         clientMakeOrder = (ClientMakeOrder) getActivity();
 
@@ -139,104 +139,72 @@ public class ThirdOrderFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-
-
                 if(myListJob.contains(categoryType)){
                     openDialog();
                     //Toast.makeText(getContext(), "You already make an order of this job", Toast.LENGTH_SHORT).show();
                 }else {
-
-                    //TODO GO to another Activity or Fragment from Cash
-                    Intent intent = new Intent(getContext(), RequestedActivity.class);
-                    intent.putExtra("phone", phoneNum);
-                    intent.putExtra("CategoryType", categoryType);
-                    startActivity(intent);
-                    getActivity().finish();
-
-                }
-
-
-            }
-        });
-
-
-        payPalBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(myListJob.contains(categoryType)){
-                    openDialog();
-                    //Toast.makeText(getContext(), "You already make an order of this job", Toast.LENGTH_SHORT).show();
-                }else{
-                    orderTree.setPaymentMethod("paypal");
-                    orderTree.setJobTitle(categoryType);
-                    orderTree.setRequestedPhone(phoneNum);
-                    orderTree.setTokenid(tokinid);
-                    orderTree.setUserName(username.getText().toString());
-                    valName = username.getText().toString().trim();
-                    if (valName.isEmpty()) {
-                        username.setError("Enter the name");
-                        username.requestFocus();
-                        return;
+                    if (payPalBtn.isChecked()) {
+                        orderTree.setPaymentMethod("paypal");
+                        orderTree.setJobTitle(categoryType);
+                        orderTree.setRequestedPhone(phoneNum);
+                        orderTree.setTokenid(tokinid);
+                        orderTree.setUserName(username.getText().toString());
+                        valName = username.getText().toString().trim();
+                        if (valName.isEmpty()) {
+                            username.setError("Enter the name");
+                            username.requestFocus();
+                            return;
+                        }
+                        thirdOrderViewModel.addData(orderTree, phoneNum, categoryType);
+                        thirdOrderViewModel.addDataToWorker(orderTree, categoryType, phoneNum);
+                        processPayment();
+                    } else if (creditCard.isChecked()) {
+                        orderTree.setPaymentMethod("creditCard");
+                        orderTree.setJobTitle(categoryType);
+                        orderTree.setRequestedPhone(phoneNum);
+                        orderTree.setTokenid(tokinid);
+                        orderTree.setUserName(username.getText().toString());
+                        valName = username.getText().toString().trim();
+                        if (valName.isEmpty()) {
+                            username.setError("Enter the name");
+                            username.requestFocus();
+                            return;
+                        }
+                        thirdOrderViewModel.addData(orderTree, phoneNum, categoryType);
+                        thirdOrderViewModel.addDataToWorker(orderTree, categoryType, phoneNum);
+                        Intent intent = new Intent(getActivity(), CreditCardActivity.class);
+                        intent.putExtra("phone", phoneNum);
+                        intent.putExtra("CategoryType", categoryType);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else if (cash.isChecked()) {
+                        orderTree.setPaymentMethod("cash");
+                        orderTree.setJobTitle(categoryType);
+                        orderTree.setRequestedPhone(phoneNum);
+                        orderTree.setUserName(username.getText().toString());
+                        orderTree.setTokenid(tokinid);
+                        valName = username.getText().toString().trim();
+                        if (valName.isEmpty()) {
+                            username.setError("Enter the name");
+                            username.requestFocus();
+                            return;
+                        }
+                        thirdOrderViewModel.addData(orderTree, phoneNum, categoryType);
+                        thirdOrderViewModel.addDataToWorker(orderTree, categoryType, phoneNum);
+                        Intent intent = new Intent(getContext(), RequestedActivity.class);
+                        intent.putExtra("phone", phoneNum);
+                        intent.putExtra("CategoryType", categoryType);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
-                    thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
-                    thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
-                    processPayment();
-                }
 
+
+                }
             }
         });
-        creditCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(myListJob.contains(categoryType)){
-                    openDialog();
-                    //Toast.makeText(getContext(), "You already make an order of this job", Toast.LENGTH_SHORT).show();
-                }else{
-                    orderTree.setPaymentMethod("creditCard");
-                    orderTree.setJobTitle(categoryType);
-                    orderTree.setRequestedPhone(phoneNum);
-                    orderTree.setTokenid(tokinid);
-                    orderTree.setUserName(username.getText().toString());
-                    valName = username.getText().toString().trim();
-                    if (valName.isEmpty()) {
-                        username.setError("Enter the name");
-                        username.requestFocus();
-                        return;
-                    }
-                    thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
-                    thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
-                    Intent intent = new Intent(getActivity(), CreditCardActivity.class);
-                    intent.putExtra("phone", phoneNum);
-                    intent.putExtra("CategoryType",categoryType);
-                    startActivity(intent);
-                }
 
-            }
-        });
-        cash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(myListJob.contains(categoryType)){
-                    openDialog();
-                    //Toast.makeText(getContext(), "You already make an order of this job", Toast.LENGTH_SHORT).show();
-                }else{
-                    orderTree.setPaymentMethod("cash");
-                    orderTree.setJobTitle(categoryType);
-                    orderTree.setRequestedPhone(phoneNum);
-                    orderTree.setUserName(username.getText().toString());
-                    orderTree.setTokenid(tokinid);
-                    valName = username.getText().toString().trim();
-                    if (valName.isEmpty()) {
-                        username.setError("Enter the name");
-                        username.requestFocus();
-                        return;
-                    }
-                    thirdOrderViewModel.addData(orderTree,phoneNum,categoryType);
-                    thirdOrderViewModel.addDataToWorker(orderTree,categoryType,phoneNum);
-                }
 
-            }
-        });
+
     }
 
     //create the dialog
