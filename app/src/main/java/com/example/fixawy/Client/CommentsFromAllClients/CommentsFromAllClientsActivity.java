@@ -1,4 +1,4 @@
-package com.example.fixawy.Worker.ReplayQuestionsPage;
+package com.example.fixawy.Client.CommentsFromAllClients;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -14,10 +14,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.fixawy.Client.ReplyQuestions.AnswerAdapter;
-import com.example.fixawy.Pojos.Answer;
+import com.example.fixawy.Client.CommentOfReply.CommentOfReplyActivity;
+import com.example.fixawy.Client.CommentOfReply.CommentOfReplyAdapter;
+import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
+import com.example.fixawy.Client.ReplyForMyQuestion.ReplyForMyQuestionActivity;
+import com.example.fixawy.Client.ReplyQuestions.AnswerActivity;
+import com.example.fixawy.Pojos.Comment;
 import com.example.fixawy.R;
-import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,13 +28,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ReplayQuestionActivity extends AppCompatActivity {
+public class CommentsFromAllClientsActivity extends AppCompatActivity {
 
     DatabaseReference mRef;
-    Answer answer,answerModel;
-    ReplyQuestionsAdapter replyQuestionsAdapter;
+    String phoneClient,jobTitle,phoneWorker,reply;
+    Comment comment;
+    CommentsFromAllClientsAdapter commentsFromAllClientsAdapter;
     RecyclerView mRecyclerView;
-    String phoneClient,phoneWorker,jobTitle,reply,clientQuestion;
     FloatingActionButton floatingActionButtonOpenDialog;
     AlertDialog alertDialog;
     LayoutInflater inflater;
@@ -43,15 +46,15 @@ public class ReplayQuestionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_replay_question);
+        setContentView(R.layout.activity_comments_from_all_clients);
 
         phoneClient = getIntent().getStringExtra("phoneClient");
-        phoneWorker = getIntent().getStringExtra("phoneWorker");
-        jobTitle = getIntent().getStringExtra("jobTitle");
-        clientQuestion = getIntent().getStringExtra("clientQuestion");
+        phoneWorker =  getIntent().getStringExtra("phoneWorker");
+        jobTitle =  getIntent().getStringExtra("jobTitle");
+        reply = getIntent().getStringExtra("reply");
 
-
-        floatingActionButtonOpenDialog = findViewById(R.id.openDialogReply);
+        Toast.makeText(this, "phone of who reply"+phoneClient, Toast.LENGTH_SHORT).show();
+        floatingActionButtonOpenDialog = findViewById(R.id.openDialogComment);
         floatingActionButtonOpenDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,14 +69,12 @@ public class ReplayQuestionActivity extends AppCompatActivity {
                 btnAddReplyDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(ReplayQuestionActivity.this, "add reply" + clientQuestion + " " + phoneClient + " " + phoneWorker +" " + jobTitle, Toast.LENGTH_SHORT).show();
-                        reply = addReplyText.getText().toString().trim();
-                        answerModel = new Answer(reply,phoneWorker,clientQuestion,phoneClient);
-                        databaseReference.child("Questions").child("Replies").child(jobTitle).child(phoneClient).child(phoneWorker).push().setValue(answerModel);
-                        Toast.makeText(ReplayQuestionActivity.this, "your reply will be added soon...", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ReplayQuestionActivity.this, WorkerQuestionsActivity.class)
-                                .putExtra("jobTitle",jobTitle)
-                                .putExtra("phoneWorker",phoneWorker));
+                        String comment = addReplyText.getText().toString().trim();
+                        Comment  commentModel = new Comment(phoneWorker,phoneClient,comment,reply);
+                        databaseReference.child("Questions").child("Comments").child(jobTitle).child(phoneWorker).child(phoneClient).push().setValue(commentModel);
+                        Toast.makeText(CommentsFromAllClientsActivity.this, "your comment will be added soon...", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(CommentsFromAllClientsActivity.this, PreviousQuestionActivity.class)
+                                .putExtra("CategoryType",jobTitle));
                         alertDialog.cancel();
                     }
                 });
@@ -88,32 +89,27 @@ public class ReplayQuestionActivity extends AppCompatActivity {
 
 
 
-
         mRef = FirebaseDatabase.getInstance().getReference();
-        replyQuestionsAdapter = new ReplyQuestionsAdapter(this,jobTitle,phoneClient);
+        commentsFromAllClientsAdapter = new CommentsFromAllClientsAdapter(this,jobTitle);
         mRecyclerView = findViewById(R.id.questionsList);
-
 
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(lm);
-        mRecyclerView.setAdapter(replyQuestionsAdapter);
-        // readReply();
+        mRecyclerView.setAdapter(commentsFromAllClientsAdapter);
         read();
-        Toast.makeText(this, "all questions", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, phoneWorker, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "all comments of reply", Toast.LENGTH_SHORT).show();
     }
 
     public void read(){
-        mRef.child("Client").child("Questions").child("Replies").child(jobTitle).child(phoneClient).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mRef.child("Client").child("Questions").child("Comments").child(jobTitle).child(phoneWorker).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Iterable<DataSnapshot> children = task.getResult().getChildren();
                 for (DataSnapshot snapshot : children) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        answer = dataSnapshot.getValue(Answer.class);
-                        replyQuestionsAdapter.add(answer);
-
+                        comment = dataSnapshot.getValue(Comment.class);
+                        commentsFromAllClientsAdapter.add(comment);
                     }
                 }
             }

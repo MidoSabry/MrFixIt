@@ -1,22 +1,29 @@
 package com.example.fixawy.Client.ReplyForMyQuestion;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fixawy.Client.CommentOfReply.CommentOfReplyActivity;
 import com.example.fixawy.Pojos.Answer;
+import com.example.fixawy.Pojos.HistoryWorker;
 import com.example.fixawy.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReplyForMyQuestionAdapter extends RecyclerView.Adapter<ReplyForMyQuestionAdapter.PreviousQuestionItemViewHolder> {
 
     ArrayList<Answer> answers = new ArrayList<>();
-
+    Context context;
+    String jobTitle;
 
     public void clear() {
         answers.clear();
@@ -25,6 +32,11 @@ public class ReplyForMyQuestionAdapter extends RecyclerView.Adapter<ReplyForMyQu
     public void add(Answer ans){
         answers.add(ans);
         notifyDataSetChanged();
+    }
+
+    public ReplyForMyQuestionAdapter(Context context, String jobTitle) {
+        this.context = context;
+        this.jobTitle = jobTitle;
     }
 
     @NonNull
@@ -42,6 +54,21 @@ public class ReplyForMyQuestionAdapter extends RecyclerView.Adapter<ReplyForMyQu
         holder.textViewQuestion.setText(answers.get(position).getClientQuestion());
         holder.textViewPhoneOfClient.setText(answers.get(position).getPhoneOfClient());
 
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneWorker = answers.get(position).getPhone();
+                String phoneClient = answers.get(position).getPhoneOfClient();
+                String reply = answers.get(position).getReplay();
+                Toast.makeText(v.getContext(),phoneWorker, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, jobTitle, Toast.LENGTH_SHORT).show();
+                v.getContext().startActivity(new Intent(v.getContext(), CommentOfReplyActivity.class)
+                        .putExtra("phoneWorker",phoneWorker)
+                        .putExtra("phoneClient",phoneClient)
+                        .putExtra("jobTitle",jobTitle)
+                        .putExtra("reply",reply));
+            }
+        });
     }
 
     @Override

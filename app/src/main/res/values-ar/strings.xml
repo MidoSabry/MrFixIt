@@ -87,6 +87,8 @@
     <string name="birth_date">تاريخ الميلاد</string>
     <string name="re_password">اعادة كلمة السر</string>
     <string name="apply">تثبيت</string>
+    <string name="commentOfReply">التعليقات</string>
+    <string name="comment">التعليق</string>
 
     <!-- Worker Setting Screen -->
     <string-array name="jobs_names">

@@ -55,7 +55,7 @@ public class PreviousQuestionActivity extends AppCompatActivity {
         });
 
         mRef = FirebaseDatabase.getInstance().getReference();
-        questionAdapter = new PreviousQuestionAdapter();
+        questionAdapter = new PreviousQuestionAdapter(this,phoneNum);
 
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
