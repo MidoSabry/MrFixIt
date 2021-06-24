@@ -82,6 +82,7 @@ public class JobAcceptedActivity extends AppCompatActivity {
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                jobAcceptedList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     JobAccepted jobAccepted = dataSnapshot.getValue(JobAccepted.class);
                     jobAcceptedList.add(jobAccepted);

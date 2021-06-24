@@ -51,6 +51,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -63,8 +64,12 @@ public class AcceptedWorkActivity extends AppCompatActivity {
     Button buttonAccept,buttonCancel;
     String phoneWorker,phoneClient,date,time,location,phoneClientNum,nameClient,typeOfOrder,nameOfWorker,workerJobTitle;
     DatabaseReference reference1,reference2,reference4,reference5;
-    DatabaseReference referenceDelete1,referenceDelete2;
+    DatabaseReference referenceDelete1,referenceDelete2, updateNumOfJob;
     List<String> uIds = new ArrayList<>();
+
+    int numJob;
+    String numOfJob;
+    String aftterNumOfJob;
     AcceptWorkModel acceptWorkModel ;
     RequestedPageViewModel requestedPageViewModel;
 
@@ -111,7 +116,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                 String url = snapshot.child("image").getValue(String.class);
                 String nameOfWorker = snapshot.child("nameOfWorker").getValue(String.class);
-                String numOfJob = snapshot.child("numOfJob").getValue(String.class);
+                numOfJob = snapshot.child("numOfJob").getValue(String.class);
                 String numOfLike = snapshot.child("numOfLike").getValue(String.class);
                 String numOfDisLike = snapshot.child("numOfDisLike").getValue(String.class);
                 String addressOfWorker = snapshot.child("addressOfWorker").getValue(String.class);
@@ -164,6 +169,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                         //set time & date & location & phone for client & name of client for job accepted
                         OrderTree order = new OrderTree(time, date, location, phoneClientNum, nameClient);
                         reference4.child("Worker").child(workerJobTitle).child("Data").child(phoneWorker).child("Job Accepted").child(phoneClient).setValue(order);
+
                         OrderTree historyOrder = new OrderTree(time, date, typeOfOrder, workerJobTitle, nameOfWorker, phoneWorker);
                         reference4.child("Client").child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
 
@@ -206,6 +212,16 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
                     }
                 });
+
+                //update num of job
+                numJob = Integer.parseInt(numOfJob);
+                numJob++;
+                aftterNumOfJob = Integer.toString(numJob);
+                HashMap hashMap = new HashMap();
+                hashMap.put("numOfJob",numJob);
+                updateNumOfJob = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("Data").child(phoneWorker);
+                updateNumOfJob.updateChildren(hashMap);
+
 
 
             }

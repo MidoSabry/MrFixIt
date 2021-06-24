@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-
-        android:padding="8dp">
+        android:paddingLeft="10dp"
+        android:paddingRight="0dp">
 
         <LinearLayout
             android:id="@+id/grd"
@@ -53,8 +53,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="25dp"
                 android:fontFamily="@font/robotocndensed"
                 android:src="@drawable/date"
                 android:layout_marginLeft="0dp" />
@@ -200,9 +199,9 @@
                 android:id="@+id/requested_prosess_btn"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="35dp"
                 android:layout_marginLeft="0dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="35dp"
                 android:background="@drawable/custom_button"
                 android:enabled="false"
                 android:text="@string/proccessing"
@@ -214,8 +213,6 @@
                 android:id="@+id/request_delete_button"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 android:background="@drawable/delete_icon" />
 
 

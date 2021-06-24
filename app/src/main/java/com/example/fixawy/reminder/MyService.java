@@ -83,8 +83,8 @@ public class MyService extends Service {
 
 
          RemoteViews customView =new RemoteViews(getPackageName(), R.layout.notification_reminder);
-        Intent notificationIntent =new Intent(getApplicationContext(), RequestedHomePageActivity.class);
-        Intent hungupIntent =new Intent(getApplicationContext(), MyReceiver.class);
+       // Intent notificationIntent =new Intent(getApplicationContext(), RequestedHomePageActivity.class);
+        //Intent hungupIntent =new Intent(getApplicationContext(), MyReceiver.class);
         Intent answerIntent = new Intent(this, MapActivity.class);
 
         //answerIntent.putExtra(UpcomingTripsFragment.UPCOMING_DETAILS_EXTRA,trip);
@@ -103,8 +103,8 @@ public class MyService extends Service {
         customView.setTextViewText(R.id.tripName, address);
         //customView.setImageViewBitmap(R.id.photo, NotificationImageManager().getImageBitmap(intent.getStringExtra("user_thumbnail_image")))
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent hungupPendingIntent = PendingIntent.getBroadcast(this, 0, hungupIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+     //   PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+      //  PendingIntent hungupPendingIntent = PendingIntent.getBroadcast(this, 0, hungupIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent answerPendingIntent = PendingIntent.getActivity(this, 0, answerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         customView.setOnClickPendingIntent(R.id.btnStart, answerPendingIntent);
@@ -128,7 +128,7 @@ public class MyService extends Service {
             notification.setVibrate(null);
             notification.setOngoing(true);
             notification.setSound(soundUri);
-            notification.setFullScreenIntent(pendingIntent, true);
+           // notification.setFullScreenIntent(pendingIntent, true);
             notification.setPriority(NotificationCompat.PRIORITY_HIGH);
             notification.setStyle(new NotificationCompat.DecoratedCustomViewStyle());
             notification.setCustomContentView(customView);
@@ -145,13 +145,13 @@ public class MyService extends Service {
             notification.setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND);
             notification.setVibrate(null);
             notification.setSound(soundUri);
-            notification.setContentIntent(pendingIntent);
+           // notification.setContentIntent(pendingIntent);
             notification.setOngoing(true);
             notification.setCategory(NotificationCompat.CATEGORY_CALL);
             notification.setPriority(NotificationCompat.PRIORITY_HIGH);
-            NotificationCompat.Action hangupAction =new NotificationCompat.Action.Builder(android.R.drawable.sym_action_chat, "HANG UP", hungupPendingIntent)
-                    .build();
-            notification.addAction(hangupAction);
+//            NotificationCompat.Action hangupAction =new NotificationCompat.Action.Builder(android.R.drawable.sym_action_chat, "HANG UP", hungupPendingIntent)
+//                    .build();
+//            notification.addAction(hangupAction);
             startForeground(1124, notification.build());
         }
         return super.onStartCommand(intent, flags, startId);

@@ -33,6 +33,7 @@ import com.example.fixawy.Pojos.AllCategory;
 
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
+import com.example.fixawy.Share.Preferences.preferences;
 import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -309,6 +310,8 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 Intent intent5 = new Intent(HomePageClientActivity.this, SelectMembershipType.class);
                 startActivity(intent5);
                 allCategoryList.clear();
+                preferences.clearData(this);
+                finish();
                 break;
 
 

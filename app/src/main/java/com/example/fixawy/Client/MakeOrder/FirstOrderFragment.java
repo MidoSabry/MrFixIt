@@ -22,6 +22,7 @@ public class FirstOrderFragment extends Fragment {
     private ClientMakeOrder clientMakeOrder;
     private FirstOrderViewModel viewModel;
     private EditText addDetails;
+    String details;
 
     View view;
     RadioButton longworkbtn, shortworkbtn;
@@ -76,6 +77,13 @@ public class FirstOrderFragment extends Fragment {
 
                 else if (shortworkbtn.isChecked()) {
                     orderTree.setTypeOfOrder("Maintenance and repair");
+                }
+
+                details = addDetails.getText().toString().trim();
+                if (details.isEmpty()) {
+                    addDetails.setError("You should add your description about your problem");
+                    addDetails.requestFocus();
+                    return;
                 }
 
                 orderTree.setDetails(addDetails.getText().toString());

@@ -6,8 +6,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         app:cardCornerRadius="20dp"
         app:cardMaxElevation="10dp"
         android:elevation="10dp"
@@ -19,7 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="262dp"
+            android:layout_height="match_parent"
             android:background="@color/white">
 
             <ImageView
@@ -81,9 +81,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/robotocndensed"
-              android:text="@string/Worker_Name"
+                android:text="@string/Worker_Name"
                 android:textColor="@color/colorPurple"
                 android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/robotocndensed"
                 android:text="@string/easy"
                 android:textColor="@color/colorPurple"
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/robotocndensed"
                 android:text="@string/address_w"
                 android:textColor="@color/colorPurple"
@@ -124,9 +124,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/robotocndensed"
-               android:text="@string/phone_w"
+                android:text="@string/phone_w"
                 android:textColor="@color/colorPurple"
 
                 android:textSize="25dp"

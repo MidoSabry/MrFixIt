@@ -270,5 +270,7 @@
     <string name="oldpassword">Old password</string>
     <string name="add_your_comment">Add your comment</string>
     <string name="write_your_comment">add your comment</string>
+    <string name="wrong">Wrong</string>
+    <string name="wrong_msg">You already make an order of this job</string>
 
 </resources>

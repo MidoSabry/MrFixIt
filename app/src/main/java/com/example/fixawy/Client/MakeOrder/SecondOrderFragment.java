@@ -43,11 +43,16 @@ public class SecondOrderFragment extends Fragment {
     EditText orderLocation, phone;
     ClientMakeOrder clientMakeOrder;
     OrderTree orderTree;
+    Calendar mCalendar;
     public SecondOrderViewModel secondOrderViewModel;
+
+    String valLocation,valPhone,valTime,valDate;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mCalendar =Calendar.getInstance();
 
 
     }
@@ -82,9 +87,33 @@ public class SecondOrderFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     orderTree.setLocation(orderLocation.getText().toString());
+                    valLocation = orderLocation.getText().toString().trim();
+                    if (valLocation.isEmpty()) {
+                        orderLocation.setError("add your location");
+                        orderLocation.requestFocus();
+                        return;
+                    }
                     orderTree.setPhone(phone.getText().toString());
+                    valPhone = phone.getText().toString().trim();
+                    if (valPhone.isEmpty()) {
+                        phone.setError("add your phone");
+                        phone.requestFocus();
+                        return;
+                    }
                     orderTree.setTime(time.getText().toString());
+                    valTime = time.getText().toString().trim();
+                    if (valTime.isEmpty()) {
+                        time.setError("add your time");
+                        time.requestFocus();
+                        return;
+                    }
                     orderTree.setDate(date.getText().toString());
+                    valDate = date.getText().toString().trim();
+                    if (valDate.isEmpty()) {
+                        date.setError("add your location");
+                        date.requestFocus();
+                        return;
+                    }
                     if (clientMakeOrder.current_state < (clientMakeOrder.DescriptionData.length - 1))
                         clientMakeOrder.current_state = clientMakeOrder.current_state + 1;
                     clientMakeOrder.binding.stepIndicator.setCompletedPosition(clientMakeOrder.current_state).drawView();
@@ -138,10 +167,11 @@ public class SecondOrderFragment extends Fragment {
                     DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            c.set(Calendar.YEAR, year);
-                            c.set(Calendar.MONTH, month);
-                            c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                            mCalendar.set(Calendar.YEAR , year);
+                            mCalendar.set(Calendar.MONTH , month);
+                            mCalendar.set(Calendar.DAY_OF_MONTH , dayOfMonth);
                             String datec = DateFormat.getDateInstance(DateFormat.DEFAULT).format(c.getTime());
+                            month = month+1;
                             date.setText(year+"/"+month+"/"+dayOfMonth);
                         }
 
