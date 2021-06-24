@@ -25,7 +25,7 @@ public class AnswerActivity extends AppCompatActivity {
     Answer answer;
     AnswerAdapter answerAdapter;
     RecyclerView mRecyclerView;
-    String phoneNum,jobTitle,phoneNumOfReply,phoneBack;
+    String phoneNum,jobTitle,phoneNumOfReply;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,7 @@ public class AnswerActivity extends AppCompatActivity {
         phoneNum = getIntent().getStringExtra("phone");
         jobTitle = getIntent().getStringExtra("jobTitle");
         phoneNumOfReply = getIntent().getStringExtra("phoneNum");
-
-        phoneBack = getIntent().getStringExtra("phoneBack");
+        
 
         mRef = FirebaseDatabase.getInstance().getReference();
         answerAdapter = new AnswerAdapter(this,jobTitle,phoneNumOfReply);
