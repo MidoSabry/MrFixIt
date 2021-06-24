@@ -5,16 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fixawy.Pojos.ClientHistory;
+import com.example.fixawy.Client.RequestedPage.onitemclick;
 import com.example.fixawy.Pojos.HistoryWorker;
-import com.example.fixawy.Pojos.JobTitleCategory;
-import com.example.fixawy.Pojos.MakeOrder;
 import com.example.fixawy.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,6 +25,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
     AlertDialog alertDialog;
     LayoutInflater inflater;
     Button btnDelete,btnCancel;
+    onitemclick onItemClick;
 
     FirebaseDatabase db ;
     DatabaseReference reference;
@@ -46,7 +44,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HistoryJobAdapter.HistoryJobsItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HistoryJobAdapter.HistoryJobsItemViewHolder holder,final int position) {
         String jobTitle = HistoryJobActivity.worker_job_title;
         String phoneWorker = HistoryJobActivity.worker_phone;
         String phoneClient = historyWorkerList.get(position).getPhone();
@@ -70,10 +68,15 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
                 btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+//                        onItemClick.onclick(position,1);
+//                        notifyDataSetChanged();
+//                        Toast.makeText(v.getContext(), "delete", Toast.LENGTH_SHORT).show();
+
+                        historyWorkerList.remove(position);
                         notifyDataSetChanged();
-                        Toast.makeText(v.getContext(), "delete", Toast.LENGTH_SHORT).show();
                         reference = FirebaseDatabase.getInstance().getReference().child("Worker").child(jobTitle).child("Data");
                         reference.child(phoneWorker).child("HistoryWorker").child(phoneClient).setValue(null);
+
 
                         alertDialog.cancel();
                     }

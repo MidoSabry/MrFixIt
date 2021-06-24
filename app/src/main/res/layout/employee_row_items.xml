@@ -71,7 +71,7 @@
             android:isIndicator="true"
             android:numStars="5"
             android:progressTint="@color/darkPurple"
-            android:rating="2"
+            android:rating="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emp_address" />
 

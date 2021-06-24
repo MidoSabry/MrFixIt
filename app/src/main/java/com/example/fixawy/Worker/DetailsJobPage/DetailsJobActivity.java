@@ -27,6 +27,8 @@ import com.example.fixawy.NotificationToClient.NotificationSender;
 import com.example.fixawy.Pojos.Accepted;
 import com.example.fixawy.Pojos.WorkersAccepted;
 import com.example.fixawy.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -88,9 +90,12 @@ public class DetailsJobActivity extends AppCompatActivity {
     LayoutInflater inflater;
     Button btnAddReplyDialog,btnCancelDialog;
     EditText addReplyText;
+    String valPhoneNum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_details_job);
+
 
         Intent intent = getIntent();
         orderPhone = intent.getStringExtra(EXTRA_ORDER_PHONE);
@@ -118,10 +123,25 @@ public class DetailsJobActivity extends AppCompatActivity {
 
 
 
+
+//        ref = FirebaseDatabase.getInstance().getReference("Client").child("make order").child(orderPhone).child("Accepted").child(workerPhone);
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                valPhoneNum = snapshot.child("phoneOfWorker").getValue().toString();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+
 //        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, workerName, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, workerNumOfJob, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
 
 //        Intent intent = getIntent();
 //        String phone = intent.getStringExtra(EXTRA_ORDER_PHONE);
@@ -144,7 +164,8 @@ public class DetailsJobActivity extends AppCompatActivity {
         notificationAPI = Client.getClient("https://fcm.googleapis.com/").create(NotificationAPI.class);
 
 
-        setContentView(R.layout.activity_details_job);
+
+
         typeOfOrder = findViewById(R.id.text_typeOfOrder_details);
         detailsOfJobs = findViewById(R.id.text_detailsOfJob_details);
         location = findViewById(R.id.text_location_details);
@@ -189,6 +210,7 @@ public class DetailsJobActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openCommentDialog();
+
             }
         });
 
@@ -232,16 +254,16 @@ public class DetailsJobActivity extends AppCompatActivity {
 //        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
 //
 //        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
 
 
         Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob,workerTokenid);
 
-        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
-
-        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "date is " + jobDate + "time is " + jobTime + "typeOfOrder is " + jobTypeOfOrder, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
+//
+//        Toast.makeText(this, comment, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "date is " + jobDate + "time is " + jobTime + "typeOfOrder is " + jobTypeOfOrder, Toast.LENGTH_SHORT).show();
 
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addAcceptedWorker(accepted,orderPhone,orderJobTitle,workerPhone);
@@ -321,18 +343,27 @@ public class DetailsJobActivity extends AppCompatActivity {
         alertDialog.setContentView(R.layout.add_comment_dialog);
         btnAddReplyDialog= alertDialog.findViewById(R.id.btn_addNoteDialog);
         btnCancelDialog=alertDialog.findViewById(R.id.btn_cancelNoteDialog);
-        addReplyText=alertDialog.findViewById(R.id.txt_addNoteDialog);
-        addReplyText.getText().toString().trim();
+        addReplyText=alertDialog.findViewById(R.id.add_comment);
         addReplyText = new EditText(DetailsJobActivity.this);
         addReplyText.setInputType(InputType.TYPE_CLASS_TEXT);
         //alertDialog.setContentView(addReplyText);
-        comment = addReplyText.getText().toString().trim()+"comment";
+
 
 
         btnAddReplyDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendData();
+
+                if(valPhoneNum==workerPhone){
+                    Toast.makeText(DetailsJobActivity.this, "You already send for this order", Toast.LENGTH_SHORT).show();
+                }else{
+                    EditText edit=alertDialog.findViewById(R.id.add_comment);
+                    comment=edit.getText().toString();
+
+                    sendData();
+                }
+
+
             }
         });
 

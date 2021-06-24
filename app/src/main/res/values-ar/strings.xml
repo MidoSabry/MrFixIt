@@ -287,5 +287,7 @@
     <string name="oldpassword">كلمه السر القديمه</string>
     <string name="add_your_comment">أضف تعليقك</string>
     <string name="write_your_comment">اكتب تعليقك</string>
+    <string name="wrong">خطأ</string>
+    <string name="wrong_msg">لقد أصدرت بالفعل طلبًا لهذه الوظيفة </string>
 
 </resources>

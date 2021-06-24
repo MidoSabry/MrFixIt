@@ -185,7 +185,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_id2"
         android:layout_width="320dp"
-        android:layout_height="190dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -244,8 +244,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:numStars="5"
+                android:isIndicator="true"
                 android:progressTint="@color/colorPurple"
-                android:rating="2" />
+                android:rating="0" />
 
 
         </LinearLayout>

@@ -29,6 +29,7 @@ import com.example.fixawy.Firebase.FirebaseHandlerClient;
 import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
+import com.example.fixawy.Share.Preferences.preferences;
 import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
 import com.example.fixawy.Worker.DetailsJobPage.DetailsJobActivity;
 import com.example.fixawy.Worker.HistoryJobsPage.HistoryJobActivity;
@@ -253,37 +254,38 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         database = FirebaseDatabase.getInstance().getReference("Worker").child(worker_job_title).child("order Details");
 
 
-//
-//        database.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                    OrderTree makeOrder = dataSnapshot.getValue(OrderTree.class);
-//                    list.add(makeOrder);
-//
-//
-//
-//                }
-//                RequestedHomePageActivity.myAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
-        database.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        database.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                for(DataSnapshot dataSnapshot : task.getResult().getChildren()){
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     OrderTree makeOrder = dataSnapshot.getValue(OrderTree.class);
                     list.add(makeOrder);
+
+
+
                 }
                 RequestedHomePageActivity.myAdapter.notifyDataSetChanged();
             }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
+
+//        database.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                for(DataSnapshot dataSnapshot : task.getResult().getChildren()){
+//                    OrderTree makeOrder = dataSnapshot.getValue(OrderTree.class);
+//                    list.add(makeOrder);
+//                }
+//                RequestedHomePageActivity.myAdapter.notifyDataSetChanged();
+//            }
+//
+//        });
 
 
 
@@ -455,6 +457,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
             case R.id.nav_logout:
                 Intent intent4 = new Intent(RequestedHomePageActivity.this, SelectMembershipType.class);
                 startActivity(intent4);
+                preferences.clearData(this);
                 finish();
                 break;
 
@@ -472,6 +475,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 intentAllShops.putExtra("shopType",worker_job_title);
                 intentAllShops.putExtra("phone",w_phone);
                 startActivity(intentAllShops);
+
                 break;
 
 
