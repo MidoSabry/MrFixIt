@@ -162,7 +162,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         textViewUserPhone.setText(client_phone_num);
         //end
 
-        allCategoryNamesModel = new AllCategoryNamesModel();
+        allCategoryNamesModel = new AllCategoryNamesModel(this);
 
 
         //CategoryRecyclerView
@@ -346,7 +346,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
 
 
     //To click on buttons of categories
-    AllCategoryNamesModel allCategoryNamesModel2 = new AllCategoryNamesModel();
+    //AllCategoryNamesModel allCategoryNamesModel2 = new AllCategoryNamesModel();
 
 
     @Override

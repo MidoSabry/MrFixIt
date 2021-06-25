@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.example.fixawy.Share.Homes.WorkerHome;
 import com.example.fixawy.Share.LoginPage.LoginActivity;
 import com.example.fixawy.Share.RegisterPage.RegisterActivity;
 import com.example.fixawy.Share.Session.SharedPreferencesConfig;
+import com.example.fixawy.Share.SessionManager;
 import com.example.fixawy.ShopOwner.AllShopsAvailable.AllShopsAvailableActivity;
 import com.example.fixawy.Worker.SelectJobPage.SelectJobActivity;
 
@@ -35,6 +37,11 @@ public class SelectMembershipType extends AppCompatActivity {
     SharedPreferencesConfig preferencesConfig;
   ImageView langChange;
 
+  SharedPreferences sp;
+  SharedPreferences.Editor editor;
+
+  SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +52,12 @@ public class SelectMembershipType extends AppCompatActivity {
         btnShopOwner=findViewById(R.id.shop_owner_btn);
         langChange = findViewById(R.id.select_lang);
 
+
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sp.edit();
+        editor.apply();
+
+        sessionManager = new SessionManager(this);
         //ActionBar actionBar = getSupportActionBar();
         //actionBar.setTitle(getResources().getString(R.string.app_name));
       /*  preferencesConfig = new SharedPreferencesConfig(getApplicationContext());
@@ -99,10 +112,16 @@ public class SelectMembershipType extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0){
                     setLocalization("en");
+                    editor.putString("lang","en");
+                    editor.apply();
+                    sessionManager.setLanguage("en");
                     recreate();
                 }
                 else if (which ==1){
                     setLocalization("ar");
+                    editor.putString("lang","ar");
+                    editor.apply();
+                    sessionManager.setLanguage("ar");
                     recreate();
                 }
                 dialog.dismiss();

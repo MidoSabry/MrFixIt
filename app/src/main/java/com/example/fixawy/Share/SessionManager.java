@@ -77,4 +77,16 @@ public class SessionManager {
         return sharedPreferences.getString("KEY_IMAGE_W","");
     }
 
+
+
+    //setcheck your Language
+    public void setLanguage(String lang){
+        editor.putString("KEY_LANG",lang);
+    }
+
+    public String getLang(){
+        return sharedPreferences.getString("KEY_LANG","");
+    }
+
+
 }
