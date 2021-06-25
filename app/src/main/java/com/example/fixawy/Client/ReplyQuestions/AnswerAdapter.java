@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +32,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.PreviousQu
     ArrayList<Answer> answers = new ArrayList<>();
     Context context;
     String jobTitle;
-    String phoneNumOfReply;
+    String phoneClient,clientName;
 
     public void clear() {
         answers.clear();
@@ -43,10 +43,11 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.PreviousQu
         notifyDataSetChanged();
     }
 
-    public AnswerAdapter(Context context, String jobTitle,String phoneNumOfReply) {
+    public AnswerAdapter(Context context, String jobTitle,String phoneClient,String clientName) {
         this.context = context;
         this.jobTitle = jobTitle;
-        this.phoneNumOfReply = phoneNumOfReply;
+        this.phoneClient = phoneClient;
+        this.clientName = clientName;
     }
 
 
@@ -70,16 +71,17 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.PreviousQu
             public void onClick(View v) {
                 String phoneWorker = answers.get(position).getPhone();
                 String reply = answers.get(position).getReplay();
-                String phone = answers.get(position).getPhoneOfClient();
+                String phoneOfCard = answers.get(position).getPhoneOfClient();
                 Toast.makeText(v.getContext(),phoneWorker, Toast.LENGTH_SHORT).show();
                 Toast.makeText(v.getContext(), jobTitle, Toast.LENGTH_SHORT).show();
-                Toast.makeText(v.getContext(), phoneNumOfReply, Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), phoneClient, Toast.LENGTH_SHORT).show();
                 v.getContext().startActivity(new Intent(v.getContext(), CommentsFromAllClientsActivity.class)
                         .putExtra("phoneWorker",phoneWorker)
-                        .putExtra("phoneClient",phoneNumOfReply)
+                        .putExtra("phoneClient",phoneClient)
                         .putExtra("jobTitle",jobTitle)
                         .putExtra("reply",reply)
-                        .putExtra("phoneBack",phone));
+                        .putExtra(EXTR_USER_NAME,clientName)
+                        .putExtra("phoneOfCard",phoneOfCard));
             }
         });
 

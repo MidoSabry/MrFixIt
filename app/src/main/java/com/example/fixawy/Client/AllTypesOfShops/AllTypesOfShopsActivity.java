@@ -4,27 +4,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Client.ShowProductsOfShopType.ShowProductsOfShopTypeActivity;
 import com.example.fixawy.Pojos.ShopOwnerUser;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.RegisterPage.RegisterActivity;
 import com.example.fixawy.Worker.SelectJobPage.SelectJobActivity;
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 import java.util.ArrayList;
 
 public class AllTypesOfShopsActivity extends AppCompatActivity {
 
     Button btnElectricity, btnPlumber, btnCarpenter, btnPainter, btnTiles, btnMason, btnSmith, btnParquet, btnGyp, btnGlass, btnAlumetal, btnWood, btnCurtains, btnSatellite, btnAppliances, btnMarble;
-    String shopType;
+    String phoneClient,clientName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_types_of_shops);
+
+        phoneClient = getIntent().getStringExtra("phone");
+        clientName = getIntent().getStringExtra(EXTR_USER_NAME);
 
         btnElectricity = findViewById(R.id.electricity);
         btnPlumber = findViewById(R.id.plumber);
@@ -43,11 +52,14 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
         btnAppliances = findViewById(R.id.Appliances);
         btnMarble = findViewById(R.id.marble);
 
+
         btnElectricity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Electricity");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -58,6 +70,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Plumber");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -68,6 +82,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Carpenter");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -78,6 +94,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Painter");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -88,6 +106,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "TilesHandyMan");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -98,6 +118,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Mason");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -108,6 +130,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Smith");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -118,6 +142,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Parquet");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -128,6 +154,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Gypsum");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -138,6 +166,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Marble");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -148,6 +178,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Alumetal");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -158,6 +190,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Glasses");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -168,6 +202,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "WoodPainter");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -178,6 +214,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Curtains");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -188,6 +226,8 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Satellite");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
@@ -198,9 +238,12 @@ public class AllTypesOfShopsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AllTypesOfShopsActivity.this, ShowProductsOfShopTypeActivity.class);
                 intent.putExtra("shopType", "Appliances");
+                intent.putExtra("phoneClient",phoneClient);
+                intent.putExtra(EXTR_USER_NAME,clientName);
                 startActivity(intent);
                 finish();
             }
         });
     }
 }
+

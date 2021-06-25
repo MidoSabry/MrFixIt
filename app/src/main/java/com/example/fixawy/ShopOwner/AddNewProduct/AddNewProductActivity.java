@@ -8,6 +8,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public class AddNewProductActivity extends AppCompatActivity {
     String phoneNum,shopType,shopName,productName,productPrice,productDesc;
     AddNewProductViewModel addNewProductViewModel;
     Product product;
+    ImageView imageViewBack;
 
     StorageReference storageReference;
     Uri imageUri;
@@ -53,12 +55,23 @@ public class AddNewProductActivity extends AppCompatActivity {
         buttonPostProduct=findViewById(R.id.btn_post);
         buttonUploadPhoto = findViewById(R.id.image_btn);
         imageViewUploadProductPhoto = findViewById(R.id.imageOfProduct);
+        imageViewBack = findViewById(R.id.backToPrevious);
         addNewProductViewModel = new AddNewProductViewModel();
         storageReference = FirebaseStorage.getInstance().getReference();
         phoneNum = getIntent().getStringExtra("phone");
         shopType = getIntent().getStringExtra("shopType");
         shopName = getIntent().getStringExtra("shopName");
 
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddNewProductActivity.this, phoneNum + " " + shopType + " " + shopName, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AddNewProductActivity.this,ShowProductsActivity.class)
+                        .putExtra("phone",phoneNum)
+                        .putExtra("shopType",shopType)
+                        .putExtra("shopName",shopName));
+            }
+        });
 
         buttonUploadPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,5 +157,15 @@ public class AddNewProductActivity extends AppCompatActivity {
 
     }
 
+    //backButton
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
+
+        return;
+    }
 }
 

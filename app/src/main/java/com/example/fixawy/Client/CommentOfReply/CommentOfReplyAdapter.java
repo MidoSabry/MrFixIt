@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fixawy.Pojos.Comment;
 import com.example.fixawy.R;
 import java.util.ArrayList;
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 public class CommentOfReplyAdapter extends RecyclerView.Adapter<com.example.fixawy.Client.CommentOfReply.CommentOfReplyAdapter.CommentsItemViewHolder> {
 
