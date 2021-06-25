@@ -16,6 +16,26 @@
     <string name="curtains">Curtains</string>
     <string name="satellite">Satellite</string>
     <string name="Appliances">Appliances Maintenance</string>
+
+    <string-array name="categories">
+        <item>Electrician</item>
+        <item>Plumber</item>
+        <item>Carpenter</item>
+        <item>Painter</item>
+        <item>Tiles Handyman</item>
+        <item>Mason</item>
+        <item>Smith</item>
+        <item>Parquet</item>
+        <item>Gypsum</item>
+        <item>Marble</item>
+        <item>Alumetal</item>
+        <item>Glasss</item>
+        <item>Wood Painter</item>
+        <item>Curtains</item>
+        <item>Satellite</item>
+        <item>Appliances Maintenance</item>
+    </string-array>
+
     <string name="category">Categories</string>
     <string name="worker">Worker</string>
     <string name="client">Client</string>

@@ -21,7 +21,7 @@ public class AllCategory {
         this.employeeDataList = employeeDataList;
     }
 
-    public AllCategory() {
+    public AllCategory(int categoryId, String[] strings) {
     }
 
     public AllCategory(int categoryId, String categoryTitle) {
