@@ -8,17 +8,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 import com.example.fixawy.Client.CommentOfReply.CommentOfReplyAdapter;
 import com.example.fixawy.Client.CommentsFromAllClients.CommentsFromAllClientsActivity;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
 import com.example.fixawy.Pojos.Comment;
 import com.example.fixawy.R;
+import com.example.fixawy.Worker.ReplayQuestionsPage.ReplayQuestionActivity;
 import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,11 +30,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 public class CommentsForWorkerActivity extends AppCompatActivity {
 
     DatabaseReference mRef;
-    String phoneClient,jobTitle,phoneWorker,reply;
+    String phoneClient,jobTitle,phoneWorker,reply,workerName;
     Comment comment;
     CommentsForWorkerAdapter commentsForWorkerAdapter;
     RecyclerView mRecyclerView;
@@ -41,18 +46,31 @@ public class CommentsForWorkerActivity extends AppCompatActivity {
     EditText addComment;
     DatabaseReference databaseReference;
     FirebaseDatabase db ;
+    ImageView imageViewBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments_for_worker);
-
+        imageViewBack = findViewById(R.id.backToPrevious);
 
         phoneClient = getIntent().getStringExtra("phoneClient");
         phoneWorker =  getIntent().getStringExtra("phoneWorker");
         jobTitle =  getIntent().getStringExtra("jobTitle");
         reply = getIntent().getStringExtra("reply");
+        workerName = getIntent().getStringExtra(EXTR_USER_NAME);
 
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CommentsForWorkerActivity.this, ReplayQuestionActivity.class)
+                        .putExtra("phoneClient",phoneClient)
+                        .putExtra("phoneWorker",phoneWorker)
+                        .putExtra("jobTitle",jobTitle)
+                        .putExtra("reply",reply)
+                        .putExtra(EXTR_USER_NAME,workerName));
+            }
+        });
 
         Toast.makeText(this, "phone of who reply "+ phoneClient, Toast.LENGTH_SHORT).show();
         floatingActionButtonOpenDialog = findViewById(R.id.openDialogComment);
@@ -76,7 +94,8 @@ public class CommentsForWorkerActivity extends AppCompatActivity {
                         Toast.makeText(CommentsForWorkerActivity.this, "your comment will be added soon...", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(CommentsForWorkerActivity.this, WorkerQuestionsActivity.class)
                                 .putExtra("jobTitle",jobTitle)
-                                .putExtra("phoneWorker",phoneWorker));
+                                .putExtra("phoneWorker",phoneWorker)
+                                .putExtra(EXTR_USER_NAME,workerName));
                         alertDialog.cancel();
                     }
                 });
@@ -118,5 +137,14 @@ public class CommentsForWorkerActivity extends AppCompatActivity {
         });
 
     }
+    //backButton
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
 
+        return;
+    }
 }

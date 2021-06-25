@@ -107,12 +107,11 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
     public static final String EXTRA_TOKEN_ID = "tokenid";
 
-    String jobTitle,phoneWorker;
     private RequestedHomePageViewModel requestedHomePageViewModel;
-
-
+    String jobTitle,phoneWorker,worker_user_name;
+    String worker_phone_num;
     SessionManager sessionManager;
-    String worker_phone_num,worker_user_name;
+
 
     //recyclerView
     RecyclerView recyclerView_worker_requested;
@@ -441,10 +440,13 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 Intent intentPrevQuestions = new Intent(RequestedHomePageActivity.this, WorkerQuestionsActivity.class);
                 intentPrevQuestions.putExtra("jobTitle",worker_job_title);
                 intentPrevQuestions.putExtra("phoneWorker",w_phone);
+                intentPrevQuestions.putExtra(EXTR_USER_NAME,worker_user_name);
+                Toast.makeText(this, "NAME OF WORKER " + worker_user_name, Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "job : " + jobTitle, Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, "phone" + phoneWorker, Toast.LENGTH_SHORT).show();
                 startActivity(intentPrevQuestions);
                 break;
+
 
             case R.id.nav_profile:
                 Intent intent2 = new Intent(RequestedHomePageActivity.this, WorkerProfileActivity.class);

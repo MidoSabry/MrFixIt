@@ -81,7 +81,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    String phoneNum;
+    String phoneNum,phoneClient;
 
     String user_token_id;
     String tokenID;
@@ -96,6 +96,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_client);
 
+        phoneClient = getIntent().getStringExtra("phoneClient");
         Intent intentBackgroundService = new Intent(this, FirebasePushNotification.class);
         startService(intentBackgroundService);
 
@@ -304,6 +305,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
             case R.id.all_shops:
                 Intent intentShowAllShops = new Intent(HomePageClientActivity.this, AllTypesOfShopsActivity.class);
                 intentShowAllShops.putExtra("phone",phoneNum);
+                intentShowAllShops.putExtra(EXTR_USER_NAME,client_user_name);
                 startActivity(intentShowAllShops);
                 break;
 
@@ -317,6 +319,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
             case R.id.nav_all_previous_questions:
                 Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
                 intent3.putExtra("phone", phoneNum);
+                intent3.putExtra(EXTR_USER_NAME,client_user_name);
                 startActivity(intent3);
                 break;
 
@@ -364,9 +367,9 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 AllCategory selectCategory = allCategoryNamesModel.getAllCategories().get(position);
                 Intent intent = new Intent(HomePageClientActivity.this, SelectKindOfChoiceActivity.class);
                 intent.putExtra("CategoryType", selectCategory.getCategoryTitle());
-                intent.putExtra("phone", phoneNum);
+                intent.putExtra("phoneClient", phoneNum);
                 intent.putExtra("token",tokenID);
-                intent.putExtra("clientName",client_user_name);
+                intent.putExtra(EXTR_USER_NAME,client_user_name);
                 startActivity(intent);
 
             }

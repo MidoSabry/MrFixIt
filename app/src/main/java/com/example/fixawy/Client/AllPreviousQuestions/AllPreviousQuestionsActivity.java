@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fixawy.Client.AskQuestionPage.AskQuestionActivity;
+import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionActivity;
 import com.example.fixawy.Client.PreviousQuestionPage.PreviousQuestionAdapter;
 import com.example.fixawy.Pojos.Questions;
@@ -20,26 +23,37 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 public class AllPreviousQuestionsActivity extends AppCompatActivity {
 
-    String phoneNum;
+    String phoneNum,clientUserName;
     RecyclerView mRecyclerView;
     DatabaseReference mRef;
     AllPreviousQuestionsAdapter allPreviousQuestionsAdapter;
     Questions questions;
+    ImageView imageViewBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_previous_questions);
         mRecyclerView = findViewById(R.id.questionsList);
+        imageViewBack = findViewById(R.id.backToPrevious);
         phoneNum = getIntent().getStringExtra("phone");
+        clientUserName = getIntent().getStringExtra(EXTR_USER_NAME);
 
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AllPreviousQuestionsActivity.this, HomePageClientActivity.class)
+                        .putExtra("phone",phoneNum)
+                        .putExtra(EXTR_USER_NAME,clientUserName));
+            }
+        });
 
         mRef = FirebaseDatabase.getInstance().getReference();
-        allPreviousQuestionsAdapter = new AllPreviousQuestionsAdapter();
-
+        allPreviousQuestionsAdapter = new AllPreviousQuestionsAdapter(this,phoneNum,clientUserName);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(lm);
@@ -224,4 +238,5 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
             }
         });
     }
+
 }

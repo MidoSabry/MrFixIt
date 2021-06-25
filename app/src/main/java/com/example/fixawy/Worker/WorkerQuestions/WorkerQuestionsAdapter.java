@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,17 +40,15 @@ public class WorkerQuestionsAdapter extends RecyclerView.Adapter<WorkerQuestions
     EditText addReplyText;
     DatabaseReference databaseReference;
     FirebaseDatabase db ;
-    String reply,jobTitle,phoneClient;
-
-
-
+    String reply,jobTitle,phoneClient,workerName;
 
     Context context;
     String phoneWorker;
 
-    public WorkerQuestionsAdapter(WorkerQuestionsActivity workerQuestionsActivity, String phoneWorker) {
+    public WorkerQuestionsAdapter(WorkerQuestionsActivity workerQuestionsActivity, String phoneWorker,String workerName) {
         this.context = workerQuestionsActivity;
         this.phoneWorker = phoneWorker;
+        this.workerName = workerName;
 
     }
 
@@ -93,7 +91,8 @@ public class WorkerQuestionsAdapter extends RecyclerView.Adapter<WorkerQuestions
                         .putExtra("phoneClient",phoneClient)
                         .putExtra("jobTitle",jobTitle)
                         .putExtra("phoneWorker",phoneWorker)
-                        .putExtra("clientQuestion",clientQuestion));
+                        .putExtra("clientQuestion",clientQuestion)
+                        .putExtra(EXTR_USER_NAME,workerName));
             }
         });
 

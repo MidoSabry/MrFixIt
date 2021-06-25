@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
-
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 import com.example.fixawy.Client.ReplyQuestions.AnswerAdapter;
 import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.R;
@@ -24,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 public class ReplayQuestionActivity extends AppCompatActivity {
 
@@ -31,7 +34,7 @@ public class ReplayQuestionActivity extends AppCompatActivity {
     Answer answer,answerModel;
     ReplyQuestionsAdapter replyQuestionsAdapter;
     RecyclerView mRecyclerView;
-    String phoneClient,phoneWorker,jobTitle,reply,clientQuestion;
+    String phoneClient,phoneWorker,jobTitle,reply,clientQuestion,replyQuestion,workerName;
     FloatingActionButton floatingActionButtonOpenDialog;
     AlertDialog alertDialog;
     LayoutInflater inflater;
@@ -39,17 +42,31 @@ public class ReplayQuestionActivity extends AppCompatActivity {
     EditText addReplyText;
     DatabaseReference databaseReference;
     FirebaseDatabase db ;
+    ImageView imageViewBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_replay_question);
+        imageViewBack = findViewById(R.id.backToPrevious);
 
         phoneClient = getIntent().getStringExtra("phoneClient");
         phoneWorker = getIntent().getStringExtra("phoneWorker");
         jobTitle = getIntent().getStringExtra("jobTitle");
         clientQuestion = getIntent().getStringExtra("clientQuestion");
+        replyQuestion = getIntent().getStringExtra("reply");
+        workerName = getIntent().getStringExtra(EXTR_USER_NAME);
 
+
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReplayQuestionActivity.this,WorkerQuestionsActivity.class)
+                        .putExtra("phoneWorker",phoneWorker)
+                        .putExtra("jobTitle",jobTitle)
+                        .putExtra(EXTR_USER_NAME,workerName));
+            }
+        });
 
         floatingActionButtonOpenDialog = findViewById(R.id.openDialogReply);
         floatingActionButtonOpenDialog.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +90,8 @@ public class ReplayQuestionActivity extends AppCompatActivity {
                         Toast.makeText(ReplayQuestionActivity.this, "your reply will be added soon...", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(ReplayQuestionActivity.this, WorkerQuestionsActivity.class)
                                 .putExtra("jobTitle",jobTitle)
-                                .putExtra("phoneWorker",phoneWorker));
+                                .putExtra("phoneWorker",phoneWorker)
+                                .putExtra(EXTR_USER_NAME,workerName));
                         alertDialog.cancel();
                     }
                 });
@@ -90,7 +108,7 @@ public class ReplayQuestionActivity extends AppCompatActivity {
 
 
         mRef = FirebaseDatabase.getInstance().getReference();
-        replyQuestionsAdapter = new ReplyQuestionsAdapter(this,jobTitle,phoneClient);
+        replyQuestionsAdapter = new ReplyQuestionsAdapter(this,jobTitle,phoneClient,workerName);
         mRecyclerView = findViewById(R.id.questionsList);
 
 
@@ -120,5 +138,14 @@ public class ReplayQuestionActivity extends AppCompatActivity {
         });
 
     }
+    //backButton
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
 
+        return;
+    }
 }

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 import com.example.fixawy.Client.CommentsFromAllClients.CommentsFromAllClientsActivity;
 import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.R;
@@ -23,7 +23,7 @@ public class ReplyQuestionsAdapter extends RecyclerView.Adapter<ReplyQuestionsAd
     ArrayList<Answer> answers = new ArrayList<>();
     Context context;
     String jobTitle;
-    String phoneNumOfReply;
+    String phoneNumOfReply,workerName;
 
     public void clear() {
         answers.clear();
@@ -34,10 +34,11 @@ public class ReplyQuestionsAdapter extends RecyclerView.Adapter<ReplyQuestionsAd
         notifyDataSetChanged();
     }
 
-    public ReplyQuestionsAdapter(Context context, String jobTitle, String phoneNumOfReply) {
+    public ReplyQuestionsAdapter(Context context, String jobTitle, String phoneNumOfReply,String workerName) {
         this.context = context;
         this.jobTitle = jobTitle;
         this.phoneNumOfReply = phoneNumOfReply;
+        this.workerName = workerName;
     }
 
     @NonNull
@@ -68,7 +69,8 @@ public class ReplyQuestionsAdapter extends RecyclerView.Adapter<ReplyQuestionsAd
                         .putExtra("phoneWorker",phoneWorker)
                         .putExtra("phoneClient",phoneNumOfReply)
                         .putExtra("jobTitle",jobTitle)
-                        .putExtra("reply",reply));
+                        .putExtra("reply",reply)
+                        .putExtra(EXTR_USER_NAME,workerName));
             }
         });
 
