@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.fixawy.Client.AllPreviousQuestions.AllPreviousQuestionsActivity;
@@ -35,6 +37,7 @@ import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.Preferences.preferences;
 import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
+import com.example.fixawy.Share.SessionManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,6 +61,10 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     DatabaseReference database;
     TextView textViewUserName, textViewUserPhone;
     String client_phone_num, client_user_name;
+
+    SessionManager sessionManager;
+
+    SharedPreferences sp;
 
     DatabaseReference ref;
 
@@ -92,7 +99,11 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         Intent intentBackgroundService = new Intent(this, FirebasePushNotification.class);
         startService(intentBackgroundService);
 
+        sessionManager = new SessionManager(getApplicationContext());
+
+
         phoneNum = getIntent().getStringExtra("phone");
+        //phoneNum = sp.getString("phone","no Num");
 
 
 
@@ -105,9 +116,18 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         Intent intent = getIntent();
         client_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
         client_user_name = intent.getStringExtra(EXTR_USER_NAME);
+        client_user_name = sessionManager.getOwnerName();
+        client_phone_num = sessionManager.getOwnerPhone();
+        phoneNum = sessionManager.getOwnerPhone();
         user_token_id = intent.getStringExtra("token");
+        user_token_id = sessionManager.getOwnerTokenId();
+        Toast.makeText(this, user_token_id, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, client_user_name, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();
+
+//       client_phone_num =  sp.getString(EXTR_PHONE_NUM,"No num");
+//       client_user_name = sp.getString(EXTR_USER_NAME,"No name");
+//        user_token_id = sp.getString("token","No name");
 
 
 
@@ -307,10 +327,12 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 break;
 
             case R.id.nav_logout:
+                allCategoryList.clear();
+                sessionManager.setLogin(false);
+                sessionManager.setOwnerData("","","");
                 Intent intent5 = new Intent(HomePageClientActivity.this, SelectMembershipType.class);
                 startActivity(intent5);
-                allCategoryList.clear();
-                preferences.clearData(this);
+
                 finish();
                 break;
 

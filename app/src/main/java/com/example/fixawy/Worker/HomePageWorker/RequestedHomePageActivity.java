@@ -22,25 +22,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fixawy.Client.HomePageClient.HomePageClientActivity;
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.Client.ShowProductsOfShopType.ShowProductsOfShopTypeActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
-import com.example.fixawy.Pojos.AllCategory;
+import com.example.fixawy.NotificationToWorker.FirebasePushNotificationWorker;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.Preferences.preferences;
 import com.example.fixawy.Share.SelectionPage.SelectMembershipType;
+import com.example.fixawy.Share.SessionManager;
 import com.example.fixawy.Worker.DetailsJobPage.DetailsJobActivity;
 import com.example.fixawy.Worker.HistoryJobsPage.HistoryJobActivity;
 import com.example.fixawy.Worker.JobAccepted.JobAcceptedActivity;
 import com.example.fixawy.Worker.WorkerProfilePage.WorkerProfileActivity;
 import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;
 import com.example.fixawy.Worker.WorkerSettingPage.WorkerSettingActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -61,7 +59,6 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.example.fixawy.Client.HomePageClient.HomePageClientActivity.allCategoryList;
 import static com.example.fixawy.Share.LoginPage.LoginActivity.EXTRA_WORKER_IMAGE;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTRA_JOB_TITLE;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_PHONE_NUM;
@@ -114,6 +111,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
     private RequestedHomePageViewModel requestedHomePageViewModel;
 
 
+    SessionManager sessionManager;
+    String worker_phone_num,worker_user_name;
 
     //recyclerView
     RecyclerView recyclerView_worker_requested;
@@ -127,15 +126,25 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested_home_page);
 
+
+        sessionManager = new SessionManager(getApplicationContext());
+
         list = new ArrayList<OrderTree>();
         mCalendar = Calendar.getInstance();
 
         //get data from verifiaction code page
         Intent intent = getIntent();
-        String worker_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
-        String  worker_user_name = intent.getStringExtra(EXTR_USER_NAME);
+        worker_phone_num = intent.getStringExtra(EXTR_PHONE_NUM);
+        worker_user_name = intent.getStringExtra(EXTR_USER_NAME);
         worker_job_title = intent.getStringExtra(EXTRA_JOB_TITLE);
         worker_image = intent.getStringExtra(EXTRA_WORKER_IMAGE);
+
+        worker_user_name = sessionManager.getWorkerName();
+        worker_phone_num = sessionManager.getWorkerPhone();
+        worker_job_title = sessionManager.getWorkerJobTitle();
+        worker_image = sessionManager.getWorkerImage();
+        w_tokenid = sessionManager.getWorkerTokenId();
+
 
 
 
@@ -455,9 +464,10 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
 
             case R.id.nav_logout:
+                sessionManager.setLogin(false);
+                sessionManager.setWorkerData("","","","","");
                 Intent intent4 = new Intent(RequestedHomePageActivity.this, SelectMembershipType.class);
                 startActivity(intent4);
-                preferences.clearData(this);
                 finish();
                 break;
 

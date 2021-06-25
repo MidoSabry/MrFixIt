@@ -196,7 +196,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 String usertoken = snapshot.child("tokenid").getValue().toString();
                                 Log.d("tooooookkk",usertoken);
-                                sendNotifications(usertoken, "Accepted Your Requested","??????");
+                                sendNotifications(usertoken, "Accepted Your Requested","You have an appointment to work chek your accept work");
                                 HomePageClientActivity.allCategoryList.clear();
                             }
 
