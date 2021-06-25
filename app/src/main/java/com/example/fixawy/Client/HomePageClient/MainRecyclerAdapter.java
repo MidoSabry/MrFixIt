@@ -24,7 +24,7 @@ import java.util.List;
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder> {
 
     private Context context;
-    AllCategoryNamesModel allCategoryNamesModel = new AllCategoryNamesModel();
+   // AllCategoryNamesModel allCategoryNamesModel = new AllCategoryNamesModel();
     AdvertisementsModel advertisementsModel = new AdvertisementsModel();
     List<Advertisment> advertisments;
     List<AllCategory>allCategories;
