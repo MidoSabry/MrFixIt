@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,7 @@ import com.example.fixawy.Share.ForgetPassword.ForgetPassword;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.RegisterPage.RegisterActivity;
 
+import com.example.fixawy.Share.SessionManager;
 import com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -69,6 +72,9 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     DatabaseReference mDatabaseReference;
 
+
+    SessionManager sessionManager;
+
     String tokenId;
     String newTokenID;
 
@@ -92,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sessionManager = new SessionManager(getApplicationContext());
 
         editTextPhone = findViewById(R.id.edit_phone);
         editTextPassword = findViewById(R.id.edit_password);
@@ -160,6 +168,16 @@ public class LoginActivity extends AppCompatActivity {
                 phoneLogin();
             }
         });
+
+        if(sessionManager.getLogin()){
+            if(type.equals("Owner")){
+                startActivity(new Intent(getApplicationContext(),HomePageClientActivity.class));
+            }
+            else if(type.equals("Worker")){
+                startActivity(new Intent(getApplicationContext(),HomePageClientActivity.class));
+            }
+
+        }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -434,12 +452,15 @@ public class LoginActivity extends AppCompatActivity {
                     if (dataSnapshot.child(phone).exists()) {
                         if (dataSnapshot.child(phone).child("password").getValue(String.class).equals(password)) {
                             userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
+                            updateTokinIDClient(phone);
+                            sessionManager.setLogin(true);
+                            sessionManager.setOwnerData(phone,userName,tokenId);
                             startActivity(new Intent(LoginActivity.this, HomePageClientActivity.class)
                                     .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra("token",tokenId));
 
 
 
-                            updateTokinIDClient(phone);
+
 
                         } else {
                             Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
@@ -467,12 +488,17 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                updateTokinIDWorker(jobTitle,phone);
+
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
+
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
 
 
-                                updateTokinIDWorker(jobTitle,phone);
+
                             } else {
                                 Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                             }
@@ -498,6 +524,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -529,6 +557,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -560,6 +590,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -591,6 +623,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -621,6 +655,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -651,6 +687,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -681,6 +719,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -711,6 +751,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -742,6 +784,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -772,6 +816,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -802,6 +848,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -832,6 +880,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -862,6 +912,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -892,6 +944,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));
@@ -922,6 +976,8 @@ public class LoginActivity extends AppCompatActivity {
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
                                 Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                                sessionManager.setLogin(true);
+                                sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
                                         .putExtra(EXTR_PHONE_NUM,phone).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_JOB_TITLE,jobTitle).putExtra(EXTRA_WORKER_IMAGE,image)
                                         .putExtra(EXTRA_NUM_OF_JOB,numOfJob).putExtra(EXTRA_LIKE,like).putExtra(EXTRA_DIS_LIKE,disLike).putExtra(EXTRA_RATING,rating));

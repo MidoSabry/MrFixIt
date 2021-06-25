@@ -89,6 +89,7 @@
         <activity android:name=".Share.LoginPage.LoginActivity" />
         <activity android:name=".Share.VerifyCode.VerificationCode" />
         <activity android:name=".Share.RegisterPage.RegisterActivity" />
+        <activity android:name=".Share.SelectionPage.SelectMembershipType" />
 
         <service android:name=".reminder.MyService" /> <!-- <service -->
         <!-- android:name=".Notification.FirebasePushNotification" -->
@@ -106,6 +107,9 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+
+
 
         <receiver
             android:name=".reminder.MyReceiver"
@@ -130,7 +134,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Share.SelectionPage.SelectMembershipType" />
+
         <activity android:name=".MainActivity" />
     </application>
 

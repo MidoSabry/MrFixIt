@@ -289,7 +289,7 @@ public class DetailsJobActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String usertoken = snapshot.child("clientTokenId").getValue().toString();
                 Log.d("tooooookkk",usertoken);
-                sendNotifications(usertoken, "Accepted Your Job","??????");
+                sendNotifications(usertoken, "Accepted Your Job","Check your select worker");
             }
 
             @Override
