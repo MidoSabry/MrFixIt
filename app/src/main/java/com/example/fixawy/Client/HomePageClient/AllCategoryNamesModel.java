@@ -1,7 +1,6 @@
 package com.example.fixawy.Client.HomePageClient;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import com.example.fixawy.Pojos.AllCategory;
 import com.example.fixawy.R;
@@ -11,8 +10,7 @@ import java.util.List;
 
 public class AllCategoryNamesModel {
     List<AllCategory> categories = new ArrayList<>();
-    private Context context;
-
+    Context context;
 
 
     // AllCategory electricity = new AllCategory(1, R.string.electricity+"");
@@ -21,7 +19,7 @@ public class AllCategoryNamesModel {
     AllCategory plumber = new AllCategory(2,"Plumber");
     AllCategory carpenter = new AllCategory(3,"Carpenter");
     AllCategory painter = new AllCategory(4,"Painter");
-    AllCategory TilesHandyMan = new AllCategory(5,"TilesHandyMan");
+    AllCategory TilesHandyMan = new AllCategory(5,"tilesHandyman");
     AllCategory mason = new AllCategory(6,"Mason");
     AllCategory smith = new AllCategory(7,"Smith");
     AllCategory parquet = new AllCategory(8,"Parquet");
@@ -58,7 +56,10 @@ public class AllCategoryNamesModel {
     }
 
 
-
+String[] returnCategory(Context context){
+    String[] stringArray = context.getResources().getStringArray(R.array.categories);
+    return stringArray;
+}
 
 
 

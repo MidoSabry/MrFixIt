@@ -76,7 +76,6 @@
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/black"
                         android:layout_marginTop="10dp"
-                        android:checked="true"
                         android:text="@string/Cash" />
 
 
