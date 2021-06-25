@@ -4,6 +4,7 @@
     android:layout_width="350dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
+    android:background="@drawable/bcmodified"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -19,7 +20,7 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="277dp"
+                android:layout_width="250dp"
                 android:layout_height="148dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.383"
@@ -36,7 +37,7 @@
                 android:fontFamily="@font/coolveticacompressedrg"
                 android:text="@string/done"
                 android:textColor="@color/white"
-                android:textSize="80sp"
+                android:textSize="60sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/parent" />
@@ -45,13 +46,13 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/coolveticacompressedrg"
                 android:paddingBottom="20dp"
                 android:text="@string/accept_worker_msg"
                 android:textColor="@color/quantum_white_100"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.304"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 

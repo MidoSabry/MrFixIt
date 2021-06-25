@@ -1,5 +1,6 @@
 package com.example.fixawy.Client.AllPreviousQuestions;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,15 @@ import com.example.fixawy.Client.ReplyQuestions.AnswerActivity;
 import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.R;
 import com.squareup.picasso.Picasso;
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 import java.util.ArrayList;
 
 public class AllPreviousQuestionsAdapter extends RecyclerView.Adapter<AllPreviousQuestionsAdapter.PreviousQuestionItemViewHolder> {
 
     ArrayList<Questions> questions = new ArrayList<>();
+    Context context;
+    String phoneClient,clientName;
 
     public void clear() {
         questions.clear();
@@ -31,6 +35,12 @@ public class AllPreviousQuestionsAdapter extends RecyclerView.Adapter<AllPreviou
     public void add(Questions ques){
         questions.add(ques);
         notifyDataSetChanged();
+    }
+
+    public AllPreviousQuestionsAdapter(Context context, String phoneClient, String clientName) {
+        this.context = context;
+        this.phoneClient = phoneClient;
+        this.clientName = clientName;
     }
 
     @NonNull
@@ -55,7 +65,8 @@ public class AllPreviousQuestionsAdapter extends RecyclerView.Adapter<AllPreviou
                 Toast.makeText(v.getContext(),phone +"and" + jobTitle, Toast.LENGTH_SHORT).show();
                 v.getContext().startActivity(new Intent(v.getContext(), ReplyForMyQuestionActivity.class)
                         .putExtra("phone",phone)
-                        .putExtra("jobTitle",jobTitle));
+                        .putExtra("jobTitle",jobTitle)
+                        .putExtra(EXTR_USER_NAME,clientName));
             }
         });
     }

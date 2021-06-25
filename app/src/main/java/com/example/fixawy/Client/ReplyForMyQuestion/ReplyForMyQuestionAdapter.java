@@ -15,6 +15,7 @@ import com.example.fixawy.Client.CommentOfReply.CommentOfReplyActivity;
 import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.Pojos.HistoryWorker;
 import com.example.fixawy.R;
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ReplyForMyQuestionAdapter extends RecyclerView.Adapter<ReplyForMyQu
 
     ArrayList<Answer> answers = new ArrayList<>();
     Context context;
-    String jobTitle;
+    String jobTitle,clientName;
 
     public void clear() {
         answers.clear();
@@ -34,9 +35,10 @@ public class ReplyForMyQuestionAdapter extends RecyclerView.Adapter<ReplyForMyQu
         notifyDataSetChanged();
     }
 
-    public ReplyForMyQuestionAdapter(Context context, String jobTitle) {
+    public ReplyForMyQuestionAdapter(Context context, String jobTitle,String clientName) {
         this.context = context;
         this.jobTitle = jobTitle;
+        this.clientName = clientName;
     }
 
     @NonNull
@@ -66,7 +68,8 @@ public class ReplyForMyQuestionAdapter extends RecyclerView.Adapter<ReplyForMyQu
                         .putExtra("phoneWorker",phoneWorker)
                         .putExtra("phoneClient",phoneClient)
                         .putExtra("jobTitle",jobTitle)
-                        .putExtra("reply",reply));
+                        .putExtra("reply",reply)
+                        .putExtra(EXTR_USER_NAME,clientName));
             }
         });
     }

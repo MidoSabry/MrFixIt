@@ -52,6 +52,7 @@ public class FirstOrderFragment extends Fragment {
         String phoneNum= getActivity().getIntent().getStringExtra("phone");
         String tokinid = getActivity().getIntent().getStringExtra("token");
 
+
         //MVVM
         viewModel = new ViewModelProvider(this).get(FirstOrderViewModel.class);
        /*viewModel.apilivedata.observe(getViewLifecycleOwner(), new Observer<OrderTree>() {

@@ -13,13 +13,13 @@ import com.example.fixawy.Client.ReplyQuestions.AnswerActivity;
 import com.example.fixawy.Pojos.Questions;
 import com.example.fixawy.R;
 import com.squareup.picasso.Picasso;
-
+import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
 import java.util.ArrayList;
 
 public class PreviousQuestionAdapter extends RecyclerView.Adapter<PreviousQuestionAdapter.PreviousQuestionItemViewHolder> {
 
     ArrayList<Questions> questions = new ArrayList<>();
-    String phoneNum;
+    String phoneClient,clientName;
     Context context;
 
     public void clear() {
@@ -32,9 +32,10 @@ public class PreviousQuestionAdapter extends RecyclerView.Adapter<PreviousQuesti
         notifyDataSetChanged();
     }
 
-    public PreviousQuestionAdapter(Context context, String phoneNum) {
+    public PreviousQuestionAdapter(Context context, String phoneClient,String clientName) {
         this.context = context;
-        this.phoneNum = phoneNum;
+        this.phoneClient = phoneClient;
+        this.clientName = clientName;
     }
 
     @NonNull
@@ -55,11 +56,12 @@ public class PreviousQuestionAdapter extends RecyclerView.Adapter<PreviousQuesti
             @Override
             public void onClick(View v) {
                 String jobTitle = questions.get(position).getJobTitle();
-                String phone = holder.textViewPhone.getText().toString();
+                String phoneOfCard = holder.textViewPhone.getText().toString();
                 v.getContext().startActivity(new Intent(v.getContext(), AnswerActivity.class)
-                        .putExtra("phone",phone)
+                        .putExtra("phoneOfCard",phoneOfCard)
                         .putExtra("jobTitle",jobTitle)
-                        .putExtra("phoneNum",phoneNum));
+                        .putExtra("phoneClient",phoneClient)
+                        .putExtra(EXTR_USER_NAME,clientName));
             }
         });
 
