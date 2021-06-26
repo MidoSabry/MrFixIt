@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondColor"
+    android:background="@color/white"
     tools:context=".Client.AcceptedWorkerPage.AcceptedWorkActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
       android:text="@string/Worker_Name"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPurple"
         android:textSize="30sp"
         android:fontFamily="@font/coolveticacompressedrg"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +93,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/bcmodified"
             android:gravity="center">
 
             <RatingBar
