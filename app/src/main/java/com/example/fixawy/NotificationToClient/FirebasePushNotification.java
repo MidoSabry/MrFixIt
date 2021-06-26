@@ -34,7 +34,6 @@ public class FirebasePushNotification extends FirebaseMessagingService {
 
         displayClientNotification();
 
-        displayWorkerNotification();
 
 
     }
@@ -77,37 +76,37 @@ public class FirebasePushNotification extends FirebaseMessagingService {
 
 
 
-    public void displayWorkerNotification(){
-
-        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        String NOTIFICATION_CHANEL_ID_WORKER = "example.fixawy.Notification.test2";
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANEL_ID_WORKER,"Notification",NotificationManager.IMPORTANCE_DEFAULT);
-            notificationChannel.setDescription("Code shere");
-            notificationChannel.enableLights(true);
-            notificationChannel.setLightColor(Color.BLUE);
-            notificationManager.createNotificationChannel(notificationChannel);
-        }
-
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,NOTIFICATION_CHANEL_ID_WORKER);
-        Intent resultIntent = new Intent(this, RequestedHomePageActivity.class);
-        PendingIntent resultPendingInten = PendingIntent.getActivity(this,1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notificationBuilder.setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.bbpurple)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setContentInfo("Info")
-                .setAutoCancel(true)
-                .setContentIntent(resultPendingInten);
-
-        notificationManager.notify(new Random().nextInt(),notificationBuilder.build());
-
-    }
+//    public void displayWorkerNotification(){
+//
+//        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//        String NOTIFICATION_CHANEL_ID_WORKER = "example.fixawy.Notification.test2";
+//
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//        {
+//            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANEL_ID_WORKER,"Notification",NotificationManager.IMPORTANCE_DEFAULT);
+//            notificationChannel.setDescription("Code shere");
+//            notificationChannel.enableLights(true);
+//            notificationChannel.setLightColor(Color.BLUE);
+//            notificationManager.createNotificationChannel(notificationChannel);
+//        }
+//
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,NOTIFICATION_CHANEL_ID_WORKER);
+//        Intent resultIntent = new Intent(this, RequestedHomePageActivity.class);
+//        PendingIntent resultPendingInten = PendingIntent.getActivity(this,1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        notificationBuilder.setAutoCancel(true)
+//                .setDefaults(Notification.DEFAULT_ALL)
+//                .setWhen(System.currentTimeMillis())
+//                .setSmallIcon(R.drawable.bbpurple)
+//                .setContentTitle(title)
+//                .setContentText(message)
+//                .setContentInfo("Info")
+//                .setAutoCancel(true)
+//                .setContentIntent(resultPendingInten);
+//
+//        notificationManager.notify(new Random().nextInt(),notificationBuilder.build());
+//
+//    }
 
 
     @Override

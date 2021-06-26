@@ -82,7 +82,7 @@ public class DetailsJobActivity extends AppCompatActivity {
     //public int worker_likes,worker_dislikes,worker_num_of_job,worker_rating;
 //   public String phone,jobTitle,Worker_phone,worker_name,worker_address,comment;
 
-    public String workerName,workerPhone,workerAddress,workerNumOfJob,workerLikes,workerDisLikes,workerRating,orderPhone,orderJobTitle,workerImage,workerJob,workerTokenid,comment;
+    public String workerName,workerPhone,workerAddress,workerNumOfJob,workerLikes,workerDisLikes,workerRating,orderPhone,orderJobTitle,workerImage,workerJob,workerTokenid,comment,w_image;
 
 
     Dialog dialog;
@@ -110,7 +110,8 @@ public class DetailsJobActivity extends AppCompatActivity {
         workerDisLikes = intent.getStringExtra(EXTRA_WORKER_DIS_LIKE);
         workerRating = intent.getStringExtra(EXTRA_WORKER_RATING);
 
-        workerImage = intent.getStringExtra(EXTRA_WORKER_IMAGE);
+        workerImage = intent.getStringExtra("img2");
+        w_image = intent.getStringExtra("img");
         workerJob = intent.getStringExtra(EXTRA_JOB_TITLE);
 
 
@@ -257,7 +258,7 @@ public class DetailsJobActivity extends AppCompatActivity {
        // Toast.makeText(this, workerTokenid, Toast.LENGTH_SHORT).show();
 
 
-        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerJob,workerTokenid);
+        Accepted accepted = new Accepted(workerName,workerAddress,workerPhone,comment,workerNumOfJob,workerRating,workerLikes,workerDisLikes,w_image,workerJob,workerTokenid);
 
 //        Toast.makeText(this, orderPhone, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, accepted.getJobTitle(), Toast.LENGTH_SHORT).show();
@@ -267,7 +268,7 @@ public class DetailsJobActivity extends AppCompatActivity {
 
         firebaseHandlerClient = new FirebaseHandlerClient();
         firebaseHandlerClient.addAcceptedWorker(accepted,orderPhone,orderJobTitle,workerPhone);
-        WorkersAccepted workersAccepted = new WorkersAccepted(jobTime,jobDate,jobTypeOfOrder,jobLocation,orderPhone,orderJobTitle,clientName,workerName,workerAddress,workerPhone,workerNumOfJob,workerRating,workerLikes,workerDisLikes,workerImage,workerTokenid,clientTokenId);
+        WorkersAccepted workersAccepted = new WorkersAccepted(jobTime,jobDate,jobTypeOfOrder,jobLocation,orderPhone,orderJobTitle,clientName,workerName,workerAddress,workerPhone,workerNumOfJob,workerRating,workerLikes,workerDisLikes,w_image,workerTokenid,clientTokenId);
         firebaseHandlerClient.addAcceptedPath(workersAccepted,orderPhone,orderJobTitle,workerPhone);
 
 //        FirebaseDatabase.getInstance().getReference("Worker").child(orderJobTitle).child("order Details").child(orderPhone).child("tokenId").addListenerForSingleValueEvent(new ValueEventListener() {

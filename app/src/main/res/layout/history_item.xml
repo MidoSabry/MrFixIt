@@ -66,7 +66,7 @@
         android:id="@+id/layout"
         android:layout_marginTop="35dp"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -106,38 +106,40 @@
 
             android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/done_with_rating"
-            android:textSize="22sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/robotocndensed"
-            android:textColor="@color/colorPurple"/>
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/done_with_rating"-->
+<!--            android:textSize="22sp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginLeft="4dp"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:fontFamily="@font/robotocndensed"-->
+<!--            android:textColor="@color/colorPurple"/>-->
 
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginRight="20dp"
-            android:numStars="5" />
+<!--        <RatingBar-->
+<!--            android:id="@+id/ratingBar_history"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_marginStart="0dp"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_marginEnd="120dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:numStars="5" />-->
 
         <Button
             android:id="@+id/delete"
-            android:layout_width="40dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginRight="16dp"
-            android:layout_gravity="right"
-            android:background="@drawable/delete_icon" />
+            android:background="@drawable/custom_button"
+            android:text="@string/Delete"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>

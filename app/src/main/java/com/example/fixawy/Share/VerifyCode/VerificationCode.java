@@ -20,6 +20,7 @@ import com.example.fixawy.R;
 import com.example.fixawy.Share.Homes.OwnerHome;
 import com.example.fixawy.Share.Homes.WorkerHome;
 
+import com.example.fixawy.Share.SessionManager;
 import com.example.fixawy.Worker.HomePageWorker.RequestedHomePageActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,6 +45,8 @@ public class VerificationCode extends AppCompatActivity {
 
     String tokenId;
 
+    SessionManager sessionManager;
+
     public static final String EXTR_USER_NAME ="userName";
     public static final String EXTR_PHONE_NUM ="phone";
     public static final String EXTRA_JOB_TITLE ="jobTitle";
@@ -60,6 +63,8 @@ public class VerificationCode extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification_code);
+
+        sessionManager = new SessionManager(getApplicationContext());
 
         otpEdit = findViewById(R.id.edit_code);
         mVerifyCodeBtn = findViewById(R.id.btn_signUp);
@@ -115,24 +120,42 @@ public class VerificationCode extends AppCompatActivity {
 
             }
         });
+
+        if(sessionManager.getLogin()){
+            if(type.equals("Owner")){
+                startActivity(new Intent(getApplicationContext(),HomePageClientActivity.class));
+            }
+            else if(type.equals("Worker")){
+                startActivity(new Intent(getApplicationContext(),HomePageClientActivity.class));
+            }
+
+        }
     }
     private void signIn(PhoneAuthCredential credential){
         sendToMain();
     }
 
+
+
     private void sendToMain(){
+
         String urlDefaultImage = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Felectric-man-icon-flat-style-vector-23229025&psig=AOvVaw0TYMxMmyUjvkXdxecYmHg0&ust=1624235781566000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCJi5w_j7pPECFQAAAAAdAAAAABAD";
         userClient = new User(userName,email,phoneNum,address,type,password,tokenId);
         userWorker = new User(userName,email,phoneNum,address,type,password,jobTitle,urlDefaultImage,numOfJob,like,disLike,rating,tokenId);
 
         if(type.equals("Owner")){
             registerClient(userClient);
+            sessionManager.setLogin(true);
+            sessionManager.setOwnerData(phoneNum,userName,tokenId);
             startActivity(new Intent(VerificationCode.this, HomePageClientActivity.class)
                     .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_TOKEN_ID,tokenId)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
         }
         else if(type.equals("Worker")){
             registerWorker(userWorker);
+            sessionManager.setLogin(true);
+            sessionManager.setWorkerData(phoneNum,userName,tokenId,jobTitle,image);
             startActivity(new Intent(VerificationCode.this, RequestedHomePageActivity.class)
                     .putExtra(EXTR_PHONE_NUM,phoneNum).putExtra(EXTR_USER_NAME,userName).putExtra(EXTRA_JOB_TITLE,jobTitle)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
