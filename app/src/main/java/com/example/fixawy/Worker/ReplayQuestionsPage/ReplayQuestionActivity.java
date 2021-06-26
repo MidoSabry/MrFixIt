@@ -85,7 +85,7 @@ public class ReplayQuestionActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Toast.makeText(ReplayQuestionActivity.this, "add reply" + clientQuestion + " " + phoneClient + " " + phoneWorker +" " + jobTitle, Toast.LENGTH_SHORT).show();
                         reply = addReplyText.getText().toString().trim();
-                        answerModel = new Answer(reply,phoneWorker,clientQuestion,phoneClient);
+                        answerModel = new Answer(reply,phoneWorker,clientQuestion);
                         databaseReference.child("Questions").child("Replies").child(jobTitle).child(phoneClient).child(phoneWorker).push().setValue(answerModel);
                         Toast.makeText(ReplayQuestionActivity.this, "your reply will be added soon...", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(ReplayQuestionActivity.this, WorkerQuestionsActivity.class)

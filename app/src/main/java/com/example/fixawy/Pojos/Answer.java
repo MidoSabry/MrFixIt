@@ -20,6 +20,12 @@ public class Answer {
         this.phone = phone;
     }
 
+    public Answer(String replay, String phone, String clientQuestion) {
+        this.replay = replay;
+        this.phone = phone;
+        this.clientQuestion = clientQuestion;
+    }
+
     public String getPhoneOfClient() {
         return phoneOfClient;
     }
