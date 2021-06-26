@@ -100,13 +100,13 @@ public class AcceptedWorkActivity extends AppCompatActivity {
 
         dialog = new Dialog(this);
 
-        Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, phoneWorker, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, phoneWorker, Toast.LENGTH_SHORT).show();
 
         notificationAPI = Client.getClient("https://fcm.googleapis.com/").create(NotificationAPI.class);
 
 
-        Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, phoneClient, Toast.LENGTH_SHORT).show();
 
         reference1 = FirebaseDatabase.getInstance().getReference().child("Client").child("make order").child(phoneClient).child("Workers Accepted Jobs").child(phoneWorker);
         //     reference1 = FirebaseDatabase.getInstance().getReference().child("Worker").child(workerJobTitle).child("Data").child(phoneWorker);
@@ -171,7 +171,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                         nameClient = snapshot.child("userName").getValue(String.class);
                         typeOfOrder = snapshot.child("typeOfOrder").getValue(String.class);
 
-                        Toast.makeText(AcceptedWorkActivity.this, "New Path...."+date+""+time, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AcceptedWorkActivity.this, "New Path...."+date+""+time, Toast.LENGTH_SHORT).show();
                         //set time & date & location & phone for client & name of client for job accepted
                         OrderTree order = new OrderTree(time, date, location, phoneClientNum, nameClient);
                         reference4.child("Worker").child(workerJobTitle).child("Data").child(phoneWorker).child("Job Accepted").child(phoneClient).setValue(order);
@@ -179,7 +179,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                         OrderTree historyOrder = new OrderTree(time, date, typeOfOrder, workerJobTitle, nameOfWorker, phoneWorker);
                         reference4.child("Client").child("Data").child(phoneClient).child("History Jobs").child(phoneWorker).setValue(historyOrder);
 
-                        Toast.makeText(AcceptedWorkActivity.this, "Job Accepted", Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(AcceptedWorkActivity.this, "Job Accepted", Toast.LENGTH_SHORT).show();
 
                         //delete
 

@@ -142,7 +142,7 @@ public class SelectedAdapter extends RecyclerView.Adapter<SelectedAdapter.Select
                         .putExtra("workerJobTitle",workerJobTitle)
                         .putExtra("nameOfWorker",nameOfWorker));
 
-                Toast.makeText(v.getContext(),phoneClientNum, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(v.getContext(),phoneClientNum, Toast.LENGTH_SHORT).show();
             }
         });
 

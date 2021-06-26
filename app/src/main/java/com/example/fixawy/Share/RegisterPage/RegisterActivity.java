@@ -229,7 +229,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         // Log and toast
                         // String msg = getString(R.string.msg_token_fmt, token);
-                        Toast.makeText(RegisterActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(RegisterActivity.this, tokenId, Toast.LENGTH_SHORT).show();
                     }
                 });
 

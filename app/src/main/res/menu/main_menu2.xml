@@ -8,7 +8,7 @@
 
         <item android:id="@+id/nav_all_previous_questions"
             android:title="@string/prev_questions"
-            android:icon="@drawable/history_icon"/>
+            android:icon="@drawable/prev_question"/>
 
         <item android:id="@+id/nav_previous_job"
             android:title="@string/previous_Job"
@@ -16,7 +16,7 @@
 
         <item android:id="@+id/nav_accepted_job"
             android:title="@string/accepted_job"
-            android:icon="@drawable/history_icon"/>
+            android:icon="@drawable/ic_baseline_work_24"/>
 
         <item android:id="@+id/all_shops"
             android:title="@string/all_shops"

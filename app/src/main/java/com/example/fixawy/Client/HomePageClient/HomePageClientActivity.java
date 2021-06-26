@@ -122,7 +122,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
         phoneNum = sessionManager.getOwnerPhone();
         user_token_id = intent.getStringExtra("token");
         user_token_id = sessionManager.getOwnerTokenId();
-        Toast.makeText(this, user_token_id, Toast.LENGTH_SHORT).show();
+ //       Toast.makeText(this, user_token_id, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, client_user_name, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, client_phone_num, Toast.LENGTH_SHORT).show();
 

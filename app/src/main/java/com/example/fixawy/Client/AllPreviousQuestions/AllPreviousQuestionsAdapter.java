@@ -62,7 +62,7 @@ public class AllPreviousQuestionsAdapter extends RecyclerView.Adapter<AllPreviou
             public void onClick(View v) {
                 String jobTitle = questions.get(position).getJobTitle();
                 String phone = holder.textViewPhone.getText().toString();
-                Toast.makeText(v.getContext(),phone +"and" + jobTitle, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(v.getContext(),phone +"and" + jobTitle, Toast.LENGTH_SHORT).show();
                 v.getContext().startActivity(new Intent(v.getContext(), ReplyForMyQuestionActivity.class)
                         .putExtra("phone",phone)
                         .putExtra("jobTitle",jobTitle)

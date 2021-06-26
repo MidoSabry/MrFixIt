@@ -59,7 +59,7 @@ public class AllPreviousQuestionsActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(allPreviousQuestionsAdapter);
         readAllMyQuestions();
-        Toast.makeText(this, "all questions", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "all questions", Toast.LENGTH_SHORT).show();
     }
 
     // return all questions for specific phoneNumber...
