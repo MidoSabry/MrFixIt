@@ -54,22 +54,13 @@ public class ReplyForMyQuestionAdapter extends RecyclerView.Adapter<ReplyForMyQu
         holder.textViewAnswers.setText(answers.get(position).getReplay());
         holder.textViewPhone.setText(answers.get(position).getPhone());
         holder.textViewQuestion.setText(answers.get(position).getClientQuestion());
-      //  holder.textViewPhoneOfClient.setText(answers.get(position).getPhoneOfClient());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String phoneWorker = answers.get(position).getPhone();
-                String phoneClient = answers.get(position).getPhoneOfClient();
-                String reply = answers.get(position).getReplay();
                 Toast.makeText(v.getContext(),phoneWorker, Toast.LENGTH_SHORT).show();
                 Toast.makeText(context, jobTitle, Toast.LENGTH_SHORT).show();
-               /* v.getContext().startActivity(new Intent(v.getContext(), CommentOfReplyActivity.class)
-                        .putExtra("phoneWorker",phoneWorker)
-                        .putExtra("phoneClient",phoneClient)
-                        .putExtra("jobTitle",jobTitle)
-                        .putExtra("reply",reply)
-                        .putExtra(EXTR_USER_NAME,clientName));*/
             }
         });
     }

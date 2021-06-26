@@ -35,7 +35,7 @@ import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAM
 public class ReplyForMyQuestionActivity extends AppCompatActivity {
 
     DatabaseReference mRef;
-    String phoneClient,jobTitle,phoneWorker,reply,clientName,phoneWhoReply,question;
+    String phoneClient,jobTitle,phoneWorker,reply,clientName,question;
     Answer answer,answerModel;
     ReplyForMyQuestionAdapter replyQuestionsAdapter;
     RecyclerView mRecyclerView;
@@ -59,7 +59,6 @@ public class ReplyForMyQuestionActivity extends AppCompatActivity {
         phoneClient = getIntent().getStringExtra("phone");
         phoneWorker = getIntent().getStringExtra("phoneWorker");
         jobTitle = getIntent().getStringExtra("jobTitle");
-        //reply = getIntent().getStringExtra("reply");
         clientName = getIntent().getStringExtra(EXTR_USER_NAME);
         question = getIntent().getStringExtra("question");
 
@@ -70,8 +69,6 @@ public class ReplyForMyQuestionActivity extends AppCompatActivity {
                 startActivity(new Intent(ReplyForMyQuestionActivity.this, AllPreviousQuestionsActivity.class)
                         .putExtra("phone",phoneClient)
                         .putExtra(EXTR_USER_NAME,clientName));
-                //  .putExtra("phoneWorker",phoneWorker)
-                //  .putExtra("jobTitle",jobTitle));
             }
         });
 
