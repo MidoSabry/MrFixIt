@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
-import com.example.fixawy.Client.ReplyQuestions.AnswerAdapter;
 import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.R;
 import com.example.fixawy.Worker.WorkerQuestions.WorkerQuestionsActivity;

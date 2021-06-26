@@ -7,18 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.fixawy.Client.CommentOfReply.CommentOfReplyActivity;
 import com.example.fixawy.Pojos.Answer;
-import com.example.fixawy.Pojos.HistoryWorker;
 import com.example.fixawy.R;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class ReplyForMyQuestionAdapter extends RecyclerView.Adapter<ReplyForMyQuestionAdapter.PreviousQuestionItemViewHolder> {
 

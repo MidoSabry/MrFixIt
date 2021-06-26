@@ -1,20 +1,16 @@
 package com.example.fixawy.Worker.ReplayQuestionsPage;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import static com.example.fixawy.Share.VerifyCode.VerificationCode.EXTR_USER_NAME;
-import com.example.fixawy.Client.CommentsFromAllClients.CommentsFromAllClientsActivity;
 import com.example.fixawy.Pojos.Answer;
 import com.example.fixawy.R;
-import com.example.fixawy.Worker.CommentsForWorker.CommentsForWorkerActivity;
 
 import java.util.ArrayList;
 
