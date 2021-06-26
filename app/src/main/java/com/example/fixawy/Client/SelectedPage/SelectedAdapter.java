@@ -75,7 +75,13 @@ public class SelectedAdapter extends RecyclerView.Adapter<SelectedAdapter.Select
 
     @Override
     public void onBindViewHolder(@NonNull SelectedItemViewHolder holder, int position) {
-        Picasso.get().load(accepteds.get(position).getImage()).placeholder(R.drawable.person).into(holder.worker_selected_imageView);
+
+        if (accepteds.get(position).getImage().isEmpty()) {
+            holder.worker_selected_imageView.setImageResource(R.drawable.profile);
+        } else{
+            Picasso.get().load(accepteds.get(position).getImage()).into(holder.worker_selected_imageView);
+        }
+       // Picasso.get().load(accepteds.get(position).getImage()).placeholder(R.drawable.person).into(holder.worker_selected_imageView);
         holder.worker_name.setText(accepteds.get(position).getNameOfWorker());
         holder.worker_phone.setText(accepteds.get(position).getPhoneOfWorker());
         holder.worker_comment.setText(accepteds.get(position).getCommentLine());

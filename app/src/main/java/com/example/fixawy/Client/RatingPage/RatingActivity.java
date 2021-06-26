@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.fixawy.Client.HistoryPage.HistoryActivity;
 import com.example.fixawy.Client.HistoryPage.HistoryAdapter;
+import com.example.fixawy.Pojos.HistoryWorker;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.LoginPage.LoginActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,12 +48,17 @@ public class RatingActivity extends AppCompatActivity {
     long num_like,num_disLike,rate;
 
     DatabaseReference ref;
+    DatabaseReference databaseReference2;
     Task<Void> addCommennt;
     Task databaseReference;
+
+    HistoryWorker historyWorker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
+
+
 
         phoneWorker = getIntent().getStringExtra("worker_phone");
         jobWorker = getIntent().getStringExtra("worker_job");
@@ -126,6 +132,7 @@ public class RatingActivity extends AppCompatActivity {
                 comments = String.valueOf(comment.getText());
 
                 addCommennt = FirebaseDatabase.getInstance().getReference("Worker").child(jobWorker).child("Data").child(phoneWorker).child("people comment").child(phoneClient).setValue(comments);
+                historyWorker = new HistoryWorker(rate);
 
 
                 HashMap hashMap = new HashMap();
@@ -141,6 +148,8 @@ public class RatingActivity extends AppCompatActivity {
 
                     }
                 });
+
+
 
 
             }

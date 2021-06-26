@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
         holder.textViewUserAddress.setText(historyWorkerList.get(position).getAddress());
         holder.textViewUserName.setText(historyWorkerList.get(position).getName());
         holder.textViewUserPhone.setText(historyWorkerList.get(position).getPhone());
+//        holder.ratingBar.setRating(historyWorkerList.get(position).getRate());
 
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +110,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
     public class HistoryJobsItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewClock,textViewDate,textViewUserName,textViewUserAddress,textViewUserPhone;
         Button deleteBtn;
+        RatingBar ratingBar;
         public HistoryJobsItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -116,6 +119,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Hi
             textViewUserName=itemView.findViewById(R.id.history_user_name);
             textViewUserAddress=itemView.findViewById(R.id.history_user_address);
             textViewUserPhone=itemView.findViewById(R.id.history_user_phone);
+           // ratingBar = itemView.findViewById(R.id.ratingBar_history);
 
             deleteBtn = itemView.findViewById(R.id.delete);
 

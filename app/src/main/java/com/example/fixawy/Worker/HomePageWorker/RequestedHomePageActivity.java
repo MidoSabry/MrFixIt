@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fixawy.Client.MakeOrder.pojos.OrderTree;
 import com.example.fixawy.Client.ShowProductsOfShopType.ShowProductsOfShopTypeActivity;
 import com.example.fixawy.Firebase.FirebaseHandlerClient;
-import com.example.fixawy.NotificationToWorker.FirebasePushNotificationWorker;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.Preferences.preferences;
@@ -192,7 +191,13 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         //CircleImageView profileImageView = headerView2.findViewById(R.id.worker_profile_image);
         profileImageView = headerView2.findViewById(R.id.worker_profile_image);
         change_image_button = headerView2.findViewById(R.id.change_image);
-        Picasso.get().load(worker_image).placeholder(R.drawable.profile).into(profileImageView);
+
+        if (worker_image.isEmpty()) {
+            profileImageView.setImageResource(R.drawable.profile);
+        } else{
+            Picasso.get().load(worker_image).into(profileImageView);
+        }
+        //Picasso.get().load(worker_image).placeholder(R.drawable.profile).into(profileImageView);
         Log.d("nnnnn","user=="+worker_image);
 
 
@@ -215,7 +220,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                     w_disLike = dataSnapshot.child("disLike").getValue().toString();
                     w_rating = dataSnapshot.child("rating").getValue().toString();
 
-                     //w_image = dataSnapshot.child("image").getValue().toString();
+                     w_image = dataSnapshot.child("image").getValue().toString();
                      w_tokenid = dataSnapshot.child("tokenId").getValue().toString();
                     Toast.makeText(RequestedHomePageActivity.this, w_tokenid, Toast.LENGTH_SHORT).show();
 
@@ -535,7 +540,8 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
         detailsIntent.putExtra(EXTRA_WORKER_LIKE,w_likes);
         detailsIntent.putExtra(EXTRA_WORKER_DIS_LIKE,w_disLike);
         detailsIntent.putExtra(EXTRA_WORKER_RATING,w_rating);
-        detailsIntent.putExtra(EXTRA_WORKER_IMAGE,worker_image);
+        detailsIntent.putExtra("img2",worker_image);
+        detailsIntent.putExtra("img",w_image);
         detailsIntent.putExtra(EXTRA_JOB_TITLE,worker_job_title);
 
         detailsIntent.putExtra(EXTRA_TOKEN_ID,w_tokenid);

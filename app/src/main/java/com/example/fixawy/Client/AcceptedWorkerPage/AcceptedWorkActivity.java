@@ -123,7 +123,13 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 String phoneOfWorker = snapshot.child("phoneOfWorker").getValue(String.class);
                 // String rating = snapshot.child("rating").getValue(String.class);
 
-                Picasso.get().load(url).placeholder(R.drawable.person).into(imageViewWorker);
+               // Picasso.get().load(url).placeholder(R.drawable.person).into(imageViewWorker);
+
+                if (url.isEmpty()) {
+                    imageViewWorker.setImageResource(R.drawable.profile);
+                } else{
+                    Picasso.get().load(url).into(imageViewWorker);
+                }
                 textViewNameOfWorker.setText(nameOfWorker);
                 textViewNumOfJobs.setText(numOfJob);
                 textViewNumOfLikes.setText(numOfLike);

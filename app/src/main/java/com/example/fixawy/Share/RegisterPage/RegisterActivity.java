@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.fixawy.Pojos.User;
 import com.example.fixawy.R;
 import com.example.fixawy.Share.LoginPage.LoginActivity;
+import com.example.fixawy.Share.SessionManager;
 import com.example.fixawy.Share.VerifyCode.VerificationCode;
 
 import com.google.android.gms.common.api.Status;
@@ -45,6 +46,9 @@ import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity {
 
+
+
+
     TextInputLayout editTextEmail, editTextPassword,editTextUserName,editTextConfirmPassword,editTextPhone,editTextAddress;
     Button btnContinue;
     TextView textViewLogin;
@@ -66,6 +70,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
 
 
         editTextEmail = findViewById(R.id.edit_email);

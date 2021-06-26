@@ -7,6 +7,8 @@ public class HistoryWorker {
     String time;
     String address;
 
+    long rate;
+
     public HistoryWorker() {
     }
 
@@ -16,6 +18,18 @@ public class HistoryWorker {
         this.date = date;
         this.time = time;
         this.address = address;
+    }
+
+    public HistoryWorker(long rate) {
+        this.rate = rate;
+    }
+
+    public long getRate() {
+        return rate;
+    }
+
+    public void setRate(long rate) {
+        this.rate = rate;
     }
 
     public String getName() {
