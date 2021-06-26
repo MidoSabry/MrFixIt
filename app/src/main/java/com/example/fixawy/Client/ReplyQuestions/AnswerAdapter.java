@@ -64,7 +64,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.PreviousQu
         holder.textViewAnswers.setText(answers.get(position).getReplay());
         holder.textViewPhone.setText(answers.get(position).getPhone());
         holder.textViewQuestion.setText(answers.get(position).getClientQuestion());
-        holder.textViewPhoneOfClient.setText(answers.get(position).getPhoneOfClient());
+       // holder.textViewPhoneOfClient.setText(answers.get(position).getPhoneOfClient());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,13 +75,13 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.PreviousQu
                 Toast.makeText(v.getContext(),phoneWorker, Toast.LENGTH_SHORT).show();
                 Toast.makeText(v.getContext(), jobTitle, Toast.LENGTH_SHORT).show();
                 Toast.makeText(v.getContext(), phoneClient, Toast.LENGTH_SHORT).show();
-                v.getContext().startActivity(new Intent(v.getContext(), CommentsFromAllClientsActivity.class)
+             /*   v.getContext().startActivity(new Intent(v.getContext(), CommentsFromAllClientsActivity.class)
                         .putExtra("phoneWorker",phoneWorker)
                         .putExtra("phoneClient",phoneClient)
                         .putExtra("jobTitle",jobTitle)
                         .putExtra("reply",reply)
                         .putExtra(EXTR_USER_NAME,clientName)
-                        .putExtra("phoneOfCard",phoneOfCard));
+                        .putExtra("phoneOfCard",phoneOfCard));*/
             }
         });
 
@@ -93,7 +93,8 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.PreviousQu
     }
 
     public class PreviousQuestionItemViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewAnswers,textViewPhone,textViewQuestion,textViewPhoneOfClient;
+        TextView textViewAnswers,textViewPhone,textViewQuestion;
+       // TextView textViewPhoneOfClient;
         public View layout;
         public PreviousQuestionItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,7 +102,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.PreviousQu
             textViewAnswers = itemView.findViewById(R.id.answer);
             textViewPhone = itemView.findViewById(R.id.phone);
             textViewQuestion = itemView.findViewById(R.id.question);
-            textViewPhoneOfClient = itemView.findViewById(R.id.phoneOfClient);
+         //   textViewPhoneOfClient = itemView.findViewById(R.id.phoneOfClient);
         }
     }
 }
