@@ -224,7 +224,7 @@ public class WorkerSettingActivity extends AppCompatActivity {
             hashMap.put("address", new_address);
             hashMap.put("password", new_password);
 
-            updateRef = FirebaseDatabase.getInstance().getReference().child("Client").child("Data");
+            updateRef = FirebaseDatabase.getInstance().getReference().child("Worker").child(job).child("Data");
             updateRef.child(phone).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public void onSuccess(Object o) {

@@ -263,10 +263,13 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
+
+
         } else {
             super.onBackPressed();
         }
         super.onBackPressed();
+
 
         //backButton
         Log.d("CDA", "onBackPressed Called");
@@ -317,6 +320,7 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
                 break;
 
             case R.id.nav_all_previous_questions:
+                allCategoryList.clear();
                 Intent intent3 = new Intent(HomePageClientActivity.this, AllPreviousQuestionsActivity.class);
                 intent3.putExtra("phone", phoneNum);
                 intent3.putExtra(EXTR_USER_NAME,client_user_name);
@@ -386,5 +390,11 @@ public class HomePageClientActivity extends AppCompatActivity implements OnItemC
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        allCategoryList.clear();
     }
 }
