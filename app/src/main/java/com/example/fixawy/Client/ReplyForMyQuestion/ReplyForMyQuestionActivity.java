@@ -40,7 +40,7 @@ public class ReplyForMyQuestionActivity extends AppCompatActivity {
     ReplyForMyQuestionAdapter replyQuestionsAdapter;
     RecyclerView mRecyclerView;
     ImageView imageViewBack;
-    FloatingActionButton floatingActionButtonOpenDialog;
+    //FloatingActionButton floatingActionButtonOpenDialog;
     AlertDialog alertDialog;
     LayoutInflater inflater;
     Button btnAddReplyDialog,btnCancelDialog;
@@ -73,7 +73,7 @@ public class ReplyForMyQuestionActivity extends AppCompatActivity {
         });
 
 
-        floatingActionButtonOpenDialog = findViewById(R.id.openDialogReply);
+      /*  floatingActionButtonOpenDialog = findViewById(R.id.openDialogReply);
         floatingActionButtonOpenDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +106,7 @@ public class ReplyForMyQuestionActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
-
+*/
 
         mRef = FirebaseDatabase.getInstance().getReference();
         replyQuestionsAdapter = new ReplyForMyQuestionAdapter(this,jobTitle,clientName);
