@@ -28,9 +28,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fixawy">
-        <activity android:name=".Worker.CommentsForWorker.CommentsForWorkerActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".Client.CommentsFromAllClients.CommentsFromAllClientsActivity" android:screenOrientation="portrait" />
-        <activity android:name=".Client.CommentOfReply.CommentOfReplyActivity" android:screenOrientation="portrait"/>
         <activity android:name=".Client.ClientSettingPage.ClientSettingsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ShopOwner.Login.ShopOwnerLoginActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ShopOwner.SignUp.ShopOwnerSignUPActivity" android:screenOrientation="portrait" />
