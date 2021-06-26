@@ -54,23 +54,14 @@ public class ReplyQuestionsAdapter extends RecyclerView.Adapter<ReplyQuestionsAd
         holder.textViewAnswers.setText(answers.get(position).getReplay());
         holder.textViewPhone.setText(answers.get(position).getPhone());
         holder.textViewQuestion.setText(answers.get(position).getClientQuestion());
-      //  holder.textViewPhoneOfClient.setText(answers.get(position).getPhoneOfClient());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String phoneWorker = answers.get(position).getPhone();
-                String reply = answers.get(position).getReplay();
-                //String phone = answers.get(position).getPhoneOfClient();
                 Toast.makeText(v.getContext(),phoneWorker, Toast.LENGTH_SHORT).show();
                 Toast.makeText(v.getContext(), jobTitle, Toast.LENGTH_SHORT).show();
                 Toast.makeText(v.getContext(), phoneNumOfReply, Toast.LENGTH_SHORT).show();
-              /*  v.getContext().startActivity(new Intent(v.getContext(), CommentsForWorkerActivity.class)
-                        .putExtra("phoneWorker",phoneWorker)
-                        .putExtra("phoneClient",phoneNumOfReply)
-                        .putExtra("jobTitle",jobTitle)
-                        .putExtra("reply",reply)
-                        .putExtra(EXTR_USER_NAME,workerName));*/
             }
         });
 
@@ -84,7 +75,6 @@ public class ReplyQuestionsAdapter extends RecyclerView.Adapter<ReplyQuestionsAd
 
     public class PreviousQuestionItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewAnswers,textViewPhone,textViewQuestion;
-     //   TextView textViewPhoneOfClient;
         public View layout;
         public PreviousQuestionItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,7 +82,6 @@ public class ReplyQuestionsAdapter extends RecyclerView.Adapter<ReplyQuestionsAd
             textViewAnswers = itemView.findViewById(R.id.answer);
             textViewPhone = itemView.findViewById(R.id.phone);
             textViewQuestion = itemView.findViewById(R.id.question);
-         //   textViewPhoneOfClient = itemView.findViewById(R.id.phoneOfClient);
         }
     }
 }

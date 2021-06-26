@@ -23,15 +23,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reply_from"
-                android:textColor="@color/colorPurple"
-                android:fontFamily="@font/robotocndensed"
-                android:textSize="25dp"/>
+            android:layout_marginTop="6dp"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/phone"
@@ -50,19 +43,11 @@
             android:layout_marginTop="6dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:fontFamily="@font/robotocndensed"
-                android:text="@string/Question"
-                android:textColor="@color/colorPurple"
-                android:textSize="25dp" />
-
-            <TextView
                 android:id="@+id/question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:text="@string/Question"
                 android:fontFamily="@font/robotocndensed"
                 android:textSize="25dp"  />
 
@@ -75,20 +60,13 @@
             android:layout_marginBottom="6dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reply"
-                android:textColor="@color/colorPurple"
-                android:fontFamily="@font/robotocndensed"
-                android:textSize="25dp"/>
-            <TextView
                 android:id="@+id/answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reply_questions"
-                android:textColor="@color/black"
+                android:textColor="@color/colorPurple"
                 android:fontFamily="@font/robotocndensed"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
 
 
         </LinearLayout>

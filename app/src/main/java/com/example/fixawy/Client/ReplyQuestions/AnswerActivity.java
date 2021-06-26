@@ -39,7 +39,7 @@ public class AnswerActivity extends AppCompatActivity {
     Answer answer,answerModel;
     AnswerAdapter answerAdapter;
     RecyclerView mRecyclerView;
-    String phoneClient,jobTitle,phoneOfCard,reply,clientName,phoneWhoReply,question;
+    String phoneClient,jobTitle,phoneOfCard,reply,clientName,question;
     ImageView imageViewBack;
     FloatingActionButton floatingActionButtonOpenDialog;
     AlertDialog alertDialog;
@@ -59,7 +59,6 @@ public class AnswerActivity extends AppCompatActivity {
         phoneClient = getIntent().getStringExtra("phoneClient");
         jobTitle = getIntent().getStringExtra("jobTitle");
         phoneOfCard = getIntent().getStringExtra("phoneOfCard");
-       // reply = getIntent().getStringExtra("reply");
         clientName = getIntent().getStringExtra(EXTR_USER_NAME);
         question = getIntent().getStringExtra("question");
 
