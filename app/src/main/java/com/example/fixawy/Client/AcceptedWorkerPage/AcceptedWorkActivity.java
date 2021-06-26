@@ -257,6 +257,7 @@ public class AcceptedWorkActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     if (response.body().success != 1) {
                         Toast.makeText(AcceptedWorkActivity.this, "Failed ", Toast.LENGTH_LONG);
+                        HomePageClientActivity.allCategoryList.clear();
                     }
                 }
             }
