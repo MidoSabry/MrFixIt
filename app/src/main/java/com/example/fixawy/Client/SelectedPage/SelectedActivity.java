@@ -49,7 +49,7 @@ public class SelectedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_selected);
 
         phoneClientNum = getIntent().getStringExtra("phone");
-        Toast.makeText(this, phoneClientNum, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, phoneClientNum, Toast.LENGTH_SHORT).show();
 
 
         acceptedList = new ArrayList<>();

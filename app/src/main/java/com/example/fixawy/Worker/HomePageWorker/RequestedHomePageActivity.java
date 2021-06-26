@@ -146,9 +146,9 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
 
 
-        Toast.makeText(this, worker_phone_num, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, worker_user_name, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, worker_job_title, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, worker_phone_num, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, worker_user_name, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, worker_job_title, Toast.LENGTH_SHORT).show();
 
 
 
@@ -222,7 +222,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
                      w_image = dataSnapshot.child("image").getValue().toString();
                      w_tokenid = dataSnapshot.child("tokenId").getValue().toString();
-                    Toast.makeText(RequestedHomePageActivity.this, w_tokenid, Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(RequestedHomePageActivity.this, w_tokenid, Toast.LENGTH_SHORT).show();
 
 
                     if(dataSnapshot.child("image").exists())
@@ -446,9 +446,9 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
                 intentPrevQuestions.putExtra("jobTitle",worker_job_title);
                 intentPrevQuestions.putExtra("phoneWorker",w_phone);
                 intentPrevQuestions.putExtra(EXTR_USER_NAME,worker_user_name);
-                Toast.makeText(this, "NAME OF WORKER " + worker_user_name, Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "job : " + jobTitle, Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "phone" + phoneWorker, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "NAME OF WORKER " + worker_user_name, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "job : " + jobTitle, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "phone" + phoneWorker, Toast.LENGTH_SHORT).show();
                 startActivity(intentPrevQuestions);
                 break;
 
@@ -529,7 +529,7 @@ public class RequestedHomePageActivity extends AppCompatActivity implements Navi
 
         User user = new User();
         String clientName = clickedItem.getUserName();
-        Toast.makeText(this, clientName, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, clientName, Toast.LENGTH_SHORT).show();
 
         detailsIntent.putExtra(EXTRA_ORDER_PHONE,clickedItem.getRequestedPhone());
         detailsIntent.putExtra(EXTRA_ORDER_JOB_TITLE,clickedItem.getJobTitle());

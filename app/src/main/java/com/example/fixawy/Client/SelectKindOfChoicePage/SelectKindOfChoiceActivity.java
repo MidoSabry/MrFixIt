@@ -73,7 +73,7 @@ public class SelectKindOfChoiceActivity extends AppCompatActivity {
                 intent.putExtra("phoneClient", phoneClient);
                 intent.putExtra("CategoryType",categoryType);
                 intent.putExtra(EXTR_USER_NAME,clientName);
-                Toast.makeText(SelectKindOfChoiceActivity.this,phoneClient , Toast.LENGTH_SHORT).show();
+               // Toast.makeText(SelectKindOfChoiceActivity.this,phoneClient , Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

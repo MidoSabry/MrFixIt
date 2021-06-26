@@ -65,9 +65,9 @@ public class MapActivity extends AppCompatActivity {
         String time = intent.getStringExtra("dataHistoryTime");
         String address = intent.getStringExtra("dataHistoryLocation");
 
-        Toast.makeText(this, Worker_phone, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, worker_jobTitle, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, phone, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, Worker_phone, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, worker_jobTitle, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, phone, Toast.LENGTH_SHORT).show();
         alertDialog = new AlertDialog.Builder(MapActivity.this).create();
         inflater = LayoutInflater.from(MapActivity.this);
         View dialogView = inflater.inflate(R.layout.dialogconfirm, null);

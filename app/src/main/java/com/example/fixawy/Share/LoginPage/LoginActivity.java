@@ -381,13 +381,13 @@ public class LoginActivity extends AppCompatActivity {
                         mDatabaseReference.child("Client").child("Data").child(phone).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
                             @Override
                             public void onSuccess(Object o) {
-                                Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
                             }
                         });
 
                         // Log and toast
                         // String msg = getString(R.string.msg_token_fmt, token);
-                        Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -412,14 +412,14 @@ public class LoginActivity extends AppCompatActivity {
                         databaseReference.child("Worker").child(jobTitle).child("Data").child(phone).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
                             @Override
                             public void onSuccess(Object o) {
-                                Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
 
                             }
                         });
 
                         // Log and toast
                         // String msg = getString(R.string.msg_token_fmt, token);
-                        Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(LoginActivity.this, tokenId, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -487,7 +487,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                               // Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 updateTokinIDWorker(jobTitle,phone);
 
                                 sessionManager.setLogin(true);
@@ -523,7 +523,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -556,7 +556,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -589,7 +589,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -622,7 +622,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -654,7 +654,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -686,7 +686,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                           //     Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -718,7 +718,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -750,7 +750,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -783,7 +783,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -815,7 +815,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -847,7 +847,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -879,7 +879,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -911,7 +911,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                             //   Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -943,7 +943,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                            //    Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
@@ -975,7 +975,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userName = dataSnapshot.child(phone).child("userName").getValue(String.class);
                                 jobTitle = dataSnapshot.child(phone).child("jobTitle").getValue(String.class);
                                 image = dataSnapshot.child(phone).child("image").getValue(String.class);
-                                Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
+                            //    Toast.makeText(LoginActivity.this, jobTitle, Toast.LENGTH_LONG).show();
                                 sessionManager.setLogin(true);
                                 sessionManager.setWorkerData(phone,userName,tokenId,jobTitle,image);
                                 startActivity(new Intent(LoginActivity.this, RequestedHomePageActivity.class)
