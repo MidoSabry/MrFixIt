@@ -57,10 +57,12 @@ public class PreviousQuestionAdapter extends RecyclerView.Adapter<PreviousQuesti
             public void onClick(View v) {
                 String jobTitle = questions.get(position).getJobTitle();
                 String phoneOfCard = holder.textViewPhone.getText().toString();
+                String question = holder.textViewQuestion.getText().toString();
                 v.getContext().startActivity(new Intent(v.getContext(), AnswerActivity.class)
                         .putExtra("phoneOfCard",phoneOfCard)
                         .putExtra("jobTitle",jobTitle)
                         .putExtra("phoneClient",phoneClient)
+                        .putExtra("question",question)
                         .putExtra(EXTR_USER_NAME,clientName));
             }
         });
