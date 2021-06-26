@@ -43,18 +43,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="64dp"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/openDialogReply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="40dp"
-            android:backgroundTint="#FFFFFF"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_input_add"
-            android:layout_marginRight="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
 
